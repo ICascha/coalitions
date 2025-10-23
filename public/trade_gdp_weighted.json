@@ -1,0 +1,3702 @@
+[
+  {
+    "country1": "al",
+    "country2": "at",
+    "metric": 0.0002968424563395992
+  },
+  {
+    "country1": "al",
+    "country2": "ba",
+    "metric": 0.0010540820174857698
+  },
+  {
+    "country1": "al",
+    "country2": "be",
+    "metric": 0.00012037596868141336
+  },
+  {
+    "country1": "al",
+    "country2": "bg",
+    "metric": 0.0019260823178708837
+  },
+  {
+    "country1": "al",
+    "country2": "ch",
+    "metric": 0.00016106845170007475
+  },
+  {
+    "country1": "al",
+    "country2": "cy",
+    "metric": 7.314874495465151e-05
+  },
+  {
+    "country1": "al",
+    "country2": "cz",
+    "metric": 0.000468632307094394
+  },
+  {
+    "country1": "al",
+    "country2": "de",
+    "metric": 0.00020677726970410682
+  },
+  {
+    "country1": "al",
+    "country2": "dk",
+    "metric": 8.362300455092907e-05
+  },
+  {
+    "country1": "al",
+    "country2": "ee",
+    "metric": 3.124693398530164e-05
+  },
+  {
+    "country1": "al",
+    "country2": "es",
+    "metric": 0.00010866806701881485
+  },
+  {
+    "country1": "al",
+    "country2": "fi",
+    "metric": 3.0776385840117063e-05
+  },
+  {
+    "country1": "al",
+    "country2": "fr",
+    "metric": 5.889550619336427e-05
+  },
+  {
+    "country1": "al",
+    "country2": "gb",
+    "metric": 2.377632859262563e-05
+  },
+  {
+    "country1": "al",
+    "country2": "gr",
+    "metric": 0.005269223311151127
+  },
+  {
+    "country1": "al",
+    "country2": "hr",
+    "metric": 0.0013451756484639406
+  },
+  {
+    "country1": "al",
+    "country2": "hu",
+    "metric": 0.000644568391931595
+  },
+  {
+    "country1": "al",
+    "country2": "ie",
+    "metric": 4.443566545156101e-05
+  },
+  {
+    "country1": "al",
+    "country2": "it",
+    "metric": 0.0016985030976673196
+  },
+  {
+    "country1": "al",
+    "country2": "lt",
+    "metric": 0.00012603739643011382
+  },
+  {
+    "country1": "al",
+    "country2": "lu",
+    "metric": 1.8374222361285835e-05
+  },
+  {
+    "country1": "al",
+    "country2": "lv",
+    "metric": 9.808167061366974e-05
+  },
+  {
+    "country1": "al",
+    "country2": "md",
+    "metric": 0.00015880827558606523
+  },
+  {
+    "country1": "al",
+    "country2": "me",
+    "metric": 0.0034209794837781506
+  },
+  {
+    "country1": "al",
+    "country2": "mk",
+    "metric": 0.005726738036849816
+  },
+  {
+    "country1": "al",
+    "country2": "mt",
+    "metric": 7.301517883015316e-05
+  },
+  {
+    "country1": "al",
+    "country2": "nl",
+    "metric": 0.0002008742524216155
+  },
+  {
+    "country1": "al",
+    "country2": "no",
+    "metric": 1.2565026955660068e-05
+  },
+  {
+    "country1": "al",
+    "country2": "pl",
+    "metric": 0.0003258519371525432
+  },
+  {
+    "country1": "al",
+    "country2": "pt",
+    "metric": 5.2511402014898556e-05
+  },
+  {
+    "country1": "al",
+    "country2": "ro",
+    "metric": 0.0004751000893030499
+  },
+  {
+    "country1": "al",
+    "country2": "rs",
+    "metric": 0.005357257058855178
+  },
+  {
+    "country1": "al",
+    "country2": "se",
+    "metric": 3.131091196482886e-05
+  },
+  {
+    "country1": "al",
+    "country2": "si",
+    "metric": 0.0011145560159709477
+  },
+  {
+    "country1": "al",
+    "country2": "sk",
+    "metric": 0.0006453199984919198
+  },
+  {
+    "country1": "al",
+    "country2": "tr",
+    "metric": 0.0010244834542576097
+  },
+  {
+    "country1": "al",
+    "country2": "ua",
+    "metric": 0.000294026215355387
+  },
+  {
+    "country1": "at",
+    "country2": "ba",
+    "metric": 0.002544413484720546
+  },
+  {
+    "country1": "at",
+    "country2": "be",
+    "metric": 0.006026887026534353
+  },
+  {
+    "country1": "at",
+    "country2": "bg",
+    "metric": 0.0035761022896201554
+  },
+  {
+    "country1": "at",
+    "country2": "ch",
+    "metric": 0.01282082740017032
+  },
+  {
+    "country1": "at",
+    "country2": "cy",
+    "metric": 0.0003112110072647625
+  },
+  {
+    "country1": "at",
+    "country2": "cz",
+    "metric": 0.01911307102610479
+  },
+  {
+    "country1": "at",
+    "country2": "de",
+    "metric": 0.029428997829122977
+  },
+  {
+    "country1": "at",
+    "country2": "dk",
+    "metric": 0.0020021255727965663
+  },
+  {
+    "country1": "at",
+    "country2": "ee",
+    "metric": 0.000714800056759864
+  },
+  {
+    "country1": "at",
+    "country2": "es",
+    "metric": 0.002662671353456035
+  },
+  {
+    "country1": "at",
+    "country2": "fi",
+    "metric": 0.001507086278986846
+  },
+  {
+    "country1": "at",
+    "country2": "fr",
+    "metric": 0.0033155470301327148
+  },
+  {
+    "country1": "at",
+    "country2": "gb",
+    "metric": 0.001058902140803145
+  },
+  {
+    "country1": "at",
+    "country2": "gr",
+    "metric": 0.001883397449294635
+  },
+  {
+    "country1": "at",
+    "country2": "hr",
+    "metric": 0.0063621200265027295
+  },
+  {
+    "country1": "at",
+    "country2": "hu",
+    "metric": 0.01920829200834848
+  },
+  {
+    "country1": "at",
+    "country2": "ie",
+    "metric": 0.0011312796129181466
+  },
+  {
+    "country1": "at",
+    "country2": "is",
+    "metric": 9.481680153023697e-05
+  },
+  {
+    "country1": "at",
+    "country2": "it",
+    "metric": 0.00923758572237626
+  },
+  {
+    "country1": "at",
+    "country2": "lt",
+    "metric": 0.001460937536847117
+  },
+  {
+    "country1": "at",
+    "country2": "lu",
+    "metric": 0.0007662720627676845
+  },
+  {
+    "country1": "at",
+    "country2": "lv",
+    "metric": 0.0007048727269620253
+  },
+  {
+    "country1": "at",
+    "country2": "md",
+    "metric": 0.0003779390502325678
+  },
+  {
+    "country1": "at",
+    "country2": "me",
+    "metric": 0.00019468462957274643
+  },
+  {
+    "country1": "at",
+    "country2": "mk",
+    "metric": 0.0007275856735446017
+  },
+  {
+    "country1": "at",
+    "country2": "mt",
+    "metric": 0.00013872144655364328
+  },
+  {
+    "country1": "at",
+    "country2": "nl",
+    "metric": 0.007231593358129646
+  },
+  {
+    "country1": "at",
+    "country2": "no",
+    "metric": 0.0009365299824956008
+  },
+  {
+    "country1": "at",
+    "country2": "pl",
+    "metric": 0.010883029652632777
+  },
+  {
+    "country1": "at",
+    "country2": "pt",
+    "metric": 0.0013601699123062918
+  },
+  {
+    "country1": "at",
+    "country2": "ro",
+    "metric": 0.006141265597703604
+  },
+  {
+    "country1": "at",
+    "country2": "rs",
+    "metric": 0.003956905798026396
+  },
+  {
+    "country1": "at",
+    "country2": "se",
+    "metric": 0.0034713058803436275
+  },
+  {
+    "country1": "at",
+    "country2": "si",
+    "metric": 0.013983248082120592
+  },
+  {
+    "country1": "at",
+    "country2": "sk",
+    "metric": 0.012943282400820127
+  },
+  {
+    "country1": "at",
+    "country2": "tr",
+    "metric": 0.001962190945467639
+  },
+  {
+    "country1": "at",
+    "country2": "ua",
+    "metric": 0.0019448934384694225
+  },
+  {
+    "country1": "ba",
+    "country2": "ch",
+    "metric": 0.00040492215340269603
+  },
+  {
+    "country1": "ba",
+    "country2": "cy",
+    "metric": 4.6946122345292054e-05
+  },
+  {
+    "country1": "ba",
+    "country2": "cz",
+    "metric": 0.0012052610135927441
+  },
+  {
+    "country1": "ba",
+    "country2": "de",
+    "metric": 0.0006037076501109396
+  },
+  {
+    "country1": "ba",
+    "country2": "dk",
+    "metric": 0.00017339746905822853
+  },
+  {
+    "country1": "ba",
+    "country2": "ee",
+    "metric": 4.1495591187345295e-05
+  },
+  {
+    "country1": "ba",
+    "country2": "es",
+    "metric": 0.00013924644500071275
+  },
+  {
+    "country1": "ba",
+    "country2": "fi",
+    "metric": 5.370590513981032e-05
+  },
+  {
+    "country1": "ba",
+    "country2": "fr",
+    "metric": 7.499436638578083e-05
+  },
+  {
+    "country1": "ba",
+    "country2": "gb",
+    "metric": 1.9044877923019983e-05
+  },
+  {
+    "country1": "ba",
+    "country2": "gr",
+    "metric": 0.00038734891307408626
+  },
+  {
+    "country1": "ba",
+    "country2": "hr",
+    "metric": 0.03893686346219563
+  },
+  {
+    "country1": "ba",
+    "country2": "hu",
+    "metric": 0.003539991965176284
+  },
+  {
+    "country1": "ba",
+    "country2": "ie",
+    "metric": 6.0953665336902784e-05
+  },
+  {
+    "country1": "ba",
+    "country2": "is",
+    "metric": 9.962469578590724e-09
+  },
+  {
+    "country1": "ba",
+    "country2": "it",
+    "metric": 0.0009117536885137886
+  },
+  {
+    "country1": "ba",
+    "country2": "lt",
+    "metric": 0.00031176175747864163
+  },
+  {
+    "country1": "ba",
+    "country2": "lu",
+    "metric": 3.445126770888367e-05
+  },
+  {
+    "country1": "ba",
+    "country2": "lv",
+    "metric": 9.330686719706999e-05
+  },
+  {
+    "country1": "ba",
+    "country2": "md",
+    "metric": 0.00018743414135728248
+  },
+  {
+    "country1": "ba",
+    "country2": "me",
+    "metric": 0.007961937895739703
+  },
+  {
+    "country1": "ba",
+    "country2": "mk",
+    "metric": 0.005129725564778425
+  },
+  {
+    "country1": "ba",
+    "country2": "mt",
+    "metric": 1.4010811770626437e-05
+  },
+  {
+    "country1": "ba",
+    "country2": "nl",
+    "metric": 0.00046584561730838946
+  },
+  {
+    "country1": "ba",
+    "country2": "no",
+    "metric": 0.00010345647767667893
+  },
+  {
+    "country1": "ba",
+    "country2": "pl",
+    "metric": 0.0008748574035922197
+  },
+  {
+    "country1": "ba",
+    "country2": "pt",
+    "metric": 4.436850618565333e-05
+  },
+  {
+    "country1": "ba",
+    "country2": "ro",
+    "metric": 0.0007253669400924999
+  },
+  {
+    "country1": "ba",
+    "country2": "rs",
+    "metric": 0.02913813265172923
+  },
+  {
+    "country1": "ba",
+    "country2": "se",
+    "metric": 0.00011606035415619193
+  },
+  {
+    "country1": "ba",
+    "country2": "si",
+    "metric": 0.01900815858143814
+  },
+  {
+    "country1": "ba",
+    "country2": "sk",
+    "metric": 0.0017962814461001946
+  },
+  {
+    "country1": "ba",
+    "country2": "tr",
+    "metric": 0.0011097533264268536
+  },
+  {
+    "country1": "ba",
+    "country2": "ua",
+    "metric": 0.00015827345916931212
+  },
+  {
+    "country1": "be",
+    "country2": "ba",
+    "metric": 0.00027148497974016926
+  },
+  {
+    "country1": "be",
+    "country2": "bg",
+    "metric": 0.0026000407920253555
+  },
+  {
+    "country1": "be",
+    "country2": "ch",
+    "metric": 0.006673977772557485
+  },
+  {
+    "country1": "be",
+    "country2": "cy",
+    "metric": 0.0003964651395430725
+  },
+  {
+    "country1": "be",
+    "country2": "cz",
+    "metric": 0.008792366737763749
+  },
+  {
+    "country1": "be",
+    "country2": "de",
+    "metric": 0.022768671574336517
+  },
+  {
+    "country1": "be",
+    "country2": "dk",
+    "metric": 0.004725952722203286
+  },
+  {
+    "country1": "be",
+    "country2": "ee",
+    "metric": 0.0012727000014231664
+  },
+  {
+    "country1": "be",
+    "country2": "es",
+    "metric": 0.010430276342729737
+  },
+  {
+    "country1": "be",
+    "country2": "fi",
+    "metric": 0.004240333359037964
+  },
+  {
+    "country1": "be",
+    "country2": "fr",
+    "metric": 0.02585994074088657
+  },
+  {
+    "country1": "be",
+    "country2": "gb",
+    "metric": 0.009835845515249658
+  },
+  {
+    "country1": "be",
+    "country2": "gr",
+    "metric": 0.0028691072703619885
+  },
+  {
+    "country1": "be",
+    "country2": "hr",
+    "metric": 0.0013870040677761868
+  },
+  {
+    "country1": "be",
+    "country2": "hu",
+    "metric": 0.005882533750354445
+  },
+  {
+    "country1": "be",
+    "country2": "ie",
+    "metric": 0.008427554373701487
+  },
+  {
+    "country1": "be",
+    "country2": "is",
+    "metric": 0.0003630278442275449
+  },
+  {
+    "country1": "be",
+    "country2": "it",
+    "metric": 0.013160898634170635
+  },
+  {
+    "country1": "be",
+    "country2": "lt",
+    "metric": 0.002317235746569177
+  },
+  {
+    "country1": "be",
+    "country2": "lu",
+    "metric": 0.013996281525087933
+  },
+  {
+    "country1": "be",
+    "country2": "lv",
+    "metric": 0.0009475510756624528
+  },
+  {
+    "country1": "be",
+    "country2": "md",
+    "metric": 0.00020386046782519838
+  },
+  {
+    "country1": "be",
+    "country2": "me",
+    "metric": 4.746706288587476e-05
+  },
+  {
+    "country1": "be",
+    "country2": "mk",
+    "metric": 0.0003824485561489838
+  },
+  {
+    "country1": "be",
+    "country2": "mt",
+    "metric": 0.000325023960668187
+  },
+  {
+    "country1": "be",
+    "country2": "nl",
+    "metric": 0.07155850064917457
+  },
+  {
+    "country1": "be",
+    "country2": "no",
+    "metric": 0.007549275321082786
+  },
+  {
+    "country1": "be",
+    "country2": "pl",
+    "metric": 0.011783787818835552
+  },
+  {
+    "country1": "be",
+    "country2": "pt",
+    "metric": 0.0046740722456607734
+  },
+  {
+    "country1": "be",
+    "country2": "ro",
+    "metric": 0.004507117940086875
+  },
+  {
+    "country1": "be",
+    "country2": "rs",
+    "metric": 0.0017213525390281155
+  },
+  {
+    "country1": "be",
+    "country2": "se",
+    "metric": 0.011988440198641164
+  },
+  {
+    "country1": "be",
+    "country2": "si",
+    "metric": 0.0018915214802280736
+  },
+  {
+    "country1": "be",
+    "country2": "sk",
+    "metric": 0.0031445132129942002
+  },
+  {
+    "country1": "be",
+    "country2": "tr",
+    "metric": 0.004626951023419173
+  },
+  {
+    "country1": "be",
+    "country2": "ua",
+    "metric": 0.0015034181198430505
+  },
+  {
+    "country1": "bg",
+    "country2": "ba",
+    "metric": 0.0011306463952878286
+  },
+  {
+    "country1": "bg",
+    "country2": "ch",
+    "metric": 0.0012702108313503773
+  },
+  {
+    "country1": "bg",
+    "country2": "cy",
+    "metric": 0.0007914078091566541
+  },
+  {
+    "country1": "bg",
+    "country2": "cz",
+    "metric": 0.006464798440661454
+  },
+  {
+    "country1": "bg",
+    "country2": "de",
+    "metric": 0.0026050869783355384
+  },
+  {
+    "country1": "bg",
+    "country2": "dk",
+    "metric": 0.0007749946071840923
+  },
+  {
+    "country1": "bg",
+    "country2": "ee",
+    "metric": 0.0006419227200542049
+  },
+  {
+    "country1": "bg",
+    "country2": "es",
+    "metric": 0.0011332691647392057
+  },
+  {
+    "country1": "bg",
+    "country2": "fi",
+    "metric": 0.0005862138164792989
+  },
+  {
+    "country1": "bg",
+    "country2": "fr",
+    "metric": 0.0007649527130706656
+  },
+  {
+    "country1": "bg",
+    "country2": "gb",
+    "metric": 0.00026953348321044087
+  },
+  {
+    "country1": "bg",
+    "country2": "gr",
+    "metric": 0.01540924078696427
+  },
+  {
+    "country1": "bg",
+    "country2": "hr",
+    "metric": 0.003115153287205624
+  },
+  {
+    "country1": "bg",
+    "country2": "hu",
+    "metric": 0.007027674596853327
+  },
+  {
+    "country1": "bg",
+    "country2": "ie",
+    "metric": 0.00045678470738529423
+  },
+  {
+    "country1": "bg",
+    "country2": "is",
+    "metric": 4.930760085885251e-05
+  },
+  {
+    "country1": "bg",
+    "country2": "it",
+    "metric": 0.0029022869828101627
+  },
+  {
+    "country1": "bg",
+    "country2": "lt",
+    "metric": 0.0014363052246807973
+  },
+  {
+    "country1": "bg",
+    "country2": "lu",
+    "metric": 0.00021801953195632617
+  },
+  {
+    "country1": "bg",
+    "country2": "lv",
+    "metric": 0.0006969210755791192
+  },
+  {
+    "country1": "bg",
+    "country2": "md",
+    "metric": 0.00274216314349296
+  },
+  {
+    "country1": "bg",
+    "country2": "me",
+    "metric": 0.00020697098524533674
+  },
+  {
+    "country1": "bg",
+    "country2": "mk",
+    "metric": 0.012077209102551256
+  },
+  {
+    "country1": "bg",
+    "country2": "mt",
+    "metric": 0.0002275243745258527
+  },
+  {
+    "country1": "bg",
+    "country2": "nl",
+    "metric": 0.0025551842284563457
+  },
+  {
+    "country1": "bg",
+    "country2": "no",
+    "metric": 0.0007629672223735508
+  },
+  {
+    "country1": "bg",
+    "country2": "pl",
+    "metric": 0.0046791292065953855
+  },
+  {
+    "country1": "bg",
+    "country2": "pt",
+    "metric": 0.0006748879293456722
+  },
+  {
+    "country1": "bg",
+    "country2": "ro",
+    "metric": 0.01811966239890081
+  },
+  {
+    "country1": "bg",
+    "country2": "rs",
+    "metric": 0.011297112783876418
+  },
+  {
+    "country1": "bg",
+    "country2": "se",
+    "metric": 0.001068032783864521
+  },
+  {
+    "country1": "bg",
+    "country2": "si",
+    "metric": 0.0033954852588220243
+  },
+  {
+    "country1": "bg",
+    "country2": "sk",
+    "metric": 0.005541427006520984
+  },
+  {
+    "country1": "bg",
+    "country2": "tr",
+    "metric": 0.006846961438126461
+  },
+  {
+    "country1": "bg",
+    "country2": "ua",
+    "metric": 0.005464280047154975
+  },
+  {
+    "country1": "ch",
+    "country2": "cy",
+    "metric": 0.0001661443334992076
+  },
+  {
+    "country1": "ch",
+    "country2": "cz",
+    "metric": 0.004062849297236448
+  },
+  {
+    "country1": "ch",
+    "country2": "de",
+    "metric": 0.02448406177513103
+  },
+  {
+    "country1": "ch",
+    "country2": "dk",
+    "metric": 0.0018508176786792463
+  },
+  {
+    "country1": "ch",
+    "country2": "ee",
+    "metric": 0.0006149024385589228
+  },
+  {
+    "country1": "ch",
+    "country2": "es",
+    "metric": 0.004894311281245205
+  },
+  {
+    "country1": "ch",
+    "country2": "fi",
+    "metric": 0.0012290689642009195
+  },
+  {
+    "country1": "ch",
+    "country2": "fr",
+    "metric": 0.01142374952348236
+  },
+  {
+    "country1": "ch",
+    "country2": "gb",
+    "metric": 0.011946475304979162
+  },
+  {
+    "country1": "ch",
+    "country2": "gr",
+    "metric": 0.0009560686344308456
+  },
+  {
+    "country1": "ch",
+    "country2": "hr",
+    "metric": 0.0008591011420233047
+  },
+  {
+    "country1": "ch",
+    "country2": "hu",
+    "metric": 0.002289935875527512
+  },
+  {
+    "country1": "ch",
+    "country2": "ie",
+    "metric": 0.0032123052538640716
+  },
+  {
+    "country1": "ch",
+    "country2": "is",
+    "metric": 0.00015378598472279016
+  },
+  {
+    "country1": "ch",
+    "country2": "it",
+    "metric": 0.018876503285724242
+  },
+  {
+    "country1": "ch",
+    "country2": "lt",
+    "metric": 0.0003953665065216484
+  },
+  {
+    "country1": "ch",
+    "country2": "lu",
+    "metric": 0.0006132362185913943
+  },
+  {
+    "country1": "ch",
+    "country2": "lv",
+    "metric": 0.0003815018414729459
+  },
+  {
+    "country1": "ch",
+    "country2": "md",
+    "metric": 0.0001174627247657759
+  },
+  {
+    "country1": "ch",
+    "country2": "me",
+    "metric": 0.00010904345552217686
+  },
+  {
+    "country1": "ch",
+    "country2": "mk",
+    "metric": 0.0001939161514938706
+  },
+  {
+    "country1": "ch",
+    "country2": "mt",
+    "metric": 0.00031505747484964966
+  },
+  {
+    "country1": "ch",
+    "country2": "nl",
+    "metric": 0.007500102758105275
+  },
+  {
+    "country1": "ch",
+    "country2": "no",
+    "metric": 0.0009096433580719984
+  },
+  {
+    "country1": "ch",
+    "country2": "pl",
+    "metric": 0.0042837890161111485
+  },
+  {
+    "country1": "ch",
+    "country2": "pt",
+    "metric": 0.0018184399608264978
+  },
+  {
+    "country1": "ch",
+    "country2": "ro",
+    "metric": 0.0032348771975882953
+  },
+  {
+    "country1": "ch",
+    "country2": "rs",
+    "metric": 0.0012798198031460492
+  },
+  {
+    "country1": "ch",
+    "country2": "se",
+    "metric": 0.002444798250709277
+  },
+  {
+    "country1": "ch",
+    "country2": "si",
+    "metric": 0.0580239683940478
+  },
+  {
+    "country1": "ch",
+    "country2": "sk",
+    "metric": 0.0017773591556377066
+  },
+  {
+    "country1": "ch",
+    "country2": "tr",
+    "metric": 0.002136554380712492
+  },
+  {
+    "country1": "ch",
+    "country2": "ua",
+    "metric": 0.00047793498673220686
+  },
+  {
+    "country1": "cy",
+    "country2": "cz",
+    "metric": 0.00046699322621529397
+  },
+  {
+    "country1": "cy",
+    "country2": "de",
+    "metric": 0.0003585056534113055
+  },
+  {
+    "country1": "cy",
+    "country2": "dk",
+    "metric": 0.00034144409546239525
+  },
+  {
+    "country1": "cy",
+    "country2": "ee",
+    "metric": 0.00035004808920973524
+  },
+  {
+    "country1": "cy",
+    "country2": "es",
+    "metric": 0.0005187627588552383
+  },
+  {
+    "country1": "cy",
+    "country2": "fi",
+    "metric": 0.00014998042226935026
+  },
+  {
+    "country1": "cy",
+    "country2": "fr",
+    "metric": 0.0002162094039740438
+  },
+  {
+    "country1": "cy",
+    "country2": "gb",
+    "metric": 0.0002553676218821978
+  },
+  {
+    "country1": "cy",
+    "country2": "gr",
+    "metric": 0.011056630377807476
+  },
+  {
+    "country1": "cy",
+    "country2": "hr",
+    "metric": 0.0002774036461847457
+  },
+  {
+    "country1": "cy",
+    "country2": "hu",
+    "metric": 0.00034380455093546784
+  },
+  {
+    "country1": "cy",
+    "country2": "ie",
+    "metric": 0.0003048872830088146
+  },
+  {
+    "country1": "cy",
+    "country2": "is",
+    "metric": 2.187756955641576e-05
+  },
+  {
+    "country1": "cy",
+    "country2": "it",
+    "metric": 0.0006817996835729673
+  },
+  {
+    "country1": "cy",
+    "country2": "lt",
+    "metric": 0.00026953483158315643
+  },
+  {
+    "country1": "cy",
+    "country2": "lu",
+    "metric": 2.3573887902978838e-07
+  },
+  {
+    "country1": "cy",
+    "country2": "lv",
+    "metric": 0.00020234335946307474
+  },
+  {
+    "country1": "cy",
+    "country2": "md",
+    "metric": 3.435547224169072e-05
+  },
+  {
+    "country1": "cy",
+    "country2": "me",
+    "metric": 2.6006609996866053e-05
+  },
+  {
+    "country1": "cy",
+    "country2": "mk",
+    "metric": 0.00011654618387014455
+  },
+  {
+    "country1": "cy",
+    "country2": "mt",
+    "metric": 0.0010510722698811737
+  },
+  {
+    "country1": "cy",
+    "country2": "nl",
+    "metric": 0.0007430344069272695
+  },
+  {
+    "country1": "cy",
+    "country2": "no",
+    "metric": 8.2340299314567e-05
+  },
+  {
+    "country1": "cy",
+    "country2": "pl",
+    "metric": 0.00040468062694693196
+  },
+  {
+    "country1": "cy",
+    "country2": "pt",
+    "metric": 0.0002496595768538639
+  },
+  {
+    "country1": "cy",
+    "country2": "ro",
+    "metric": 0.0004592812660775185
+  },
+  {
+    "country1": "cy",
+    "country2": "rs",
+    "metric": 0.0002490479217611199
+  },
+  {
+    "country1": "cy",
+    "country2": "se",
+    "metric": 0.000136852194650144
+  },
+  {
+    "country1": "cy",
+    "country2": "si",
+    "metric": 0.0004964708770229898
+  },
+  {
+    "country1": "cy",
+    "country2": "sk",
+    "metric": 0.0004646120209582584
+  },
+  {
+    "country1": "cy",
+    "country2": "tr",
+    "metric": 0.00013918189102031224
+  },
+  {
+    "country1": "cy",
+    "country2": "ua",
+    "metric": 7.060071053672156e-05
+  },
+  {
+    "country1": "cz",
+    "country2": "de",
+    "metric": 0.021776690294896844
+  },
+  {
+    "country1": "cz",
+    "country2": "dk",
+    "metric": 0.0031562588376408576
+  },
+  {
+    "country1": "cz",
+    "country2": "ee",
+    "metric": 0.0028030094577373454
+  },
+  {
+    "country1": "cz",
+    "country2": "es",
+    "metric": 0.004223555344090735
+  },
+  {
+    "country1": "cz",
+    "country2": "fi",
+    "metric": 0.002470739137744653
+  },
+  {
+    "country1": "cz",
+    "country2": "fr",
+    "metric": 0.00417403024613807
+  },
+  {
+    "country1": "cz",
+    "country2": "gb",
+    "metric": 0.001322966903764336
+  },
+  {
+    "country1": "cz",
+    "country2": "gr",
+    "metric": 0.0018135895041693155
+  },
+  {
+    "country1": "cz",
+    "country2": "hr",
+    "metric": 0.003767108785008084
+  },
+  {
+    "country1": "cz",
+    "country2": "hu",
+    "metric": 0.028821764056733472
+  },
+  {
+    "country1": "cz",
+    "country2": "ie",
+    "metric": 0.0016007006843478827
+  },
+  {
+    "country1": "cz",
+    "country2": "is",
+    "metric": 0.00016004306442072623
+  },
+  {
+    "country1": "cz",
+    "country2": "it",
+    "metric": 0.00664051005314938
+  },
+  {
+    "country1": "cz",
+    "country2": "lt",
+    "metric": 0.004416992275384748
+  },
+  {
+    "country1": "cz",
+    "country2": "lu",
+    "metric": 0.0015313147191749977
+  },
+  {
+    "country1": "cz",
+    "country2": "lv",
+    "metric": 0.0023055982565168393
+  },
+  {
+    "country1": "cz",
+    "country2": "md",
+    "metric": 0.0013729272786031086
+  },
+  {
+    "country1": "cz",
+    "country2": "me",
+    "metric": 0.00017131981905215104
+  },
+  {
+    "country1": "cz",
+    "country2": "mk",
+    "metric": 0.0009560786558451814
+  },
+  {
+    "country1": "cz",
+    "country2": "mt",
+    "metric": 0.00021750156103107857
+  },
+  {
+    "country1": "cz",
+    "country2": "nl",
+    "metric": 0.011380985176120668
+  },
+  {
+    "country1": "cz",
+    "country2": "no",
+    "metric": 0.0011741169826719798
+  },
+  {
+    "country1": "cz",
+    "country2": "pl",
+    "metric": 0.03489529080657591
+  },
+  {
+    "country1": "cz",
+    "country2": "pt",
+    "metric": 0.0026060056056301474
+  },
+  {
+    "country1": "cz",
+    "country2": "ro",
+    "metric": 0.01011528247809518
+  },
+  {
+    "country1": "cz",
+    "country2": "rs",
+    "metric": 0.0053903410500981625
+  },
+  {
+    "country1": "cz",
+    "country2": "se",
+    "metric": 0.004481790871014095
+  },
+  {
+    "country1": "cz",
+    "country2": "si",
+    "metric": 0.0061066568208545
+  },
+  {
+    "country1": "cz",
+    "country2": "sk",
+    "metric": 0.07155562663261424
+  },
+  {
+    "country1": "cz",
+    "country2": "tr",
+    "metric": 0.003014481577311828
+  },
+  {
+    "country1": "cz",
+    "country2": "ua",
+    "metric": 0.005627326379896894
+  },
+  {
+    "country1": "de",
+    "country2": "dk",
+    "metric": 0.009031768765520564
+  },
+  {
+    "country1": "de",
+    "country2": "ee",
+    "metric": 0.001135325838245502
+  },
+  {
+    "country1": "de",
+    "country2": "es",
+    "metric": 0.015964645357658364
+  },
+  {
+    "country1": "de",
+    "country2": "fi",
+    "metric": 0.004499460466596267
+  },
+  {
+    "country1": "de",
+    "country2": "fr",
+    "metric": 0.026411572629273634
+  },
+  {
+    "country1": "de",
+    "country2": "gb",
+    "metric": 0.013287347116884798
+  },
+  {
+    "country1": "de",
+    "country2": "gr",
+    "metric": 0.003428334553207586
+  },
+  {
+    "country1": "de",
+    "country2": "hr",
+    "metric": 0.002444849551137424
+  },
+  {
+    "country1": "de",
+    "country2": "hu",
+    "metric": 0.013913228035906913
+  },
+  {
+    "country1": "de",
+    "country2": "ie",
+    "metric": 0.004196777277232924
+  },
+  {
+    "country1": "de",
+    "country2": "is",
+    "metric": 0.0003181524832209379
+  },
+  {
+    "country1": "de",
+    "country2": "it",
+    "metric": 0.023129811060478057
+  },
+  {
+    "country1": "de",
+    "country2": "lt",
+    "metric": 0.0022982202742566336
+  },
+  {
+    "country1": "de",
+    "country2": "lu",
+    "metric": 0.00281913335324569
+  },
+  {
+    "country1": "de",
+    "country2": "lv",
+    "metric": 0.001115391221142183
+  },
+  {
+    "country1": "de",
+    "country2": "md",
+    "metric": 0.00027840745524733586
+  },
+  {
+    "country1": "de",
+    "country2": "me",
+    "metric": 9.948874625521864e-05
+  },
+  {
+    "country1": "de",
+    "country2": "mk",
+    "metric": 0.0006448670338804134
+  },
+  {
+    "country1": "de",
+    "country2": "mt",
+    "metric": 0.000406055092094201
+  },
+  {
+    "country1": "de",
+    "country2": "nl",
+    "metric": 0.041168467680621525
+  },
+  {
+    "country1": "de",
+    "country2": "no",
+    "metric": 0.004356835974002411
+  },
+  {
+    "country1": "de",
+    "country2": "pl",
+    "metric": 0.03535622232967362
+  },
+  {
+    "country1": "de",
+    "country2": "pt",
+    "metric": 0.0050002052864833845
+  },
+  {
+    "country1": "de",
+    "country2": "ro",
+    "metric": 0.00911556774366094
+  },
+  {
+    "country1": "de",
+    "country2": "rs",
+    "metric": 0.0023337278254218917
+  },
+  {
+    "country1": "de",
+    "country2": "se",
+    "metric": 0.010511603013128163
+  },
+  {
+    "country1": "de",
+    "country2": "si",
+    "metric": 0.00313984429071197
+  },
+  {
+    "country1": "de",
+    "country2": "sk",
+    "metric": 0.007804716180869927
+  },
+  {
+    "country1": "de",
+    "country2": "tr",
+    "metric": 0.009071004294872618
+  },
+  {
+    "country1": "de",
+    "country2": "ua",
+    "metric": 0.003385779666579382
+  },
+  {
+    "country1": "dk",
+    "country2": "ee",
+    "metric": 0.0017183591935329777
+  },
+  {
+    "country1": "dk",
+    "country2": "es",
+    "metric": 0.0022565509897428918
+  },
+  {
+    "country1": "dk",
+    "country2": "fi",
+    "metric": 0.004775437988213569
+  },
+  {
+    "country1": "dk",
+    "country2": "fr",
+    "metric": 0.002521136360423587
+  },
+  {
+    "country1": "dk",
+    "country2": "gb",
+    "metric": 0.0016774217765093968
+  },
+  {
+    "country1": "dk",
+    "country2": "gr",
+    "metric": 0.0011955824053422957
+  },
+  {
+    "country1": "dk",
+    "country2": "hr",
+    "metric": 0.0006653489253431869
+  },
+  {
+    "country1": "dk",
+    "country2": "hu",
+    "metric": 0.0023463836082642246
+  },
+  {
+    "country1": "dk",
+    "country2": "ie",
+    "metric": 0.0013397970665142325
+  },
+  {
+    "country1": "dk",
+    "country2": "is",
+    "metric": 0.002729335961317552
+  },
+  {
+    "country1": "dk",
+    "country2": "it",
+    "metric": 0.0027361707535551723
+  },
+  {
+    "country1": "dk",
+    "country2": "lt",
+    "metric": 0.002418899339234508
+  },
+  {
+    "country1": "dk",
+    "country2": "lu",
+    "metric": 0.000459689302615518
+  },
+  {
+    "country1": "dk",
+    "country2": "lv",
+    "metric": 0.0015697507861915966
+  },
+  {
+    "country1": "dk",
+    "country2": "md",
+    "metric": 9.789367579941128e-05
+  },
+  {
+    "country1": "dk",
+    "country2": "me",
+    "metric": 2.134288333512262e-05
+  },
+  {
+    "country1": "dk",
+    "country2": "mk",
+    "metric": 0.00011048580013302552
+  },
+  {
+    "country1": "dk",
+    "country2": "mt",
+    "metric": 0.00024463167805867104
+  },
+  {
+    "country1": "dk",
+    "country2": "nl",
+    "metric": 0.010959042247169575
+  },
+  {
+    "country1": "dk",
+    "country2": "no",
+    "metric": 0.01665088324772461
+  },
+  {
+    "country1": "dk",
+    "country2": "pl",
+    "metric": 0.00884641662140754
+  },
+  {
+    "country1": "dk",
+    "country2": "pt",
+    "metric": 0.00128204432501019
+  },
+  {
+    "country1": "dk",
+    "country2": "ro",
+    "metric": 0.0010013321726793927
+  },
+  {
+    "country1": "dk",
+    "country2": "rs",
+    "metric": 0.0007896340049993094
+  },
+  {
+    "country1": "dk",
+    "country2": "se",
+    "metric": 0.022985993586113872
+  },
+  {
+    "country1": "dk",
+    "country2": "si",
+    "metric": 0.0006855082558422369
+  },
+  {
+    "country1": "dk",
+    "country2": "sk",
+    "metric": 0.0014245583697722422
+  },
+  {
+    "country1": "dk",
+    "country2": "tr",
+    "metric": 0.0014849433544429581
+  },
+  {
+    "country1": "dk",
+    "country2": "ua",
+    "metric": 0.0008690902462110695
+  },
+  {
+    "country1": "ee",
+    "country2": "fi",
+    "metric": 0.015528380838888708
+  },
+  {
+    "country1": "ee",
+    "country2": "fr",
+    "metric": 0.0002943907125437733
+  },
+  {
+    "country1": "ee",
+    "country2": "gb",
+    "metric": 0.000164045099871614
+  },
+  {
+    "country1": "ee",
+    "country2": "gr",
+    "metric": 0.0004575031451109813
+  },
+  {
+    "country1": "ee",
+    "country2": "hr",
+    "metric": 0.00021553417118808676
+  },
+  {
+    "country1": "ee",
+    "country2": "hu",
+    "metric": 0.0009112663755845123
+  },
+  {
+    "country1": "ee",
+    "country2": "ie",
+    "metric": 9.801553976248598e-05
+  },
+  {
+    "country1": "ee",
+    "country2": "is",
+    "metric": 0.00016221268862364081
+  },
+  {
+    "country1": "ee",
+    "country2": "it",
+    "metric": 0.0005990008568449373
+  },
+  {
+    "country1": "ee",
+    "country2": "lt",
+    "metric": 0.03143040864457831
+  },
+  {
+    "country1": "ee",
+    "country2": "lu",
+    "metric": 7.900312424873069e-05
+  },
+  {
+    "country1": "ee",
+    "country2": "lv",
+    "metric": 0.05119830898460938
+  },
+  {
+    "country1": "ee",
+    "country2": "md",
+    "metric": 0.00022154109291254572
+  },
+  {
+    "country1": "ee",
+    "country2": "me",
+    "metric": 2.1360342698128967e-05
+  },
+  {
+    "country1": "ee",
+    "country2": "mk",
+    "metric": 0.00011782765519226521
+  },
+  {
+    "country1": "ee",
+    "country2": "mt",
+    "metric": 9.326125398921063e-05
+  },
+  {
+    "country1": "ee",
+    "country2": "nl",
+    "metric": 0.0016982281043180184
+  },
+  {
+    "country1": "ee",
+    "country2": "no",
+    "metric": 0.0010809325805291635
+  },
+  {
+    "country1": "ee",
+    "country2": "pl",
+    "metric": 0.0033967640462849976
+  },
+  {
+    "country1": "ee",
+    "country2": "pt",
+    "metric": 0.00041017910214361485
+  },
+  {
+    "country1": "ee",
+    "country2": "ro",
+    "metric": 0.00039788407126110464
+  },
+  {
+    "country1": "ee",
+    "country2": "rs",
+    "metric": 0.00048729730790311694
+  },
+  {
+    "country1": "ee",
+    "country2": "se",
+    "metric": 0.005636727745851974
+  },
+  {
+    "country1": "ee",
+    "country2": "si",
+    "metric": 0.0008871830273143832
+  },
+  {
+    "country1": "ee",
+    "country2": "sk",
+    "metric": 0.0012240632201765314
+  },
+  {
+    "country1": "ee",
+    "country2": "tr",
+    "metric": 0.00046272699851979755
+  },
+  {
+    "country1": "ee",
+    "country2": "ua",
+    "metric": 0.0007504804311763106
+  },
+  {
+    "country1": "es",
+    "country2": "ee",
+    "metric": 0.00041510952007411494
+  },
+  {
+    "country1": "es",
+    "country2": "fi",
+    "metric": 0.0013972256961048814
+  },
+  {
+    "country1": "es",
+    "country2": "fr",
+    "metric": 0.021013357113114407
+  },
+  {
+    "country1": "es",
+    "country2": "gb",
+    "metric": 0.0052425097717440075
+  },
+  {
+    "country1": "es",
+    "country2": "gr",
+    "metric": 0.0031076050241187264
+  },
+  {
+    "country1": "es",
+    "country2": "hr",
+    "metric": 0.0010126000851478948
+  },
+  {
+    "country1": "es",
+    "country2": "hu",
+    "metric": 0.002465725662685223
+  },
+  {
+    "country1": "es",
+    "country2": "ie",
+    "metric": 0.0037053886782761683
+  },
+  {
+    "country1": "es",
+    "country2": "is",
+    "metric": 0.00010924491330697123
+  },
+  {
+    "country1": "es",
+    "country2": "it",
+    "metric": 0.017458330822808052
+  },
+  {
+    "country1": "es",
+    "country2": "lt",
+    "metric": 0.0006611116003892039
+  },
+  {
+    "country1": "es",
+    "country2": "lu",
+    "metric": 0.000500931025632148
+  },
+  {
+    "country1": "es",
+    "country2": "lv",
+    "metric": 0.0003832429688012394
+  },
+  {
+    "country1": "es",
+    "country2": "md",
+    "metric": 9.976185626645315e-05
+  },
+  {
+    "country1": "es",
+    "country2": "me",
+    "metric": 4.131565991571086e-05
+  },
+  {
+    "country1": "es",
+    "country2": "mk",
+    "metric": 0.00013684306196195688
+  },
+  {
+    "country1": "es",
+    "country2": "mt",
+    "metric": 0.0008526292071321176
+  },
+  {
+    "country1": "es",
+    "country2": "nl",
+    "metric": 0.010711181170943196
+  },
+  {
+    "country1": "es",
+    "country2": "no",
+    "metric": 0.0017423504505024179
+  },
+  {
+    "country1": "es",
+    "country2": "pl",
+    "metric": 0.007828043687528645
+  },
+  {
+    "country1": "es",
+    "country2": "pt",
+    "metric": 0.030224192939496332
+  },
+  {
+    "country1": "es",
+    "country2": "ro",
+    "metric": 0.0033450710584915127
+  },
+  {
+    "country1": "es",
+    "country2": "rs",
+    "metric": 0.000702403244776454
+  },
+  {
+    "country1": "es",
+    "country2": "se",
+    "metric": 0.00297754103066316
+  },
+  {
+    "country1": "es",
+    "country2": "si",
+    "metric": 0.000976286237188139
+  },
+  {
+    "country1": "es",
+    "country2": "sk",
+    "metric": 0.0022675008924341942
+  },
+  {
+    "country1": "es",
+    "country2": "tr",
+    "metric": 0.00623818208642591
+  },
+  {
+    "country1": "es",
+    "country2": "ua",
+    "metric": 0.0008658803299302338
+  },
+  {
+    "country1": "fi",
+    "country2": "fr",
+    "metric": 0.0012970313514472007
+  },
+  {
+    "country1": "fi",
+    "country2": "gb",
+    "metric": 0.0009090302364020267
+  },
+  {
+    "country1": "fi",
+    "country2": "gr",
+    "metric": 0.0007654133196325525
+  },
+  {
+    "country1": "fi",
+    "country2": "hr",
+    "metric": 0.0002648885639664375
+  },
+  {
+    "country1": "fi",
+    "country2": "hu",
+    "metric": 0.0012228143168964564
+  },
+  {
+    "country1": "fi",
+    "country2": "ie",
+    "metric": 0.0005872593917976773
+  },
+  {
+    "country1": "fi",
+    "country2": "is",
+    "metric": 0.0003252389216417142
+  },
+  {
+    "country1": "fi",
+    "country2": "it",
+    "metric": 0.0016308991605492142
+  },
+  {
+    "country1": "fi",
+    "country2": "lt",
+    "metric": 0.00423083548650695
+  },
+  {
+    "country1": "fi",
+    "country2": "lu",
+    "metric": 0.0002013947199541952
+  },
+  {
+    "country1": "fi",
+    "country2": "lv",
+    "metric": 0.0054537076885257055
+  },
+  {
+    "country1": "fi",
+    "country2": "md",
+    "metric": 3.37410563084584e-05
+  },
+  {
+    "country1": "fi",
+    "country2": "me",
+    "metric": 3.7337592894394997e-06
+  },
+  {
+    "country1": "fi",
+    "country2": "mk",
+    "metric": 3.708400828594207e-05
+  },
+  {
+    "country1": "fi",
+    "country2": "mt",
+    "metric": 0.00033328317265419804
+  },
+  {
+    "country1": "fi",
+    "country2": "nl",
+    "metric": 0.007863218864738834
+  },
+  {
+    "country1": "fi",
+    "country2": "no",
+    "metric": 0.00959503564572461
+  },
+  {
+    "country1": "fi",
+    "country2": "pl",
+    "metric": 0.004679541424350168
+  },
+  {
+    "country1": "fi",
+    "country2": "pt",
+    "metric": 0.0010973729584448327
+  },
+  {
+    "country1": "fi",
+    "country2": "ro",
+    "metric": 0.0008005258757417094
+  },
+  {
+    "country1": "fi",
+    "country2": "rs",
+    "metric": 0.0003831275276599302
+  },
+  {
+    "country1": "fi",
+    "country2": "se",
+    "metric": 0.024257141745269
+  },
+  {
+    "country1": "fi",
+    "country2": "si",
+    "metric": 0.00047974412557918273
+  },
+  {
+    "country1": "fi",
+    "country2": "sk",
+    "metric": 0.0009206173024756043
+  },
+  {
+    "country1": "fi",
+    "country2": "tr",
+    "metric": 0.0007209550087973465
+  },
+  {
+    "country1": "fi",
+    "country2": "ua",
+    "metric": 0.00034110581086909124
+  },
+  {
+    "country1": "fr",
+    "country2": "gb",
+    "metric": 0.009602280041251434
+  },
+  {
+    "country1": "fr",
+    "country2": "gr",
+    "metric": 0.0023298568391485293
+  },
+  {
+    "country1": "fr",
+    "country2": "hr",
+    "metric": 0.000663366294693403
+  },
+  {
+    "country1": "fr",
+    "country2": "hu",
+    "metric": 0.0028567181976199255
+  },
+  {
+    "country1": "fr",
+    "country2": "ie",
+    "metric": 0.0033037637079526526
+  },
+  {
+    "country1": "fr",
+    "country2": "is",
+    "metric": 0.0001250040596035251
+  },
+  {
+    "country1": "fr",
+    "country2": "it",
+    "metric": 0.020999462197094747
+  },
+  {
+    "country1": "fr",
+    "country2": "lt",
+    "metric": 0.0007113954482691453
+  },
+  {
+    "country1": "fr",
+    "country2": "lu",
+    "metric": 0.0020172182063922135
+  },
+  {
+    "country1": "fr",
+    "country2": "lv",
+    "metric": 0.00032050802197865696
+  },
+  {
+    "country1": "fr",
+    "country2": "md",
+    "metric": 9.069343886716405e-05
+  },
+  {
+    "country1": "fr",
+    "country2": "me",
+    "metric": 4.3767043890324626e-05
+  },
+  {
+    "country1": "fr",
+    "country2": "mk",
+    "metric": 8.598588631239935e-05
+  },
+  {
+    "country1": "fr",
+    "country2": "mt",
+    "metric": 0.0012527202438592472
+  },
+  {
+    "country1": "fr",
+    "country2": "nl",
+    "metric": 0.013598545040307797
+  },
+  {
+    "country1": "fr",
+    "country2": "no",
+    "metric": 0.0014774129211490494
+  },
+  {
+    "country1": "fr",
+    "country2": "pl",
+    "metric": 0.0086286538297194
+  },
+  {
+    "country1": "fr",
+    "country2": "pt",
+    "metric": 0.004768916753598409
+  },
+  {
+    "country1": "fr",
+    "country2": "ro",
+    "metric": 0.0032628402529254787
+  },
+  {
+    "country1": "fr",
+    "country2": "rs",
+    "metric": 0.0005858767199550323
+  },
+  {
+    "country1": "fr",
+    "country2": "se",
+    "metric": 0.0034000498488048272
+  },
+  {
+    "country1": "fr",
+    "country2": "si",
+    "metric": 0.0008202541427234252
+  },
+  {
+    "country1": "fr",
+    "country2": "sk",
+    "metric": 0.001851060704856399
+  },
+  {
+    "country1": "fr",
+    "country2": "tr",
+    "metric": 0.005427533624595235
+  },
+  {
+    "country1": "fr",
+    "country2": "ua",
+    "metric": 0.0007064766129820732
+  },
+  {
+    "country1": "gb",
+    "country2": "gr",
+    "metric": 0.0005861317647916905
+  },
+  {
+    "country1": "gb",
+    "country2": "hr",
+    "metric": 0.00010581235073925555
+  },
+  {
+    "country1": "gb",
+    "country2": "hu",
+    "metric": 0.0008878371831191638
+  },
+  {
+    "country1": "gb",
+    "country2": "ie",
+    "metric": 0.010924707576936026
+  },
+  {
+    "country1": "gb",
+    "country2": "is",
+    "metric": 0.00024389517158085255
+  },
+  {
+    "country1": "gb",
+    "country2": "it",
+    "metric": 0.004887630460938628
+  },
+  {
+    "country1": "gb",
+    "country2": "lt",
+    "metric": 0.0006378041222144901
+  },
+  {
+    "country1": "gb",
+    "country2": "lu",
+    "metric": 0.00034576216881314223
+  },
+  {
+    "country1": "gb",
+    "country2": "lv",
+    "metric": 0.00024491360452105136
+  },
+  {
+    "country1": "gb",
+    "country2": "md",
+    "metric": 2.8768540918852644e-05
+  },
+  {
+    "country1": "gb",
+    "country2": "me",
+    "metric": 5.7509283127960946e-06
+  },
+  {
+    "country1": "gb",
+    "country2": "mk",
+    "metric": 0.0006723276248530665
+  },
+  {
+    "country1": "gb",
+    "country2": "mt",
+    "metric": 0.0003917422548917815
+  },
+  {
+    "country1": "gb",
+    "country2": "nl",
+    "metric": 0.014623458341356674
+  },
+  {
+    "country1": "gb",
+    "country2": "no",
+    "metric": 0.0022170543043415845
+  },
+  {
+    "country1": "gb",
+    "country2": "pl",
+    "metric": 0.004164689781363763
+  },
+  {
+    "country1": "gb",
+    "country2": "pt",
+    "metric": 0.0007808521976047809
+  },
+  {
+    "country1": "gb",
+    "country2": "ro",
+    "metric": 0.0008128036404380925
+  },
+  {
+    "country1": "gb",
+    "country2": "rs",
+    "metric": 0.0001683468295416489
+  },
+  {
+    "country1": "gb",
+    "country2": "se",
+    "metric": 0.003178052455897138
+  },
+  {
+    "country1": "gb",
+    "country2": "si",
+    "metric": 0.00015887647220971479
+  },
+  {
+    "country1": "gb",
+    "country2": "sk",
+    "metric": 0.000950985824954785
+  },
+  {
+    "country1": "gb",
+    "country2": "tr",
+    "metric": 0.0036469232642998744
+  },
+  {
+    "country1": "gb",
+    "country2": "ua",
+    "metric": 0.0004977499649223267
+  },
+  {
+    "country1": "gr",
+    "country2": "hr",
+    "metric": 0.001733921469738703
+  },
+  {
+    "country1": "gr",
+    "country2": "hu",
+    "metric": 0.0020100978427224935
+  },
+  {
+    "country1": "gr",
+    "country2": "ie",
+    "metric": 0.0011026509099384362
+  },
+  {
+    "country1": "gr",
+    "country2": "is",
+    "metric": 4.15944835087813e-05
+  },
+  {
+    "country1": "gr",
+    "country2": "it",
+    "metric": 0.005709814152109782
+  },
+  {
+    "country1": "gr",
+    "country2": "lt",
+    "metric": 0.0005150106576307604
+  },
+  {
+    "country1": "gr",
+    "country2": "lu",
+    "metric": 0.0002752051982659495
+  },
+  {
+    "country1": "gr",
+    "country2": "lv",
+    "metric": 0.00030371624121983576
+  },
+  {
+    "country1": "gr",
+    "country2": "md",
+    "metric": 0.00035464072612606296
+  },
+  {
+    "country1": "gr",
+    "country2": "me",
+    "metric": 0.0008832157404153929
+  },
+  {
+    "country1": "gr",
+    "country2": "mk",
+    "metric": 0.008450438347197596
+  },
+  {
+    "country1": "gr",
+    "country2": "mt",
+    "metric": 0.0030560582007424842
+  },
+  {
+    "country1": "gr",
+    "country2": "nl",
+    "metric": 0.0037987168114091935
+  },
+  {
+    "country1": "gr",
+    "country2": "no",
+    "metric": 0.0011142046259730845
+  },
+  {
+    "country1": "gr",
+    "country2": "pl",
+    "metric": 0.002983629645389
+  },
+  {
+    "country1": "gr",
+    "country2": "pt",
+    "metric": 0.0010413992903433706
+  },
+  {
+    "country1": "gr",
+    "country2": "ro",
+    "metric": 0.004780868002021727
+  },
+  {
+    "country1": "gr",
+    "country2": "rs",
+    "metric": 0.003057001305302911
+  },
+  {
+    "country1": "gr",
+    "country2": "se",
+    "metric": 0.0011131830184540063
+  },
+  {
+    "country1": "gr",
+    "country2": "si",
+    "metric": 0.002316393220446863
+  },
+  {
+    "country1": "gr",
+    "country2": "sk",
+    "metric": 0.0014551451220983982
+  },
+  {
+    "country1": "gr",
+    "country2": "tr",
+    "metric": 0.004639216644003829
+  },
+  {
+    "country1": "gr",
+    "country2": "ua",
+    "metric": 0.0030411463668984944
+  },
+  {
+    "country1": "hr",
+    "country2": "hu",
+    "metric": 0.015579371967106006
+  },
+  {
+    "country1": "hr",
+    "country2": "ie",
+    "metric": 0.0004076000584099104
+  },
+  {
+    "country1": "hr",
+    "country2": "is",
+    "metric": 4.542225777033064e-05
+  },
+  {
+    "country1": "hr",
+    "country2": "it",
+    "metric": 0.004734744179955262
+  },
+  {
+    "country1": "hr",
+    "country2": "lt",
+    "metric": 0.0009545874312699672
+  },
+  {
+    "country1": "hr",
+    "country2": "lu",
+    "metric": 0.00015464064534533706
+  },
+  {
+    "country1": "hr",
+    "country2": "lv",
+    "metric": 0.00042781591044520204
+  },
+  {
+    "country1": "hr",
+    "country2": "md",
+    "metric": 0.00017680411874489515
+  },
+  {
+    "country1": "hr",
+    "country2": "me",
+    "metric": 0.0014949432931644871
+  },
+  {
+    "country1": "hr",
+    "country2": "mk",
+    "metric": 0.003558539570923551
+  },
+  {
+    "country1": "hr",
+    "country2": "mt",
+    "metric": 0.0002416545380247989
+  },
+  {
+    "country1": "hr",
+    "country2": "nl",
+    "metric": 0.0020006996042358604
+  },
+  {
+    "country1": "hr",
+    "country2": "no",
+    "metric": 0.00048440822725933513
+  },
+  {
+    "country1": "hr",
+    "country2": "pl",
+    "metric": 0.003000344943343109
+  },
+  {
+    "country1": "hr",
+    "country2": "pt",
+    "metric": 0.000421548169644951
+  },
+  {
+    "country1": "hr",
+    "country2": "ro",
+    "metric": 0.0021464952708581497
+  },
+  {
+    "country1": "hr",
+    "country2": "rs",
+    "metric": 0.01413895413789351
+  },
+  {
+    "country1": "hr",
+    "country2": "se",
+    "metric": 0.0008024628482021866
+  },
+  {
+    "country1": "hr",
+    "country2": "si",
+    "metric": 0.04280677375093126
+  },
+  {
+    "country1": "hr",
+    "country2": "sk",
+    "metric": 0.00706081344513649
+  },
+  {
+    "country1": "hr",
+    "country2": "tr",
+    "metric": 0.0008651029103771376
+  },
+  {
+    "country1": "hr",
+    "country2": "ua",
+    "metric": 0.0006104938990091406
+  },
+  {
+    "country1": "hu",
+    "country2": "ie",
+    "metric": 0.0019979540746221684
+  },
+  {
+    "country1": "hu",
+    "country2": "is",
+    "metric": 0.00017840962999363534
+  },
+  {
+    "country1": "hu",
+    "country2": "it",
+    "metric": 0.004983641152774177
+  },
+  {
+    "country1": "hu",
+    "country2": "lt",
+    "metric": 0.0025014828758327438
+  },
+  {
+    "country1": "hu",
+    "country2": "lu",
+    "metric": 0.0010502955330767205
+  },
+  {
+    "country1": "hu",
+    "country2": "lv",
+    "metric": 0.0015242531814310125
+  },
+  {
+    "country1": "hu",
+    "country2": "md",
+    "metric": 0.0010131221050117246
+  },
+  {
+    "country1": "hu",
+    "country2": "me",
+    "metric": 0.0003487903660121391
+  },
+  {
+    "country1": "hu",
+    "country2": "mk",
+    "metric": 0.004127088362345007
+  },
+  {
+    "country1": "hu",
+    "country2": "mt",
+    "metric": 0.0002926047808609234
+  },
+  {
+    "country1": "hu",
+    "country2": "nl",
+    "metric": 0.006884028384154457
+  },
+  {
+    "country1": "hu",
+    "country2": "no",
+    "metric": 0.0011865134131433203
+  },
+  {
+    "country1": "hu",
+    "country2": "pl",
+    "metric": 0.01651374190803196
+  },
+  {
+    "country1": "hu",
+    "country2": "pt",
+    "metric": 0.0020255074443068146
+  },
+  {
+    "country1": "hu",
+    "country2": "ro",
+    "metric": 0.02088310826657097
+  },
+  {
+    "country1": "hu",
+    "country2": "rs",
+    "metric": 0.015799090372739345
+  },
+  {
+    "country1": "hu",
+    "country2": "se",
+    "metric": 0.0024078428943130237
+  },
+  {
+    "country1": "hu",
+    "country2": "si",
+    "metric": 0.014494534312197976
+  },
+  {
+    "country1": "hu",
+    "country2": "sk",
+    "metric": 0.047236102745470854
+  },
+  {
+    "country1": "hu",
+    "country2": "tr",
+    "metric": 0.0024798186681121016
+  },
+  {
+    "country1": "hu",
+    "country2": "ua",
+    "metric": 0.008630213372743481
+  },
+  {
+    "country1": "ie",
+    "country2": "is",
+    "metric": 0.0002777692288208528
+  },
+  {
+    "country1": "ie",
+    "country2": "it",
+    "metric": 0.0029356653234900144
+  },
+  {
+    "country1": "ie",
+    "country2": "lt",
+    "metric": 0.00034021473116339554
+  },
+  {
+    "country1": "ie",
+    "country2": "lu",
+    "metric": 0.0003115376489902361
+  },
+  {
+    "country1": "ie",
+    "country2": "lv",
+    "metric": 0.00020401396063057605
+  },
+  {
+    "country1": "ie",
+    "country2": "md",
+    "metric": 3.331533193008429e-05
+  },
+  {
+    "country1": "ie",
+    "country2": "me",
+    "metric": 9.633072421057223e-06
+  },
+  {
+    "country1": "ie",
+    "country2": "mk",
+    "metric": 4.1715114643192125e-05
+  },
+  {
+    "country1": "ie",
+    "country2": "mt",
+    "metric": 0.0001409257797469314
+  },
+  {
+    "country1": "ie",
+    "country2": "nl",
+    "metric": 0.012672489419247071
+  },
+  {
+    "country1": "ie",
+    "country2": "no",
+    "metric": 0.0007372832621891835
+  },
+  {
+    "country1": "ie",
+    "country2": "pl",
+    "metric": 0.0023975502251216687
+  },
+  {
+    "country1": "ie",
+    "country2": "pt",
+    "metric": 0.002147893115520976
+  },
+  {
+    "country1": "ie",
+    "country2": "ro",
+    "metric": 0.000737726820304707
+  },
+  {
+    "country1": "ie",
+    "country2": "rs",
+    "metric": 0.0002244352097235559
+  },
+  {
+    "country1": "ie",
+    "country2": "se",
+    "metric": 0.0017505075322883543
+  },
+  {
+    "country1": "ie",
+    "country2": "si",
+    "metric": 0.000430348198244278
+  },
+  {
+    "country1": "ie",
+    "country2": "sk",
+    "metric": 0.0006304480175350635
+  },
+  {
+    "country1": "ie",
+    "country2": "tr",
+    "metric": 0.0009227228988956982
+  },
+  {
+    "country1": "ie",
+    "country2": "ua",
+    "metric": 0.00015310839925099248
+  },
+  {
+    "country1": "is",
+    "country2": "it",
+    "metric": 0.00011949562629422906
+  },
+  {
+    "country1": "is",
+    "country2": "lt",
+    "metric": 0.0019646272116694828
+  },
+  {
+    "country1": "is",
+    "country2": "lu",
+    "metric": 4.249467978936245e-05
+  },
+  {
+    "country1": "is",
+    "country2": "lv",
+    "metric": 0.0007535269148840496
+  },
+  {
+    "country1": "is",
+    "country2": "md",
+    "metric": 4.087898346330115e-06
+  },
+  {
+    "country1": "is",
+    "country2": "me",
+    "metric": 7.263537412186405e-09
+  },
+  {
+    "country1": "is",
+    "country2": "mk",
+    "metric": 9.309430519670438e-10
+  },
+  {
+    "country1": "is",
+    "country2": "mt",
+    "metric": 3.348902246941535e-05
+  },
+  {
+    "country1": "is",
+    "country2": "nl",
+    "metric": 0.001617285180248157
+  },
+  {
+    "country1": "is",
+    "country2": "no",
+    "metric": 0.0034413088635439847
+  },
+  {
+    "country1": "is",
+    "country2": "pl",
+    "metric": 0.0004689281212329019
+  },
+  {
+    "country1": "is",
+    "country2": "pt",
+    "metric": 0.00011104435693781785
+  },
+  {
+    "country1": "is",
+    "country2": "ro",
+    "metric": 4.459503659321159e-05
+  },
+  {
+    "country1": "is",
+    "country2": "rs",
+    "metric": 2.6639321986802384e-05
+  },
+  {
+    "country1": "is",
+    "country2": "se",
+    "metric": 0.0012627510186500387
+  },
+  {
+    "country1": "is",
+    "country2": "si",
+    "metric": 1.5467552276258552e-05
+  },
+  {
+    "country1": "is",
+    "country2": "sk",
+    "metric": 0.0003084726934240398
+  },
+  {
+    "country1": "is",
+    "country2": "tr",
+    "metric": 8.858222831124505e-05
+  },
+  {
+    "country1": "is",
+    "country2": "ua",
+    "metric": 1.6648862978904876e-05
+  },
+  {
+    "country1": "it",
+    "country2": "lt",
+    "metric": 0.0012610865473531268
+  },
+  {
+    "country1": "it",
+    "country2": "lu",
+    "metric": 0.0006941194450581768
+  },
+  {
+    "country1": "it",
+    "country2": "lv",
+    "metric": 0.0007103549266799929
+  },
+  {
+    "country1": "it",
+    "country2": "md",
+    "metric": 0.00034823745400654676
+  },
+  {
+    "country1": "it",
+    "country2": "me",
+    "metric": 0.0002682759727186425
+  },
+  {
+    "country1": "it",
+    "country2": "mk",
+    "metric": 0.00032851946603120103
+  },
+  {
+    "country1": "it",
+    "country2": "mt",
+    "metric": 0.0018976878698647598
+  },
+  {
+    "country1": "it",
+    "country2": "nl",
+    "metric": 0.012892098577662067
+  },
+  {
+    "country1": "it",
+    "country2": "no",
+    "metric": 0.0017012442793125214
+  },
+  {
+    "country1": "it",
+    "country2": "pl",
+    "metric": 0.012211945618758298
+  },
+  {
+    "country1": "it",
+    "country2": "pt",
+    "metric": 0.004245006530828384
+  },
+  {
+    "country1": "it",
+    "country2": "ro",
+    "metric": 0.007734360897116811
+  },
+  {
+    "country1": "it",
+    "country2": "rs",
+    "metric": 0.002530038298656447
+  },
+  {
+    "country1": "it",
+    "country2": "se",
+    "metric": 0.00423701768950407
+  },
+  {
+    "country1": "it",
+    "country2": "si",
+    "metric": 0.00493640886134052
+  },
+  {
+    "country1": "it",
+    "country2": "sk",
+    "metric": 0.0033220376496335847
+  },
+  {
+    "country1": "it",
+    "country2": "tr",
+    "metric": 0.008826409770235483
+  },
+  {
+    "country1": "it",
+    "country2": "ua",
+    "metric": 0.0017750027906393445
+  },
+  {
+    "country1": "lt",
+    "country2": "lu",
+    "metric": 0.0005706766820144898
+  },
+  {
+    "country1": "lt",
+    "country2": "lv",
+    "metric": 0.06633319562381172
+  },
+  {
+    "country1": "lt",
+    "country2": "md",
+    "metric": 0.0007075258973367217
+  },
+  {
+    "country1": "lt",
+    "country2": "me",
+    "metric": 5.716386750150112e-05
+  },
+  {
+    "country1": "lt",
+    "country2": "mk",
+    "metric": 0.00015843148257114526
+  },
+  {
+    "country1": "lt",
+    "country2": "mt",
+    "metric": 0.00016235008992500927
+  },
+  {
+    "country1": "lt",
+    "country2": "nl",
+    "metric": 0.0029592138293261586
+  },
+  {
+    "country1": "lt",
+    "country2": "no",
+    "metric": 0.005583867828213935
+  },
+  {
+    "country1": "lt",
+    "country2": "pl",
+    "metric": 0.012213304582325491
+  },
+  {
+    "country1": "lt",
+    "country2": "pt",
+    "metric": 0.0005127414351962676
+  },
+  {
+    "country1": "lt",
+    "country2": "ro",
+    "metric": 0.0009926536032259438
+  },
+  {
+    "country1": "lt",
+    "country2": "rs",
+    "metric": 0.0005651188216412909
+  },
+  {
+    "country1": "lt",
+    "country2": "se",
+    "metric": 0.004327385532656913
+  },
+  {
+    "country1": "lt",
+    "country2": "si",
+    "metric": 0.001680950222313541
+  },
+  {
+    "country1": "lt",
+    "country2": "sk",
+    "metric": 0.00239010780828897
+  },
+  {
+    "country1": "lt",
+    "country2": "tr",
+    "metric": 0.0006814541090702734
+  },
+  {
+    "country1": "lt",
+    "country2": "ua",
+    "metric": 0.005212909993240705
+  },
+  {
+    "country1": "lu",
+    "country2": "lv",
+    "metric": 0.00017848993835875581
+  },
+  {
+    "country1": "lu",
+    "country2": "md",
+    "metric": 1.4317321421188196e-06
+  },
+  {
+    "country1": "lu",
+    "country2": "me",
+    "metric": 7.81409451824431e-06
+  },
+  {
+    "country1": "lu",
+    "country2": "mk",
+    "metric": 4.5080532266781914e-05
+  },
+  {
+    "country1": "lu",
+    "country2": "mt",
+    "metric": 2.5422223569162994e-05
+  },
+  {
+    "country1": "lu",
+    "country2": "nl",
+    "metric": 0.0029988563989247602
+  },
+  {
+    "country1": "lu",
+    "country2": "no",
+    "metric": 0.00012401652790282062
+  },
+  {
+    "country1": "lu",
+    "country2": "pl",
+    "metric": 0.0011579200628723037
+  },
+  {
+    "country1": "lu",
+    "country2": "pt",
+    "metric": 0.0006254996121405612
+  },
+  {
+    "country1": "lu",
+    "country2": "ro",
+    "metric": 0.00012446731041002552
+  },
+  {
+    "country1": "lu",
+    "country2": "rs",
+    "metric": 0.0002642770976016113
+  },
+  {
+    "country1": "lu",
+    "country2": "se",
+    "metric": 0.0003040639244242868
+  },
+  {
+    "country1": "lu",
+    "country2": "si",
+    "metric": 0.00048617860749720204
+  },
+  {
+    "country1": "lu",
+    "country2": "sk",
+    "metric": 0.0008667646287735956
+  },
+  {
+    "country1": "lu",
+    "country2": "tr",
+    "metric": 0.00015229178244056954
+  },
+  {
+    "country1": "lu",
+    "country2": "ua",
+    "metric": 4.309779001429842e-05
+  },
+  {
+    "country1": "lv",
+    "country2": "md",
+    "metric": 0.0006947682863442809
+  },
+  {
+    "country1": "lv",
+    "country2": "me",
+    "metric": 8.616111570566651e-05
+  },
+  {
+    "country1": "lv",
+    "country2": "mk",
+    "metric": 0.00012079575575391308
+  },
+  {
+    "country1": "lv",
+    "country2": "mt",
+    "metric": 0.00010923391733637284
+  },
+  {
+    "country1": "lv",
+    "country2": "nl",
+    "metric": 0.0015566702789688326
+  },
+  {
+    "country1": "lv",
+    "country2": "no",
+    "metric": 0.001354036192711902
+  },
+  {
+    "country1": "lv",
+    "country2": "pl",
+    "metric": 0.004965351671915597
+  },
+  {
+    "country1": "lv",
+    "country2": "pt",
+    "metric": 0.0003898062815486852
+  },
+  {
+    "country1": "lv",
+    "country2": "ro",
+    "metric": 0.00040769153962892516
+  },
+  {
+    "country1": "lv",
+    "country2": "rs",
+    "metric": 0.0003626520970868623
+  },
+  {
+    "country1": "lv",
+    "country2": "se",
+    "metric": 0.0022821139582030856
+  },
+  {
+    "country1": "lv",
+    "country2": "si",
+    "metric": 0.0009670794997287213
+  },
+  {
+    "country1": "lv",
+    "country2": "sk",
+    "metric": 0.0016648543797854356
+  },
+  {
+    "country1": "lv",
+    "country2": "tr",
+    "metric": 0.00026220013771479625
+  },
+  {
+    "country1": "lv",
+    "country2": "ua",
+    "metric": 0.002696175741453443
+  },
+  {
+    "country1": "md",
+    "country2": "me",
+    "metric": 2.5494350784581023e-05
+  },
+  {
+    "country1": "md",
+    "country2": "mk",
+    "metric": 0.0002808337339048268
+  },
+  {
+    "country1": "md",
+    "country2": "mt",
+    "metric": 1.9418091998949786e-06
+  },
+  {
+    "country1": "md",
+    "country2": "nl",
+    "metric": 0.0002570786851732513
+  },
+  {
+    "country1": "md",
+    "country2": "no",
+    "metric": 2.778467914087908e-05
+  },
+  {
+    "country1": "md",
+    "country2": "pl",
+    "metric": 0.0008876520002721416
+  },
+  {
+    "country1": "md",
+    "country2": "pt",
+    "metric": 7.025754982322516e-05
+  },
+  {
+    "country1": "md",
+    "country2": "ro",
+    "metric": 0.0116148568728136
+  },
+  {
+    "country1": "md",
+    "country2": "rs",
+    "metric": 0.0006586395686512429
+  },
+  {
+    "country1": "md",
+    "country2": "se",
+    "metric": 5.163376147866143e-05
+  },
+  {
+    "country1": "md",
+    "country2": "si",
+    "metric": 0.0001228084179529199
+  },
+  {
+    "country1": "md",
+    "country2": "sk",
+    "metric": 0.0007565763744043169
+  },
+  {
+    "country1": "md",
+    "country2": "tr",
+    "metric": 0.0009145081117144244
+  },
+  {
+    "country1": "md",
+    "country2": "ua",
+    "metric": 0.0077897114072624
+  },
+  {
+    "country1": "me",
+    "country2": "nl",
+    "metric": 0.00012731273225145208
+  },
+  {
+    "country1": "me",
+    "country2": "no",
+    "metric": 2.259381057872388e-06
+  },
+  {
+    "country1": "me",
+    "country2": "pl",
+    "metric": 0.00025053859355192036
+  },
+  {
+    "country1": "me",
+    "country2": "pt",
+    "metric": 7.59421935338266e-06
+  },
+  {
+    "country1": "me",
+    "country2": "ro",
+    "metric": 0.00010824292099633304
+  },
+  {
+    "country1": "me",
+    "country2": "rs",
+    "metric": 0.019376791679005842
+  },
+  {
+    "country1": "me",
+    "country2": "se",
+    "metric": 1.3058548706017976e-05
+  },
+  {
+    "country1": "me",
+    "country2": "si",
+    "metric": 0.0027171051746885085
+  },
+  {
+    "country1": "me",
+    "country2": "sk",
+    "metric": 1.4771311786170225e-05
+  },
+  {
+    "country1": "me",
+    "country2": "tr",
+    "metric": 0.0002479686755198625
+  },
+  {
+    "country1": "me",
+    "country2": "ua",
+    "metric": 0.00018442743902379464
+  },
+  {
+    "country1": "mk",
+    "country2": "me",
+    "metric": 0.0021241387980790874
+  },
+  {
+    "country1": "mk",
+    "country2": "mt",
+    "metric": 6.260563326276424e-05
+  },
+  {
+    "country1": "mk",
+    "country2": "nl",
+    "metric": 0.0003038518699541201
+  },
+  {
+    "country1": "mk",
+    "country2": "no",
+    "metric": 1.2492938532360976e-05
+  },
+  {
+    "country1": "mk",
+    "country2": "pl",
+    "metric": 0.000541478731557543
+  },
+  {
+    "country1": "mk",
+    "country2": "pt",
+    "metric": 0.00018316881615848795
+  },
+  {
+    "country1": "mk",
+    "country2": "ro",
+    "metric": 0.0010442549763448078
+  },
+  {
+    "country1": "mk",
+    "country2": "rs",
+    "metric": 0.018954218265652873
+  },
+  {
+    "country1": "mk",
+    "country2": "se",
+    "metric": 7.314923323097197e-05
+  },
+  {
+    "country1": "mk",
+    "country2": "si",
+    "metric": 0.005343174914360224
+  },
+  {
+    "country1": "mk",
+    "country2": "sk",
+    "metric": 0.0014976791770398555
+  },
+  {
+    "country1": "mk",
+    "country2": "tr",
+    "metric": 0.00102133592069349
+  },
+  {
+    "country1": "mk",
+    "country2": "ua",
+    "metric": 0.0004399704893428639
+  },
+  {
+    "country1": "mt",
+    "country2": "me",
+    "metric": 9.442505921141731e-05
+  },
+  {
+    "country1": "mt",
+    "country2": "nl",
+    "metric": 0.0007721568004837281
+  },
+  {
+    "country1": "mt",
+    "country2": "no",
+    "metric": 5.6438538107349726e-05
+  },
+  {
+    "country1": "mt",
+    "country2": "pl",
+    "metric": 0.00027786998154796967
+  },
+  {
+    "country1": "mt",
+    "country2": "pt",
+    "metric": 0.00028805607810800777
+  },
+  {
+    "country1": "mt",
+    "country2": "ro",
+    "metric": 0.00022522518813887548
+  },
+  {
+    "country1": "mt",
+    "country2": "rs",
+    "metric": 8.199829693503411e-05
+  },
+  {
+    "country1": "mt",
+    "country2": "se",
+    "metric": 0.0003569144218314162
+  },
+  {
+    "country1": "mt",
+    "country2": "si",
+    "metric": 0.0006344353151860467
+  },
+  {
+    "country1": "mt",
+    "country2": "sk",
+    "metric": 0.00013173729166770379
+  },
+  {
+    "country1": "mt",
+    "country2": "tr",
+    "metric": 0.0011272018212206034
+  },
+  {
+    "country1": "mt",
+    "country2": "ua",
+    "metric": 0.000173744073136543
+  },
+  {
+    "country1": "nl",
+    "country2": "no",
+    "metric": 0.009666703740472187
+  },
+  {
+    "country1": "nl",
+    "country2": "pl",
+    "metric": 0.018443381251769125
+  },
+  {
+    "country1": "nl",
+    "country2": "pt",
+    "metric": 0.005754808824275644
+  },
+  {
+    "country1": "nl",
+    "country2": "ro",
+    "metric": 0.005359354661152786
+  },
+  {
+    "country1": "nl",
+    "country2": "rs",
+    "metric": 0.0014887196054348773
+  },
+  {
+    "country1": "nl",
+    "country2": "se",
+    "metric": 0.013829755575702929
+  },
+  {
+    "country1": "nl",
+    "country2": "si",
+    "metric": 0.0024429524244464363
+  },
+  {
+    "country1": "nl",
+    "country2": "sk",
+    "metric": 0.0033092517293009135
+  },
+  {
+    "country1": "nl",
+    "country2": "tr",
+    "metric": 0.0065449346415554915
+  },
+  {
+    "country1": "nl",
+    "country2": "ua",
+    "metric": 0.0021631340611926557
+  },
+  {
+    "country1": "no",
+    "country2": "pl",
+    "metric": 0.005935659345431744
+  },
+  {
+    "country1": "no",
+    "country2": "pt",
+    "metric": 0.0010920818714921442
+  },
+  {
+    "country1": "no",
+    "country2": "ro",
+    "metric": 0.0015985121131581494
+  },
+  {
+    "country1": "no",
+    "country2": "rs",
+    "metric": 0.00021434753960144706
+  },
+  {
+    "country1": "no",
+    "country2": "se",
+    "metric": 0.026991775838781727
+  },
+  {
+    "country1": "no",
+    "country2": "si",
+    "metric": 0.00013141285436637365
+  },
+  {
+    "country1": "no",
+    "country2": "sk",
+    "metric": 0.0004688504590535123
+  },
+  {
+    "country1": "no",
+    "country2": "tr",
+    "metric": 0.0009561987948405821
+  },
+  {
+    "country1": "no",
+    "country2": "ua",
+    "metric": 0.0003085804601252634
+  },
+  {
+    "country1": "pl",
+    "country2": "pt",
+    "metric": 0.002883078456076972
+  },
+  {
+    "country1": "pl",
+    "country2": "ro",
+    "metric": 0.009898357676916046
+  },
+  {
+    "country1": "pl",
+    "country2": "rs",
+    "metric": 0.003124095332169993
+  },
+  {
+    "country1": "pl",
+    "country2": "se",
+    "metric": 0.01101349178346445
+  },
+  {
+    "country1": "pl",
+    "country2": "si",
+    "metric": 0.0030024212576249395
+  },
+  {
+    "country1": "pl",
+    "country2": "sk",
+    "metric": 0.01880042416535788
+  },
+  {
+    "country1": "pl",
+    "country2": "tr",
+    "metric": 0.005197452190285533
+  },
+  {
+    "country1": "pl",
+    "country2": "ua",
+    "metric": 0.019089106684026184
+  },
+  {
+    "country1": "pt",
+    "country2": "ro",
+    "metric": 0.0016813970405285842
+  },
+  {
+    "country1": "pt",
+    "country2": "rs",
+    "metric": 0.00033381668144682314
+  },
+  {
+    "country1": "pt",
+    "country2": "se",
+    "metric": 0.002089633927283355
+  },
+  {
+    "country1": "pt",
+    "country2": "si",
+    "metric": 0.0004790417301374424
+  },
+  {
+    "country1": "pt",
+    "country2": "sk",
+    "metric": 0.001969916770782892
+  },
+  {
+    "country1": "pt",
+    "country2": "tr",
+    "metric": 0.0016009225247039537
+  },
+  {
+    "country1": "pt",
+    "country2": "ua",
+    "metric": 0.0004943429225130351
+  },
+  {
+    "country1": "ro",
+    "country2": "rs",
+    "metric": 0.0059704685530047995
+  },
+  {
+    "country1": "ro",
+    "country2": "se",
+    "metric": 0.00136165525335243
+  },
+  {
+    "country1": "ro",
+    "country2": "si",
+    "metric": 0.0023832895675775
+  },
+  {
+    "country1": "ro",
+    "country2": "sk",
+    "metric": 0.00910285172224696
+  },
+  {
+    "country1": "ro",
+    "country2": "tr",
+    "metric": 0.0072395079797413775
+  },
+  {
+    "country1": "ro",
+    "country2": "ua",
+    "metric": 0.006735129168472998
+  },
+  {
+    "country1": "rs",
+    "country2": "se",
+    "metric": 0.0007137807476819871
+  },
+  {
+    "country1": "rs",
+    "country2": "si",
+    "metric": 0.012393653219695792
+  },
+  {
+    "country1": "rs",
+    "country2": "sk",
+    "metric": 0.005805954804613895
+  },
+  {
+    "country1": "rs",
+    "country2": "tr",
+    "metric": 0.00350383474353123
+  },
+  {
+    "country1": "rs",
+    "country2": "ua",
+    "metric": 0.001007412968423078
+  },
+  {
+    "country1": "se",
+    "country2": "tr",
+    "metric": 0.0017601130027241972
+  },
+  {
+    "country1": "se",
+    "country2": "ua",
+    "metric": 0.0006706341842296203
+  },
+  {
+    "country1": "si",
+    "country2": "se",
+    "metric": 0.0008582179299173771
+  },
+  {
+    "country1": "si",
+    "country2": "tr",
+    "metric": 0.0030231111805334543
+  },
+  {
+    "country1": "si",
+    "country2": "ua",
+    "metric": 0.0006154743376991566
+  },
+  {
+    "country1": "sk",
+    "country2": "se",
+    "metric": 0.001511101368930093
+  },
+  {
+    "country1": "sk",
+    "country2": "si",
+    "metric": 0.007916121096025679
+  },
+  {
+    "country1": "sk",
+    "country2": "tr",
+    "metric": 0.001756229527253127
+  },
+  {
+    "country1": "sk",
+    "country2": "ua",
+    "metric": 0.007214849876936105
+  },
+  {
+    "country1": "tr",
+    "country2": "ua",
+    "metric": 0.0043435653492823875
+  }
+]
