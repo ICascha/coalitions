@@ -250,7 +250,9 @@ const BUILT_IN_METRICS = METRIC_METADATA.map((meta) => meta.id);
 const brand = 'rgb(0,153,168)';
 const rawClusterBase = import.meta.env.VITE_CLUSTER_API_BASE_URL as string | undefined;
 const resolvedClusterBase =
-  rawClusterBase && rawClusterBase.trim().length > 0 ? rawClusterBase.trim() : '';
+  rawClusterBase && rawClusterBase.trim().length > 0
+    ? rawClusterBase.trim()
+    : (import.meta.env.PROD ? 'https://backendclustering-production.up.railway.app' : '');
 const clusterApiBase = resolvedClusterBase.replace(/\/+$/, '');
 const clusterEndpoint = clusterApiBase ? `${clusterApiBase}/leiden` : '/leiden';
 const fallbackClusterPalette = ['#2563eb', '#f97316', '#10b981', '#8b5cf6', '#ec4899', '#14b8a6', '#facc15', '#ef4444'];
