@@ -1,12 +1,9 @@
-export type CountryCode =
-  | 'at' | 'by' | 'be' | 'bg' | 'cz' | 'dk' | 'ee' | 'fi' | 'fr' | 'de'
-  | 'gr' | 'hu' | 'is' | 'ie' | 'it' | 'lv' | 'lt' | 'lu' | 'nl' | 'no'
-  | 'pl' | 'pt' | 'ro' | 'sk' | 'es' | 'se' | 'ch' | 'ua' | 'gb';
+export type CountryCode = string;
 
 export type CountryCoord = { code: CountryCode; name: string; lat: number; lon: number };
 
 // Approximate geographic centers for plotting purposes
-export const COUNTRY_COORDS: Record<CountryCode, CountryCoord> = {
+export const COUNTRY_COORDS: Record<string, CountryCoord> = {
   at: { code: 'at', name: 'Austria', lat: 47.5162, lon: 14.5501 },
   by: { code: 'by', name: 'Belarus', lat: 53.7098, lon: 27.9534 },
   be: { code: 'be', name: 'Belgium', lat: 50.5039, lon: 4.4699 },
@@ -53,4 +50,3 @@ export const createProjector = (width: number, height: number): Projector => {
     return { x, y };
   };
 };
-

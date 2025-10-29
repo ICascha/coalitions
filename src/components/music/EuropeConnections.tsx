@@ -159,6 +159,16 @@ export const METRIC_METADATA: MetricMetadata[] = [
     },
   },
   {
+    id: 'wvs_similarity_distribution_world.json',
+    label: 'Waardenprofiel (wereld)',
+    description:
+      'Verdiepte WVS/EVS-variant met dezelfde Jensen–Shannon-overeenkomst, uitgebreid met niet-Europese landen zoals de VS, Rusland en China voor een breder waardenvergelijk.',
+    source: {
+      label: 'World Values Survey / European Values Study',
+      url: 'https://www.worldvaluessurvey.org/',
+    },
+  },
+  {
     id: 'religion_similarity.json',
     label: 'Religieuze overeenstemming',
     description:
@@ -264,7 +274,7 @@ const METRIC_CATEGORIES: MetricCategory[] = [
     id: 'values',
     label: 'Waarden & politiek',
     description: 'Politieke en maatschappelijke voorkeuren en overeenkomsten.',
-    metrics: ['ches_similarity_correlation.json', 'wvs_similarity_distribution.json', 'eu_council_votes.json'],
+    metrics: ['ches_similarity_correlation.json', 'wvs_similarity_distribution.json', 'wvs_similarity_distribution_world.json', 'eu_council_votes.json'],
   },
 ];
 
@@ -287,6 +297,19 @@ const clusterApiBase = resolvedClusterBase.replace(/\/+$/, '');
 const clusterEndpoint = clusterApiBase ? `${clusterApiBase}/leiden` : '/leiden';
 const fallbackClusterPalette = ['#2563eb', '#f97316', '#10b981', '#8b5cf6', '#ec4899', '#14b8a6', '#facc15', '#ef4444'];
 
+const createBlobPath = (cx: number, cy: number, rx: number, ry: number) => {
+  const fmt = (value: number) => value.toFixed(1);
+  const startX = cx - rx * 0.6;
+  const startY = cy - ry;
+  return [
+    `M ${fmt(startX)} ${fmt(startY)}`,
+    `C ${fmt(cx - rx * 1.2)} ${fmt(cy - ry * 0.6)}, ${fmt(cx - rx)} ${fmt(cy + ry * 0.2)}, ${fmt(cx - rx * 0.3)} ${fmt(cy + ry * 0.9)}`,
+    `C ${fmt(cx + rx * 0.1)} ${fmt(cy + ry * 1.3)}, ${fmt(cx + rx * 1.2)} ${fmt(cy + ry * 0.9)}, ${fmt(cx + rx * 0.9)} ${fmt(cy + ry * 0.1)}`,
+    `C ${fmt(cx + rx * 1.1)} ${fmt(cy - ry * 0.8)}, ${fmt(cx + rx * 0.2)} ${fmt(cy - ry * 1.2)}, ${fmt(startX)} ${fmt(startY)}`,
+    'Z',
+  ].join(' ');
+};
+
 export default function EuropeConnections() {
   const basePath = import.meta.env.BASE_URL;
 
@@ -304,6 +327,7 @@ export default function EuropeConnections() {
   ));
   const [infoMetricId, setInfoMetricId] = useState<string | null>(null);
   const [infoDialogOpen, setInfoDialogOpen] = useState(false);
+  const [showGlobalBlobs, setShowGlobalBlobs] = useState(false);
 
   // Load selected metric files from public
   useEffect(() => {
@@ -644,16 +668,88 @@ export default function EuropeConnections() {
     setSvgPositions(pos);
   }, [mapReady, countries]);
 
+  const mapScale = showGlobalBlobs ? 0.85 : 1;
+  const mapTranslateX = (mapWidth * (1 - mapScale)) / 2;
+  const mapTranslateY = (mapHeight * (1 - mapScale)) / 2;
+  const mapTransform = `translate(${mapTranslateX},${mapTranslateY}) scale(${mapScale})`;
+  const globalBlobs = useMemo(() => {
+    if (!showGlobalBlobs) return [];
+    const width = mapWidth || 1000;
+    const height = mapHeight || 684;
+    const scaleCompensation = 1 / mapScale;
+    const definitions: Array<{
+      code: CountryCode;
+      label: string;
+      cx: number;
+      cy: number;
+      rx: number;
+      ry: number;
+      fill: string;
+      stroke: string;
+    }> = [
+      {
+        code: 'us',
+        label: 'USA',
+        cx: width * 0.16,
+        cy: height * 0.64,
+        rx: width * 0.15,
+        ry: height * 0.22,
+        fill: 'rgba(37, 99, 235, 0.22)',
+        stroke: 'rgba(37, 99, 235, 0.5)',
+      },
+      {
+        code: 'ru',
+        label: 'Russia',
+        cx: width * 0.78,
+        cy: height * 0.22,
+        rx: width * 0.14,
+        ry: height * 0.18,
+        fill: 'rgba(239, 68, 68, 0.2)',
+        stroke: 'rgba(239, 68, 68, 0.48)',
+      },
+      {
+        code: 'cn',
+        label: 'China',
+        cx: width * 0.83,
+        cy: height * 0.68,
+        rx: width * 0.13,
+        ry: height * 0.21,
+        fill: 'rgba(234, 179, 8, 0.2)',
+        stroke: 'rgba(234, 179, 8, 0.52)',
+      },
+    ];
+    return definitions.map((blob) => {
+      const rx = blob.rx * scaleCompensation;
+      const ry = blob.ry * scaleCompensation;
+      return {
+        ...blob,
+        rx,
+        ry,
+        path: createBlobPath(blob.cx, blob.cy, rx, ry),
+      };
+    });
+  }, [mapWidth, mapHeight, mapScale, showGlobalBlobs]);
+  const blobCountrySet = useMemo(() => new Set(globalBlobs.map((blob) => blob.code)), [globalBlobs]);
   const positions = useMemo(() => {
-    if (svgPositions.size > 0) return svgPositions;
-    const map = new Map<CountryCode, { x: number; y: number }>();
-    for (const c of countries) {
-      const info = COUNTRY_COORDS[c];
-      if (!info) continue;
-      map.set(c, project(info.lat, info.lon));
+    const base = svgPositions.size > 0
+      ? new Map(svgPositions)
+      : (() => {
+          const map = new Map<CountryCode, { x: number; y: number }>();
+          for (const c of countries) {
+            const info = COUNTRY_COORDS[c];
+            if (!info) continue;
+            map.set(c, project(info.lat, info.lon));
+          }
+          return map;
+        })();
+
+    if (showGlobalBlobs) {
+      globalBlobs.forEach((blob) => {
+        base.set(blob.code, { x: blob.cx, y: blob.cy });
+      });
     }
-    return map;
-  }, [svgPositions, countries, project]);
+    return base;
+  }, [svgPositions, countries, project, showGlobalBlobs, globalBlobs]);
 
   const edgesToRender = useMemo(() => aggregated.filter(e => e.weight > cutoff), [aggregated, cutoff]);
 
@@ -662,6 +758,10 @@ export default function EuropeConnections() {
     setSelectedMetrics(prev => (
       prev.includes(metric) ? prev.filter(m => m !== metric) : [...prev, metric]
     ));
+  };
+
+  const handleToggleGlobalBlobs = () => {
+    setShowGlobalBlobs((prev) => !prev);
   };
 
   const handleCategoryWeightChange = (categoryId: string, weight: number) => {
@@ -788,6 +888,18 @@ export default function EuropeConnections() {
                 >
                   {clusterLoading ? 'Zoeken...' : 'Find clusters'}
                 </button>
+                <button
+                  type="button"
+                  onClick={handleToggleGlobalBlobs}
+                  aria-pressed={showGlobalBlobs}
+                  className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                    showGlobalBlobs
+                      ? 'border border-[rgba(0,153,168,0.6)] bg-[rgb(0,153,168)]/90 text-white hover:bg-[rgb(0,153,168)] focus:ring-[rgba(0,153,168,0.4)]'
+                      : 'border border-[rgba(0,153,168,0.6)] bg-white text-[rgb(0,153,168)] hover:bg-[rgba(0,153,168,0.08)] focus:ring-[rgba(0,153,168,0.4)]'
+                  }`}
+                >
+                  {showGlobalBlobs ? 'Hide US/RU/CN blobs' : 'Add US/RU/CN blobs'}
+                </button>
                 {clusterError ? <span className="text-xs text-red-500">{clusterError}</span> : null}
                 <span className="text-xs text-gray-500">
                   {selectedMetrics.length} datasets actief
@@ -801,64 +913,91 @@ export default function EuropeConnections() {
           <div className="relative flex flex-1 min-h-[260px] sm:min-h-[320px] lg:min-h-0 overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-white/90 via-white to-[rgba(0,153,168,0.06)] shadow-inner">
             <div className="relative flex-1 overflow-hidden">
               <svg viewBox={`0 0 ${mapWidth} ${mapHeight}`} className="h-full w-full">
-                <image
-                  href={`${basePath}europe.svg`}
-                  x={0}
-                  y={0}
-                  width={mapWidth}
-                  height={mapHeight}
-                  opacity={0.55}
-                  preserveAspectRatio="xMidYMid meet"
-                  style={{ pointerEvents: 'none' }}
-                />
-                {edgesToRender.map((e, idx) => {
-                  const a = positions.get(e.a);
-                  const b = positions.get(e.b);
-                  if (!a || !b) return null;
-                  const clamped = Math.min(1, Math.max(0, e.weight));
-                  const opacity = Math.pow(clamped, 4);
-                  const width = 0.5 + clamped * 3.5;
-                  const aCluster = countryClusterMembership.get(e.a);
-                  const bCluster = countryClusterMembership.get(e.b);
-                  const sameCluster = aCluster && bCluster && aCluster.clusterId === bCluster.clusterId;
-                  const strokeColor = hasClusterStyling
-                    ? (sameCluster ? aCluster?.color ?? brand : '#D1D5DB')
-                    : brand;
-                  return (
-                    <line
-                      key={`${e.a}-${e.b}-${idx}`}
-                      x1={a.x}
-                      y1={a.y}
-                      x2={b.x}
-                      y2={b.y}
-                      stroke={strokeColor}
-                      strokeOpacity={opacity}
-                      strokeWidth={width}
-                    />
-                  );
-                })}
-
-                {countries.map((c) => {
-                  const pos = positions.get(c);
-                  if (!pos) return null;
-                  const membership = countryClusterMembership.get(c);
-                  const fillColor = membership?.color ?? brand;
-                  return (
-                    <g key={c} transform={`translate(${pos.x},${pos.y})`}>
-                      <circle r={5} fill={fillColor} stroke="#fff" strokeWidth={1.5} />
+                <g transform={mapTransform}>
+                  <image
+                    href={`${basePath}europe.svg`}
+                    x={0}
+                    y={0}
+                    width={mapWidth}
+                    height={mapHeight}
+                    opacity={0.55}
+                    preserveAspectRatio="xMidYMid meet"
+                    style={{ pointerEvents: 'none' }}
+                  />
+                  {globalBlobs.map((blob) => (
+                    <g key={blob.code} style={{ pointerEvents: 'none' }}>
+                      <path
+                        d={blob.path}
+                        fill={blob.fill}
+                        stroke={blob.stroke}
+                        strokeWidth={2}
+                        opacity={0.92}
+                      />
                       <text
-                        x={8}
-                        y={4}
-                        fontSize={12}
-                        fill="#111827"
+                        x={blob.cx}
+                        y={blob.cy}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fontSize={24 / mapScale}
+                        fontWeight={600}
+                        fill="#1f2937"
                         stroke="#ffffff"
-                        strokeWidth={0.6}
+                        strokeWidth={1.2 / mapScale}
                       >
-                        {c.toUpperCase()}
+                        {blob.label.toUpperCase()}
                       </text>
                     </g>
-                  );
-                })}
+                  ))}
+                  {edgesToRender.map((e, idx) => {
+                    const a = positions.get(e.a);
+                    const b = positions.get(e.b);
+                    if (!a || !b) return null;
+                    const clamped = Math.min(1, Math.max(0, e.weight));
+                    const opacity = Math.pow(clamped, 4);
+                    const width = 0.5 + clamped * 3.5;
+                    const aCluster = countryClusterMembership.get(e.a);
+                    const bCluster = countryClusterMembership.get(e.b);
+                    const sameCluster = aCluster && bCluster && aCluster.clusterId === bCluster.clusterId;
+                    const strokeColor = hasClusterStyling
+                      ? (sameCluster ? aCluster?.color ?? brand : '#D1D5DB')
+                      : brand;
+                    return (
+                      <line
+                        key={`${e.a}-${e.b}-${idx}`}
+                        x1={a.x}
+                        y1={a.y}
+                        x2={b.x}
+                        y2={b.y}
+                        stroke={strokeColor}
+                        strokeOpacity={opacity}
+                        strokeWidth={width}
+                      />
+                    );
+                  })}
+
+                  {countries.map((c) => {
+                    if (showGlobalBlobs && blobCountrySet.has(c)) return null;
+                    const pos = positions.get(c);
+                    if (!pos) return null;
+                    const membership = countryClusterMembership.get(c);
+                    const fillColor = membership?.color ?? brand;
+                    return (
+                      <g key={c} transform={`translate(${pos.x},${pos.y})`}>
+                        <circle r={5} fill={fillColor} stroke="#fff" strokeWidth={1.5} />
+                        <text
+                          x={8}
+                          y={4}
+                          fontSize={12}
+                          fill="#111827"
+                          stroke="#ffffff"
+                          strokeWidth={0.6}
+                        >
+                          {c.toUpperCase()}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </g>
               </svg>
             </div>
           </div>
