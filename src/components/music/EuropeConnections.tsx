@@ -189,6 +189,16 @@ export const METRIC_METADATA: MetricMetadata[] = [
     },
   },
   {
+    id: 'domains.json',
+    label: 'Digitale aandacht',
+    description:
+      'Gebruikt Cloudflare Radar-toplijsten van meest bezochte domeinen per land; zet de top-100 per land om naar een genormaliseerde overlapscore zodat we het gedeelde online gedrag tussen landen zien.',
+    source: {
+      label: 'Cloudflare Radar – Top Domains',
+      url: 'https://radar.cloudflare.com/domains',
+    },
+  },
+  {
     id: 'borders_enforcements.json',
     label: 'Grensdoorlatendheid',
     description:
@@ -247,8 +257,8 @@ const METRIC_CATEGORIES: MetricCategory[] = [
   {
     id: 'culture',
     label: 'Cultuur',
-    description: 'Culturele overlap in taal, muziek, religie en sociale netwerken.',
-    metrics: ['language_similarity.json', 'spotify.json', 'religion_similarity.json', 'social_connectedness.json'],
+    description: 'Culturele overlap in taal, muziek, religie, sociale netwerken en digitale aandacht.',
+    metrics: ['language_similarity.json', 'spotify.json', 'religion_similarity.json', 'social_connectedness.json', 'domains.json'],
   },
   {
     id: 'values',
