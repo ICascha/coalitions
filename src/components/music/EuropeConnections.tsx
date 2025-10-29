@@ -59,6 +59,16 @@ export const METRIC_METADATA: MetricMetadata[] = [
     },
   },
   {
+    id: 'goods_and_services.json',
+    label: 'Digitale dienstenhandel',
+    description:
+      'Gebruikt het WTO-OESO BATIS-bestand voor bilaterale handel in goederen en diensten, normaliseert elke stroom op het bbp van beide landen en combineert ze via het harmonisch gemiddelde tot één symmetrische intensiteitsscore.',
+    source: {
+      label: 'WTO-OESO Balanced Trade in Services (BATIS)',
+      url: 'https://www.wto.org/english/res_e/statis_e/gstdh_batis_e.htm',
+    },
+  },
+  {
     id: 'energy_grid.json',
     label: 'Energieverbindingen',
     description:
@@ -169,6 +179,16 @@ export const METRIC_METADATA: MetricMetadata[] = [
     },
   },
   {
+    id: 'social_connectedness.json',
+    label: 'Sociale verbondenheid',
+    description:
+      'Gebaseerd op de Facebook Social Connectedness Index; meet de sterkte van vriendschapsbanden tussen landen en geeft zo inzicht in sociale netwerken met gevolgen voor economie, mobiliteit en gezondheid.',
+    source: {
+      label: 'Facebook Social Connectedness Index',
+      url: 'https://data.humdata.org/dataset/social-connectedness-index',
+    },
+  },
+  {
     id: 'borders_enforcements.json',
     label: 'Grensdoorlatendheid',
     description:
@@ -216,7 +236,7 @@ const METRIC_CATEGORIES: MetricCategory[] = [
     id: 'economic',
     label: 'Economische banden',
     description: 'Handel, investeringen en gedeelde bedrijven die economische verwevenheid tonen.',
-    metrics: ['trade_gdp_weighted.json', 'investments_gdp.json', 'multinational_similarity_gdp.json', 'flights_freight.json'],
+    metrics: ['trade_gdp_weighted.json', 'goods_and_services.json', 'investments_gdp.json', 'multinational_similarity_gdp.json', 'flights_freight.json'],
   },
   {
     id: 'mobility',
@@ -227,8 +247,8 @@ const METRIC_CATEGORIES: MetricCategory[] = [
   {
     id: 'culture',
     label: 'Cultuur',
-    description: 'Culturele overlap in taal, muziek en religie.',
-    metrics: ['language_similarity.json', 'spotify.json', 'religion_similarity.json'],
+    description: 'Culturele overlap in taal, muziek, religie en sociale netwerken.',
+    metrics: ['language_similarity.json', 'spotify.json', 'religion_similarity.json', 'social_connectedness.json'],
   },
   {
     id: 'values',
