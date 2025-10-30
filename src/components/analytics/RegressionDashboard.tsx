@@ -815,13 +815,12 @@ export default function RegressionDashboard() {
     maxRows,
   ]);
 
-  const residualData = useMemo(() => {
+  const residualPoints = useMemo(() => {
     if (!includeData || !regressionResult?.data) {
       return null;
     }
 
-    const points: Array<{ predicted: number; residual: number; label?: string; countries?: [string, string] }> = [];
-    const countryResiduals = new Map<string, { sumResidual: number; sumPredicted: number; count: number }>();
+    const points: Array<{ predicted: number; residual: number; label?: string }> = [];
 
     for (const row of regressionResult.data) {
       const predictedRaw = row['predicted'];
@@ -838,25 +837,12 @@ export default function RegressionDashboard() {
 
       const label =
         country1 && country2 ? `${country1.toUpperCase()}—${country2.toUpperCase()}` : undefined;
+
       points.push({
         predicted,
         residual,
         label,
-        countries: country1 && country2 ? [country1, country2] : undefined,
       });
-
-      const addResidual = (country?: string | null) => {
-        if (!country) return;
-        const code = country.toUpperCase();
-        const current = countryResiduals.get(code) ?? { sumResidual: 0, sumPredicted: 0, count: 0 };
-        current.sumResidual += residual;
-        current.sumPredicted += predicted;
-        current.count += 1;
-        countryResiduals.set(code, current);
-      };
-
-      addResidual(country1);
-      addResidual(country2);
 
       if (points.length >= maxRows) {
         break;
@@ -867,15 +853,7 @@ export default function RegressionDashboard() {
       return null;
     }
 
-    const aggregated = Array.from(countryResiduals.entries())
-      .map(([country, info]) => ({
-        country,
-        residual: info.count > 0 ? info.sumResidual / info.count : 0,
-        predicted: info.count > 0 ? info.sumPredicted / info.count : 0,
-      }))
-      .sort((a, b) => Math.abs(b.residual) - Math.abs(a.residual));
-
-    return { points, aggregated };
+    return points;
   }, [includeData, regressionResult?.data, maxRows]);
 
   const nonFixedEffectsCoefficients = useMemo(() => {
@@ -887,9 +865,9 @@ export default function RegressionDashboard() {
 
   const fixedEffectsCoefficients = useMemo(() => {
     if (!regressionResult?.summary.coefficients) return [];
-    return regressionResult.summary.coefficients.filter((coef) =>
-      isFixedEffectCoefficient(coef.name)
-    );
+    return regressionResult.summary.coefficients
+      .filter((coef) => isFixedEffectCoefficient(coef.name))
+      .sort((a, b) => Math.abs(b.coef) - Math.abs(a.coef));
   }, [regressionResult?.summary.coefficients]);
 
   return (
@@ -901,17 +879,16 @@ export default function RegressionDashboard() {
           </h3>
           <p className="text-sm text-gray-600">
             Kies een doelvariabele, drivers en eventuele controles. De backend voegt
-            automatisch land-fixe effecten toe.
+            automatisch land-based fixed effecten toe.
           </p>
         </div>
         <div className="rounded-xl border border-sky-100 bg-gradient-to-r from-white via-sky-50/60 to-white px-4 py-3 text-sm text-gray-700 shadow-sm">
-          <p className="font-semibold text-gray-800">Twee-weg country fixed effects</p>
+          <p className="font-semibold text-gray-800">Het model</p>
           <p className="font-mono text-xs text-gray-600">
             y<sub>ij</sub> = &alpha; + &Sigma;<sub>k</sub> &beta;<sub>k</sub> x<sub>k,ij</sub> + &gamma;<sub>i</sub> + &gamma;<sub>j</sub> + &epsilon;<sub>ij</sub>
           </p>
           <p className="mt-1 text-xs text-gray-500">
-            x<sub>k,ij</sub> zijn de geselecteerde indicatoren voor het landpaar (onafhankelijk van volgorde); &gamma;<sub>i</sub> en &gamma;<sub>j</sub> vangen land-specifieke effecten voor beide landen in de dubbele vaste-effectenstructuur.
-            De bijbehorende coëfficiënten verschijnen als <code className="rounded bg-white/70 px-1">fe_country_*</code>.
+            x<sub>k,ij</sub> zijn de geselecteerde indicatoren voor een landpaar (onafhankelijk van volgorde); &gamma;<sub>i</sub> en &gamma;<sub>j</sub> vangen land-specifieke effecten voor beide landen in het paar.
           </p>
         </div>
 
@@ -1042,8 +1019,8 @@ export default function RegressionDashboard() {
           {fixedEffectsCoefficients.length > 0 && (
             <CoefficientsSection
               coefficients={fixedEffectsCoefficients}
-              title="Land-fixe effecten"
-              description="Dummy-coëfficiënten voor land-fixe effecten (fe_country_<iso>)."
+              title="Land-specifieke effecten"
+              description="Dummy-coëfficiënten voor land-based fixed effects."
               collapsed
             />
           )}
@@ -1063,8 +1040,8 @@ export default function RegressionDashboard() {
               stateY={stateForY}
             />
           )}
-          {includeData && residualData && (
-            <ResidualSection points={residualData.points} aggregated={residualData.aggregated} />
+          {includeData && residualPoints && (
+            <ResidualSection points={residualPoints} />
           )}
         </div>
       )}
@@ -1524,52 +1501,60 @@ function ColumnSelector({
 
 type ResidualSectionProps = {
   points: Array<{ predicted: number; residual: number; label?: string }>;
-  aggregated: Array<{ country: string; residual: number; predicted: number }> | null;
 };
 
-function ResidualSection({ points, aggregated }: ResidualSectionProps) {
-  const [mode, setMode] = useState<'pairs' | 'countries'>('pairs');
-  const hasAggregated = Boolean(aggregated && aggregated.length > 0);
+function ResidualSection({ points }: ResidualSectionProps) {
+  const [selectedCountry, setSelectedCountry] = useState<string>('ALL');
 
-  useEffect(() => {
-    if (mode === 'countries' && !hasAggregated) {
-      setMode('pairs');
+  const countryOptions = useMemo(() => {
+    const set = new Set<string>();
+    points.forEach((point) => {
+      if (point.label?.includes('—')) {
+        point.label
+          .split('—')
+          .forEach((country) => set.add(country.trim().toUpperCase()));
+      }
+    });
+    return Array.from(set).sort();
+  }, [points]);
+
+  const filteredPoints = useMemo(() => {
+    if (selectedCountry === 'ALL') {
+      return points;
     }
-  }, [mode, hasAggregated]);
+    return points.filter((point) => {
+      if (!point.label) return false;
+      const [c1, c2] = point.label.split('—').map((value) => value.trim().toUpperCase());
+      return c1 === selectedCountry || c2 === selectedCountry;
+    });
+  }, [points, selectedCountry]);
 
   const pearson = useMemo(() => {
+    if (filteredPoints.length < 2) return null;
     return computePearson(
-      points.map((point) => point.predicted),
-      points.map((point) => point.residual)
+      filteredPoints.map((point) => point.predicted),
+      filteredPoints.map((point) => point.residual)
     );
-  }, [points]);
+  }, [filteredPoints]);
 
   const scatterData = useMemo(() => {
     return [
       {
         id: 'Residuals',
-        data: points.map((point) => ({
+        data: filteredPoints.map((point) => ({
           x: point.predicted,
           y: point.residual,
           label: point.label,
         })),
       },
     ];
-  }, [points]);
+  }, [filteredPoints]);
 
-  const aggregatedChartData = useMemo(() => {
-    if (!aggregated) return null;
-    return [
-      {
-        id: 'Country residuals',
-        data: aggregated.map((entry) => ({
-          x: entry.predicted,
-          y: entry.residual,
-          label: entry.country,
-        })),
-      },
-    ];
-  }, [aggregated]);
+  useEffect(() => {
+    if (selectedCountry !== 'ALL' && !countryOptions.includes(selectedCountry)) {
+      setSelectedCountry('ALL');
+    }
+  }, [countryOptions, selectedCountry]);
 
   return (
     <div className="space-y-3 rounded-xl border border-gray-200 bg-white/70 p-5 shadow-inner">
@@ -1580,143 +1565,81 @@ function ResidualSection({ points, aggregated }: ResidualSectionProps) {
             Controleer of residuen willekeurig rond nul liggen; klustering kan wijzen op misspecificatie.
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button
-            type="button"
-            size="sm"
-            variant={mode === 'pairs' ? 'default' : 'outline'}
-            onClick={() => setMode('pairs')}
-          >
-            Landparen
-          </Button>
-          <Button
-            type="button"
-            size="sm"
-            variant={mode === 'countries' ? 'default' : 'outline'}
-            onClick={() => setMode('countries')}
-            disabled={!hasAggregated}
-          >
-            Landgemiddelden
-          </Button>
-        </div>
       </div>
 
-      {mode === 'pairs' ? (
-        <>
-          <div className="aspect-[4/3] w-full max-h-[20rem] rounded-xl border border-gray-200 bg-white">
-            <ResponsiveScatterPlot
-              data={scatterData}
-              margin={{ top: 20, right: 60, bottom: 60, left: 80 }}
-              xScale={{ type: 'linear', min: 'auto', max: 'auto' }}
-              yScale={{ type: 'linear', min: 'auto', max: 'auto' }}
-              axisBottom={{
-                legend: 'Voorspelde waarde',
-                legendPosition: 'middle',
-                legendOffset: 40,
-                tickSize: 5,
-                tickPadding: 8,
-              }}
-              axisLeft={{
-                legend: 'Residuen',
-                legendPosition: 'middle',
-                legendOffset: -60,
-                tickSize: 5,
-                tickPadding: 8,
-              }}
-              colors={['#ef4444']}
-              blendMode="multiply"
-              nodeSize={8}
-              enableGridX
-              enableGridY
-              markers={[
-                {
-                  axis: 'y',
-                  value: 0,
-                  lineStyle: {
-                    stroke: '#9ca3af',
-                    strokeWidth: 1,
-                    strokeDasharray: '6 6',
-                  },
-                },
-              ]}
-              tooltip={({ node }) => (
-                <div className="rounded bg-white px-3 py-2 text-xs shadow">
-                  <div className="font-semibold text-gray-800">
-                    {node.data.label ?? 'Observatie'}
-                  </div>
-                  <div className="text-gray-600">
-                    Voorspeld: {formatNumber(node.data.x, 3)}
-                  </div>
-                  <div className="text-gray-600">
-                    Residueel: {formatNumber(node.data.y, 3)}
-                  </div>
-                </div>
-              )}
-            />
-          </div>
-          {pearson !== null && (
-            <p className="text-sm text-gray-700">
-              Correlatie residuen vs. voorspeld:{' '}
-              <span className="font-semibold">{formatNumber(pearson, 3)}</span>
-            </p>
+      {countryOptions.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600">
+          <span className="font-semibold text-gray-700">Filter land:</span>
+          <select
+            className="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:border-[rgb(0,153,168)] focus:outline-none"
+            value={selectedCountry}
+            onChange={(event) => setSelectedCountry(event.target.value)}
+          >
+            <option value="ALL">Alle landen</option>
+            {countryOptions.map((country) => (
+              <option key={country} value={country}>
+                {country}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+      <div className="aspect-[4/3] w-full max-h-[20rem] rounded-xl border border-gray-200 bg-white">
+        <ResponsiveScatterPlot
+          data={scatterData}
+          margin={{ top: 20, right: 60, bottom: 60, left: 80 }}
+          xScale={{ type: 'linear', min: 'auto', max: 'auto' }}
+          yScale={{ type: 'linear', min: 'auto', max: 'auto' }}
+          axisBottom={{
+            legend: 'Voorspelde waarde',
+            legendPosition: 'middle',
+            legendOffset: 40,
+            tickSize: 5,
+            tickPadding: 8,
+          }}
+          axisLeft={{
+            legend: 'Residuen',
+            legendPosition: 'middle',
+            legendOffset: -60,
+            tickSize: 5,
+            tickPadding: 8,
+          }}
+          colors={['#ef4444']}
+          blendMode="multiply"
+          nodeSize={8}
+          enableGridX
+          enableGridY
+          markers={[
+            {
+              axis: 'y',
+              value: 0,
+              lineStyle: {
+                stroke: '#9ca3af',
+                strokeWidth: 1,
+                strokeDasharray: '6 6',
+              },
+            },
+          ]}
+          tooltip={({ node }) => (
+            <div className="rounded bg-white px-3 py-2 text-xs shadow">
+              <div className="font-semibold text-gray-800">
+                {node.data.label ?? 'Observatie'}
+              </div>
+              <div className="text-gray-600">
+                Voorspeld: {formatNumber(node.data.x, 3)}
+              </div>
+              <div className="text-gray-600">
+                Residueel: {formatNumber(node.data.y, 3)}
+              </div>
+            </div>
           )}
-        </>
-      ) : hasAggregated && aggregatedChartData ? (
-        <div className="space-y-3">
-          <div className="aspect-[4/3] w-full max-h-[20rem] rounded-xl border border-gray-200 bg-white">
-            <ResponsiveScatterPlot
-              data={aggregatedChartData}
-              margin={{ top: 20, right: 60, bottom: 60, left: 80 }}
-              xScale={{ type: 'linear', min: 'auto', max: 'auto' }}
-              yScale={{ type: 'linear', min: 'auto', max: 'auto' }}
-              axisBottom={{
-                legend: 'Gemiddelde voorspelde waarde',
-                legendPosition: 'middle',
-                legendOffset: 40,
-                tickSize: 5,
-                tickPadding: 8,
-              }}
-              axisLeft={{
-                legend: 'Gemiddeld residu',
-                legendPosition: 'middle',
-                legendOffset: -60,
-                tickSize: 5,
-                tickPadding: 8,
-              }}
-              colors={['#6366f1']}
-              blendMode="multiply"
-              nodeSize={10}
-              enableGridX
-              enableGridY
-              markers={[
-                {
-                  axis: 'y',
-                  value: 0,
-                  lineStyle: {
-                    stroke: '#9ca3af',
-                    strokeWidth: 1,
-                    strokeDasharray: '6 6',
-                  },
-                },
-              ]}
-              tooltip={({ node }) => (
-                <div className="rounded bg-white px-3 py-2 text-xs shadow">
-                  <div className="font-semibold text-gray-800">{node.data.label}</div>
-                  <div className="text-gray-600">
-                    Voorspeld (gem.): {formatNumber(node.data.x, 3)}
-                  </div>
-                  <div className="text-gray-600">
-                    Residueel (gem.): {formatNumber(node.data.y, 3)}
-                  </div>
-                </div>
-              )}
-            />
-          </div>
-        </div>
-      ) : (
-        <div className="rounded-xl border border-gray-200 bg-white p-4 text-sm text-gray-500">
-          Onvoldoende data om landgemiddelden te berekenen.
-        </div>
+        />
+      </div>
+      {pearson !== null && (
+        <p className="text-sm text-gray-700">
+          Correlatie residuen vs. voorspeld:{' '}
+          <span className="font-semibold">{formatNumber(pearson, 3)}</span>
+        </p>
       )}
     </div>
   );
