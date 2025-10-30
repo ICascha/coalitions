@@ -28,6 +28,12 @@ export default defineConfig({
           : 'http://localhost:8000',
         changeOrigin: true,
       },
+      '/regression': {
+        target: process.env.NODE_ENV === 'production'
+          ? 'https://backendclustering-production.up.railway.app'
+          : 'http://localhost:8000',
+        changeOrigin: true,
+      },
     },
   },
   build: {
