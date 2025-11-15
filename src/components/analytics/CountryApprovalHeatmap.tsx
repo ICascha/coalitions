@@ -440,7 +440,7 @@ export default function CountryApprovalHeatmap() {
       </div>
 
       <div className="flex-1 min-h-0">
-        <MemoizedHeatmap rows={rows} tooltip={renderTooltip} onCellClick={handleCellClick} />
+        <HeatmapViewport rows={rows} tooltip={renderTooltip} onCellClick={handleCellClick} />
       </div>
 
       <div className="rounded-md border border-dashed border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-600">
@@ -468,6 +468,15 @@ type HeatmapProps = {
   onCellClick: (cell: ComputedCell<HeatmapCellData>) => void;
 };
 
+const HeatmapViewport = ({ rows, tooltip, onCellClick }: HeatmapProps) => (
+  <div className="relative w-full max-w-5xl mx-auto" style={{ minHeight: 420 }}>
+    <div style={{ paddingBottom: '100%' }} />
+    <div className="absolute inset-0">
+      <MemoizedHeatmap rows={rows} tooltip={tooltip} onCellClick={onCellClick} />
+    </div>
+  </div>
+);
+
 const MemoizedHeatmap = memo(function Heatmap({
   rows,
   tooltip,
@@ -481,6 +490,9 @@ const MemoizedHeatmap = memo(function Heatmap({
       data={rows}
       margin={{ top: 120, right: 80, bottom: 60, left: 140 }}
       valueFormat={(value) => formatScore(typeof value === 'number' ? value : null)}
+      forceSquare
+      xInnerPadding={0.03}
+      yInnerPadding={0.03}
       colors={{
         type: 'diverging',
         scheme: 'red_yellow_green',
@@ -499,6 +511,8 @@ const MemoizedHeatmap = memo(function Heatmap({
       axisRight={null}
       axisBottom={null}
       hoverTarget="cell"
+      isInteractive
+      enableLabels={false}
       borderWidth={1}
       borderColor={{ from: 'color', modifiers: [['brighter', 0.5]] }}
       emptyColor="#f8fafc"

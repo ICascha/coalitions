@@ -871,8 +871,8 @@ export default function RegressionDashboard() {
   }, [regressionResult?.summary.coefficients]);
 
   return (
-    <Card className="flex h-full flex-col gap-6 border border-gray-200/60 bg-white/80 p-6 shadow-lg backdrop-blur-sm md:p-8">
-      <div className="flex flex-col gap-4">
+    <Card className="flex h-full flex-col gap-5 border border-gray-200/70 bg-white/95 p-5 shadow-md md:p-6">
+      <div className="flex flex-col gap-3.5">
         <div className="flex flex-col gap-2">
           <h3 className="text-lg font-semibold text-gray-800">
             Stel je regressie samen
@@ -882,7 +882,7 @@ export default function RegressionDashboard() {
             automatisch land-based fixed effecten toe.
           </p>
         </div>
-        <div className="rounded-xl border border-sky-100 bg-gradient-to-r from-white via-sky-50/60 to-white px-4 py-3 text-sm text-gray-700 shadow-sm">
+        <div className="rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700 shadow-sm">
           <p className="font-semibold text-gray-800">Het model</p>
           <p className="font-mono text-xs text-gray-600">
             y<sub>ij</sub> = &alpha; + &Sigma;<sub>k</sub> &beta;<sub>k</sub> x<sub>k,ij</sub> + &gamma;<sub>i</sub> + &gamma;<sub>j</sub> + &epsilon;<sub>ij</sub>
@@ -893,7 +893,7 @@ export default function RegressionDashboard() {
         </div>
 
         {datasetLoading ? (
-          <div className="flex items-center gap-3 rounded-lg border border-dashed border-gray-300 bg-white/70 px-4 py-3 text-sm text-gray-600">
+          <div className="flex items-center gap-2.5 rounded-lg border border-dashed border-gray-300 bg-white/85 px-3.5 py-2.5 text-sm text-gray-600">
             <Loader2 className="h-4 w-4 animate-spin text-[rgb(0,153,168)]" />
             Beschikbare datasets worden geladen…
           </div>
@@ -916,8 +916,8 @@ export default function RegressionDashboard() {
             </Button>
           </div>
         ) : (
-          <div className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-3">
+          <div className="space-y-3">
+            <div className="grid gap-3 md:grid-cols-3">
               <DatasetChecklist
                 label="Targets"
                 description="Afhankelijke variabele(n)"
@@ -943,7 +943,7 @@ export default function RegressionDashboard() {
                 onChange={handleControlsChange}
               />
             </div>
-            <div className="flex flex-col gap-3 rounded-lg border border-gray-200 bg-white/70 px-4 py-3 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-col gap-2.5 rounded-lg border border-gray-200/80 bg-white/90 px-3.5 py-3 md:flex-row md:items-center md:justify-between">
               <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600">
                 <label className="flex items-center gap-2">
                   <input
@@ -1009,7 +1009,7 @@ export default function RegressionDashboard() {
       )}
 
       {regressionResult && (
-        <div className="space-y-6">
+        <div className="space-y-5">
           <RegressionSummaryCard result={regressionResult} />
           <CoefficientsSection
             coefficients={nonFixedEffectsCoefficients}
@@ -1111,7 +1111,7 @@ function DatasetChecklist({
     .map((entry) => entry.option);
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white/70 p-4 shadow-inner">
+    <div className="rounded-lg border border-gray-200/80 bg-white/90 p-3 shadow-sm">
       <div className="flex items-start justify-between gap-2">
         <div className="flex flex-col gap-1">
           <span className="text-sm font-semibold text-gray-700">{label}</span>
@@ -1129,13 +1129,13 @@ function DatasetChecklist({
           </Button>
         )}
       </div>
-      <div className="mt-3 flex max-h-52 flex-col gap-2 overflow-y-auto pr-2">
+      <div className="mt-2.5 flex max-h-48 flex-col gap-1.5 overflow-y-auto pr-1.5">
         {prioritizedOptions.map((option) => {
           const checked = selected.includes(option.id);
           return (
             <label
               key={option.id}
-              className="flex items-center justify-between gap-2 rounded-md border border-transparent px-2 py-1 text-sm transition-colors hover:border-gray-200 hover:bg-gray-50"
+              className="flex items-center justify-between gap-2 rounded-md border border-transparent px-2 py-1 text-sm transition-colors hover:border-gray-200 hover:bg-gray-100"
             >
               <span className="text-gray-700">{option.label}</span>
               <input
@@ -1166,14 +1166,14 @@ function RegressionSummaryCard({ result }: RegressionSummaryCardProps) {
   ];
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white/70 p-5 shadow-inner">
-      <div className="flex flex-col gap-4">
+    <div className="rounded-lg border border-gray-200/80 bg-white/90 p-4 shadow-sm">
+      <div className="flex flex-col gap-3">
         <h4 className="text-base font-semibold text-gray-800">Regressiesamenvatting</h4>
         <div className="grid gap-3 sm:grid-cols-2">
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-lg border border-gray-200 bg-white/80 px-3 py-3 text-center"
+              className="rounded-md border border-gray-200 bg-white px-3 py-3 text-center"
             >
               <div className="text-xs uppercase tracking-wide text-gray-500">{stat.label}</div>
               <div className="text-xl font-semibold text-gray-800">
@@ -1207,7 +1207,7 @@ function CoefficientsSection({
   }
 
   return (
-    <div className="space-y-3 rounded-xl border border-gray-200 bg-white/70 p-5 shadow-inner">
+    <div className="space-y-3 rounded-lg border border-gray-200/80 bg-white/90 p-4 shadow-sm">
       <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
         <div>
           <h4 className="text-base font-semibold text-gray-800">{title}</h4>
@@ -1342,7 +1342,7 @@ function ScatterSection({
   };
 
   return (
-    <div className="space-y-3 rounded-xl border border-gray-200 bg-white/70 p-5 shadow-inner">
+    <div className="space-y-3 rounded-lg border border-gray-200/80 bg-white/90 p-4 shadow-sm">
       <div className="flex flex-col gap-1">
         <h4 className="text-base font-semibold text-gray-800">
           Scatterplot van geselecteerde variabelen
@@ -1352,8 +1352,8 @@ function ScatterSection({
         </p>
         {statusMessage && <p className={statusClassNames}>{statusMessage}</p>}
       </div>
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div className="grid flex-1 gap-3 sm:grid-cols-2">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+        <div className="grid flex-1 gap-2.5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
             <ColumnSelector
               id="scatter-x"
@@ -1404,7 +1404,7 @@ function ScatterSection({
           </div>
         </div>
       </div>
-      <div className="aspect-[4/3] w-full max-h-[22rem] rounded-xl border border-gray-200 bg-white">
+      <div className="aspect-[4/3] w-full max-h-[22rem] rounded-lg border border-gray-200/80 bg-white">
         {scatter && xSelection && ySelection ? (
           <ResponsiveScatterPlot
             data={chartData}
@@ -1557,7 +1557,7 @@ function ResidualSection({ points }: ResidualSectionProps) {
   }, [countryOptions, selectedCountry]);
 
   return (
-    <div className="space-y-3 rounded-xl border border-gray-200 bg-white/70 p-5 shadow-inner">
+    <div className="space-y-3 rounded-lg border border-gray-200/80 bg-white/90 p-4 shadow-sm">
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col gap-1">
           <h4 className="text-base font-semibold text-gray-800">Residualanalyse</h4>
@@ -1584,7 +1584,7 @@ function ResidualSection({ points }: ResidualSectionProps) {
           </select>
         </div>
       )}
-      <div className="aspect-[4/3] w-full max-h-[20rem] rounded-xl border border-gray-200 bg-white">
+      <div className="aspect-[4/3] w-full max-h-[20rem] rounded-lg border border-gray-200/80 bg-white">
         <ResponsiveScatterPlot
           data={scatterData}
           margin={{ top: 20, right: 60, bottom: 60, left: 80 }}

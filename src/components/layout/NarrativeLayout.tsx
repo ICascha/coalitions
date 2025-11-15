@@ -11,6 +11,7 @@ import { useWindowSize, MOBILE_BREAKPOINT } from '@/hooks/useWindowSize';
 import EuropeConnections from '@/components/music/EuropeConnections';
 import IndicatorCorrelationHeatmap from '@/components/analytics/IndicatorCorrelationHeatmap';
 import RegressionDashboard from '@/components/analytics/RegressionDashboard';
+import CountryApprovalHeatmap from '@/components/analytics/CountryApprovalHeatmap';
 
 const brandColorRgb = '0, 153, 168';
 const ANIMATION_DURATION = 1000;
@@ -48,7 +49,7 @@ export const NarrativeLayout = () => {
   const [mounted, setMounted] = useState(false);
   const [isLogoDialogOpen, setIsLogoDialogOpen] = useState(false);
   const [isMainContentVisible, setIsMainContentVisible] = useState(false);
-  const [activeView, setActiveView] = useState<'connections' | 'correlations' | 'regression'>('connections');
+  const [activeView, setActiveView] = useState<'connections' | 'correlations' | 'approvals' | 'regression'>('connections');
 
   const windowWidth = useWindowSize();
   const isMobile = windowWidth !== null && windowWidth < MOBILE_BREAKPOINT;
@@ -113,26 +114,38 @@ export const NarrativeLayout = () => {
     animation: mounted ? `fadeIn ${ANIMATION_DURATION}ms ease-out forwards ${delay}ms` : 'none',
   });
 
-  const viewDetails =
-    activeView === 'connections'
-      ? {
+  const viewDetails = (() => {
+    switch (activeView) {
+      case 'connections':
+        return {
           title: 'Verbindingen',
           description: 'Verken hoe Europese landen met elkaar verweven zijn.',
           component: <EuropeConnections />,
-        }
-      : activeView === 'correlations'
-        ? {
-            title: 'Indicatorcorrelaties',
-            description:
-              'Onderzoek hoe sterk de indicatoren met elkaar samenhangen. Scores zijn Spearman-correlaties op gedeelde landparen.',
-            component: <IndicatorCorrelationHeatmap />,
-          }
-        : {
-            title: 'Determinanten van coalities',
-            description:
-              'Voer vaste-effecten regressies uit om te zien welke indicatoren coalities verklaren en vergelijk indicatoren visueel.',
-            component: <RegressionDashboard />,
-          };
+        };
+      case 'correlations':
+        return {
+          title: 'Indicatorcorrelaties',
+          description:
+            'Onderzoek hoe sterk de indicatoren met elkaar samenhangen. Scores zijn Spearman-correlaties op gedeelde landparen.',
+          component: <IndicatorCorrelationHeatmap />,
+        };
+      case 'approvals':
+        return {
+          title: 'Raadsposities',
+          description:
+            'Bekijk hoe landen op verschillende raden en thema’s met elkaar in lijn stemmen. Klik op een vakje voor het aantal gedeelde besluiten.',
+          component: <CountryApprovalHeatmap />,
+        };
+      case 'regression':
+      default:
+        return {
+          title: 'Determinanten van coalities',
+          description:
+            'Voer vaste-effecten regressies uit om te zien welke indicatoren coalities verklaren en vergelijk indicatoren visueel.',
+          component: <RegressionDashboard />,
+        };
+    }
+  })();
 
   return (
     <div className="w-full h-screen-dynamic overflow-y-scroll scroll-snap-type-y-mandatory">
@@ -268,6 +281,17 @@ export const NarrativeLayout = () => {
                 }`}
               >
                 Correlaties
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveView('approvals')}
+                className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                  activeView === 'approvals'
+                    ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
+                    : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
+                }`}
+              >
+                Raadsposities
               </button>
               <button
                 type="button"
