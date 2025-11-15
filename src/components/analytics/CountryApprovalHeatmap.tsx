@@ -694,17 +694,23 @@ const EdgeHighlightOverlay = ({
     return null;
   }
 
-  const chartWidth = Math.max(0, side - HEATMAP_MARGIN.left - HEATMAP_MARGIN.right);
-  const chartHeight = Math.max(0, side - HEATMAP_MARGIN.top - HEATMAP_MARGIN.bottom);
+  const innerWidth = Math.max(0, side - HEATMAP_MARGIN.left - HEATMAP_MARGIN.right);
+  const innerHeight = Math.max(0, side - HEATMAP_MARGIN.top - HEATMAP_MARGIN.bottom);
+  if (innerWidth === 0 || innerHeight === 0) {
+    return null;
+  }
+
+  const cellSize = Math.min(innerWidth / columnCount, innerHeight / rowCount);
+  const chartWidth = cellSize * columnCount;
+  const chartHeight = cellSize * rowCount;
+  const offsetX = HEATMAP_MARGIN.left + (innerWidth - chartWidth) / 2;
+  const offsetY = HEATMAP_MARGIN.top + (innerHeight - chartHeight) / 2;
   if (chartWidth === 0 || chartHeight === 0) {
     return null;
   }
 
-  const cellWidth = chartWidth / columnCount;
-  const cellHeight = chartHeight / rowCount;
-
-  const rowTop = HEATMAP_MARGIN.top + hoveredCell.rowIndex * cellHeight;
-  const columnLeft = HEATMAP_MARGIN.left + hoveredCell.columnIndex * cellWidth;
+  const rowTop = offsetY + hoveredCell.rowIndex * cellSize;
+  const columnLeft = offsetX + hoveredCell.columnIndex * cellSize;
 
   const highlightColor = 'rgba(0, 153, 168, 0.12)';
   const borderColor = 'rgba(0, 153, 168, 0.5)';
@@ -714,10 +720,10 @@ const EdgeHighlightOverlay = ({
       <div
         style={{
           position: 'absolute',
-          left: HEATMAP_MARGIN.left,
+          left: offsetX,
           width: chartWidth,
           top: rowTop,
-          height: cellHeight,
+          height: cellSize,
           background: highlightColor,
           borderTop: `1px solid ${borderColor}`,
           borderBottom: `1px solid ${borderColor}`,
@@ -727,10 +733,10 @@ const EdgeHighlightOverlay = ({
       <div
         style={{
           position: 'absolute',
-          top: HEATMAP_MARGIN.top,
+          top: offsetY,
           height: chartHeight,
           left: columnLeft,
-          width: cellWidth,
+          width: cellSize,
           background: highlightColor,
           borderLeft: `1px solid ${borderColor}`,
           borderRight: `1px solid ${borderColor}`,
@@ -742,8 +748,8 @@ const EdgeHighlightOverlay = ({
           position: 'absolute',
           top: rowTop,
           left: columnLeft,
-          width: cellWidth,
-          height: cellHeight,
+          width: cellSize,
+          height: cellSize,
           border: `2px solid ${borderColor}`,
           borderRadius: 4,
           boxShadow: '0 4px 16px rgba(0, 0, 0, 0.18)',
