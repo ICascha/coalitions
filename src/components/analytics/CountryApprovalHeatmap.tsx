@@ -48,6 +48,8 @@ type HeatmapCellData = {
 };
 
 type ViewMode = 'overall' | 'council' | 'topic';
+type ClusterId = 'clusterA' | 'clusterB';
+type ClusterSelections = Record<ClusterId, string[]>;
 
 const VIEW_OPTIONS: { id: ViewMode; label: string }[] = [
   { id: 'overall', label: 'Alle onderwerpen' },
@@ -58,6 +60,14 @@ const VIEW_OPTIONS: { id: ViewMode; label: string }[] = [
 const COUNTRY_CLUSTERMAP_DIR = 'country_clustermaps/';
 const COUNTRY_CLUSTERMAP_MANIFEST = `${COUNTRY_CLUSTERMAP_DIR}index.json`;
 const HEATMAP_MARGIN = { top: 120, right: 80, bottom: 60, left: 140 };
+const CLUSTER_OPTIONS: { id: ClusterId; label: string }[] = [
+  { id: 'clusterA', label: 'Cluster A' },
+  { id: 'clusterB', label: 'Cluster B' },
+];
+const CLUSTER_COLORS: Record<ClusterId, string> = {
+  clusterA: 'rgb(0,153,168)',
+  clusterB: '#f97316',
+};
 
 type ClustermapManifest = {
   overall: string;
@@ -258,6 +268,11 @@ export default function CountryApprovalHeatmap() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [hoveredCell, setHoveredCell] = useState<HoveredCell | null>(null);
+  const [activeCluster, setActiveCluster] = useState<ClusterId>('clusterA');
+  const [clusterSelections, setClusterSelections] = useState<ClusterSelections>({
+    clusterA: [],
+    clusterB: [],
+  });
 
   useEffect(() => {
     let cancelled = false;
@@ -335,6 +350,17 @@ export default function CountryApprovalHeatmap() {
   })();
 
   useEffect(() => {
+    if (!selectedMatrix) {
+      setClusterSelections({ clusterA: [], clusterB: [] });
+      return;
+    }
+    setClusterSelections((prev) => ({
+      clusterA: prev.clusterA.filter((country) => selectedMatrix.countries.includes(country)),
+      clusterB: prev.clusterB.filter((country) => selectedMatrix.countries.includes(country)),
+    }));
+  }, [selectedMatrix]);
+
+  useEffect(() => {
     if (IS_DEV && selectedMatrix) {
       console.info('[CountryApprovalHeatmap] switched dataset', selectedMatrix.label);
     }
@@ -389,6 +415,47 @@ export default function CountryApprovalHeatmap() {
     return map;
   }, [rows]);
 
+  const addCountriesToCluster = useCallback(
+    (clusterId: ClusterId, countries: string[]) => {
+      if (!selectedMatrix) return;
+      const allowed = new Set(selectedMatrix.countries);
+      setClusterSelections((prev) => {
+        const current = new Set(prev[clusterId]);
+        for (const country of countries) {
+          if (allowed.has(country)) {
+            current.add(country);
+          }
+        }
+        return {
+          ...prev,
+          [clusterId]: Array.from(current),
+        };
+      });
+    },
+    [selectedMatrix]
+  );
+
+  const handleManualAddCountry = useCallback(
+    (clusterId: ClusterId, country: string) => {
+      addCountriesToCluster(clusterId, [country]);
+    },
+    [addCountriesToCluster]
+  );
+
+  const handleRemoveCountry = useCallback((clusterId: ClusterId, country: string) => {
+    setClusterSelections((prev) => ({
+      ...prev,
+      [clusterId]: prev[clusterId].filter((entry) => entry !== country),
+    }));
+  }, []);
+
+  const handleClearCluster = useCallback((clusterId: ClusterId) => {
+    setClusterSelections((prev) => ({
+      ...prev,
+      [clusterId]: [],
+    }));
+  }, []);
+
   const handleHoverChange = useCallback(
     (cell: ComputedCell<HeatmapCellData> | null) => {
       if (!cell) {
@@ -431,14 +498,17 @@ export default function CountryApprovalHeatmap() {
 
   const handleCellClick = useCallback(
     (cell: ComputedCell<HeatmapCellData>) => {
+      const countries = [String(cell.serieId), String(cell.data.x)];
+      addCountriesToCluster(activeCluster, countries);
       console.info('[CountryApprovalHeatmap] cell click', {
-        countries: [String(cell.serieId), String(cell.data.x)],
+        cluster: activeCluster,
+        countries,
         closeness: cell.data.y,
         distance: cell.data.distance,
         count: cell.data.count,
       });
     },
-    []
+    [activeCluster, addCountriesToCluster]
   );
 
   if (loading) {
@@ -538,6 +608,16 @@ export default function CountryApprovalHeatmap() {
           </div>
         </div>
       </div>
+
+      <ClusterSelectionPanel
+        selections={clusterSelections}
+        activeCluster={activeCluster}
+        onActiveClusterChange={setActiveCluster}
+        availableCountries={selectedMatrix.countries}
+        onAddCountry={handleManualAddCountry}
+        onRemoveCountry={handleRemoveCountry}
+        onClearCluster={handleClearCluster}
+      />
 
       <div className="flex-1 min-h-0">
         <HeatmapViewport
@@ -757,6 +837,186 @@ const EdgeHighlightOverlay = ({
           transition: 'all 80ms ease',
         }}
       />
+    </div>
+  );
+};
+
+type ClusterSelectionPanelProps = {
+  selections: ClusterSelections;
+  activeCluster: ClusterId;
+  onActiveClusterChange: (cluster: ClusterId) => void;
+  availableCountries: string[];
+  onAddCountry: (cluster: ClusterId, country: string) => void;
+  onRemoveCountry: (cluster: ClusterId, country: string) => void;
+  onClearCluster: (cluster: ClusterId) => void;
+};
+
+const ClusterSelectionPanel = ({
+  selections,
+  activeCluster,
+  onActiveClusterChange,
+  availableCountries,
+  onAddCountry,
+  onRemoveCountry,
+  onClearCluster,
+}: ClusterSelectionPanelProps) => {
+  return (
+    <div className="rounded-md border border-slate-200 bg-slate-50/70 p-4">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Clusterselectie
+          </div>
+          <p className="text-sm text-slate-600">
+            Kies landen voor twee clusters en klik op heatmap-cellen om snel landen toe te voegen.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {CLUSTER_OPTIONS.map((option) => {
+            const isActive = activeCluster === option.id;
+            return (
+              <button
+                key={option.id}
+                type="button"
+                onClick={() => onActiveClusterChange(option.id)}
+                className={cn(
+                  'rounded-full border px-4 py-1.5 text-sm font-medium transition-colors',
+                  isActive
+                    ? 'border-[rgb(0,153,168)] bg-[rgb(0,153,168)] text-white'
+                    : 'border-slate-300 text-slate-700 hover:border-[rgb(0,153,168)] hover:text-[rgb(0,153,168)]'
+                )}
+              >
+                {option.label} actief
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <div className="mt-4 grid gap-4 lg:grid-cols-2">
+        {CLUSTER_OPTIONS.map((option) => (
+          <ClusterCard
+            key={option.id}
+            clusterId={option.id}
+            label={option.label}
+            countries={selections[option.id]}
+            isActive={activeCluster === option.id}
+            availableCountries={availableCountries}
+            onSetActive={onActiveClusterChange}
+            onAddCountry={onAddCountry}
+            onRemoveCountry={onRemoveCountry}
+            onClearCluster={onClearCluster}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+type ClusterCardProps = {
+  clusterId: ClusterId;
+  label: string;
+  countries: string[];
+  isActive: boolean;
+  availableCountries: string[];
+  onSetActive: (cluster: ClusterId) => void;
+  onAddCountry: (cluster: ClusterId, country: string) => void;
+  onRemoveCountry: (cluster: ClusterId, country: string) => void;
+  onClearCluster: (cluster: ClusterId) => void;
+};
+
+const ClusterCard = ({
+  clusterId,
+  label,
+  countries,
+  isActive,
+  availableCountries,
+  onSetActive,
+  onAddCountry,
+  onRemoveCountry,
+  onClearCluster,
+}: ClusterCardProps) => {
+  const [pendingCountry, setPendingCountry] = useState<string | undefined>(undefined);
+  const color = CLUSTER_COLORS[clusterId];
+
+  const handleValueChange = useCallback(
+    (value: string) => {
+      onAddCountry(clusterId, value);
+      setPendingCountry(undefined);
+    },
+    [clusterId, onAddCountry]
+  );
+
+  return (
+    <div
+      className={cn(
+        'rounded-md border bg-white/80 p-4 shadow-sm transition-colors',
+        isActive ? 'border-[rgb(0,153,168)]' : 'border-slate-200'
+      )}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
+          <div className="text-sm text-slate-600">Bevat {countries.length} landen</div>
+        </div>
+        <button
+          type="button"
+          onClick={() => onSetActive(clusterId)}
+          className={cn(
+            'rounded-full px-3 py-1 text-xs font-semibold transition-colors',
+            isActive ? 'bg-[rgb(0,153,168)] text-white' : 'bg-slate-100 text-slate-600 hover:text-slate-900'
+          )}
+        >
+          {isActive ? 'Actief' : 'Activeren'}
+        </button>
+      </div>
+
+      <div className="mt-3 flex flex-wrap gap-2">
+        {countries.length === 0 && (
+          <span className="text-xs text-slate-500">Nog geen landen toegevoegd.</span>
+        )}
+        {countries.map((country) => (
+          <button
+            key={country}
+            type="button"
+            onClick={() => onRemoveCountry(clusterId, country)}
+            className="group flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2 py-1 text-xs text-slate-700 shadow-sm transition hover:border-red-400 hover:text-red-600"
+          >
+            <span
+              className="h-2 w-2 rounded-full"
+              style={{ backgroundColor: color }}
+              aria-hidden
+            />
+            {country}
+            <span className="text-slate-400 transition group-hover:text-red-500">×</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="mt-3">
+        <Select value={pendingCountry} onValueChange={handleValueChange}>
+          <SelectTrigger className="text-sm">
+            <SelectValue placeholder="Land toevoegen" />
+          </SelectTrigger>
+          <SelectContent>
+            {availableCountries.map((country) => (
+              <SelectItem
+                key={country}
+                value={country}
+                disabled={countries.includes(country)}
+              >
+                {country}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <button
+          type="button"
+          onClick={() => onClearCluster(clusterId)}
+          className="mt-2 text-xs text-red-500 hover:text-red-600"
+        >
+          Cluster legen
+        </button>
+      </div>
     </div>
   );
 };
