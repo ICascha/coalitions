@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ResponsiveHeatMapCanvas,
   type ComputedCell,
@@ -43,13 +43,6 @@ type PreparedClustermapResponse = {
 type HeatmapCellData = {
   x: string;
   y: number | null;
-  distance: number | null;
-  count: number;
-};
-
-type SelectedPair = {
-  countries: [string, string];
-  closeness: number | null;
   distance: number | null;
   count: number;
 };
@@ -212,7 +205,6 @@ export default function CountryApprovalHeatmap() {
   const [viewMode, setViewMode] = useState<ViewMode>('topic');
   const [selectedCouncil, setSelectedCouncil] = useState<string>('');
   const [selectedTopic, setSelectedTopic] = useState<string>('');
-  const [selectedPair, setSelectedPair] = useState<SelectedPair | null>(null);
   const [globalMaxDistance, setGlobalMaxDistance] = useState<number>(1);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -277,7 +269,6 @@ export default function CountryApprovalHeatmap() {
   })();
 
   useEffect(() => {
-    setSelectedPair(null);
     if (IS_DEV && selectedMatrix) {
       console.info('[CountryApprovalHeatmap] switched dataset', selectedMatrix.label);
     }
@@ -331,7 +322,7 @@ export default function CountryApprovalHeatmap() {
 
   const handleCellClick = useCallback(
     (cell: ComputedCell<HeatmapCellData>) => {
-      setSelectedPair({
+      console.info('[CountryApprovalHeatmap] cell click', {
         countries: [String(cell.serieId), String(cell.data.x)],
         closeness: cell.data.y,
         distance: cell.data.distance,
@@ -369,7 +360,7 @@ export default function CountryApprovalHeatmap() {
   const averagePairCount = selectedMatrix.average_pair_count ?? null;
 
   return (
-    <Card className="flex h-[680px] flex-col gap-4 bg-white/90 p-4">
+    <Card className="flex min-h-[680px] flex-col gap-4 bg-white/90 p-4">
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
@@ -442,22 +433,6 @@ export default function CountryApprovalHeatmap() {
       <div className="flex-1 min-h-0">
         <HeatmapViewport rows={rows} tooltip={renderTooltip} onCellClick={handleCellClick} />
       </div>
-
-      <div className="rounded-md border border-dashed border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-600">
-        {selectedPair ? (
-          <div>
-            <div className="font-semibold text-slate-700">
-              {selectedPair.countries[0]} ↔ {selectedPair.countries[1]}
-            </div>
-            <div className="text-xs text-slate-500">
-              Pair count: {selectedPair.count} • Afstemmingsscore: {formatScore(selectedPair.closeness)} • Afstand:{' '}
-              {formatDistance(selectedPair.distance)}
-            </div>
-          </div>
-        ) : (
-          <div className="text-xs text-slate-500">Klik op een vakje in de heatmap om het aantal gedeelde observaties te tonen.</div>
-        )}
-      </div>
     </Card>
   );
 }
@@ -468,14 +443,45 @@ type HeatmapProps = {
   onCellClick: (cell: ComputedCell<HeatmapCellData>) => void;
 };
 
-const HeatmapViewport = ({ rows, tooltip, onCellClick }: HeatmapProps) => (
-  <div className="relative w-full max-w-5xl mx-auto" style={{ minHeight: 420 }}>
-    <div style={{ paddingBottom: '100%' }} />
-    <div className="absolute inset-0">
-      <MemoizedHeatmap rows={rows} tooltip={tooltip} onCellClick={onCellClick} />
+const MIN_SIDE = 480;
+const MAX_SIDE = 1040;
+
+const HeatmapViewport = ({ rows, tooltip, onCellClick }: HeatmapProps) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [side, setSide] = useState<number>(() => MIN_SIDE);
+
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element || typeof ResizeObserver === 'undefined') {
+      return;
+    }
+
+    const observer = new ResizeObserver((entries) => {
+      const width = entries[0]?.contentRect.width ?? 0;
+      if (!width) return;
+      const nextSide = Math.max(MIN_SIDE, Math.min(width, MAX_SIDE));
+      setSide((prev) => (prev === nextSide ? prev : nextSide));
+    });
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={containerRef} className="w-full">
+      <div
+        className="mx-auto w-full"
+        style={{
+          maxWidth: MAX_SIDE,
+          height: side,
+          transition: 'height 120ms ease',
+        }}
+      >
+        <MemoizedHeatmap rows={rows} tooltip={tooltip} onCellClick={onCellClick} />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const MemoizedHeatmap = memo(function Heatmap({
   rows,
