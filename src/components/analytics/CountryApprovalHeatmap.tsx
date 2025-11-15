@@ -50,6 +50,12 @@ type HeatmapCellData = {
 type ViewMode = 'overall' | 'council' | 'topic';
 type ClusterId = 'clusterA' | 'clusterB';
 type ClusterSelections = Record<ClusterId, string[]>;
+type ClusterOverlaySegment = {
+  clusterId: ClusterId;
+  startIndex: number;
+  endIndex: number;
+  countries: string[];
+};
 
 const VIEW_OPTIONS: { id: ViewMode; label: string }[] = [
   { id: 'overall', label: 'Alle onderwerpen' },
@@ -64,10 +70,28 @@ const CLUSTER_OPTIONS: { id: ClusterId; label: string }[] = [
   { id: 'clusterA', label: 'Cluster A' },
   { id: 'clusterB', label: 'Cluster B' },
 ];
-const CLUSTER_COLORS: Record<ClusterId, string> = {
-  clusterA: 'rgb(0,153,168)',
-  clusterB: '#f97316',
+const CLUSTER_STYLES: Record<
+  ClusterId,
+  { color: string; fill: string; border: string }
+> = {
+  clusterA: {
+    color: 'rgb(0,153,168)',
+    fill: 'rgba(0,153,168,0.13)',
+    border: 'rgba(0,153,168,0.55)',
+  },
+  clusterB: {
+    color: 'rgb(249,115,22)',
+    fill: 'rgba(249,115,22,0.12)',
+    border: 'rgba(249,115,22,0.45)',
+  },
 };
+const CLUSTER_LABELS = CLUSTER_OPTIONS.reduce(
+  (acc, option) => {
+    acc[option.id] = option.label;
+    return acc;
+  },
+  {} as Record<ClusterId, string>
+);
 
 type ClustermapManifest = {
   overall: string;
@@ -370,7 +394,37 @@ export default function CountryApprovalHeatmap() {
     if (!selectedMatrix) return [];
 
     const { countries, distance_matrix: distanceMatrix, pair_count_matrix: pairCounts } = selectedMatrix;
-    const order = computeHierarchicalOrder(distanceMatrix);
+    const baseOrder = computeHierarchicalOrder(distanceMatrix);
+    const included = new Set<number>();
+
+    const order = (() => {
+      if (!baseOrder.length) return baseOrder;
+      const prioritizedOrder: number[] = [];
+      const prioritizeCluster = (clusterId: ClusterId) => {
+        const clusterSet = new Set(clusterSelections[clusterId]);
+        if (!clusterSet.size) return;
+        for (const index of baseOrder) {
+          if (included.has(index)) continue;
+          const country = countries[index];
+          if (clusterSet.has(country)) {
+            included.add(index);
+            prioritizedOrder.push(index);
+          }
+        }
+      };
+
+      for (const option of CLUSTER_OPTIONS) {
+        prioritizeCluster(option.id);
+      }
+      for (const index of baseOrder) {
+        if (!included.has(index)) {
+          included.add(index);
+          prioritizedOrder.push(index);
+        }
+      }
+      return prioritizedOrder;
+    })();
+
     const normalizationBase = globalMaxDistance > 0 ? globalMaxDistance : 1;
 
     if (IS_DEV) {
@@ -396,7 +450,7 @@ export default function CountryApprovalHeatmap() {
       console.timeEnd(`[CountryApprovalHeatmap] build rows (${selectedMatrix.label})`);
     }
     return result;
-  }, [selectedMatrix, globalMaxDistance]);
+  }, [selectedMatrix, globalMaxDistance, clusterSelections]);
 
   const rowIndexMap = useMemo(() => {
     const map = new Map<string, number>();
@@ -415,21 +469,83 @@ export default function CountryApprovalHeatmap() {
     return map;
   }, [rows]);
 
+  const clusterSegments = useMemo<ClusterOverlaySegment[]>(() => {
+    if (!rows.length) return [];
+    const result: ClusterOverlaySegment[] = [];
+    const rowCountries = rows.map((serie) => String(serie.id));
+
+    for (const option of CLUSTER_OPTIONS) {
+      const selectionSet = new Set(clusterSelections[option.id]);
+      if (!selectionSet.size) continue;
+
+      let start: number | null = null;
+      let countriesInSegment: string[] = [];
+      rowCountries.forEach((country, index) => {
+        if (selectionSet.has(country)) {
+          if (start === null) {
+            start = index;
+            countriesInSegment = [country];
+          } else {
+            countriesInSegment.push(country);
+          }
+        } else if (start !== null) {
+          result.push({
+            clusterId: option.id,
+            startIndex: start,
+            endIndex: index - 1,
+            countries: countriesInSegment,
+          });
+          start = null;
+          countriesInSegment = [];
+        }
+      });
+
+      if (start !== null) {
+        result.push({
+          clusterId: option.id,
+          startIndex: start,
+          endIndex: rowCountries.length - 1,
+          countries: countriesInSegment,
+        });
+      }
+    }
+
+    return result;
+  }, [rows, clusterSelections]);
+
   const addCountriesToCluster = useCallback(
     (clusterId: ClusterId, countries: string[]) => {
       if (!selectedMatrix) return;
       const allowed = new Set(selectedMatrix.countries);
+      const valid = countries.filter((country) => allowed.has(country));
+      if (!valid.length) return;
+      const additions = new Set(valid);
       setClusterSelections((prev) => {
-        const current = new Set(prev[clusterId]);
-        for (const country of countries) {
-          if (allowed.has(country)) {
-            current.add(country);
+        const next: ClusterSelections = {
+          clusterA: [...prev.clusterA],
+          clusterB: [...prev.clusterB],
+        };
+
+        const targetSet = new Set(next[clusterId]);
+        let changed = false;
+        for (const country of additions) {
+          if (!targetSet.has(country)) {
+            targetSet.add(country);
+            changed = true;
           }
         }
-        return {
-          ...prev,
-          [clusterId]: Array.from(current),
-        };
+        next[clusterId] = Array.from(targetSet);
+
+        for (const option of CLUSTER_OPTIONS) {
+          if (option.id === clusterId) continue;
+          const filtered = next[option.id].filter((country) => !additions.has(country));
+          if (filtered.length !== next[option.id].length) {
+            next[option.id] = filtered;
+            changed = true;
+          }
+        }
+
+        return changed ? next : prev;
       });
     },
     [selectedMatrix]
@@ -625,6 +741,7 @@ export default function CountryApprovalHeatmap() {
           tooltip={renderTooltip}
           onCellClick={handleCellClick}
           hoveredCell={hoveredCell}
+          clusterSegments={clusterSegments}
         />
       </div>
     </Card>
@@ -636,6 +753,7 @@ type HeatmapViewportProps = {
   tooltip: TooltipComponent<HeatmapCellData>;
   onCellClick: (cell: ComputedCell<HeatmapCellData>) => void;
   hoveredCell: HoveredCell | null;
+  clusterSegments: ClusterOverlaySegment[];
 };
 
 const MIN_SIDE = 480;
@@ -646,7 +764,7 @@ type HoveredCell = {
   columnIndex: number;
 };
 
-const HeatmapViewport = ({ rows, tooltip, onCellClick, hoveredCell }: HeatmapViewportProps) => {
+const HeatmapViewport = ({ rows, tooltip, onCellClick, hoveredCell, clusterSegments }: HeatmapViewportProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [side, setSide] = useState<number>(() => MIN_SIDE);
 
@@ -681,6 +799,12 @@ const HeatmapViewport = ({ rows, tooltip, onCellClick, hoveredCell }: HeatmapVie
         }}
       >
         <MemoizedHeatmap rows={rows} tooltip={tooltip} onCellClick={onCellClick} />
+        <ClusterOverlay
+          side={side}
+          rowCount={rowCount}
+          columnCount={columnCount}
+          segments={clusterSegments}
+        />
         <EdgeHighlightOverlay
           side={side}
           hoveredCell={hoveredCell}
@@ -770,25 +894,16 @@ const EdgeHighlightOverlay = ({
   rowCount,
   columnCount,
 }: EdgeHighlightOverlayProps) => {
-  if (!hoveredCell || rowCount === 0 || columnCount === 0) {
+  if (!hoveredCell) {
     return null;
   }
 
-  const innerWidth = Math.max(0, side - HEATMAP_MARGIN.left - HEATMAP_MARGIN.right);
-  const innerHeight = Math.max(0, side - HEATMAP_MARGIN.top - HEATMAP_MARGIN.bottom);
-  if (innerWidth === 0 || innerHeight === 0) {
+  const layout = computeHeatmapLayout(side, rowCount, columnCount);
+  if (!layout) {
     return null;
   }
 
-  const cellSize = Math.min(innerWidth / columnCount, innerHeight / rowCount);
-  const chartWidth = cellSize * columnCount;
-  const chartHeight = cellSize * rowCount;
-  const offsetX = HEATMAP_MARGIN.left + (innerWidth - chartWidth) / 2;
-  const offsetY = HEATMAP_MARGIN.top + (innerHeight - chartHeight) / 2;
-  if (chartWidth === 0 || chartHeight === 0) {
-    return null;
-  }
-
+  const { cellSize, chartWidth, chartHeight, offsetX, offsetY } = layout;
   const rowTop = offsetY + hoveredCell.rowIndex * cellSize;
   const columnLeft = offsetX + hoveredCell.columnIndex * cellSize;
 
@@ -839,6 +954,112 @@ const EdgeHighlightOverlay = ({
       />
     </div>
   );
+};
+
+type ClusterOverlayProps = {
+  side: number;
+  rowCount: number;
+  columnCount: number;
+  segments: ClusterOverlaySegment[];
+};
+
+const ClusterOverlay = ({ side, rowCount, columnCount, segments }: ClusterOverlayProps) => {
+  if (!segments.length) {
+    return null;
+  }
+
+  const layout = computeHeatmapLayout(side, rowCount, columnCount);
+  if (!layout) {
+    return null;
+  }
+  const { cellSize, chartWidth, chartHeight, offsetX, offsetY } = layout;
+
+  return (
+    <div className="pointer-events-none absolute inset-0">
+      {segments.map((segment) => {
+        const style = CLUSTER_STYLES[segment.clusterId];
+        const rowTop = offsetY + segment.startIndex * cellSize;
+        const rowHeight = (segment.endIndex - segment.startIndex + 1) * cellSize;
+        const columnLeft = offsetX + segment.startIndex * cellSize;
+        const columnWidth = rowHeight;
+        const label = `${CLUSTER_LABELS[segment.clusterId]} (${segment.countries.length})`;
+
+        return (
+          <div key={`${segment.clusterId}-${segment.startIndex}-${segment.endIndex}`}>
+            <div
+              style={{
+                position: 'absolute',
+                left: offsetX,
+                width: chartWidth,
+                top: rowTop,
+                height: rowHeight,
+                background: style.fill,
+                borderTop: `1px solid ${style.border}`,
+                borderBottom: `1px solid ${style.border}`,
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                top: offsetY,
+                height: chartHeight,
+                left: columnLeft,
+                width: columnWidth,
+                background: style.fill,
+                borderLeft: `1px solid ${style.border}`,
+                borderRight: `1px solid ${style.border}`,
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                top: rowTop,
+                left: columnLeft,
+                width: columnWidth,
+                height: rowHeight,
+                border: `2px dashed ${style.border}`,
+                borderRadius: 6,
+                boxShadow: '0 10px 24px rgba(15, 23, 42, 0.08)',
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                top: rowTop + 8,
+                left: columnLeft + 8,
+                color: style.color,
+                fontWeight: 600,
+                fontSize: '0.75rem',
+                textShadow: '0 1px 2px rgba(255,255,255,0.8)',
+              }}
+            >
+              {label}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const computeHeatmapLayout = (side: number, rowCount: number, columnCount: number) => {
+  if (!rowCount || !columnCount) {
+    return null;
+  }
+  const innerWidth = Math.max(0, side - HEATMAP_MARGIN.left - HEATMAP_MARGIN.right);
+  const innerHeight = Math.max(0, side - HEATMAP_MARGIN.top - HEATMAP_MARGIN.bottom);
+  if (!innerWidth || !innerHeight) {
+    return null;
+  }
+  const cellSize = Math.min(innerWidth / columnCount, innerHeight / rowCount);
+  if (!Number.isFinite(cellSize) || cellSize <= 0) {
+    return null;
+  }
+  const chartWidth = cellSize * columnCount;
+  const chartHeight = cellSize * rowCount;
+  const offsetX = HEATMAP_MARGIN.left + (innerWidth - chartWidth) / 2;
+  const offsetY = HEATMAP_MARGIN.top + (innerHeight - chartHeight) / 2;
+  return { cellSize, chartWidth, chartHeight, offsetX, offsetY };
 };
 
 type ClusterSelectionPanelProps = {
@@ -935,13 +1156,11 @@ const ClusterCard = ({
   onRemoveCountry,
   onClearCluster,
 }: ClusterCardProps) => {
-  const [pendingCountry, setPendingCountry] = useState<string | undefined>(undefined);
-  const color = CLUSTER_COLORS[clusterId];
+  const color = CLUSTER_STYLES[clusterId].color;
 
   const handleValueChange = useCallback(
     (value: string) => {
       onAddCountry(clusterId, value);
-      setPendingCountry(undefined);
     },
     [clusterId, onAddCountry]
   );
@@ -993,7 +1212,7 @@ const ClusterCard = ({
       </div>
 
       <div className="mt-3">
-        <Select value={pendingCountry} onValueChange={handleValueChange}>
+        <Select onValueChange={handleValueChange}>
           <SelectTrigger className="text-sm">
             <SelectValue placeholder="Land toevoegen" />
           </SelectTrigger>
