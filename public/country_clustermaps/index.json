@@ -1,0 +1,26 @@
+{
+  "overall": "overall.json",
+  "councils": [
+    "councils/agriculture_and_fisheries_council.json",
+    "councils/competitiveness_council.json",
+    "councils/economic_and_financial_affairs_council.json",
+    "councils/education_youth_culture_and_sport_council.json",
+    "councils/employment_social_policy_health_and_consumer_affairs_council.json",
+    "councils/environment_council.json",
+    "councils/general_affairs_council.json",
+    "councils/justice_and_home_affairs_council.json",
+    "councils/transport_telecommunications_and_energy_council.json",
+    "councils/uncategorized.json"
+  ],
+  "topics": [
+    "topics/agriculture_food_systems.json",
+    "topics/climate_environment.json",
+    "topics/digital_innovation.json",
+    "topics/economic_financial.json",
+    "topics/energy_infrastructure.json",
+    "topics/institutional_governance.json",
+    "topics/justice_home_affairs.json",
+    "topics/social_health_employment.json",
+    "topics/trade_industrial_policy.json"
+  ]
+}

@@ -55,6 +55,23 @@ const VIEW_OPTIONS: { id: ViewMode; label: string }[] = [
   { id: 'topic', label: 'Per Thema' },
 ];
 
+const COUNTRY_CLUSTERMAP_DIR = 'country_clustermaps/';
+const COUNTRY_CLUSTERMAP_MANIFEST = `${COUNTRY_CLUSTERMAP_DIR}index.json`;
+
+type ClustermapManifest = {
+  overall: string;
+  councils?: string[];
+  topics?: string[];
+};
+
+type CountryClustermapDataset = {
+  label?: string;
+  category?: string;
+  data: ClustermapMatrix & {
+    pair_records?: unknown;
+  };
+};
+
 type ClusterNode = {
   indices: number[];
   left?: ClusterNode;
@@ -199,6 +216,37 @@ const normalizeDistance = (value: number | null, maxDistance: number) => {
   return Math.max(0, Math.min(1, 1 - value / maxDistance));
 };
 
+const ensureTrailingSlash = (value: string) => (value.endsWith('/') ? value : `${value}/`);
+const sanitizeRelativePath = (path: string) => path.replace(/^\/+/, '');
+const joinPublicPath = (basePath: string, relativePath: string) =>
+  `${ensureTrailingSlash(basePath)}${sanitizeRelativePath(relativePath)}`;
+
+const normalizeDatasetPath = (path: string) =>
+  path.startsWith(COUNTRY_CLUSTERMAP_DIR) ? path : `${COUNTRY_CLUSTERMAP_DIR}${path}`;
+
+async function fetchJson<T>(url: string, resourceLabel: string): Promise<T> {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Kon ${resourceLabel} niet laden (status ${response.status}).`);
+  }
+  return (await response.json()) as T;
+}
+
+const parseDataset = (dataset: CountryClustermapDataset): ClustermapMatrix => {
+  const { pair_records: _ignored, ...matrix } = dataset.data;
+  return {
+    ...matrix,
+    label: matrix.label ?? dataset.label,
+  };
+};
+
+const fetchDatasetMatrix = async (basePath: string, relativePath: string) => {
+  const normalizedPath = normalizeDatasetPath(relativePath);
+  const url = joinPublicPath(basePath, normalizedPath);
+  const payload = await fetchJson<CountryClustermapDataset>(url, normalizedPath);
+  return parseDataset(payload);
+};
+
 export default function CountryApprovalHeatmap() {
   const basePath = import.meta.env.BASE_URL;
   const [data, setData] = useState<PreparedClustermapResponse | null>(null);
@@ -217,11 +265,27 @@ export default function CountryApprovalHeatmap() {
       setError(null);
 
       try {
-        const response = await fetch(`${basePath}country_approval_clustermap.json`);
-        if (!response.ok) {
-          throw new Error(`Kon country_approval_clustermap.json niet laden (status ${response.status}).`);
+        const manifestUrl = joinPublicPath(basePath, COUNTRY_CLUSTERMAP_MANIFEST);
+        const manifest = await fetchJson<ClustermapManifest>(manifestUrl, COUNTRY_CLUSTERMAP_MANIFEST);
+        if (!manifest.overall) {
+          throw new Error('country_clustermaps manifest mist een overall-bestand.');
         }
-        const payload = (await response.json()) as ClustermapResponse;
+
+        const councilPaths = manifest.councils ?? [];
+        const topicPaths = manifest.topics ?? [];
+
+        const [overallMatrix, councilsMatrices, topicsMatrices] = await Promise.all([
+          fetchDatasetMatrix(basePath, manifest.overall),
+          Promise.all(councilPaths.map((path) => fetchDatasetMatrix(basePath, path))),
+          Promise.all(topicPaths.map((path) => fetchDatasetMatrix(basePath, path))),
+        ]);
+
+        const payload: ClustermapResponse = {
+          overall: overallMatrix,
+          councils: councilsMatrices,
+          topics: topicsMatrices,
+        };
+
         if (!cancelled) {
           const prepared = preparePayload(payload);
           setData(prepared);
