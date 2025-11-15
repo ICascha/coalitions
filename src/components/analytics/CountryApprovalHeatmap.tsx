@@ -519,6 +519,8 @@ const MemoizedHeatmap = memo(function Heatmap({
       hoverTarget="cell"
       isInteractive
       enableLabels={false}
+      activeOpacity={1}
+      inactiveOpacity={1}
       borderWidth={1}
       borderColor={{ from: 'color', modifiers: [['brighter', 0.5]] }}
       emptyColor="#f8fafc"
