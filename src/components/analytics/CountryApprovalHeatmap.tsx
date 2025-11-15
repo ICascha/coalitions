@@ -57,6 +57,7 @@ const VIEW_OPTIONS: { id: ViewMode; label: string }[] = [
 
 const COUNTRY_CLUSTERMAP_DIR = 'country_clustermaps/';
 const COUNTRY_CLUSTERMAP_MANIFEST = `${COUNTRY_CLUSTERMAP_DIR}index.json`;
+const HEATMAP_MARGIN = { top: 120, right: 80, bottom: 60, left: 140 };
 
 type ClustermapManifest = {
   overall: string;
@@ -256,6 +257,7 @@ export default function CountryApprovalHeatmap() {
   const [globalMaxDistance, setGlobalMaxDistance] = useState<number>(1);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [hoveredCell, setHoveredCell] = useState<HoveredCell | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -370,19 +372,62 @@ export default function CountryApprovalHeatmap() {
     return result;
   }, [selectedMatrix, globalMaxDistance]);
 
-  const renderTooltip = useCallback<TooltipComponent<HeatmapCellData>>(
-    ({ cell }) => (
-      <div className="rounded-md border border-slate-200 bg-white/95 px-3 py-2 text-sm shadow-md">
-        <div className="font-semibold text-[rgb(0,153,168)]">
-          {cell.serieId} ↔ {cell.data.x}
-        </div>
-        <div>Afstemmingsscore: {formatScore(cell.data.y)}</div>
-        <div>Gemiddelde afstand: {formatDistance(cell.data.distance)}</div>
-        <div>Pair count: {cell.data.count}</div>
-      </div>
-    ),
-    []
+  const rowIndexMap = useMemo(() => {
+    const map = new Map<string, number>();
+    rows.forEach((serie, index) => {
+      map.set(String(serie.id), index);
+    });
+    return map;
+  }, [rows]);
+
+  const columnIndexMap = useMemo(() => {
+    const map = new Map<string, number>();
+    const columns = rows[0]?.data ?? [];
+    columns.forEach((datum, index) => {
+      map.set(String(datum.x), index);
+    });
+    return map;
+  }, [rows]);
+
+  const handleHoverChange = useCallback(
+    (cell: ComputedCell<HeatmapCellData> | null) => {
+      if (!cell) {
+        setHoveredCell(null);
+        return;
+      }
+
+      const rowIndex = rowIndexMap.get(String(cell.serieId));
+      const columnIndex = columnIndexMap.get(String(cell.data.x));
+
+      if (rowIndex === undefined || columnIndex === undefined) {
+        setHoveredCell(null);
+        return;
+      }
+
+      setHoveredCell({ rowIndex, columnIndex });
+    },
+    [rowIndexMap, columnIndexMap]
   );
+
+  const renderTooltip = useMemo<TooltipComponent<HeatmapCellData>>(() => {
+    return function HeatmapTooltip({ cell }) {
+      useEffect(() => {
+        handleHoverChange(cell);
+        return () => handleHoverChange(null);
+      }, [cell, handleHoverChange]);
+
+      return (
+        <div className="rounded-md border border-slate-200 bg-white/95 px-3 py-2 text-sm shadow-md">
+          <div className="font-semibold text-[rgb(0,153,168)]">
+            {cell.serieId} ↔ {cell.data.x}
+          </div>
+          <div>Afstemmingsscore: {formatScore(cell.data.y)}</div>
+          <div>Gemiddelde afstand: {formatDistance(cell.data.distance)}</div>
+          <div>Pair count: {cell.data.count}</div>
+        </div>
+      );
+    };
+  }, [handleHoverChange]);
 
   const handleCellClick = useCallback(
     (cell: ComputedCell<HeatmapCellData>) => {
@@ -495,24 +540,38 @@ export default function CountryApprovalHeatmap() {
       </div>
 
       <div className="flex-1 min-h-0">
-        <HeatmapViewport rows={rows} tooltip={renderTooltip} onCellClick={handleCellClick} />
+        <HeatmapViewport
+          rows={rows}
+          tooltip={renderTooltip}
+          onCellClick={handleCellClick}
+          hoveredCell={hoveredCell}
+        />
       </div>
     </Card>
   );
 }
 
-type HeatmapProps = {
+type HeatmapViewportProps = {
   rows: HeatMapSerie<HeatmapCellData, {}>[];
   tooltip: TooltipComponent<HeatmapCellData>;
   onCellClick: (cell: ComputedCell<HeatmapCellData>) => void;
+  hoveredCell: HoveredCell | null;
 };
 
 const MIN_SIDE = 480;
 const MAX_SIDE = 1040;
 
-const HeatmapViewport = ({ rows, tooltip, onCellClick }: HeatmapProps) => {
+type HoveredCell = {
+  rowIndex: number;
+  columnIndex: number;
+};
+
+const HeatmapViewport = ({ rows, tooltip, onCellClick, hoveredCell }: HeatmapViewportProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [side, setSide] = useState<number>(() => MIN_SIDE);
+
+  const rowCount = rows.length;
+  const columnCount = rows[0]?.data.length ?? 0;
 
   useEffect(() => {
     const element = containerRef.current;
@@ -534,7 +593,7 @@ const HeatmapViewport = ({ rows, tooltip, onCellClick }: HeatmapProps) => {
   return (
     <div ref={containerRef} className="w-full">
       <div
-        className="mx-auto w-full"
+        className="relative mx-auto w-full"
         style={{
           maxWidth: MAX_SIDE,
           height: side,
@@ -542,6 +601,12 @@ const HeatmapViewport = ({ rows, tooltip, onCellClick }: HeatmapProps) => {
         }}
       >
         <MemoizedHeatmap rows={rows} tooltip={tooltip} onCellClick={onCellClick} />
+        <EdgeHighlightOverlay
+          side={side}
+          hoveredCell={hoveredCell}
+          rowCount={rowCount}
+          columnCount={columnCount}
+        />
       </div>
     </div>
   );
@@ -551,14 +616,18 @@ const MemoizedHeatmap = memo(function Heatmap({
   rows,
   tooltip,
   onCellClick,
-}: HeatmapProps) {
+}: {
+  rows: HeatMapSerie<HeatmapCellData, {}>[];
+  tooltip: TooltipComponent<HeatmapCellData>;
+  onCellClick: (cell: ComputedCell<HeatmapCellData>) => void;
+}) {
   const pixelRatio =
     typeof window === 'undefined' ? 1 : Math.min(2, window.devicePixelRatio || 1);
 
   return (
     <ResponsiveHeatMapCanvas<HeatmapCellData, {}>
       data={rows}
-      margin={{ top: 120, right: 80, bottom: 60, left: 140 }}
+      margin={HEATMAP_MARGIN}
       valueFormat={(value) => formatScore(typeof value === 'number' ? value : null)}
       forceSquare
       xInnerPadding={0.03}
@@ -607,6 +676,84 @@ const MemoizedHeatmap = memo(function Heatmap({
     />
   );
 });
+
+type EdgeHighlightOverlayProps = {
+  side: number;
+  hoveredCell: HoveredCell | null;
+  rowCount: number;
+  columnCount: number;
+};
+
+const EdgeHighlightOverlay = ({
+  side,
+  hoveredCell,
+  rowCount,
+  columnCount,
+}: EdgeHighlightOverlayProps) => {
+  if (!hoveredCell || rowCount === 0 || columnCount === 0) {
+    return null;
+  }
+
+  const chartWidth = Math.max(0, side - HEATMAP_MARGIN.left - HEATMAP_MARGIN.right);
+  const chartHeight = Math.max(0, side - HEATMAP_MARGIN.top - HEATMAP_MARGIN.bottom);
+  if (chartWidth === 0 || chartHeight === 0) {
+    return null;
+  }
+
+  const cellWidth = chartWidth / columnCount;
+  const cellHeight = chartHeight / rowCount;
+
+  const rowTop = HEATMAP_MARGIN.top + hoveredCell.rowIndex * cellHeight;
+  const columnLeft = HEATMAP_MARGIN.left + hoveredCell.columnIndex * cellWidth;
+
+  const highlightColor = 'rgba(0, 153, 168, 0.12)';
+  const borderColor = 'rgba(0, 153, 168, 0.5)';
+
+  return (
+    <div className="pointer-events-none absolute inset-0">
+      <div
+        style={{
+          position: 'absolute',
+          left: HEATMAP_MARGIN.left,
+          width: chartWidth,
+          top: rowTop,
+          height: cellHeight,
+          background: highlightColor,
+          borderTop: `1px solid ${borderColor}`,
+          borderBottom: `1px solid ${borderColor}`,
+          transition: 'all 80ms ease',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          top: HEATMAP_MARGIN.top,
+          height: chartHeight,
+          left: columnLeft,
+          width: cellWidth,
+          background: highlightColor,
+          borderLeft: `1px solid ${borderColor}`,
+          borderRight: `1px solid ${borderColor}`,
+          transition: 'all 80ms ease',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          top: rowTop,
+          left: columnLeft,
+          width: cellWidth,
+          height: cellHeight,
+          border: `2px solid ${borderColor}`,
+          borderRadius: 4,
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.18)',
+          background: 'rgba(255, 255, 255, 0.1)',
+          transition: 'all 80ms ease',
+        }}
+      />
+    </div>
+  );
+};
 
 const preparePayload = (payload: ClustermapResponse): PreparedClustermapResponse => ({
   overall: withLabel(payload.overall, 'Alle onderwerpen en raden'),
