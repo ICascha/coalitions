@@ -56,6 +56,23 @@ type ClusterOverlaySegment = {
   endIndex: number;
   countries: string[];
 };
+type ClusterStats = Record<
+  ClusterId,
+  {
+    averageDistance: number | null;
+    pairCount: number;
+  }
+>;
+type ClusterComparison = {
+  averageDistance: number | null;
+  pairCount: number;
+};
+type ClusterInsightsState = {
+  status: 'idle' | 'loading' | 'ready' | 'unavailable' | 'error';
+  reason?: string;
+  disagreement: DisagreementResponse | null;
+  variance: Record<ClusterId, VarianceResponse | null>;
+};
 
 const VIEW_OPTIONS: { id: ViewMode; label: string }[] = [
   { id: 'overall', label: 'Alle onderwerpen' },
@@ -66,6 +83,7 @@ const VIEW_OPTIONS: { id: ViewMode; label: string }[] = [
 const COUNTRY_CLUSTERMAP_DIR = 'country_clustermaps/';
 const COUNTRY_CLUSTERMAP_MANIFEST = `${COUNTRY_CLUSTERMAP_DIR}index.json`;
 const HEATMAP_MARGIN = { top: 120, right: 80, bottom: 60, left: 140 };
+const API_BASE = (import.meta.env.VITE_COUNTRY_POSITIONS_API ?? '').replace(/\/+$/, '');
 const CLUSTER_OPTIONS: { id: ClusterId; label: string }[] = [
   { id: 'clusterA', label: 'Cluster A' },
   { id: 'clusterB', label: 'Cluster B' },
@@ -111,6 +129,54 @@ type ClusterNode = {
   indices: number[];
   left?: ClusterNode;
   right?: ClusterNode;
+};
+
+type CountryPosition = {
+  country: string;
+  approval: number | null;
+  stance?: string | null;
+  rationale?: string | null;
+};
+
+type DisagreementResult = {
+  proposal_id: string;
+  title: string;
+  council: string;
+  topic: string;
+  disagreement: number | null;
+  average_set_a: number | null;
+  average_set_b: number | null;
+  set_a_positions: CountryPosition[];
+  set_b_positions: CountryPosition[];
+};
+
+type DisagreementResponse = {
+  topic?: string | null;
+  council?: string | null;
+  total_proposals: number;
+  proposals_with_both_sets: number;
+  missing_countries: Record<string, string[]>;
+  results: DisagreementResult[];
+};
+
+type VarianceResult = {
+  proposal_id: string;
+  title: string;
+  council: string;
+  topic: string;
+  variance: number | null;
+  mean_approval: number | null;
+  country_positions: CountryPosition[];
+  missing_countries: string[];
+};
+
+type VarianceResponse = {
+  topic?: string | null;
+  council?: string | null;
+  total_proposals: number;
+  proposals_with_observations: number;
+  missing_countries: Record<string, string[]>;
+  results: VarianceResult[];
 };
 
 const sanitizeMatrix = (matrix: (number | null)[][]) =>
@@ -255,6 +321,10 @@ const ensureTrailingSlash = (value: string) => (value.endsWith('/') ? value : `$
 const sanitizeRelativePath = (path: string) => path.replace(/^\/+/, '');
 const joinPublicPath = (basePath: string, relativePath: string) =>
   `${ensureTrailingSlash(basePath)}${sanitizeRelativePath(relativePath)}`;
+const buildApiUrl = (path: string) => {
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  return `${API_BASE}${normalizedPath}`;
+};
 
 const normalizeDatasetPath = (path: string) =>
   path.startsWith(COUNTRY_CLUSTERMAP_DIR) ? path : `${COUNTRY_CLUSTERMAP_DIR}${path}`;
@@ -282,6 +352,19 @@ const fetchDatasetMatrix = async (basePath: string, relativePath: string) => {
   return parseDataset(payload);
 };
 
+const postJson = async <T,>(path: string, body: unknown, signal: AbortSignal): Promise<T> => {
+  const response = await fetch(buildApiUrl(path), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    signal,
+  });
+  if (!response.ok) {
+    throw new Error(`API request failed (${response.status})`);
+  }
+  return (await response.json()) as T;
+};
+
 export default function CountryApprovalHeatmap() {
   const basePath = import.meta.env.BASE_URL;
   const [data, setData] = useState<PreparedClustermapResponse | null>(null);
@@ -296,6 +379,19 @@ export default function CountryApprovalHeatmap() {
   const [clusterSelections, setClusterSelections] = useState<ClusterSelections>({
     clusterA: [],
     clusterB: [],
+  });
+  const [clusterStats, setClusterStats] = useState<ClusterStats>({
+    clusterA: { averageDistance: null, pairCount: 0 },
+    clusterB: { averageDistance: null, pairCount: 0 },
+  });
+  const [clusterComparison, setClusterComparison] = useState<ClusterComparison>({
+    averageDistance: null,
+    pairCount: 0,
+  });
+  const [clusterInsights, setClusterInsights] = useState<ClusterInsightsState>({
+    status: 'idle',
+    disagreement: null,
+    variance: { clusterA: null, clusterB: null },
   });
 
   useEffect(() => {
@@ -372,6 +468,16 @@ export default function CountryApprovalHeatmap() {
     }
     return data.topics.find((entry) => entry.label === selectedTopic) ?? data.topics[0] ?? null;
   })();
+
+  const filterContext = useMemo(() => {
+    if (viewMode === 'topic' && selectedTopic) {
+      return { topic: selectedTopic, label: `Thema: ${selectedTopic}` };
+    }
+    if (viewMode === 'council' && selectedCouncil) {
+      return { council: selectedCouncil, label: `Raad: ${selectedCouncil}` };
+    }
+    return null;
+  }, [viewMode, selectedTopic, selectedCouncil]);
 
   useEffect(() => {
     if (!selectedMatrix) {
@@ -451,6 +557,196 @@ export default function CountryApprovalHeatmap() {
     }
     return result;
   }, [selectedMatrix, globalMaxDistance, clusterSelections]);
+
+  useEffect(() => {
+    if (!selectedMatrix) {
+      setClusterStats({
+        clusterA: { averageDistance: null, pairCount: 0 },
+        clusterB: { averageDistance: null, pairCount: 0 },
+      });
+      setClusterComparison({ averageDistance: null, pairCount: 0 });
+      return;
+    }
+
+    const matrix = selectedMatrix.distance_matrix;
+    const countryIndex = new Map(
+      selectedMatrix.countries.map((country, index) => [country, index])
+    );
+
+    const stats: ClusterStats = {
+      clusterA: { averageDistance: null, pairCount: 0 },
+      clusterB: { averageDistance: null, pairCount: 0 },
+    };
+
+    for (const option of CLUSTER_OPTIONS) {
+      const uniqueCountries = Array.from(new Set(clusterSelections[option.id]));
+      if (uniqueCountries.length < 2) {
+        stats[option.id] = { averageDistance: null, pairCount: 0 };
+        continue;
+      }
+
+      const indices = uniqueCountries
+        .map((country) => countryIndex.get(country))
+        .filter((value): value is number => typeof value === 'number');
+
+      if (indices.length < 2) {
+        stats[option.id] = { averageDistance: null, pairCount: 0 };
+        continue;
+      }
+
+      let total = 0;
+      let count = 0;
+      for (let i = 0; i < indices.length; i++) {
+        for (let j = i + 1; j < indices.length; j++) {
+          const value = matrix[indices[i]]?.[indices[j]];
+          if (typeof value === 'number' && Number.isFinite(value)) {
+            total += value;
+            count++;
+          }
+        }
+      }
+
+      stats[option.id] = {
+        averageDistance: count > 0 ? total / count : null,
+        pairCount: count,
+      };
+    }
+
+    setClusterStats(stats);
+
+    const clusterASet = Array.from(new Set(clusterSelections.clusterA));
+    const clusterBSet = Array.from(new Set(clusterSelections.clusterB));
+    if (!clusterASet.length || !clusterBSet.length) {
+      setClusterComparison({ averageDistance: null, pairCount: 0 });
+    } else {
+      let betweenTotal = 0;
+      let betweenCount = 0;
+      for (const countryA of clusterASet) {
+        const indexA = countryIndex.get(countryA);
+        if (indexA === undefined) continue;
+        for (const countryB of clusterBSet) {
+          const indexB = countryIndex.get(countryB);
+          if (indexB === undefined) continue;
+          const value = matrix[indexA]?.[indexB];
+          if (typeof value === 'number' && Number.isFinite(value)) {
+            betweenTotal += value;
+            betweenCount++;
+          }
+        }
+      }
+      setClusterComparison({
+        averageDistance: betweenCount > 0 ? betweenTotal / betweenCount : null,
+        pairCount: betweenCount,
+      });
+    }
+  }, [clusterSelections, selectedMatrix]);
+
+  useEffect(() => {
+    if (!filterContext) {
+      setClusterInsights({
+        status: 'unavailable',
+        reason: 'Selecteer een raad of thema om inzichten op te halen.',
+        disagreement: null,
+        variance: { clusterA: null, clusterB: null },
+      });
+      return;
+    }
+
+    const controller = new AbortController();
+    const { signal } = controller;
+    const filterPayload: Record<string, string> = {};
+    if (filterContext.topic) filterPayload.topic = filterContext.topic;
+    if (filterContext.council) filterPayload.council = filterContext.council;
+
+    const hasClusterA = clusterSelections.clusterA.length > 0;
+    const hasClusterB = clusterSelections.clusterB.length > 0;
+    const varianceTargets = CLUSTER_OPTIONS.filter(
+      (option) => clusterSelections[option.id].length > 0
+    );
+    const shouldFetch =
+      (hasClusterA && hasClusterB) || varianceTargets.length > 0;
+
+    if (!shouldFetch) {
+      setClusterInsights({
+        status: 'unavailable',
+        reason: 'Selecteer minstens één land om inzichten op te halen.',
+        disagreement: null,
+        variance: { clusterA: null, clusterB: null },
+      });
+      return () => controller.abort();
+    }
+
+    setClusterInsights((prev) => ({
+      status: 'loading',
+      reason: undefined,
+      disagreement: prev.disagreement,
+      variance: prev.variance ?? { clusterA: null, clusterB: null },
+    }));
+
+    let nextDisagreement: DisagreementResponse | null = null;
+    const nextVariance: Record<ClusterId, VarianceResponse | null> = {
+      clusterA: null,
+      clusterB: null,
+    };
+
+    const requests: Promise<void>[] = [];
+
+    if (hasClusterA && hasClusterB) {
+      const payload = {
+        ...filterPayload,
+        set_a: clusterSelections.clusterA,
+        set_b: clusterSelections.clusterB,
+      };
+      requests.push(
+        postJson<DisagreementResponse>('country-positions/disagreement', payload, signal).then((data) => {
+          nextDisagreement = data;
+        })
+      );
+    }
+
+    for (const option of CLUSTER_OPTIONS) {
+      const countries = clusterSelections[option.id];
+      if (!countries.length) {
+        nextVariance[option.id] = null;
+        continue;
+      }
+      const payload = {
+        ...filterPayload,
+        set_a: countries,
+      };
+      requests.push(
+        postJson<VarianceResponse>('country-positions/variance', payload, signal).then((data) => {
+          nextVariance[option.id] = data;
+        })
+      );
+    }
+
+    Promise.all(requests)
+      .then(() => {
+        if (signal.aborted) return;
+        setClusterInsights({
+          status: 'ready',
+          disagreement: nextDisagreement,
+          variance: nextVariance,
+        });
+      })
+      .catch((error) => {
+        if (signal.aborted) {
+          return;
+        }
+        setClusterInsights({
+          status: 'error',
+          reason:
+            error instanceof Error
+              ? error.message
+              : 'Onbekende fout bij het ophalen van inzichten.',
+          disagreement: nextDisagreement,
+          variance: nextVariance,
+        });
+      });
+
+    return () => controller.abort();
+  }, [filterContext, clusterSelections]);
 
   const rowIndexMap = useMemo(() => {
     const map = new Map<string, number>();
@@ -733,6 +1029,8 @@ export default function CountryApprovalHeatmap() {
         onAddCountry={handleManualAddCountry}
         onRemoveCountry={handleRemoveCountry}
         onClearCluster={handleClearCluster}
+        clusterStats={clusterStats}
+        clusterComparison={clusterComparison}
       />
 
       <div className="flex-1 min-h-0">
@@ -744,6 +1042,12 @@ export default function CountryApprovalHeatmap() {
           clusterSegments={clusterSegments}
         />
       </div>
+
+      <ClusterInsightsSummary
+        state={clusterInsights}
+        filterContext={filterContext}
+        clusterSelections={clusterSelections}
+      />
     </Card>
   );
 }
@@ -1070,6 +1374,8 @@ type ClusterSelectionPanelProps = {
   onAddCountry: (cluster: ClusterId, country: string) => void;
   onRemoveCountry: (cluster: ClusterId, country: string) => void;
   onClearCluster: (cluster: ClusterId) => void;
+  clusterStats: ClusterStats;
+  clusterComparison: ClusterComparison;
 };
 
 const ClusterSelectionPanel = ({
@@ -1080,40 +1386,81 @@ const ClusterSelectionPanel = ({
   onAddCountry,
   onRemoveCountry,
   onClearCluster,
+  clusterStats,
+  clusterComparison,
 }: ClusterSelectionPanelProps) => {
   return (
-    <div className="rounded-md border border-slate-200 bg-slate-50/70 p-4">
-      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+    <div className="rounded-lg border border-slate-200 bg-white/80 p-4 shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Clusterselectie
+            Clusters
           </div>
-          <p className="text-sm text-slate-600">
-            Kies landen voor twee clusters en klik op heatmap-cellen om snel landen toe te voegen.
-          </p>
+          <p className="text-xs text-slate-500">Klik in de heatmap of kies handmatig.</p>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600">
+          {CLUSTER_OPTIONS.map((option) => {
+            const stats = clusterStats[option.id];
+            const style = CLUSTER_STYLES[option.id];
+            return (
+              <div key={option.id} className="flex items-center gap-2">
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: style.color }}
+                  aria-hidden
+                />
+                <div>
+                  <div className="font-semibold text-slate-800">
+                    {option.label}:{' '}
+                    <span className="text-[rgb(0,153,168)]">
+                      {stats.averageDistance !== null ? stats.averageDistance.toFixed(3) : 'n.v.t.'}
+                    </span>
+                  </div>
+                  <div className="text-[10px] uppercase tracking-wide text-slate-400">
+                    {stats.pairCount} paren
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+          <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 shadow-sm">
+            <div className="text-[10px] uppercase tracking-wide text-slate-400">A vs B</div>
+            <div className="text-xs font-semibold text-slate-800">
+              {clusterComparison.averageDistance !== null
+                ? clusterComparison.averageDistance.toFixed(3)
+                : 'n.v.t.'}
+            </div>
+            <div className="text-[10px] text-slate-400">{clusterComparison.pairCount} paren</div>
+          </div>
+        </div>
+        <div className="flex rounded-full border border-slate-200 bg-slate-50 p-1 text-xs font-medium">
           {CLUSTER_OPTIONS.map((option) => {
             const isActive = activeCluster === option.id;
+            const style = CLUSTER_STYLES[option.id];
             return (
               <button
                 key={option.id}
                 type="button"
                 onClick={() => onActiveClusterChange(option.id)}
                 className={cn(
-                  'rounded-full border px-4 py-1.5 text-sm font-medium transition-colors',
+                  'flex items-center gap-2 rounded-full px-3 py-1 transition-colors',
                   isActive
-                    ? 'border-[rgb(0,153,168)] bg-[rgb(0,153,168)] text-white'
-                    : 'border-slate-300 text-slate-700 hover:border-[rgb(0,153,168)] hover:text-[rgb(0,153,168)]'
+                    ? 'bg-white text-slate-900 shadow'
+                    : 'text-slate-500 hover:text-slate-900'
                 )}
               >
-                {option.label} actief
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: style.color }}
+                  aria-hidden
+                />
+                {option.label}
               </button>
             );
           })}
         </div>
       </div>
-      <div className="mt-4 grid gap-4 lg:grid-cols-2">
+      <div className="mt-4 grid gap-3 lg:grid-cols-2">
         {CLUSTER_OPTIONS.map((option) => (
           <ClusterCard
             key={option.id}
@@ -1126,6 +1473,7 @@ const ClusterSelectionPanel = ({
             onAddCountry={onAddCountry}
             onRemoveCountry={onRemoveCountry}
             onClearCluster={onClearCluster}
+            stats={clusterStats[option.id]}
           />
         ))}
       </div>
@@ -1143,6 +1491,7 @@ type ClusterCardProps = {
   onAddCountry: (cluster: ClusterId, country: string) => void;
   onRemoveCountry: (cluster: ClusterId, country: string) => void;
   onClearCluster: (cluster: ClusterId) => void;
+  stats: { averageDistance: number | null; pairCount: number };
 };
 
 const ClusterCard = ({
@@ -1155,6 +1504,7 @@ const ClusterCard = ({
   onAddCountry,
   onRemoveCountry,
   onClearCluster,
+  stats,
 }: ClusterCardProps) => {
   const color = CLUSTER_STYLES[clusterId].color;
 
@@ -1168,52 +1518,54 @@ const ClusterCard = ({
   return (
     <div
       className={cn(
-        'rounded-md border bg-white/80 p-4 shadow-sm transition-colors',
-        isActive ? 'border-[rgb(0,153,168)]' : 'border-slate-200'
+        'rounded-lg border border-slate-200 bg-slate-50/60 p-3 transition-colors',
+        isActive && 'border-[rgb(0,153,168)] bg-white'
       )}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
-          <div className="text-sm text-slate-600">Bevat {countries.length} landen</div>
-        </div>
+      <div className="flex items-center justify-between gap-2">
         <button
           type="button"
           onClick={() => onSetActive(clusterId)}
-          className={cn(
-            'rounded-full px-3 py-1 text-xs font-semibold transition-colors',
-            isActive ? 'bg-[rgb(0,153,168)] text-white' : 'bg-slate-100 text-slate-600 hover:text-slate-900'
-          )}
+          className="flex items-center gap-2 text-left"
         >
-          {isActive ? 'Actief' : 'Activeren'}
+          <span
+            className="h-2.5 w-2.5 rounded-full"
+            style={{ backgroundColor: color }}
+            aria-hidden
+          />
+          <span className="text-sm font-semibold text-slate-700">{label}</span>
         </button>
+        <div className="text-right text-[10px] uppercase tracking-wide text-slate-400">
+          <div>{countries.length} landen</div>
+          <div>
+            Gem.:{' '}
+            <span className="text-slate-600">
+              {stats.averageDistance !== null ? stats.averageDistance.toFixed(3) : 'n.v.t.'}
+            </span>
+          </div>
+        </div>
       </div>
 
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="mt-2 flex flex-wrap gap-1.5">
         {countries.length === 0 && (
-          <span className="text-xs text-slate-500">Nog geen landen toegevoegd.</span>
+          <span className="text-xs text-slate-400">Nog geen selectie</span>
         )}
         {countries.map((country) => (
           <button
             key={country}
             type="button"
             onClick={() => onRemoveCountry(clusterId, country)}
-            className="group flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2 py-1 text-xs text-slate-700 shadow-sm transition hover:border-red-400 hover:text-red-600"
+            className="group flex items-center gap-1 rounded-full bg-white/90 px-2 py-0.5 text-xs text-slate-600 ring-1 ring-slate-200 transition hover:text-red-600"
           >
-            <span
-              className="h-2 w-2 rounded-full"
-              style={{ backgroundColor: color }}
-              aria-hidden
-            />
             {country}
             <span className="text-slate-400 transition group-hover:text-red-500">×</span>
           </button>
         ))}
       </div>
 
-      <div className="mt-3">
+      <div className="mt-3 flex items-center gap-2">
         <Select onValueChange={handleValueChange}>
-          <SelectTrigger className="text-sm">
+          <SelectTrigger className="h-8 flex-1 text-xs">
             <SelectValue placeholder="Land toevoegen" />
           </SelectTrigger>
           <SelectContent>
@@ -1231,11 +1583,302 @@ const ClusterCard = ({
         <button
           type="button"
           onClick={() => onClearCluster(clusterId)}
-          className="mt-2 text-xs text-red-500 hover:text-red-600"
+          className="text-xs text-slate-500 transition hover:text-red-500"
         >
-          Cluster legen
+          Wissen
         </button>
       </div>
+    </div>
+  );
+};
+
+type ClusterInsightsSummaryProps = {
+  state: ClusterInsightsState;
+  filterContext: { label: string } | null;
+  clusterSelections: ClusterSelections;
+};
+
+const MAX_VARIANCE_ROWS = 2;
+
+const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
+
+const DisagreementCard = ({ result }: { result: DisagreementResult }) => {
+  const [expanded, setExpanded] = useState(false);
+  const handleToggle = () => setExpanded((prev) => !prev);
+
+  const renderJustifications = (positions: CountryPosition[], clusterId: ClusterId) => (
+    <div className="space-y-2">
+      {positions.map((position) => (
+        <div key={`${result.proposal_id}-${clusterId}-${position.country}`} className="rounded-md border border-slate-200 bg-white/90 p-2 shadow-sm">
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <span
+                className="inline-block h-2.5 w-2.5 rounded-full"
+                style={{ backgroundColor: CLUSTER_STYLES[clusterId].color }}
+              />
+              <span className="text-sm font-medium text-slate-700">{position.country}</span>
+            </div>
+            <span className="text-xs font-semibold text-slate-600">
+              {position.approval !== null && Number.isFinite(position.approval)
+                ? position.approval.toFixed(2)
+                : 'n.v.t.'}
+            </span>
+          </div>
+          {position.stance && (
+            <div className="mt-1 text-xs font-semibold text-slate-600">{position.stance}</div>
+          )}
+          {position.rationale && (
+            <p className="mt-1 text-xs text-slate-500 leading-relaxed">{position.rationale}</p>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white/95 p-3 shadow-sm transition hover:border-slate-300">
+      <button
+        type="button"
+        onClick={handleToggle}
+        className="w-full text-left focus:outline-none"
+      >
+        <div className="flex items-center justify-between text-xs font-semibold text-slate-700">
+          <span className="line-clamp-2 pr-2">{result.title}</span>
+          <div className="text-right">
+            <div className="text-[rgb(0,153,168)]">
+              Δ {result.disagreement !== null ? result.disagreement.toFixed(3) : 'n.v.t.'}
+            </div>
+            <div className="text-[10px] font-normal uppercase tracking-wide text-slate-400">
+              A {formatDistance(result.average_set_a)} · B {formatDistance(result.average_set_b)}
+            </div>
+          </div>
+        </div>
+        <ClusterApprovalTrack result={result} />
+      </button>
+      {expanded && (
+        <div className="mt-4 space-y-4 border-t border-slate-200 pt-4">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              Cluster A: toelichtingen
+            </div>
+            <div className="mt-2">{renderJustifications(result.set_a_positions, 'clusterA')}</div>
+          </div>
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              Cluster B: toelichtingen
+            </div>
+            <div className="mt-2">{renderJustifications(result.set_b_positions, 'clusterB')}</div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const ClusterApprovalTrack = ({ result }: { result: DisagreementResult }) => {
+  const [hovered, setHovered] = useState<{
+    country: string;
+    score: number;
+    left: number;
+    color: string;
+  } | null>(null);
+
+  const renderDots = (positions: CountryPosition[], color: string, cluster: ClusterId) =>
+    positions
+      .filter((position) => typeof position.approval === 'number' && Number.isFinite(position.approval))
+      .map((position) => {
+        const approval = clamp01(position.approval as number);
+        const left = approval * 100;
+        const label = `${position.country}: ${formatScore(approval)}`;
+        return (
+          <span
+            key={`${result.proposal_id}-${cluster}-${position.country}`}
+            className="absolute left-0 top-1/2 h-4 w-4 -translate-y-1/2 -translate-x-1/2 rounded-full border border-white shadow-lg transition duration-150 hover:scale-125 focus-visible:scale-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            style={{
+              transform: 'translate(-50%, -50%)',
+              left: `${left}%`,
+              backgroundColor: color,
+            }}
+            role="presentation"
+            tabIndex={0}
+            aria-label={label}
+            onMouseEnter={() => setHovered({ country: position.country, score: approval, left, color })}
+            onMouseLeave={() => setHovered(null)}
+            onFocus={() => setHovered({ country: position.country, score: approval, left, color })}
+            onBlur={() => setHovered(null)}
+          />
+        );
+      });
+
+  return (
+    <div className="mt-3 space-y-2">
+      <div className="flex items-center justify-between text-[10px] uppercase tracking-wide text-slate-400">
+        <span>0 (meer voor)</span>
+        <span>Approval schaal</span>
+        <span>1 (meer tegen)</span>
+      </div>
+      <div className="relative h-12">
+        <div className="absolute left-0 right-0 top-1/2 h-[6px] -translate-y-1/2 rounded-full bg-gradient-to-r from-slate-200 via-slate-50 to-slate-200 shadow-inner" />
+        <div className="pointer-events-none absolute inset-y-0 left-1/2 w-[2px] -translate-x-1/2 bg-white/70 shadow" />
+        {renderDots(result.set_a_positions, CLUSTER_STYLES.clusterA.color, 'clusterA')}
+        {renderDots(result.set_b_positions, CLUSTER_STYLES.clusterB.color, 'clusterB')}
+        {hovered && (
+          <div
+            className="pointer-events-none absolute -translate-x-1/2 -translate-y-full rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 shadow-lg"
+            style={{ left: `${hovered.left}%`, top: '0' }}
+          >
+            <div className="flex items-center gap-2">
+              <span
+                className="inline-block h-2.5 w-2.5 rounded-full"
+                style={{ backgroundColor: hovered.color }}
+              />
+              {hovered.country}
+            </div>
+            <div className="text-[10px] text-slate-500">Approval {formatScore(hovered.score)}</div>
+          </div>
+        )}
+      </div>
+      <div className="flex items-center gap-4 text-[10px] text-slate-500">
+        <div className="flex items-center gap-1">
+          <span
+            className="inline-block h-3.5 w-3.5 rounded-full border border-white shadow"
+            style={{ backgroundColor: CLUSTER_STYLES.clusterA.color }}
+          />
+          Cluster A
+        </div>
+        <div className="flex items-center gap-1">
+          <span
+            className="inline-block h-3.5 w-3.5 rounded-full border border-white shadow"
+            style={{ backgroundColor: CLUSTER_STYLES.clusterB.color }}
+          />
+          Cluster B
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ClusterInsightsSummary = ({
+  state,
+  filterContext,
+  clusterSelections,
+}: ClusterInsightsSummaryProps) => {
+  const renderDisagreement = () => {
+    if (!state.disagreement || !state.disagreement.results?.length) {
+      return (
+        <div className="text-xs text-slate-500">
+          Geen voorstellen met beide clusters voor deze selectie.
+        </div>
+      );
+    }
+    const items = state.disagreement.results;
+    return (
+      <div className="space-y-3 max-h-[800px] overflow-y-auto pr-1">
+        {items.map((result) => (
+          <DisagreementCard key={result.proposal_id} result={result} />
+        ))}
+      </div>
+    );
+  };
+
+  const renderVariance = (clusterId: ClusterId) => {
+    if (clusterSelections[clusterId].length < 2) {
+      return (
+        <div className="text-xs text-slate-500">
+          Selecteer minstens twee landen voor {CLUSTER_LABELS[clusterId]} om variatie te zien.
+        </div>
+      );
+    }
+    const varianceData = state.variance?.[clusterId];
+    if (!varianceData || !varianceData.results?.length) {
+      return (
+        <div className="text-xs text-slate-500">
+          Geen voorstellen met waarnemingen voor deze selectie.
+        </div>
+      );
+    }
+    const items = varianceData.results.slice(0, MAX_VARIANCE_ROWS);
+    return (
+      <div className="space-y-2">
+        {items.map((result) => (
+          <div key={result.proposal_id} className="rounded-md border border-slate-200 p-2">
+            <div className="flex items-center justify-between text-xs font-semibold text-slate-700">
+              <span className="line-clamp-2 pr-2">{result.title}</span>
+              <span className="text-[rgb(0,153,168)]">
+                σ² {result.variance !== null ? result.variance.toFixed(3) : 'n.v.t.'}
+              </span>
+            </div>
+            <div className="mt-1 text-[11px] text-slate-500">
+              Gemiddelde approval: {formatDistance(result.mean_approval)}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderContent = () => {
+    if (!filterContext) {
+      return <div className="text-sm text-slate-500">Selecteer een raad of thema om inzichten te bekijken.</div>;
+    }
+    if (state.status === 'loading' || state.status === 'idle') {
+      return <div className="text-sm text-slate-500">Analyses laden…</div>;
+    }
+    if (state.status === 'unavailable') {
+      return <div className="text-sm text-slate-500">{state.reason}</div>;
+    }
+    if (state.status === 'error') {
+      return (
+        <div className="text-sm text-red-600">
+          Kan inzichten niet ophalen: {state.reason ?? 'Onbekende fout.'}
+        </div>
+      );
+    }
+    return (
+      <div className="space-y-4">
+        <div>
+          <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Grootste meningsverschillen
+          </div>
+          <div className="mt-2">{renderDisagreement()}</div>
+        </div>
+        <div>
+          <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Variatie per cluster
+          </div>
+          <div className="mt-2 grid gap-3 md:grid-cols-2">
+            {CLUSTER_OPTIONS.map((option) => (
+              <div key={option.id} className="rounded-lg border border-slate-200 p-3">
+                <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                  <span
+                    className="h-2 w-2 rounded-full"
+                    style={{ backgroundColor: CLUSTER_STYLES[option.id].color }}
+                    aria-hidden
+                  />
+                  {option.label}
+                </div>
+                <div className="mt-2">{renderVariance(option.id)}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="rounded-lg border border-slate-200 bg-white/85 p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Country Position Insights
+          </div>
+          <div className="text-sm text-slate-600">
+            {filterContext ? filterContext.label : 'Geen filter geselecteerd'}
+          </div>
+        </div>
+      </div>
+      <div className="mt-4">{renderContent()}</div>
     </div>
   );
 };
