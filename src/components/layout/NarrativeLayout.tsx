@@ -92,6 +92,41 @@ export const NarrativeLayout = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const HASH_ROUTE_APPROVALS = '#raadsposities';
+
+    const maybeScrollToNarrative = () => {
+      if (textRef.current) {
+        textRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    const handleHashRoute = () => {
+      if (window.location.hash.toLowerCase() === HASH_ROUTE_APPROVALS) {
+        setActiveView('approvals');
+        maybeScrollToNarrative();
+      }
+    };
+
+    handleHashRoute();
+    window.addEventListener('hashchange', handleHashRoute);
+    return () => window.removeEventListener('hashchange', handleHashRoute);
+  }, []);
+
+  useEffect(() => {
+    const HASH_ROUTE_APPROVALS = '#raadsposities';
+    if (activeView === 'approvals') {
+      if (window.location.hash.toLowerCase() !== HASH_ROUTE_APPROVALS) {
+        window.history.replaceState(null, '', HASH_ROUTE_APPROVALS);
+      }
+      return;
+    }
+
+    if (window.location.hash.toLowerCase() === HASH_ROUTE_APPROVALS) {
+      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    }
+  }, [activeView]);
+
   const handleTopLeftButtonClick = () => {
     if (isMainContentVisible) {
       introRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
