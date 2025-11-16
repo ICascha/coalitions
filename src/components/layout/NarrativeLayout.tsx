@@ -14,6 +14,7 @@ import RegressionDashboard from '@/components/analytics/RegressionDashboard';
 import CountryApprovalHeatmap from '@/components/analytics/CountryApprovalHeatmap';
 
 const brandColorRgb = '0, 153, 168';
+const REGRESSION_ENABLED = false;
 const ANIMATION_DURATION = 1000;
 
 const fadeInAnimation = `
@@ -137,12 +138,24 @@ export const NarrativeLayout = () => {
           component: <CountryApprovalHeatmap />,
         };
       case 'regression':
+        if (REGRESSION_ENABLED) {
+          return {
+            title: 'Determinanten van coalities',
+            description:
+              'Voer vaste-effecten regressies uit om te zien welke indicatoren coalities verklaren en vergelijk indicatoren visueel.',
+            component: <RegressionDashboard />,
+          };
+        }
+        return {
+          title: 'Verbindingen',
+          description: 'Verken hoe Europese landen met elkaar verweven zijn.',
+          component: <EuropeConnections />,
+        };
       default:
         return {
-          title: 'Determinanten van coalities',
-          description:
-            'Voer vaste-effecten regressies uit om te zien welke indicatoren coalities verklaren en vergelijk indicatoren visueel.',
-          component: <RegressionDashboard />,
+          title: 'Verbindingen',
+          description: 'Verken hoe Europese landen met elkaar verweven zijn.',
+          component: <EuropeConnections />,
         };
     }
   })();
@@ -293,17 +306,19 @@ export const NarrativeLayout = () => {
               >
                 Raadsposities
               </button>
-              <button
-                type="button"
-                onClick={() => setActiveView('regression')}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                  activeView === 'regression'
-                    ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
-                    : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
-                }`}
-              >
-                Regressie
-              </button>
+              {REGRESSION_ENABLED && (
+                <button
+                  type="button"
+                  onClick={() => setActiveView('regression')}
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                    activeView === 'regression'
+                      ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
+                      : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
+                  }`}
+                >
+                  Regressie
+                </button>
+              )}
             </div>
           </div>
           <div className="flex-1 min-h-0 px-4 pb-6 md:px-6">

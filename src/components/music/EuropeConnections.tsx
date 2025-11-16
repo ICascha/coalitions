@@ -296,6 +296,7 @@ const resolvedClusterBase =
 const clusterApiBase = resolvedClusterBase.replace(/\/+$/, '');
 const clusterEndpoint = clusterApiBase ? `${clusterApiBase}/leiden` : '/leiden';
 const fallbackClusterPalette = ['#2563eb', '#f97316', '#10b981', '#8b5cf6', '#ec4899', '#14b8a6', '#facc15', '#ef4444'];
+const GLOBAL_BLOBS_BUTTON_ENABLED = false;
 
 const createBlobPath = (cx: number, cy: number, rx: number, ry: number) => {
   const fmt = (value: number) => value.toFixed(1);
@@ -888,18 +889,20 @@ export default function EuropeConnections() {
                 >
                   {clusterLoading ? 'Zoeken...' : 'Find clusters'}
                 </button>
-                <button
-                  type="button"
-                  onClick={handleToggleGlobalBlobs}
-                  aria-pressed={showGlobalBlobs}
-                  className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                    showGlobalBlobs
-                      ? 'border border-[rgba(0,153,168,0.6)] bg-[rgb(0,153,168)]/90 text-white hover:bg-[rgb(0,153,168)] focus:ring-[rgba(0,153,168,0.4)]'
-                      : 'border border-[rgba(0,153,168,0.6)] bg-white text-[rgb(0,153,168)] hover:bg-[rgba(0,153,168,0.08)] focus:ring-[rgba(0,153,168,0.4)]'
-                  }`}
-                >
-                  {showGlobalBlobs ? 'Hide US/RU/CN blobs' : 'Add US/RU/CN blobs'}
-                </button>
+                {GLOBAL_BLOBS_BUTTON_ENABLED && (
+                  <button
+                    type="button"
+                    onClick={handleToggleGlobalBlobs}
+                    aria-pressed={showGlobalBlobs}
+                    className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                      showGlobalBlobs
+                        ? 'border border-[rgba(0,153,168,0.6)] bg-[rgb(0,153,168)]/90 text-white hover:bg-[rgb(0,153,168)] focus:ring-[rgba(0,153,168,0.4)]'
+                        : 'border border-[rgba(0,153,168,0.6)] bg-white text-[rgb(0,153,168)] hover:bg-[rgba(0,153,168,0.08)] focus:ring-[rgba(0,153,168,0.4)]'
+                    }`}
+                  >
+                    {showGlobalBlobs ? 'Hide US/RU/CN blobs' : 'Add US/RU/CN blobs'}
+                  </button>
+                )}
                 {clusterError ? <span className="text-xs text-red-500">{clusterError}</span> : null}
                 <span className="text-xs text-gray-500">
                   {selectedMetrics.length} datasets actief
