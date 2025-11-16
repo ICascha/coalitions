@@ -67,6 +67,8 @@ type ClusterComparison = {
   averageDistance: number | null;
   pairCount: number;
 };
+type ColorScaleMode = 'global' | 'relative';
+type DistanceRange = { min: number; max: number };
 type ClusterInsightsState = {
   status: 'idle' | 'loading' | 'ready' | 'unavailable' | 'error';
   reason?: string;
@@ -87,6 +89,10 @@ const API_BASE = (import.meta.env.VITE_COUNTRY_POSITIONS_API ?? '').replace(/\/+
 const CLUSTER_OPTIONS: { id: ClusterId; label: string }[] = [
   { id: 'clusterA', label: 'Cluster A' },
   { id: 'clusterB', label: 'Cluster B' },
+];
+const SCALE_MODE_OPTIONS: { id: ColorScaleMode; label: string; description: string }[] = [
+  { id: 'global', label: 'Absolute schaal', description: '0–1 (alle datasets)' },
+  { id: 'relative', label: 'Relatieve schaal', description: 'Min–max per dataset' },
 ];
 const CLUSTER_STYLES: Record<
   ClusterId,
@@ -275,6 +281,26 @@ const getMatrixMaxDistance = (matrix?: ClustermapMatrix) => {
   return max;
 };
 
+const getMatrixDistanceRange = (matrix?: ClustermapMatrix): DistanceRange => {
+  if (!matrix) {
+    return { min: 0, max: 0 };
+  }
+  let min = Number.POSITIVE_INFINITY;
+  let max = Number.NEGATIVE_INFINITY;
+  for (const row of matrix.distance_matrix) {
+    for (const value of row) {
+      if (typeof value === 'number' && Number.isFinite(value)) {
+        min = Math.min(min, value);
+        max = Math.max(max, value);
+      }
+    }
+  }
+  if (!Number.isFinite(min) || !Number.isFinite(max)) {
+    return { min: 0, max: 0 };
+  }
+  return { min, max };
+};
+
 const getGlobalMaxDistance = (payload: ClustermapResponse) => {
   let maxDistance = getMatrixMaxDistance(payload.overall);
   for (const matrix of payload.councils) {
@@ -307,14 +333,26 @@ const getPairCount = (value: number | null) => {
   return 0;
 };
 
-const normalizeDistance = (value: number | null, maxDistance: number) => {
+const normalizeCloseness = (
+  value: number | null,
+  mode: ColorScaleMode,
+  globalMaxDistance: number,
+  range: DistanceRange
+) => {
   if (value === null || !Number.isFinite(value)) {
     return null;
   }
-  if (maxDistance <= 0) {
+  if (mode === 'relative') {
+    const span = range.max - range.min;
+    if (span <= 0) {
+      return 1;
+    }
+    return Math.max(0, Math.min(1, 1 - (value - range.min) / span));
+  }
+  if (globalMaxDistance <= 0) {
     return 1;
   }
-  return Math.max(0, Math.min(1, 1 - value / maxDistance));
+  return Math.max(0, Math.min(1, 1 - value / globalMaxDistance));
 };
 
 const ensureTrailingSlash = (value: string) => (value.endsWith('/') ? value : `${value}/`);
@@ -393,6 +431,7 @@ export default function CountryApprovalHeatmap() {
     disagreement: null,
     variance: { clusterA: null, clusterB: null },
   });
+  const [colorScaleMode, setColorScaleMode] = useState<ColorScaleMode>('global');
 
   useEffect(() => {
     let cancelled = false;
@@ -479,6 +518,15 @@ export default function CountryApprovalHeatmap() {
     return null;
   }, [viewMode, selectedTopic, selectedCouncil]);
 
+  const distanceRange = useMemo<DistanceRange>(() => {
+    if (!selectedMatrix) {
+      return { min: 0, max: 0 };
+    }
+    return getMatrixDistanceRange(selectedMatrix);
+  }, [selectedMatrix]);
+  const distanceRangeMin = distanceRange.min;
+  const distanceRangeMax = distanceRange.max;
+
   useEffect(() => {
     if (!selectedMatrix) {
       setClusterSelections({ clusterA: [], clusterB: [] });
@@ -531,8 +579,6 @@ export default function CountryApprovalHeatmap() {
       return prioritizedOrder;
     })();
 
-    const normalizationBase = globalMaxDistance > 0 ? globalMaxDistance : 1;
-
     if (IS_DEV) {
       console.time(`[CountryApprovalHeatmap] build rows (${selectedMatrix.label})`);
     }
@@ -546,7 +592,12 @@ export default function CountryApprovalHeatmap() {
 
         return {
           x: countries[columnIndex],
-          y: normalizeDistance(typeof distance === 'number' ? distance : null, normalizationBase),
+          y: normalizeCloseness(
+            typeof distance === 'number' ? distance : null,
+            colorScaleMode,
+            globalMaxDistance,
+            distanceRange
+          ),
           distance: typeof distance === 'number' ? distance : null,
           count: getPairCount(typeof count === 'number' ? count : null),
         };
@@ -556,7 +607,14 @@ export default function CountryApprovalHeatmap() {
       console.timeEnd(`[CountryApprovalHeatmap] build rows (${selectedMatrix.label})`);
     }
     return result;
-  }, [selectedMatrix, globalMaxDistance, clusterSelections]);
+  }, [
+    selectedMatrix,
+    globalMaxDistance,
+    clusterSelections,
+    colorScaleMode,
+    distanceRangeMin,
+    distanceRangeMax,
+  ]);
 
   useEffect(() => {
     if (!selectedMatrix) {
@@ -1018,6 +1076,30 @@ export default function CountryApprovalHeatmap() {
                 : 'n.v.t.'}
             </div>
           </div>
+          <div className="min-w-[220px]">
+            <span className="text-xs uppercase tracking-wide text-slate-500">Kleurschaal</span>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {SCALE_MODE_OPTIONS.map((option) => {
+                const isActive = colorScaleMode === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    onClick={() => setColorScaleMode(option.id)}
+                    className={cn(
+                      'flex-1 rounded-md border px-3 py-1.5 text-left text-xs transition',
+                      isActive
+                        ? 'border-[rgb(0,153,168)] bg-[rgb(0,153,168)] text-white shadow-sm'
+                        : 'border-slate-300 text-slate-600 hover:border-[rgb(0,153,168)] hover:text-[rgb(0,153,168)]'
+                    )}
+                  >
+                    <div className="font-semibold">{option.label}</div>
+                    <div className="text-[10px] opacity-80">{option.description}</div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1389,6 +1471,21 @@ const ClusterSelectionPanel = ({
   clusterStats,
   clusterComparison,
 }: ClusterSelectionPanelProps) => {
+  const [countrySearch, setCountrySearch] = useState('');
+  const filteredCountries = useMemo(() => {
+    if (!countrySearch.trim()) return availableCountries;
+    const query = countrySearch.trim().toLowerCase();
+    return availableCountries.filter((country) => country.toLowerCase().includes(query));
+  }, [availableCountries, countrySearch]);
+  const assignCountry = (clusterId: ClusterId, country: string) => {
+    const alreadyInCluster = selections[clusterId].includes(country);
+    if (alreadyInCluster) {
+      onRemoveCountry(clusterId, country);
+      return;
+    }
+    onAddCountry(clusterId, country);
+  };
+
   return (
     <div className="rounded-lg border border-slate-200 bg-white/80 p-4 shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -1458,6 +1555,60 @@ const ClusterSelectionPanel = ({
               </button>
             );
           })}
+        </div>
+      </div>
+      <div className="mt-4">
+        <label className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+          Land snel toevoegen
+        </label>
+        <div className="mt-2 flex gap-3">
+          <input
+            type="search"
+            value={countrySearch}
+            onChange={(event) => setCountrySearch(event.target.value)}
+            placeholder="Zoek land…"
+            className="h-9 flex-1 rounded-md border border-slate-300 px-3 text-sm shadow-sm focus:border-[rgb(0,153,168)] focus:outline-none"
+          />
+          <div className="hidden text-xs text-slate-500 sm:flex sm:items-center">
+            Gebruik de knoppen per land om toe te wijzen.
+          </div>
+        </div>
+        <div className="mt-3 max-h-60 overflow-y-auto rounded-md border border-slate-200 bg-white">
+          {filteredCountries.length ? (
+            filteredCountries.map((country) => (
+              <div
+                key={country}
+                className="flex items-center justify-between gap-3 border-b border-slate-100 px-3 py-2 text-sm last:border-b-0 hover:bg-slate-50"
+              >
+                <span className="font-medium text-slate-700">{country}</span>
+                <div className="flex gap-2">
+                  {CLUSTER_OPTIONS.map((option) => {
+                    const isActive = selections[option.id].includes(country);
+                    return (
+                      <button
+                        key={option.id}
+                        type="button"
+                        onClick={() => assignCountry(option.id, country)}
+                        className={cn(
+                          'rounded-full px-3 py-1 text-xs font-semibold transition',
+                          isActive
+                            ? 'text-white shadow-sm'
+                            : 'border border-slate-200 text-slate-500 hover:text-slate-800'
+                        )}
+                        style={{
+                          backgroundColor: isActive ? CLUSTER_STYLES[option.id].color : undefined,
+                        }}
+                      >
+                        {option.label.replace('Cluster ', '')}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="px-3 py-4 text-xs text-slate-500">Geen landen gevonden.</div>
+          )}
         </div>
       </div>
       <div className="mt-4 grid gap-3 lg:grid-cols-2">
