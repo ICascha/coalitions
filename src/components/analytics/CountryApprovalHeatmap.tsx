@@ -78,7 +78,14 @@ const VIEW_OPTIONS: { id: ViewMode; label: string }[] = [
 const COUNTRY_CLUSTERMAP_DIR = 'country_clustermaps/';
 const COUNTRY_CLUSTERMAP_MANIFEST = `${COUNTRY_CLUSTERMAP_DIR}index.json`;
 const HEATMAP_MARGIN = { top: 120, right: 80, bottom: 60, left: 140 };
-const API_BASE = (import.meta.env.VITE_COUNTRY_POSITIONS_API ?? '').replace(/\/+$/, '');
+const rawCountryPositionsBase = import.meta.env.VITE_COUNTRY_POSITIONS_API ?? '';
+const resolvedCountryPositionsBase =
+  rawCountryPositionsBase && rawCountryPositionsBase.trim().length > 0
+    ? rawCountryPositionsBase.trim()
+    : import.meta.env.PROD
+      ? 'https://backendclustering-production.up.railway.app'
+      : '';
+const API_BASE = resolvedCountryPositionsBase.replace(/\/+$/, '');
 const CLUSTER_OPTIONS: { id: ClusterId; label: string }[] = [
   { id: 'clusterA', label: 'Cluster A' },
   { id: 'clusterB', label: 'Cluster B' },
