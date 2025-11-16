@@ -6,13 +6,6 @@ import {
   type TooltipComponent,
 } from '@nivo/heatmap';
 import { Card } from '@/components/ui/card';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 
 const IS_DEV = import.meta.env.DEV;
@@ -497,16 +490,24 @@ export default function CountryApprovalHeatmap() {
     };
   }, [basePath]);
 
-  const selectedMatrix: NamedMatrix | null = (() => {
+  const selectedMatrix: NamedMatrix | null = useMemo(() => {
     if (!data) return null;
     if (viewMode === 'overall') {
       return data.overall;
     }
     if (viewMode === 'council') {
-      return data.councils.find((entry) => entry.label === selectedCouncil) ?? data.councils[0] ?? null;
+      return (
+        data.councils.find((entry) => entry.label === selectedCouncil) ??
+        data.councils[0] ??
+        null
+      );
     }
-    return data.topics.find((entry) => entry.label === selectedTopic) ?? data.topics[0] ?? null;
-  })();
+    return (
+      data.topics.find((entry) => entry.label === selectedTopic) ??
+      data.topics[0] ??
+      null
+    );
+  }, [data, viewMode, selectedCouncil, selectedTopic]);
 
   const filterContext = useMemo(() => {
     if (viewMode === 'topic' && selectedTopic) {
@@ -514,6 +515,9 @@ export default function CountryApprovalHeatmap() {
     }
     if (viewMode === 'council' && selectedCouncil) {
       return { council: selectedCouncil, label: `Raad: ${selectedCouncil}` };
+    }
+    if (viewMode === 'overall') {
+      return { label: 'Alle onderwerpen en raden' };
     }
     return null;
   }, [viewMode, selectedTopic, selectedCouncil]);
@@ -1033,31 +1037,29 @@ export default function CountryApprovalHeatmap() {
                 </button>
               ))}
             </div>
-          </div>
-          {viewMode !== 'overall' && (
-            <div className="w-full min-w-0 lg:w-72">
-              <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                Selecteer {viewMode === 'council' ? 'raad' : 'thema'}
-              </div>
-              <Select
-                value={viewMode === 'council' ? selectedCouncil : selectedTopic}
-                onValueChange={(value) =>
-                  viewMode === 'council' ? setSelectedCouncil(value) : setSelectedTopic(value)
-                }
-              >
-                <SelectTrigger className="mt-2">
-                  <SelectValue placeholder="Maak een keuze" />
-                </SelectTrigger>
-                <SelectContent>
+            {viewMode !== 'overall' && (
+              <div className="mt-3 w-full min-w-0 lg:w-72">
+                <label className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  Kies {viewMode === 'council' ? 'raad' : 'thema'}
+                </label>
+                <select
+                  value={viewMode === 'council' ? selectedCouncil : selectedTopic}
+                  onChange={(event) =>
+                    viewMode === 'council'
+                      ? setSelectedCouncil(event.target.value)
+                      : setSelectedTopic(event.target.value)
+                  }
+                  className="mt-2 w-full rounded-md border border-slate-300 px-2 py-1.5 text-sm text-slate-700 shadow-sm focus:border-[rgb(0,153,168)] focus:outline-none"
+                >
                   {(viewMode === 'council' ? data?.councils : data?.topics)?.map((entry) => (
-                    <SelectItem key={entry.label} value={entry.label ?? 'Onbekend'}>
+                    <option key={entry.label} value={entry.label ?? 'Onbekend'}>
                       {entry.label ?? 'Onbekend'}
-                    </SelectItem>
+                    </option>
                   ))}
-                </SelectContent>
-              </Select>
-            </div>
-          )}
+                </select>
+              </div>
+            )}
+          </div>
         </div>
         <div className="flex flex-wrap gap-4 rounded-md border border-slate-200 bg-slate-50/60 px-4 py-3 text-sm text-slate-600">
           <div>
@@ -1477,10 +1479,12 @@ const ClusterSelectionPanel = ({
     const query = countrySearch.trim().toLowerCase();
     return availableCountries.filter((country) => country.toLowerCase().includes(query));
   }, [availableCountries, countrySearch]);
-  const assignCountry = (clusterId: ClusterId, country: string) => {
-    const alreadyInCluster = selections[clusterId].includes(country);
-    if (alreadyInCluster) {
-      onRemoveCountry(clusterId, country);
+  const assignCountry = (clusterId: ClusterId | null, country: string, forceRemove = false) => {
+    const inClusterA = selections.clusterA.includes(country);
+    const inClusterB = selections.clusterB.includes(country);
+    if (inClusterA) onRemoveCountry('clusterA', country);
+    if (inClusterB) onRemoveCountry('clusterB', country);
+    if (forceRemove || clusterId === null) {
       return;
     }
     onAddCountry(clusterId, country);
@@ -1557,23 +1561,20 @@ const ClusterSelectionPanel = ({
           })}
         </div>
       </div>
-      <div className="mt-4">
-        <label className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">
-          Land snel toevoegen
-        </label>
-        <div className="mt-2 flex gap-3">
+      <div className="mt-4 max-h-72 overflow-hidden rounded-lg border border-slate-200">
+        <div className="flex items-center justify-between gap-3 bg-slate-50 px-3 py-2">
+          <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+            Alle landen
+          </div>
           <input
             type="search"
             value={countrySearch}
             onChange={(event) => setCountrySearch(event.target.value)}
             placeholder="Zoek land…"
-            className="h-9 flex-1 rounded-md border border-slate-300 px-3 text-sm shadow-sm focus:border-[rgb(0,153,168)] focus:outline-none"
+            className="h-8 w-48 rounded-md border border-slate-300 px-3 text-xs shadow-sm focus:border-[rgb(0,153,168)] focus:outline-none"
           />
-          <div className="hidden text-xs text-slate-500 sm:flex sm:items-center">
-            Gebruik de knoppen per land om toe te wijzen.
-          </div>
         </div>
-        <div className="mt-3 max-h-60 overflow-y-auto rounded-md border border-slate-200 bg-white">
+        <div className="max-h-64 divide-y divide-slate-100 overflow-y-auto bg-white">
           {filteredCountries.length ? (
             filteredCountries.map((country) => (
               <div
@@ -1603,6 +1604,13 @@ const ClusterSelectionPanel = ({
                       </button>
                     );
                   })}
+                  <button
+                    type="button"
+                    onClick={() => assignCountry(null, country, true)}
+                    className="rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-500 transition hover:text-red-500"
+                  >
+                    Geen
+                  </button>
                 </div>
               </div>
             ))
@@ -1611,20 +1619,20 @@ const ClusterSelectionPanel = ({
           )}
         </div>
       </div>
+
       <div className="mt-4 grid gap-3 lg:grid-cols-2">
         {CLUSTER_OPTIONS.map((option) => (
-          <ClusterCard
+          <ClusterSummary
             key={option.id}
             clusterId={option.id}
             label={option.label}
             countries={selections[option.id]}
-            isActive={activeCluster === option.id}
-            availableCountries={availableCountries}
-            onSetActive={onActiveClusterChange}
-            onAddCountry={onAddCountry}
-            onRemoveCountry={onRemoveCountry}
-            onClearCluster={onClearCluster}
+            color={CLUSTER_STYLES[option.id].color}
             stats={clusterStats[option.id]}
+            onClear={() => onClearCluster(option.id)}
+            onRemove={(country) => onRemoveCountry(option.id, country)}
+            onActive={() => onActiveClusterChange(option.id)}
+            isActive={activeCluster === option.id}
           />
         ))}
       </div>
@@ -1632,116 +1640,76 @@ const ClusterSelectionPanel = ({
   );
 };
 
-type ClusterCardProps = {
+type ClusterSummaryProps = {
   clusterId: ClusterId;
   label: string;
   countries: string[];
-  isActive: boolean;
-  availableCountries: string[];
-  onSetActive: (cluster: ClusterId) => void;
-  onAddCountry: (cluster: ClusterId, country: string) => void;
-  onRemoveCountry: (cluster: ClusterId, country: string) => void;
-  onClearCluster: (cluster: ClusterId) => void;
+  color: string;
   stats: { averageDistance: number | null; pairCount: number };
+  onClear: () => void;
+  onRemove: (country: string) => void;
+  onActive: () => void;
+  isActive: boolean;
 };
 
-const ClusterCard = ({
-  clusterId,
+const ClusterSummary = ({
   label,
   countries,
-  isActive,
-  availableCountries,
-  onSetActive,
-  onAddCountry,
-  onRemoveCountry,
-  onClearCluster,
+  color,
   stats,
-}: ClusterCardProps) => {
-  const color = CLUSTER_STYLES[clusterId].color;
-
-  const handleValueChange = useCallback(
-    (value: string) => {
-      onAddCountry(clusterId, value);
-    },
-    [clusterId, onAddCountry]
-  );
-
-  return (
-    <div
-      className={cn(
-        'rounded-lg border border-slate-200 bg-slate-50/60 p-3 transition-colors',
-        isActive && 'border-[rgb(0,153,168)] bg-white'
-      )}
-    >
-      <div className="flex items-center justify-between gap-2">
-        <button
-          type="button"
-          onClick={() => onSetActive(clusterId)}
-          className="flex items-center gap-2 text-left"
-        >
-          <span
-            className="h-2.5 w-2.5 rounded-full"
-            style={{ backgroundColor: color }}
-            aria-hidden
-          />
-          <span className="text-sm font-semibold text-slate-700">{label}</span>
-        </button>
-        <div className="text-right text-[10px] uppercase tracking-wide text-slate-400">
-          <div>{countries.length} landen</div>
-          <div>
-            Gem.:{' '}
-            <span className="text-slate-600">
-              {stats.averageDistance !== null ? stats.averageDistance.toFixed(3) : 'n.v.t.'}
-            </span>
-          </div>
+  onClear,
+  onRemove,
+  onActive,
+  isActive,
+}: ClusterSummaryProps) => (
+  <div
+    className={cn(
+      'rounded-lg border border-slate-200 bg-white/70 p-3 transition',
+      isActive && 'border-[rgb(0,153,168)] shadow-sm'
+    )}
+  >
+    <div className="flex items-center justify-between gap-2">
+      <button type="button" onClick={onActive} className="flex items-center gap-2 text-left">
+        <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: color }} aria-hidden />
+        <span className="text-sm font-semibold text-slate-700">{label}</span>
+      </button>
+      <div className="text-right text-[10px] uppercase tracking-wide text-slate-400">
+        <div>{countries.length} landen</div>
+        <div>
+          Gem.:{' '}
+          <span className="text-slate-600">
+            {stats.averageDistance !== null ? stats.averageDistance.toFixed(3) : 'n.v.t.'}
+          </span>
         </div>
       </div>
-
-      <div className="mt-2 flex flex-wrap gap-1.5">
-        {countries.length === 0 && (
-          <span className="text-xs text-slate-400">Nog geen selectie</span>
-        )}
-        {countries.map((country) => (
-          <button
-            key={country}
-            type="button"
-            onClick={() => onRemoveCountry(clusterId, country)}
-            className="group flex items-center gap-1 rounded-full bg-white/90 px-2 py-0.5 text-xs text-slate-600 ring-1 ring-slate-200 transition hover:text-red-600"
-          >
-            {country}
-            <span className="text-slate-400 transition group-hover:text-red-500">×</span>
-          </button>
-        ))}
-      </div>
-
-      <div className="mt-3 flex items-center gap-2">
-        <Select onValueChange={handleValueChange}>
-          <SelectTrigger className="h-8 flex-1 text-xs">
-            <SelectValue placeholder="Land toevoegen" />
-          </SelectTrigger>
-          <SelectContent>
-            {availableCountries.map((country) => (
-              <SelectItem
-                key={country}
-                value={country}
-                disabled={countries.includes(country)}
-              >
-                {country}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <button
-          type="button"
-          onClick={() => onClearCluster(clusterId)}
-          className="text-xs text-slate-500 transition hover:text-red-500"
-        >
-          Wissen
-        </button>
-      </div>
     </div>
-  );
-};
+    <div className="mt-2 flex flex-wrap gap-1.5">
+      {countries.length === 0 && (
+        <span className="text-xs text-slate-400">Nog geen selectie</span>
+      )}
+      {countries.map((country) => (
+        <button
+          key={country}
+          type="button"
+          onClick={() => onRemove(country)}
+          className="group flex items-center gap-1 rounded-full bg-slate-50 px-2 py-0.5 text-xs text-slate-600 ring-1 ring-slate-200 transition hover:text-red-600"
+        >
+          {country}
+          <span className="text-slate-400 transition group-hover:text-red-500">×</span>
+        </button>
+      ))}
+    </div>
+    {countries.length > 0 && (
+      <button
+        type="button"
+        onClick={onClear}
+        className="mt-2 text-xs text-slate-500 transition hover:text-red-500"
+      >
+        Cluster legen
+      </button>
+    )}
+  </div>
+);
 
 type ClusterInsightsSummaryProps = {
   state: ClusterInsightsState;
