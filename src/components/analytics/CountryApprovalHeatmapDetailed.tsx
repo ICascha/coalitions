@@ -1897,15 +1897,81 @@ const DimensionScatterPlot = ({
 
   return (
     <div className="relative h-[500px] w-full rounded-xl border border-slate-200 bg-slate-50/50 p-6">
-      {/* Quadrant Background & Labels */}
-      <div className="absolute inset-0 pointer-events-none z-10">
+      {/* Quadrant Background & Axis Lines */}
+      <div className="absolute inset-0 pointer-events-none z-0">
         {/* Match chart margins: top: 40, right: 40, bottom: 60, left: 60 */}
         <div className="absolute top-[40px] bottom-[60px] left-[60px] right-[40px]">
           {/* Center Lines */}
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-200" />
           <div className="absolute top-1/2 left-0 right-0 h-px bg-slate-200" />
+        </div>
+      </div>
 
-          {/* Pole Labels */}
+      {/* Scatter plot layer - between axis lines and labels */}
+      <div className="absolute inset-0 z-10">
+        <ResponsiveScatterPlot
+          data={data}
+          margin={{ top: 40, right: 40, bottom: 60, left: 60 }}
+          xScale={{ type: 'linear', min: -1.1, max: 1.1 }}
+          yScale={yDim ? { type: 'linear', min: -1.1, max: 1.1 } : { type: 'linear', min: -0.5, max: 0.5 }}
+          blendMode="normal"
+          enableGridX={false}
+          enableGridY={false}
+          theme={{
+            grid: {
+              line: {
+                stroke: '#f1f5f9', // slate-100, very subtle
+                strokeWidth: 1,
+              },
+            },
+          }}
+          useMesh={false}
+          axisTop={null}
+          axisRight={null}
+          axisBottom={{
+            tickSize: 0,
+            tickPadding: 15,
+            tickRotation: 0,
+            legend: undefined,
+            format: () => '', // Hide Nivo labels
+          }}
+          axisLeft={
+            yDim
+              ? {
+                tickSize: 0,
+                tickPadding: 15,
+                tickRotation: -90,
+                legend: undefined,
+                format: () => '', // Hide Nivo labels
+              }
+              : null
+          }
+          colors={[CLUSTER_STYLES.clusterA.color, CLUSTER_STYLES.clusterB.color]}
+          nodeSize={14}
+          tooltip={({ node }) => (
+            <div className="rounded-lg border border-slate-200 bg-white/95 px-3 py-2 text-xs shadow-xl backdrop-blur-sm">
+              <strong className="text-slate-700">{node.data.country as string}</strong>
+              <div className="mt-1 space-y-0.5 text-slate-500">
+                <div className="flex justify-between gap-4">
+                  <span>{xDim.short_name}:</span>
+                  <span className="font-mono text-slate-700">{node.data.x}</span>
+                </div>
+                {yDim && (
+                  <div className="flex justify-between gap-4">
+                    <span>{yDim.short_name}:</span>
+                    <span className="font-mono text-slate-700">{node.data.y}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        />
+      </div>
+
+      {/* Axis labels, gutters & tooltip overlay */}
+      <div className="absolute inset-0 pointer-events-none z-20">
+        {/* Match chart margins for in-plot labels */}
+        <div className="absolute top-[40px] bottom-[60px] left-[60px] right-[40px]">
           {/* X Negative (Left) */}
           <div className="absolute left-4 top-1/2 -translate-y-1/2 w-32 bg-slate-50 px-2 text-[10px] font-medium text-slate-400 text-left leading-tight opacity-80">
             {xDim.negative_pole}
@@ -2005,69 +2071,9 @@ const DimensionScatterPlot = ({
           </div>
         )}
       </div>
-
-      <ResponsiveScatterPlot
-        data={data}
-        margin={{ top: 40, right: 40, bottom: 60, left: 60 }}
-        xScale={{ type: 'linear', min: -1.1, max: 1.1 }}
-        yScale={yDim ? { type: 'linear', min: -1.1, max: 1.1 } : { type: 'linear', min: -0.5, max: 0.5 }}
-        blendMode="normal"
-        enableGridX={false}
-        enableGridY={false}
-        theme={{
-          grid: {
-            line: {
-              stroke: '#f1f5f9', // slate-100, very subtle
-              strokeWidth: 1,
-            },
-          },
-        }}
-        useMesh={false}
-        axisTop={null}
-        axisRight={null}
-        axisBottom={{
-          tickSize: 0,
-          tickPadding: 15,
-          tickRotation: 0,
-          legend: undefined,
-          format: () => '', // Hide Nivo labels
-        }}
-        axisLeft={
-          yDim
-            ? {
-              tickSize: 0,
-              tickPadding: 15,
-              tickRotation: -90,
-              legend: undefined,
-              format: () => '', // Hide Nivo labels
-            }
-            : null
-        }
-        colors={[CLUSTER_STYLES.clusterA.color, CLUSTER_STYLES.clusterB.color]}
-        nodeSize={14}
-        tooltip={({ node }) => (
-          <div className="rounded-lg border border-slate-200 bg-white/95 px-3 py-2 text-xs shadow-xl backdrop-blur-sm">
-            <strong className="text-slate-700">{node.data.country as string}</strong>
-            <div className="mt-1 space-y-0.5 text-slate-500">
-              <div className="flex justify-between gap-4">
-                <span>{xDim.short_name}:</span>
-                <span className="font-mono text-slate-700">{node.data.x}</span>
-              </div>
-              {yDim && (
-                <div className="flex justify-between gap-4">
-                  <span>{yDim.short_name}:</span>
-                  <span className="font-mono text-slate-700">{node.data.y}</span>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      />
     </div>
   );
 };
-
-
 
 const ClusterApprovalTrack = ({ result }: { result: DisagreementResult }) => {
   const [hovered, setHovered] = useState<{
