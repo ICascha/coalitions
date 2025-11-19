@@ -1788,76 +1788,7 @@ const ClusterSelectionPanel = ({
   );
 };
 
-type ClusterSummaryProps = {
-  clusterId: ClusterId;
-  label: string;
-  countries: string[];
-  color: string;
-  stats: { averageDistance: number | null; pairCount: number };
-  onClear: () => void;
-  onRemove: (country: string) => void;
-  onActive: () => void;
-  isActive: boolean;
-};
 
-const ClusterSummary = ({
-  label,
-  countries,
-  color,
-  stats,
-  onClear,
-  onRemove,
-  onActive,
-  isActive,
-}: ClusterSummaryProps) => (
-  <div
-    className={cn(
-      'rounded-lg border border-slate-200 bg-white/70 p-3 transition',
-      isActive && 'border-[rgb(0,153,168)] shadow-sm'
-    )}
-  >
-    <div className="flex items-center justify-between gap-2">
-      <button type="button" onClick={onActive} className="flex items-center gap-2 text-left">
-        <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: color }} aria-hidden />
-        <span className="text-sm font-semibold text-slate-700">{label}</span>
-      </button>
-      <div className="text-right text-[10px] uppercase tracking-wide text-slate-400">
-        <div>{countries.length} landen</div>
-        <div>
-          Gem.:{' '}
-          <span className="text-slate-600">
-            {stats.averageDistance !== null ? stats.averageDistance.toFixed(3) : 'n.v.t.'}
-          </span>
-        </div>
-      </div>
-    </div>
-    <div className="mt-2 flex flex-wrap gap-1.5">
-      {countries.length === 0 && (
-        <span className="text-xs text-slate-400">Nog geen selectie</span>
-      )}
-      {countries.map((country) => (
-        <button
-          key={country}
-          type="button"
-          onClick={() => onRemove(country)}
-          className="group flex items-center gap-1 rounded-full bg-slate-50 px-2 py-0.5 text-xs text-slate-600 ring-1 ring-slate-200 transition hover:text-red-600"
-        >
-          {country}
-          <span className="text-slate-400 transition group-hover:text-red-500">×</span>
-        </button>
-      ))}
-    </div>
-    {countries.length > 0 && (
-      <button
-        type="button"
-        onClick={onClear}
-        className="mt-2 text-xs text-slate-500 transition hover:text-red-500"
-      >
-        Cluster legen
-      </button>
-    )}
-  </div>
-);
 
 type ClusterInsightsSummaryProps = {
   state: ClusterInsightsState;
