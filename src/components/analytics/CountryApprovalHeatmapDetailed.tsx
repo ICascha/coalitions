@@ -1520,6 +1520,71 @@ type ClusterSelectionPanelProps = {
   clusterComparison: ClusterComparison;
 };
 
+const CountrySearchInput = ({
+  availableCountries,
+  onSelect,
+  placeholder = 'Land toevoegen...',
+}: {
+  availableCountries: string[];
+  onSelect: (country: string) => void;
+  placeholder?: string;
+}) => {
+  const [query, setQuery] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const filtered = useMemo(() => {
+    if (!query.trim()) return [];
+    const lower = query.toLowerCase();
+    return availableCountries
+      .filter((c) => c.toLowerCase().includes(lower))
+      .slice(0, 5); // Limit results
+  }, [availableCountries, query]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={wrapperRef} className="relative w-full">
+      <input
+        type="text"
+        value={query}
+        onFocus={() => setIsOpen(true)}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setIsOpen(true);
+        }}
+        placeholder={placeholder}
+        className="w-full rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-xs focus:border-[rgb(0,153,168)] focus:outline-none"
+      />
+      {isOpen && filtered.length > 0 && (
+        <div className="absolute left-0 right-0 top-full z-10 mt-1 max-h-40 overflow-y-auto rounded-md border border-slate-200 bg-white shadow-lg">
+          {filtered.map((country) => (
+            <button
+              key={country}
+              onClick={() => {
+                onSelect(country);
+                setQuery('');
+                setIsOpen(false);
+              }}
+              className="w-full px-3 py-1.5 text-left text-xs hover:bg-slate-50 text-slate-700"
+            >
+              {country}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const ClusterSelectionPanel = ({
   selections,
   activeCluster,
@@ -1532,184 +1597,132 @@ const ClusterSelectionPanel = ({
   clusterStats,
   clusterComparison,
 }: ClusterSelectionPanelProps) => {
-  const [countrySearch, setCountrySearch] = useState('');
-  const filteredCountries = useMemo(() => {
-    if (!countrySearch.trim()) return availableCountries;
-    const query = countrySearch.trim().toLowerCase();
-    return availableCountries.filter((country) => country.toLowerCase().includes(query));
-  }, [availableCountries, countrySearch]);
-  const assignCountry = (clusterId: ClusterId | null, country: string, forceRemove = false) => {
-    const inClusterA = selections.clusterA.includes(country);
-    const inClusterB = selections.clusterB.includes(country);
-    if (inClusterA) onRemoveCountry('clusterA', country);
-    if (inClusterB) onRemoveCountry('clusterB', country);
-    if (forceRemove || clusterId === null) {
-      return;
-    }
-    onAddCountry(clusterId, country);
+
+  const renderClusterColumn = (clusterId: ClusterId) => {
+    const isActive = activeCluster === clusterId;
+    const style = CLUSTER_STYLES[clusterId];
+    const stats = clusterStats[clusterId];
+    const selected = selections[clusterId];
+    const availableForThis = availableCountries.filter(c => !selections.clusterA.includes(c) && !selections.clusterB.includes(c));
+
+    return (
+      <div
+        className={cn(
+          "flex-1 rounded-lg border p-3 transition-all",
+          isActive
+            ? "border-[rgb(0,153,168)] bg-white shadow-sm ring-1 ring-[rgb(0,153,168)]/20"
+            : "border-slate-200 bg-slate-50/50 hover:bg-white"
+        )}
+        onClick={() => onActiveClusterChange(clusterId)}
+      >
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: style.color }} />
+            <span className="font-semibold text-sm text-slate-800">{CLUSTER_LABELS[clusterId]}</span>
+          </div>
+          {selected.length > 0 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onClearCluster(clusterId);
+              }}
+              className="text-[10px] text-slate-400 hover:text-red-500"
+            >
+              Wis alles
+            </button>
+          )}
+        </div>
+
+        <div className="mb-3 flex gap-4 text-[10px] text-slate-500">
+          <div>
+            <span className="font-medium text-slate-700">{stats.pairCount}</span> paren
+          </div>
+          <div>
+            Gem. afstand: <span className="font-medium text-slate-700">{stats.averageDistance?.toFixed(3) ?? '-'}</span>
+          </div>
+        </div>
+
+        <div className="min-h-[60px] space-y-2">
+          <div className="flex flex-wrap gap-1.5">
+            {selected.map(country => (
+              <span
+                key={country}
+                className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[10px] font-medium text-slate-700"
+              >
+                {country}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onRemoveCountry(clusterId, country);
+                  }}
+                  className="ml-0.5 text-slate-400 hover:text-red-500"
+                >
+                  ×
+                </button>
+              </span>
+            ))}
+            {selected.length === 0 && (
+              <span className="text-[10px] italic text-slate-400 p-1">Leeg</span>
+            )}
+          </div>
+
+          <div className="pt-2" onClick={e => e.stopPropagation()}>
+            <CountrySearchInput
+              availableCountries={availableForThis}
+              onSelect={(c) => onAddCountry(clusterId, c)}
+            />
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white/80 p-4 shadow-sm">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <div className="space-y-4 rounded-xl border border-slate-200 bg-white/80 p-5 shadow-sm">
+      {/* Header & Presets */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Clusters
-          </div>
+          <h3 className="text-sm font-semibold text-slate-800">Cluster Selectie</h3>
+          <p className="text-xs text-slate-500">
+            Selecteer landen voor vergelijking. Klik op een cluster om deze te activeren.
+          </p>
+        </div>
 
-          <p className="text-xs text-slate-500">Klik in de heatmap of kies handmatig.</p>
-
-          <div className="mt-2 flex flex-wrap gap-1">
+        <div className="flex items-center gap-2 rounded-lg border border-slate-100 bg-slate-50 p-1.5">
+          <span className="text-[10px] font-medium uppercase text-slate-400 px-1">Snelkeuze:</span>
+          <div className="flex gap-1">
             {Object.entries(GEOGRAPHIC_CLUSTERS).map(([label, countries]) => (
               <button
                 key={label}
                 onClick={() => onSetCluster(activeCluster, countries)}
-                className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[10px] font-medium text-slate-600 hover:border-[rgb(0,153,168)] hover:text-[rgb(0,153,168)]"
-                title={`Stel ${CLUSTER_LABELS[activeCluster]} in op ${label}`}
+                className="rounded px-2 py-1 text-[10px] font-medium text-slate-600 hover:bg-white hover:text-[rgb(0,153,168)] hover:shadow-sm transition-all"
+                title={`Vul ${CLUSTER_LABELS[activeCluster]} met ${label}`}
               >
                 {label}
               </button>
             ))}
           </div>
         </div>
-        <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600">
-          {CLUSTER_OPTIONS.map((option) => {
-            const stats = clusterStats[option.id];
-            const style = CLUSTER_STYLES[option.id];
-            return (
-              <div key={option.id} className="flex items-center gap-2">
-                <span
-                  className="h-2 w-2 rounded-full"
-                  style={{ backgroundColor: style.color }}
-                  aria-hidden
-                />
-                <div>
-                  <div className="font-semibold text-slate-800">
-                    {option.label}:{' '}
-                    <span className="text-[rgb(0,153,168)]">
-                      {stats.averageDistance !== null ? stats.averageDistance.toFixed(3) : 'n.v.t.'}
-                    </span>
-                  </div>
-                  <div className="text-[10px] uppercase tracking-wide text-slate-400">
-                    {stats.pairCount} paren
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-          <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 shadow-sm">
-            <div className="text-[10px] uppercase tracking-wide text-slate-400">A vs B</div>
-            <div className="text-xs font-semibold text-slate-800">
-              {clusterComparison.averageDistance !== null
-                ? clusterComparison.averageDistance.toFixed(3)
-                : 'n.v.t.'}
-            </div>
-            <div className="text-[10px] text-slate-400">{clusterComparison.pairCount} paren</div>
-          </div>
-        </div>
-        <div className="flex rounded-full border border-slate-200 bg-slate-50 p-1 text-xs font-medium">
-          {CLUSTER_OPTIONS.map((option) => {
-            const isActive = activeCluster === option.id;
-            const style = CLUSTER_STYLES[option.id];
-            return (
-              <button
-                key={option.id}
-                type="button"
-                onClick={() => onActiveClusterChange(option.id)}
-                className={cn(
-                  'flex items-center gap-2 rounded-full px-3 py-1 transition-colors',
-                  isActive
-                    ? 'bg-white text-slate-900 shadow'
-                    : 'text-slate-500 hover:text-slate-900'
-                )}
-              >
-                <span
-                  className="h-2 w-2 rounded-full"
-                  style={{ backgroundColor: style.color }}
-                  aria-hidden
-                />
-                {option.label}
-              </button>
-            );
-          })}
-        </div>
       </div>
-      <div className="mt-4 max-h-72 overflow-hidden rounded-lg border border-slate-200">
-        <div className="flex items-center justify-between gap-3 bg-slate-50 px-3 py-2">
-          <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">
-            Alle landen
-          </div>
-          <input
-            type="search"
-            value={countrySearch}
-            onChange={(event) => setCountrySearch(event.target.value)}
-            placeholder="Zoek land…"
-            className="h-8 w-48 rounded-md border border-slate-300 px-3 text-xs shadow-sm focus:border-[rgb(0,153,168)] focus:outline-none"
-          />
-        </div>
-        <div className="max-h-64 divide-y divide-slate-100 overflow-y-auto bg-white">
-          {filteredCountries.length ? (
-            filteredCountries.map((country) => (
-              <div
-                key={country}
-                className="flex items-center justify-between gap-3 border-b border-slate-100 px-3 py-2 text-sm last:border-b-0 hover:bg-slate-50"
-              >
-                <span className="font-medium text-slate-700">{country}</span>
-                <div className="flex gap-2">
-                  {CLUSTER_OPTIONS.map((option) => {
-                    const isActive = selections[option.id].includes(country);
-                    return (
-                      <button
-                        key={option.id}
-                        type="button"
-                        onClick={() => assignCountry(option.id, country)}
-                        className={cn(
-                          'rounded-full px-3 py-1 text-xs font-semibold transition',
-                          isActive
-                            ? 'text-white shadow-sm'
-                            : 'border border-slate-200 text-slate-500 hover:text-slate-800'
-                        )}
-                        style={{
-                          backgroundColor: isActive ? CLUSTER_STYLES[option.id].color : undefined,
-                        }}
-                      >
-                        {option.label.replace('Cluster ', '')}
-                      </button>
-                    );
-                  })}
-                  <button
-                    type="button"
-                    onClick={() => assignCountry(null, country, true)}
-                    className="rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-500 transition hover:text-red-500"
-                  >
-                    Geen
-                  </button>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="px-3 py-4 text-xs text-slate-500">Geen landen gevonden.</div>
-          )}
-        </div>
+      {/* Columns */}
+      <div className="grid gap-4 md:grid-cols-2">
+        {renderClusterColumn('clusterA')}
+        {renderClusterColumn('clusterB')}
       </div>
 
-      <div className="mt-4 grid gap-3 lg:grid-cols-2">
-        {CLUSTER_OPTIONS.map((option) => (
-          <ClusterSummary
-            key={option.id}
-            clusterId={option.id}
-            label={option.label}
-            countries={selections[option.id]}
-            color={CLUSTER_STYLES[option.id].color}
-            stats={clusterStats[option.id]}
-            onClear={() => onClearCluster(option.id)}
-            onRemove={(country) => onRemoveCountry(option.id, country)}
-            onActive={() => onActiveClusterChange(option.id)}
-            isActive={activeCluster === option.id}
-          />
-        ))}
+      {/* Comparison Stats Footer */}
+      <div className="flex justify-center border-t border-slate-100 pt-3">
+        <div className="flex items-center gap-2 text-xs text-slate-500">
+          <span>Afstand tussen clusters:</span>
+          <span className="font-semibold text-slate-800">
+            {clusterComparison.averageDistance !== null
+              ? clusterComparison.averageDistance.toFixed(3)
+              : 'n.v.t.'}
+          </span>
+          <span className="text-slate-400">({clusterComparison.pairCount} paren)</span>
+        </div>
       </div>
-    </div >
+    </div>
   );
 };
 
@@ -1840,10 +1853,52 @@ const DimensionScatterPlot = ({
     },
   ];
 
+  const [hoveredLabel, setHoveredLabel] = useState<{
+    content: string;
+    x: number;
+    y: number;
+    position: 'top' | 'bottom';
+  } | null>(null);
+
+  const handleLabelEnter = (e: React.MouseEvent, content: string) => {
+    const target = e.currentTarget as HTMLDivElement;
+    const rect = target.getBoundingClientRect();
+    const container = target.closest('.relative');
+    const containerRect = container?.getBoundingClientRect();
+
+    if (!containerRect) return;
+
+    const relativeY = rect.top - containerRect.top;
+    const relativeX = rect.left - containerRect.left;
+    const position = relativeY < 100 ? 'bottom' : 'top';
+
+    setHoveredLabel({
+      content,
+      x: relativeX + rect.width / 2,
+      y: relativeY + (position === 'bottom' ? rect.height : 0),
+      position
+    });
+  };
+
+  const clampTooltipPosition = (x: number, width: number = 256) => {
+    // Ensure tooltip doesn't go off-screen (assuming container width ~500-800px)
+    // We want to keep the tooltip arrow pointing to x, but shift the box
+    // This simple clamp just prevents the left edge from being < 0
+    // Since we use translate(-50%), the left edge is x - width/2
+    const halfWidth = width / 2;
+    if (x < halfWidth) return { left: 0, transform: 'translateX(0)' }; // Align left
+    // We could also check right edge but left is the main issue here
+    return { left: x, transform: 'translateX(-50%)' };
+  };
+
+  const handleLabelLeave = () => {
+    setHoveredLabel(null);
+  };
+
   return (
     <div className="relative h-[500px] w-full rounded-xl border border-slate-200 bg-slate-50/50 p-6">
       {/* Quadrant Background & Labels */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none z-10">
         {/* Match chart margins: top: 40, right: 40, bottom: 60, left: 60 */}
         <div className="absolute top-[40px] bottom-[60px] left-[60px] right-[40px]">
           {/* Center Lines */}
@@ -1863,16 +1918,92 @@ const DimensionScatterPlot = ({
           {yDim && (
             <>
               {/* Y Positive (Top) */}
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-64 bg-slate-50 px-2 text-center text-[10px] font-medium text-slate-400 leading-tight opacity-80">
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-56 bg-slate-50 px-2 text-center text-[10px] font-medium text-slate-400 leading-tight opacity-80">
                 {yDim.positive_pole}
               </div>
               {/* Y Negative (Bottom) */}
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-64 bg-slate-50 px-2 text-center text-[10px] font-medium text-slate-400 leading-tight opacity-80">
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-56 bg-slate-50 px-2 text-center text-[10px] font-medium text-slate-400 leading-tight opacity-80">
                 {yDim.negative_pole}
+              </div>
+
+              {/* Y Axis Labels & Title (Left Gutter) */}
+              <div className="absolute left-[-60px] top-0 bottom-0 w-[60px] pointer-events-none">
+                {/* Positive Label */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -rotate-90 text-[10px] font-medium text-slate-400 whitespace-nowrap origin-center translate-y-1/2">
+                  Positive →
+                </div>
+
+                {/* Title */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 flex items-center justify-center origin-center">
+                  <div
+                    className="text-[11px] font-semibold text-slate-600 cursor-help whitespace-nowrap pointer-events-auto hover:text-[rgb(0,153,168)] transition-colors bg-slate-50/80 px-2"
+                    onMouseEnter={(e) => handleLabelEnter(e, yDim.description)}
+                    onMouseLeave={handleLabelLeave}
+                  >
+                    {yDim.short_name}
+                  </div>
+                </div>
+
+                {/* Negative Label */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 -rotate-90 text-[10px] font-medium text-slate-400 whitespace-nowrap origin-center -translate-y-1/2">
+                  ← Negative
+                </div>
               </div>
             </>
           )}
         </div>
+
+        {/* X Axis Labels & Title (Bottom Gutter) */}
+        <div className="absolute bottom-[0px] left-[60px] right-[40px] h-[60px] pointer-events-none">
+          {/* Positive Label */}
+          <div className="absolute right-0 top-2 text-[10px] font-medium text-slate-400 whitespace-nowrap">
+            Positive →
+          </div>
+          {/* Negative Label */}
+          <div className="absolute left-0 top-2 text-[10px] font-medium text-slate-400 whitespace-nowrap">
+            ← Negative
+          </div>
+          {/* Title */}
+          <div className="absolute top-6 left-0 right-0 flex justify-center">
+            <div
+              className="text-[11px] font-semibold text-slate-600 cursor-help pointer-events-auto hover:text-[rgb(0,153,168)] transition-colors bg-slate-50/80 px-2"
+              onMouseEnter={(e) => handleLabelEnter(e, xDim.description)}
+              onMouseLeave={handleLabelLeave}
+            >
+              {xDim.short_name}
+            </div>
+          </div>
+        </div>
+
+        {/* Tooltip */}
+        {hoveredLabel && (
+          <div
+            className="absolute z-50 w-64 rounded-lg border border-slate-200 bg-white p-3 text-xs text-slate-600 shadow-xl pointer-events-none"
+            style={{
+              left: clampTooltipPosition(hoveredLabel.x).left || hoveredLabel.x,
+              top: hoveredLabel.y,
+              transform: `${clampTooltipPosition(hoveredLabel.x).transform} ${hoveredLabel.position === 'top'
+                ? 'translateY(-100%) translateY(-8px)'
+                : 'translateY(8px)'
+                }`,
+            }}
+          >
+            <div className="whitespace-pre-wrap">{hoveredLabel.content}</div>
+            {/* Arrow */}
+            <div
+              className={cn(
+                "absolute border-4 border-transparent",
+                hoveredLabel.position === 'top'
+                  ? "top-full border-t-white"
+                  : "bottom-full border-b-white"
+              )}
+              style={{
+                left: hoveredLabel.x < 128 ? hoveredLabel.x : '50%',
+                transform: hoveredLabel.x < 128 ? 'translateX(-50%)' : 'translateX(-50%)'
+              }}
+            />
+          </div>
+        )}
       </div>
 
       <ResponsiveScatterPlot
@@ -1898,10 +2029,8 @@ const DimensionScatterPlot = ({
           tickSize: 0,
           tickPadding: 15,
           tickRotation: 0,
-          legend: xDim.short_name,
-          legendPosition: 'middle',
-          legendOffset: 40,
-          format: (value) => (value === -1 ? '← Negative' : value === 1 ? 'Positive →' : ''),
+          legend: undefined,
+          format: () => '', // Hide Nivo labels
         }}
         axisLeft={
           yDim
@@ -1909,10 +2038,8 @@ const DimensionScatterPlot = ({
               tickSize: 0,
               tickPadding: 15,
               tickRotation: -90,
-              legend: yDim.short_name,
-              legendPosition: 'middle',
-              legendOffset: -45,
-              format: (value) => (value === -1 ? '← Negative' : value === 1 ? 'Positive →' : ''),
+              legend: undefined,
+              format: () => '', // Hide Nivo labels
             }
             : null
         }
@@ -2206,22 +2333,9 @@ const DisagreementDetailView = ({ result }: { result: DisagreementResult }) => {
                   positionsB={result.set_b_positions}
                   selectedDimensions={selectedDimensions}
                 />
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {result.dimensions
-                    .filter((d) => selectedDimensions.includes(d.short_name))
-                    .map((dim) => (
-                      <div key={dim.short_name} className="rounded-lg border border-slate-200 bg-white p-3 text-xs">
-                        <div className="font-semibold text-slate-700">{dim.short_name}</div>
-                        <div className="mt-1 text-slate-500">{dim.description}</div>
-                        <div className="mt-2 flex justify-between text-[10px] italic text-slate-400">
-                          <span>← {dim.negative_pole}</span>
-                          <span>{dim.positive_pole} →</span>
-                        </div>
-                      </div>
-                    ))}
-                </div>
               </div>
             ) : (
+
               <div className="rounded-xl border border-slate-200 bg-white p-6">
                 <ClusterApprovalTrack result={result} />
               </div>
@@ -2246,7 +2360,7 @@ const DisagreementDetailView = ({ result }: { result: DisagreementResult }) => {
           </div>
         )}
       </div>
-    </div>
+    </div >
   );
 };
 
