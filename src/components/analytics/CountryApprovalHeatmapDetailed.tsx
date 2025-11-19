@@ -1670,10 +1670,10 @@ const ClusterSelectionPanel = ({
     return (
       <div
         className={cn(
-          "flex-1 rounded-lg border p-3 transition-all",
+          "flex-1 rounded-lg border p-3 transition-all cursor-pointer",
           isActive
             ? "border-[rgb(0,153,168)] bg-white shadow-sm ring-1 ring-[rgb(0,153,168)]/20"
-            : "border-slate-200 bg-slate-50/50 hover:bg-white"
+            : "border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[rgb(0,153,168)]/50 hover:shadow-sm"
         )}
         onClick={() => onActiveClusterChange(clusterId)}
       >
