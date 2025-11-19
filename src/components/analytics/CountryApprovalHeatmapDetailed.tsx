@@ -2293,7 +2293,7 @@ const DisagreementDetailView = ({ result }: { result: DisagreementResult }) => {
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-6 py-6">
+      <div className="flex-1 overflow-hidden px-6 py-6">
         {activeTab === 'analysis' && (
           <div className="space-y-4">
             <div className="mb-4 flex items-center justify-between">
