@@ -118,6 +118,13 @@ const CLUSTER_LABELS = CLUSTER_OPTIONS.reduce(
   {} as Record<ClusterId, string>
 );
 
+const GEOGRAPHIC_CLUSTERS: Record<string, string[]> = {
+  Noord: ['Denmark', 'Estonia', 'Finland', 'Latvia', 'Lithuania', 'Sweden'],
+  Oost: ['Bulgaria', 'Czech Republic', 'Hungary', 'Poland', 'Romania', 'Slovakia'],
+  Zuid: ['Croatia', 'Cyprus', 'Greece', 'Italy', 'Malta', 'Portugal', 'Slovenia', 'Spain'],
+  West: ['Austria', 'Belgium', 'France', 'Germany', 'Ireland', 'Luxembourg', 'Netherlands'],
+};
+
 type ClustermapManifest = {
   overall: string;
   councils?: string[];
@@ -939,6 +946,33 @@ export default function CountryApprovalHeatmapDetailed() {
     [addCountriesToCluster]
   );
 
+  const handleSetCluster = useCallback(
+    (clusterId: ClusterId, countries: string[]) => {
+      if (!selectedMatrix) return;
+      const allowed = new Set(selectedMatrix.countries);
+      const valid = countries.filter((country) => allowed.has(country));
+
+      setClusterSelections((prev) => {
+        const next: ClusterSelections = {
+          clusterA: [...prev.clusterA],
+          clusterB: [...prev.clusterB],
+        };
+
+        // Set target cluster to exactly the valid preset countries
+        next[clusterId] = valid;
+
+        // Remove these countries from the other cluster
+        for (const option of CLUSTER_OPTIONS) {
+          if (option.id === clusterId) continue;
+          next[option.id] = next[option.id].filter((c) => !valid.includes(c));
+        }
+
+        return next;
+      });
+    },
+    [selectedMatrix]
+  );
+
   const handleRemoveCountry = useCallback((clusterId: ClusterId, country: string) => {
     setClusterSelections((prev) => ({
       ...prev,
@@ -1136,6 +1170,7 @@ export default function CountryApprovalHeatmapDetailed() {
         onAddCountry={handleManualAddCountry}
         onRemoveCountry={handleRemoveCountry}
         onClearCluster={handleClearCluster}
+        onSetCluster={handleSetCluster}
         clusterStats={clusterStats}
         clusterComparison={clusterComparison}
       />
@@ -1480,6 +1515,7 @@ type ClusterSelectionPanelProps = {
   onAddCountry: (cluster: ClusterId, country: string) => void;
   onRemoveCountry: (cluster: ClusterId, country: string) => void;
   onClearCluster: (cluster: ClusterId) => void;
+  onSetCluster: (cluster: ClusterId, countries: string[]) => void;
   clusterStats: ClusterStats;
   clusterComparison: ClusterComparison;
 };
@@ -1492,6 +1528,7 @@ const ClusterSelectionPanel = ({
   onAddCountry,
   onRemoveCountry,
   onClearCluster,
+  onSetCluster,
   clusterStats,
   clusterComparison,
 }: ClusterSelectionPanelProps) => {
@@ -1519,7 +1556,21 @@ const ClusterSelectionPanel = ({
           <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Clusters
           </div>
+
           <p className="text-xs text-slate-500">Klik in de heatmap of kies handmatig.</p>
+
+          <div className="mt-2 flex flex-wrap gap-1">
+            {Object.entries(GEOGRAPHIC_CLUSTERS).map(([label, countries]) => (
+              <button
+                key={label}
+                onClick={() => onSetCluster(activeCluster, countries)}
+                className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[10px] font-medium text-slate-600 hover:border-[rgb(0,153,168)] hover:text-[rgb(0,153,168)]"
+                title={`Stel ${CLUSTER_LABELS[activeCluster]} in op ${label}`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
         <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600">
           {CLUSTER_OPTIONS.map((option) => {
@@ -1658,7 +1709,7 @@ const ClusterSelectionPanel = ({
           />
         ))}
       </div>
-    </div>
+    </div >
   );
 };
 
@@ -1801,22 +1852,22 @@ const DimensionScatterPlot = ({
 
           {/* Pole Labels */}
           {/* X Negative (Left) */}
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 w-32 text-[10px] font-medium text-slate-400 text-left leading-tight opacity-80">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 w-32 bg-slate-50 px-2 text-[10px] font-medium text-slate-400 text-left leading-tight opacity-80">
             {xDim.negative_pole}
           </div>
           {/* X Positive (Right) */}
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 w-32 text-[10px] font-medium text-slate-400 text-right leading-tight opacity-80">
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 w-32 bg-slate-50 px-2 text-[10px] font-medium text-slate-400 text-right leading-tight opacity-80">
             {xDim.positive_pole}
           </div>
 
           {yDim && (
             <>
               {/* Y Positive (Top) */}
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-64 text-center text-[10px] font-medium text-slate-400 leading-tight opacity-80">
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-64 bg-slate-50 px-2 text-center text-[10px] font-medium text-slate-400 leading-tight opacity-80">
                 {yDim.positive_pole}
               </div>
               {/* Y Negative (Bottom) */}
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-64 text-center text-[10px] font-medium text-slate-400 leading-tight opacity-80">
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-64 bg-slate-50 px-2 text-center text-[10px] font-medium text-slate-400 leading-tight opacity-80">
                 {yDim.negative_pole}
               </div>
             </>
@@ -1830,6 +1881,8 @@ const DimensionScatterPlot = ({
         xScale={{ type: 'linear', min: -1.1, max: 1.1 }}
         yScale={yDim ? { type: 'linear', min: -1.1, max: 1.1 } : { type: 'linear', min: -0.5, max: 0.5 }}
         blendMode="normal"
+        enableGridX={false}
+        enableGridY={false}
         theme={{
           grid: {
             line: {
@@ -1863,8 +1916,6 @@ const DimensionScatterPlot = ({
             }
             : null
         }
-        gridXValues={[0]}
-        gridYValues={[0]}
         colors={[CLUSTER_STYLES.clusterA.color, CLUSTER_STYLES.clusterB.color]}
         nodeSize={14}
         tooltip={({ node }) => (
