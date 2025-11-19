@@ -2006,6 +2006,7 @@ const DisagreementMasterList = ({
 
 const DisagreementDetailView = ({ result }: { result: DisagreementResult }) => {
   const [selectedDimensions, setSelectedDimensions] = useState<string[]>([]);
+  const [activeTab, setActiveTab] = useState<'analysis' | 'justifications'>('analysis');
 
   // Auto-select first two dimensions on mount or when result changes
   useEffect(() => {
@@ -2072,13 +2073,38 @@ const DisagreementDetailView = ({ result }: { result: DisagreementResult }) => {
         </div>
       </div>
 
+      {/* Sub-tabs */}
+      <div className="flex border-b border-slate-200 bg-white px-6">
+        <button
+          onClick={() => setActiveTab('analysis')}
+          className={cn(
+            'border-b-2 px-4 py-2 text-xs font-medium transition-colors',
+            activeTab === 'analysis'
+              ? 'border-[rgb(0,153,168)] text-[rgb(0,153,168)]'
+              : 'border-transparent text-slate-500 hover:text-slate-700'
+          )}
+        >
+          Analyse
+        </button>
+        <button
+          onClick={() => setActiveTab('justifications')}
+          className={cn(
+            'border-b-2 px-4 py-2 text-xs font-medium transition-colors',
+            activeTab === 'justifications'
+              ? 'border-[rgb(0,153,168)] text-[rgb(0,153,168)]'
+              : 'border-transparent text-slate-500 hover:text-slate-700'
+          )}
+        >
+          Toelichtingen
+        </button>
+      </div>
+
       <div className="flex-1 overflow-y-auto px-6 py-6">
-        <div className="space-y-8">
-          {/* Visualization Section */}
-          <section>
+        {activeTab === 'analysis' && (
+          <div className="space-y-4">
             <div className="mb-4 flex items-center justify-between">
               <h4 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                Analyse
+                Dimensies
               </h4>
               {result.dimensions && result.dimensions.length > 0 && (
                 <div className="flex gap-2">
@@ -2133,10 +2159,11 @@ const DisagreementDetailView = ({ result }: { result: DisagreementResult }) => {
                 <ClusterApprovalTrack result={result} />
               </div>
             )}
-          </section>
+          </div>
+        )}
 
-          {/* Justifications Section */}
-          <section className="grid gap-6 lg:grid-cols-2">
+        {activeTab === 'justifications' && (
+          <div className="grid gap-6 lg:grid-cols-2">
             <div>
               <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
                 Cluster A ({CLUSTER_LABELS.clusterA})
@@ -2149,8 +2176,8 @@ const DisagreementDetailView = ({ result }: { result: DisagreementResult }) => {
               </h4>
               {renderJustifications(result.set_b_positions, 'clusterB')}
             </div>
-          </section>
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -2161,6 +2188,7 @@ const ClusterInsightsSummary = ({
   filterContext,
 }: ClusterInsightsSummaryProps) => {
   const [selectedProposalId, setSelectedProposalId] = useState<string | null>(null);
+  const [activeView, setActiveView] = useState<'disagreement' | 'variance'>('disagreement');
 
   // Auto-select first proposal when data loads
   useEffect(() => {
@@ -2199,48 +2227,112 @@ const ClusterInsightsSummary = ({
       );
     }
 
-    if (!state.disagreement?.results?.length) {
+    if (activeView === 'disagreement') {
+      if (!state.disagreement?.results?.length) {
+        return (
+          <div className="flex h-full items-center justify-center text-sm text-slate-500">
+            Geen voorstellen met beide clusters voor deze selectie.
+          </div>
+        );
+      }
+
+      const selectedResult = state.disagreement.results.find(
+        (r) => r.proposal_id === selectedProposalId
+      );
+
       return (
-        <div className="flex h-full items-center justify-center text-sm text-slate-500">
-          Geen voorstellen met beide clusters voor deze selectie.
+        <div className="flex h-[700px] overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+          <div className="w-1/3 min-w-[300px] max-w-[400px]">
+            <DisagreementMasterList
+              results={state.disagreement.results}
+              selectedId={selectedProposalId}
+              onSelect={setSelectedProposalId}
+            />
+          </div>
+          <div className="flex-1 border-l border-slate-200">
+            {selectedResult ? (
+              <DisagreementDetailView result={selectedResult} />
+            ) : (
+              <div className="flex h-full items-center justify-center text-slate-400">
+                Selecteer een voorstel
+              </div>
+            )}
+          </div>
         </div>
       );
     }
 
-    const selectedResult = state.disagreement.results.find(
-      (r) => r.proposal_id === selectedProposalId
-    );
+    if (activeView === 'variance') {
+      // Placeholder for Variance View - can be expanded similarly if needed
+      // For now, we can reuse the existing logic or just list them
+      const renderVarianceList = (clusterId: ClusterId) => {
+        const varianceData = state.variance?.[clusterId];
+        if (!varianceData || !varianceData.results?.length) return <div className="text-sm text-slate-500">Geen data.</div>;
 
-    return (
-      <div className="flex h-[800px] overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-        <div className="w-1/3 min-w-[300px] max-w-[400px]">
-          <DisagreementMasterList
-            results={state.disagreement.results}
-            selectedId={selectedProposalId}
-            onSelect={setSelectedProposalId}
-          />
-        </div>
-        <div className="flex-1 border-l border-slate-200">
-          {selectedResult ? (
-            <DisagreementDetailView result={selectedResult} />
-          ) : (
-            <div className="flex h-full items-center justify-center text-slate-400">
-              Selecteer een voorstel
+        return (
+          <div className="space-y-2">
+            {varianceData.results.slice(0, 5).map(r => (
+              <div key={r.proposal_id} className="p-2 border rounded-md text-xs">
+                <div className="font-semibold">{r.title}</div>
+                <div className="text-slate-500">Variance: {r.variance?.toFixed(3)}</div>
+              </div>
+            ))}
+          </div>
+        )
+      }
+
+      return (
+        <div className="grid gap-6 md:grid-cols-2">
+          {CLUSTER_OPTIONS.map((option) => (
+            <div key={option.id} className="rounded-lg border border-slate-200 bg-white p-4">
+              <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-slate-700">
+                <span
+                  className="h-3 w-3 rounded-full"
+                  style={{ backgroundColor: CLUSTER_STYLES[option.id].color }}
+                  aria-hidden
+                />
+                {option.label}
+              </div>
+              {renderVarianceList(option.id)}
             </div>
-          )}
+          ))}
         </div>
-      </div>
-    );
+      )
+    }
   };
 
   return (
-    <div className="mt-6">
-      <div className="mb-4 flex items-center justify-between">
+    <div className="mt-6 space-y-4">
+      <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-semibold text-slate-800">Grootste Meningsverschillen</h2>
+          <h2 className="text-lg font-semibold text-slate-800">Inzichten</h2>
           <p className="text-sm text-slate-500">
-            Analyseer waar de clusters het meest van mening verschillen.
+            {filterContext ? filterContext.label : 'Geen filter geselecteerd'}
           </p>
+        </div>
+        <div className="flex rounded-lg bg-slate-100 p-1">
+          <button
+            onClick={() => setActiveView('disagreement')}
+            className={cn(
+              'rounded-md px-3 py-1.5 text-xs font-medium transition-all',
+              activeView === 'disagreement'
+                ? 'bg-white text-slate-800 shadow-sm'
+                : 'text-slate-500 hover:text-slate-700'
+            )}
+          >
+            Meningsverschillen
+          </button>
+          <button
+            onClick={() => setActiveView('variance')}
+            className={cn(
+              'rounded-md px-3 py-1.5 text-xs font-medium transition-all',
+              activeView === 'variance'
+                ? 'bg-white text-slate-800 shadow-sm'
+                : 'text-slate-500 hover:text-slate-700'
+            )}
+          >
+            Interne Variatie
+          </button>
         </div>
       </div>
       {renderContent()}
