@@ -1987,42 +1987,11 @@ const DimensionScatterPlot = ({
   positionsB: CountryPosition[];
   selectedDimensions: string[];
 }) => {
-  if (selectedDimensions.length === 0) return null;
-
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
-  const xDim = dimensions.find((d) => d.short_name === selectedDimensions[0]);
-  const yDim = selectedDimensions[1]
-    ? dimensions.find((d) => d.short_name === selectedDimensions[1])
-    : null;
-
-  if (!xDim) return null;
-
-  const data = [
-    {
-      id: 'Cluster A',
-      data: positionsA
-        .filter((p) => p.dimension_scores)
-        .map((p) => {
-          const xScore = p.dimension_scores?.find((ds) => ds.dimension === xDim.short_name)?.score ?? 0;
-          const yScore = yDim
-            ? (p.dimension_scores?.find((ds) => ds.dimension === yDim.short_name)?.score ?? 0)
-            : 0; // Default to 0 for 1D
-          return { x: xScore, y: yScore, country: p.country };
-        }),
-    },
-    {
-      id: 'Cluster B',
-      data: positionsB
-        .filter((p) => p.dimension_scores)
-        .map((p) => {
-          const xScore = p.dimension_scores?.find((ds) => ds.dimension === xDim.short_name)?.score ?? 0;
-          const yScore = yDim
-            ? (p.dimension_scores?.find((ds) => ds.dimension === yDim.short_name)?.score ?? 0)
-            : 0;
-          return { x: xScore, y: yScore, country: p.country };
-        }),
-    },
-  ];
+  const hasDimensions = selectedDimensions.length > 0;
+  const xDim = hasDimensions ? dimensions.find((d) => d.short_name === selectedDimensions[0]) : null;
+  const yDimensionKey = selectedDimensions.length > 1 ? selectedDimensions[1] : null;
+  const yDim = yDimensionKey ? dimensions.find((d) => d.short_name === yDimensionKey) : null;
 
   const [hoveredLabel, setHoveredLabel] = useState<HoveredTooltip | null>(null);
   const [hoveredNodeTooltip, setHoveredNodeTooltip] = useState<ScatterNodeTooltipState | null>(null);
@@ -2086,6 +2055,37 @@ const DimensionScatterPlot = ({
   const handleNodeMouseLeave = useCallback(() => {
     setHoveredNodeTooltip(null);
   }, []);
+
+  if (!hasDimensions || !xDim) {
+    return null;
+  }
+
+  const data = [
+    {
+      id: 'Cluster A',
+      data: positionsA
+        .filter((p) => p.dimension_scores)
+        .map((p) => {
+          const xScore = p.dimension_scores?.find((ds) => ds.dimension === xDim.short_name)?.score ?? 0;
+          const yScore = yDim
+            ? (p.dimension_scores?.find((ds) => ds.dimension === yDim.short_name)?.score ?? 0)
+            : 0; // Default to 0 for 1D
+          return { x: xScore, y: yScore, country: p.country };
+        }),
+    },
+    {
+      id: 'Cluster B',
+      data: positionsB
+        .filter((p) => p.dimension_scores)
+        .map((p) => {
+          const xScore = p.dimension_scores?.find((ds) => ds.dimension === xDim.short_name)?.score ?? 0;
+          const yScore = yDim
+            ? (p.dimension_scores?.find((ds) => ds.dimension === yDim.short_name)?.score ?? 0)
+            : 0;
+          return { x: xScore, y: yScore, country: p.country };
+        }),
+    },
+  ];
 
   return (
     <div className="relative h-[500px] w-full rounded-xl border border-slate-200 bg-slate-50/50 p-6">
