@@ -78,6 +78,10 @@ const VIEW_OPTIONS: { id: ViewMode; label: string }[] = [
 
 const COUNTRY_CLUSTERMAP_DIR = 'country_clustermaps/';
 const COUNTRY_CLUSTERMAP_MANIFEST = `${COUNTRY_CLUSTERMAP_DIR}index.json`;
+const COUNTRY_APPROVAL_DATASET_CANDIDATES = [
+  'country_approval_clustermap_detailed.json',
+  'country_approval_clustermap.json',
+];
 const HEATMAP_MARGIN = { top: 120, right: 80, bottom: 60, left: 140 };
 const rawCountryPositionsBase = import.meta.env.VITE_COUNTRY_POSITIONS_API ?? '';
 const resolvedCountryPositionsBase =
@@ -137,6 +141,12 @@ type CountryClustermapDataset = {
   data: ClustermapMatrix & {
     pair_records?: unknown;
   };
+};
+
+type AggregatedClustermapPayload = {
+  overall: ClustermapMatrix & { pair_records?: unknown };
+  councils: (ClustermapMatrix & { pair_records?: unknown })[];
+  topics: (ClustermapMatrix & { pair_records?: unknown })[];
 };
 
 type ClusterNode = {
@@ -413,6 +423,77 @@ const fetchDatasetMatrix = async (basePath: string, relativePath: string) => {
   return parseDataset(payload);
 };
 
+const stripPairRecords = (matrix: ClustermapMatrix & { pair_records?: unknown }): ClustermapMatrix => {
+  const { pair_records: _ignored, ...rest } = matrix;
+  return rest as ClustermapMatrix;
+};
+
+const fetchAggregatedClustermap = async (basePath: string): Promise<ClustermapResponse> => {
+  let lastError: Error | null = null;
+
+  for (const relativePath of COUNTRY_APPROVAL_DATASET_CANDIDATES) {
+    try {
+      const url = joinPublicPath(basePath, relativePath);
+      const payload = await fetchJson<AggregatedClustermapPayload>(url, relativePath);
+      if (IS_DEV) {
+        console.info('[CountryApprovalHeatmapDetailed] dataset geladen:', relativePath);
+      }
+      return {
+        overall: stripPairRecords(payload.overall),
+        councils: payload.councils.map(stripPairRecords),
+        topics: payload.topics.map(stripPairRecords),
+      };
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+      if (IS_DEV) {
+        console.warn(
+          `[CountryApprovalHeatmapDetailed] laden van ${relativePath} mislukt; probeer volgende dataset.`,
+          lastError
+        );
+      }
+    }
+  }
+
+  throw lastError ?? new Error('Geen raadspositiesdataset beschikbaar.');
+};
+
+const fetchManifestClustermap = async (basePath: string): Promise<ClustermapResponse> => {
+  const manifestUrl = joinPublicPath(basePath, COUNTRY_CLUSTERMAP_MANIFEST);
+  const manifest = await fetchJson<ClustermapManifest>(manifestUrl, COUNTRY_CLUSTERMAP_MANIFEST);
+  if (!manifest.overall) {
+    throw new Error('country_clustermaps manifest mist een overall-bestand.');
+  }
+
+  const councilPaths = manifest.councils ?? [];
+  const topicPaths = manifest.topics ?? [];
+
+  const [overallMatrix, councilsMatrices, topicsMatrices] = await Promise.all([
+    fetchDatasetMatrix(basePath, manifest.overall),
+    Promise.all(councilPaths.map((path) => fetchDatasetMatrix(basePath, path))),
+    Promise.all(topicPaths.map((path) => fetchDatasetMatrix(basePath, path))),
+  ]);
+
+  return {
+    overall: overallMatrix,
+    councils: councilsMatrices,
+    topics: topicsMatrices,
+  };
+};
+
+const fetchDetailedHeatmapPayload = async (basePath: string): Promise<ClustermapResponse> => {
+  try {
+    return await fetchAggregatedClustermap(basePath);
+  } catch (error) {
+    if (IS_DEV) {
+      console.warn(
+        '[CountryApprovalHeatmapDetailed] gebruik manifestfallback voor raadspositiesdataset.',
+        error
+      );
+    }
+    return fetchManifestClustermap(basePath);
+  }
+};
+
 const postJson = async <T,>(path: string, body: unknown, signal: AbortSignal): Promise<T> => {
   const response = await fetch(buildApiUrl(path), {
     method: 'POST',
@@ -464,26 +545,7 @@ export default function CountryApprovalHeatmapDetailed() {
       setError(null);
 
       try {
-        const manifestUrl = joinPublicPath(basePath, COUNTRY_CLUSTERMAP_MANIFEST);
-        const manifest = await fetchJson<ClustermapManifest>(manifestUrl, COUNTRY_CLUSTERMAP_MANIFEST);
-        if (!manifest.overall) {
-          throw new Error('country_clustermaps manifest mist een overall-bestand.');
-        }
-
-        const councilPaths = manifest.councils ?? [];
-        const topicPaths = manifest.topics ?? [];
-
-        const [overallMatrix, councilsMatrices, topicsMatrices] = await Promise.all([
-          fetchDatasetMatrix(basePath, manifest.overall),
-          Promise.all(councilPaths.map((path) => fetchDatasetMatrix(basePath, path))),
-          Promise.all(topicPaths.map((path) => fetchDatasetMatrix(basePath, path))),
-        ]);
-
-        const payload: ClustermapResponse = {
-          overall: overallMatrix,
-          councils: councilsMatrices,
-          topics: topicsMatrices,
-        };
+        const payload = await fetchDetailedHeatmapPayload(basePath);
 
         if (!cancelled) {
           const prepared = preparePayload(payload);
