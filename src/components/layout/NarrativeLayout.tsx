@@ -104,7 +104,7 @@ export const NarrativeLayout = () => {
 
     const handleHashRoute = () => {
       if (window.location.hash.toLowerCase() === HASH_ROUTE_APPROVALS) {
-        setActiveView('approvals');
+        setActiveView('approvals_detailed');
         maybeScrollToNarrative();
       }
     };
@@ -116,7 +116,7 @@ export const NarrativeLayout = () => {
 
   useEffect(() => {
     const HASH_ROUTE_APPROVALS = '#raadsposities';
-    if (activeView === 'approvals') {
+    if (activeView === 'approvals_detailed') {
       if (window.location.hash.toLowerCase() !== HASH_ROUTE_APPROVALS) {
         window.history.replaceState(null, '', HASH_ROUTE_APPROVALS);
       }
