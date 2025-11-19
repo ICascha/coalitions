@@ -1791,17 +1791,33 @@ const DimensionScatterPlot = ({
 
   return (
     <div className="relative h-[500px] w-full rounded-xl border border-slate-200 bg-slate-50/50 p-6">
-      {/* Quadrant Background */}
-      <div className="absolute inset-0 m-6 pointer-events-none">
-        <div className="h-full w-full relative">
-          {/* Quadrant Labels (Optional, simplistic for now) */}
+      {/* Quadrant Background & Labels */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Match chart margins: top: 40, right: 40, bottom: 60, left: 60 */}
+        <div className="absolute top-[40px] bottom-[60px] left-[60px] right-[40px]">
+          {/* Center Lines */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-200" />
+          <div className="absolute top-1/2 left-0 right-0 h-px bg-slate-200" />
+
+          {/* Pole Labels */}
+          {/* X Negative (Left) */}
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 w-32 text-[10px] font-medium text-slate-400 text-left leading-tight opacity-80">
+            {xDim.negative_pole}
+          </div>
+          {/* X Positive (Right) */}
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 w-32 text-[10px] font-medium text-slate-400 text-right leading-tight opacity-80">
+            {xDim.positive_pole}
+          </div>
+
           {yDim && (
             <>
-              <div className="absolute top-2 right-2 text-[10px] font-medium text-slate-400 uppercase tracking-wider">
-                {xDim.positive_pole.split(' ')[0]} / {yDim.positive_pole.split(' ')[0]}
+              {/* Y Positive (Top) */}
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-64 text-center text-[10px] font-medium text-slate-400 leading-tight opacity-80">
+                {yDim.positive_pole}
               </div>
-              <div className="absolute bottom-2 left-2 text-[10px] font-medium text-slate-400 uppercase tracking-wider">
-                {xDim.negative_pole.split(' ')[0]} / {yDim.negative_pole.split(' ')[0]}
+              {/* Y Negative (Bottom) */}
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-64 text-center text-[10px] font-medium text-slate-400 leading-tight opacity-80">
+                {yDim.negative_pole}
               </div>
             </>
           )}
@@ -1817,7 +1833,7 @@ const DimensionScatterPlot = ({
         theme={{
           grid: {
             line: {
-              stroke: '#cbd5e1', // slate-300
+              stroke: '#f1f5f9', // slate-100, very subtle
               strokeWidth: 1,
             },
           },
