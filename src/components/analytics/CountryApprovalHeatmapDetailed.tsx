@@ -1806,6 +1806,51 @@ type ClusterInsightsSummaryProps = {
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
 
+type HoveredTooltip = {
+  content: string;
+  x: number;
+  y: number;
+  position: 'top' | 'bottom';
+};
+
+const clampTooltipPosition = (x: number, width: number = 256) => {
+  const halfWidth = width / 2;
+  if (x < halfWidth) {
+    return { left: 0, transform: 'translateX(0)' };
+  }
+  return { left: x, transform: 'translateX(-50%)' };
+};
+
+const TooltipBubble = ({ tooltip }: { tooltip: HoveredTooltip }) => {
+  const horizontal = clampTooltipPosition(tooltip.x);
+  const verticalTransform =
+    tooltip.position === 'top'
+      ? 'translateY(-100%) translateY(-8px)'
+      : 'translateY(8px)';
+  const arrowClass =
+    tooltip.position === 'top' ? 'top-full border-t-white' : 'bottom-full border-b-white';
+
+  return (
+    <div
+      className="absolute z-50 w-64 rounded-lg border border-slate-200 bg-white p-3 text-xs text-slate-600 shadow-xl pointer-events-none"
+      style={{
+        left: horizontal.left,
+        top: tooltip.y,
+        transform: `${horizontal.transform} ${verticalTransform}`,
+      }}
+    >
+      <div className="whitespace-pre-wrap">{tooltip.content}</div>
+      <div
+        className={cn('absolute border-4 border-transparent', arrowClass)}
+        style={{
+          left: tooltip.x < 128 ? tooltip.x : '50%',
+          transform: 'translateX(-50%)',
+        }}
+      />
+    </div>
+  );
+};
+
 const DimensionScatterPlot = ({
   dimensions,
   positionsA,
@@ -1853,12 +1898,7 @@ const DimensionScatterPlot = ({
     },
   ];
 
-  const [hoveredLabel, setHoveredLabel] = useState<{
-    content: string;
-    x: number;
-    y: number;
-    position: 'top' | 'bottom';
-  } | null>(null);
+  const [hoveredLabel, setHoveredLabel] = useState<HoveredTooltip | null>(null);
 
   const handleLabelEnter = (e: React.MouseEvent, content: string) => {
     const target = e.currentTarget as HTMLDivElement;
@@ -1878,17 +1918,6 @@ const DimensionScatterPlot = ({
       y: relativeY + (position === 'bottom' ? rect.height : 0),
       position
     });
-  };
-
-  const clampTooltipPosition = (x: number, width: number = 256) => {
-    // Ensure tooltip doesn't go off-screen (assuming container width ~500-800px)
-    // We want to keep the tooltip arrow pointing to x, but shift the box
-    // This simple clamp just prevents the left edge from being < 0
-    // Since we use translate(-50%), the left edge is x - width/2
-    const halfWidth = width / 2;
-    if (x < halfWidth) return { left: 0, transform: 'translateX(0)' }; // Align left
-    // We could also check right edge but left is the main issue here
-    return { left: x, transform: 'translateX(-50%)' };
   };
 
   const handleLabelLeave = () => {
@@ -2042,34 +2071,7 @@ const DimensionScatterPlot = ({
         </div>
 
         {/* Tooltip */}
-        {hoveredLabel && (
-          <div
-            className="absolute z-50 w-64 rounded-lg border border-slate-200 bg-white p-3 text-xs text-slate-600 shadow-xl pointer-events-none"
-            style={{
-              left: clampTooltipPosition(hoveredLabel.x).left || hoveredLabel.x,
-              top: hoveredLabel.y,
-              transform: `${clampTooltipPosition(hoveredLabel.x).transform} ${hoveredLabel.position === 'top'
-                ? 'translateY(-100%) translateY(-8px)'
-                : 'translateY(8px)'
-                }`,
-            }}
-          >
-            <div className="whitespace-pre-wrap">{hoveredLabel.content}</div>
-            {/* Arrow */}
-            <div
-              className={cn(
-                "absolute border-4 border-transparent",
-                hoveredLabel.position === 'top'
-                  ? "top-full border-t-white"
-                  : "bottom-full border-b-white"
-              )}
-              style={{
-                left: hoveredLabel.x < 128 ? hoveredLabel.x : '50%',
-                transform: hoveredLabel.x < 128 ? 'translateX(-50%)' : 'translateX(-50%)'
-              }}
-            />
-          </div>
-        )}
+        {hoveredLabel && <TooltipBubble tooltip={hoveredLabel} />}
       </div>
     </div>
   );
@@ -2207,6 +2209,33 @@ const DisagreementMasterList = ({
 const DisagreementDetailView = ({ result }: { result: DisagreementResult }) => {
   const [selectedDimensions, setSelectedDimensions] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<'analysis' | 'justifications'>('analysis');
+  const dimensionsTooltipContainerRef = useRef<HTMLDivElement | null>(null);
+  const [dimensionTooltip, setDimensionTooltip] = useState<HoveredTooltip | null>(null);
+
+  const handleDimensionLabelEnter = (
+    event: React.SyntheticEvent<HTMLElement>,
+    content?: string
+  ) => {
+    if (!content) return;
+    const container = dimensionsTooltipContainerRef.current;
+    if (!container) return;
+
+    const target = event.currentTarget as HTMLElement;
+    const rect = target.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    const relativeY = rect.top - containerRect.top;
+    const relativeX = rect.left - containerRect.left;
+    const position = relativeY < 100 ? 'bottom' : 'top';
+
+    setDimensionTooltip({
+      content,
+      x: relativeX + rect.width / 2,
+      y: relativeY + (position === 'bottom' ? rect.height : 0),
+      position,
+    });
+  };
+
+  const handleDimensionLabelLeave = () => setDimensionTooltip(null);
 
   // Auto-select first two dimensions on mount or when result changes
   useEffect(() => {
@@ -2301,13 +2330,13 @@ const DisagreementDetailView = ({ result }: { result: DisagreementResult }) => {
 
       <div className="flex-1 overflow-hidden px-6 py-6">
         {activeTab === 'analysis' && (
-          <div className="space-y-4">
+          <div ref={dimensionsTooltipContainerRef} className="relative space-y-4">
             <div className="mb-4 flex items-center justify-between">
               <h4 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
                 Dimensies
               </h4>
               {result.dimensions && result.dimensions.length > 0 && (
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   {result.dimensions.map((dim) => (
                     <label
                       key={dim.short_name}
@@ -2317,6 +2346,10 @@ const DisagreementDetailView = ({ result }: { result: DisagreementResult }) => {
                           ? 'border-[rgb(0,153,168)] bg-[rgb(0,153,168)] text-white'
                           : 'border-slate-200 bg-white text-slate-600 hover:border-[rgb(0,153,168)]'
                       )}
+                      onMouseEnter={(e) => handleDimensionLabelEnter(e, dim.description)}
+                      onMouseLeave={handleDimensionLabelLeave}
+                      onFocus={(e) => handleDimensionLabelEnter(e, dim.description)}
+                      onBlur={handleDimensionLabelLeave}
                     >
                       <input
                         type="checkbox"
@@ -2346,6 +2379,8 @@ const DisagreementDetailView = ({ result }: { result: DisagreementResult }) => {
                 <ClusterApprovalTrack result={result} />
               </div>
             )}
+
+            {dimensionTooltip && <TooltipBubble tooltip={dimensionTooltip} />}
           </div>
         )}
 
