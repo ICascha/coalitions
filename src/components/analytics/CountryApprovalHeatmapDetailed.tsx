@@ -2488,7 +2488,12 @@ const DisagreementDetailView = ({ result }: { result: DisagreementResult }) => {
         </button>
       </div>
 
-      <div className="flex-1 overflow-hidden px-6 py-6">
+      <div
+        className={cn(
+          'flex-1 px-6 py-6',
+          activeTab === 'justifications' ? 'overflow-y-auto' : 'overflow-hidden'
+        )}
+      >
         {activeTab === 'analysis' && (
           <div ref={dimensionsTooltipContainerRef} className="relative space-y-4">
             <div className="mb-4 flex items-center justify-between">

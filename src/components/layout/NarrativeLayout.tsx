@@ -175,7 +175,7 @@ export const NarrativeLayout = () => {
         };
       case 'approvals_detailed':
         return {
-          title: 'Raadsposities (Detailed)',
+          title: 'Raadsposities',
           description:
             'Bekijk gedetailleerde dimensiescores voor voorstellen.',
           component: <CountryApprovalHeatmapDetailed />,
@@ -320,8 +320,8 @@ export const NarrativeLayout = () => {
                 type="button"
                 onClick={() => setActiveView('connections')}
                 className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${activeView === 'connections'
-                    ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
-                    : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
+                  ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
+                  : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
                   }`}
               >
                 Verbindingen
@@ -330,13 +330,13 @@ export const NarrativeLayout = () => {
                 type="button"
                 onClick={() => setActiveView('correlations')}
                 className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${activeView === 'correlations'
-                    ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
-                    : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
+                  ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
+                  : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
                   }`}
               >
                 Correlaties
               </button>
-              <button
+              {/* <button
                 type="button"
                 onClick={() => setActiveView('approvals')}
                 className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${activeView === 'approvals'
@@ -345,24 +345,24 @@ export const NarrativeLayout = () => {
                   }`}
               >
                 Raadsposities
-              </button>
+              </button> */}
               <button
                 type="button"
                 onClick={() => setActiveView('approvals_detailed')}
                 className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${activeView === 'approvals_detailed'
-                    ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
-                    : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
+                  ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
+                  : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
                   }`}
               >
-                Raadsposities (Detailed)
+                Raadsposities
               </button>
               {REGRESSION_ENABLED && (
                 <button
                   type="button"
                   onClick={() => setActiveView('regression')}
                   className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${activeView === 'regression'
-                      ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
-                      : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
+                    ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
+                    : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
                     }`}
                 >
                   Regressie
