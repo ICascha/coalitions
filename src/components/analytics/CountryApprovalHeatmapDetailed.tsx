@@ -5,7 +5,7 @@ import {
   type HeatMapSerie,
   type TooltipComponent,
 } from '@nivo/heatmap';
-import { ResponsiveScatterPlot } from '@nivo/scatterplot';
+import { ResponsiveScatterPlot, type ScatterPlotNodeData } from '@nivo/scatterplot';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
@@ -1875,6 +1875,15 @@ type HoveredTooltip = {
   position: 'top' | 'bottom';
 };
 
+type ScatterNodeTooltipState = {
+  country: string;
+  xScore: number;
+  yScore: number | null;
+  x: number;
+  y: number;
+  position: 'top' | 'bottom';
+};
+
 const clampTooltipPosition = (x: number, width: number = 256) => {
   const halfWidth = width / 2;
   if (x < halfWidth) {
@@ -1913,6 +1922,60 @@ const TooltipBubble = ({ tooltip }: { tooltip: HoveredTooltip }) => {
   );
 };
 
+const ScatterNodeTooltip = ({
+  tooltip,
+  xLabel,
+  yLabel,
+}: {
+  tooltip: ScatterNodeTooltipState;
+  xLabel: string;
+  yLabel: string | null;
+}) => {
+  const horizontal = clampTooltipPosition(tooltip.x);
+  const verticalTransform =
+    tooltip.position === 'top'
+      ? 'translateY(-100%) translateY(-12px)'
+      : 'translateY(12px)';
+
+  const formatValue = (value: number | null) =>
+    value === null || !Number.isFinite(value) ? 'n.v.t.' : value.toFixed(3);
+
+  return (
+    <div
+      className="absolute z-50 w-64 rounded-lg border border-slate-200 bg-white/95 px-3 py-2 text-xs text-slate-600 shadow-xl backdrop-blur-sm"
+      style={{
+        left: horizontal.left,
+        top: tooltip.y,
+        transform: `${horizontal.transform} ${verticalTransform}`,
+      }}
+    >
+      <strong className="text-slate-700">{tooltip.country}</strong>
+      <div className="mt-1 space-y-0.5 text-slate-500">
+        <div className="flex justify-between gap-4">
+          <span>{xLabel}:</span>
+          <span className="font-mono text-slate-700">{formatValue(tooltip.xScore)}</span>
+        </div>
+        {yLabel && (
+          <div className="flex justify-between gap-4">
+            <span>{yLabel}:</span>
+            <span className="font-mono text-slate-700">{formatValue(tooltip.yScore)}</span>
+          </div>
+        )}
+      </div>
+      <div
+        className={cn(
+          'absolute border-4 border-transparent',
+          tooltip.position === 'top' ? 'top-full border-t-white' : 'bottom-full border-b-white'
+        )}
+        style={{
+          left: tooltip.x < 128 ? tooltip.x : '50%',
+          transform: 'translateX(-50%)',
+        }}
+      />
+    </div>
+  );
+};
+
 const DimensionScatterPlot = ({
   dimensions,
   positionsA,
@@ -1926,6 +1989,7 @@ const DimensionScatterPlot = ({
 }) => {
   if (selectedDimensions.length === 0) return null;
 
+  const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const xDim = dimensions.find((d) => d.short_name === selectedDimensions[0]);
   const yDim = selectedDimensions[1]
     ? dimensions.find((d) => d.short_name === selectedDimensions[1])
@@ -1961,6 +2025,7 @@ const DimensionScatterPlot = ({
   ];
 
   const [hoveredLabel, setHoveredLabel] = useState<HoveredTooltip | null>(null);
+  const [hoveredNodeTooltip, setHoveredNodeTooltip] = useState<ScatterNodeTooltipState | null>(null);
 
   const handleLabelEnter = (e: React.MouseEvent, content: string) => {
     const target = e.currentTarget as HTMLDivElement;
@@ -1986,6 +2051,42 @@ const DimensionScatterPlot = ({
     setHoveredLabel(null);
   };
 
+  useEffect(() => {
+    setHoveredNodeTooltip(null);
+  }, [xDim, yDim]);
+
+  const handleNodeMouseMove = useCallback(
+    (
+      node: ScatterPlotNodeData<{ x: number; y: number; country: string }>,
+      event: React.MouseEvent
+    ) => {
+      if (!chartContainerRef.current) return;
+      const rect = chartContainerRef.current.getBoundingClientRect();
+      const relativeX = event.clientX - rect.left;
+      const relativeY = event.clientY - rect.top;
+      const position = relativeY < rect.height / 2 ? 'bottom' : 'top';
+
+      setHoveredNodeTooltip({
+        country: node.data.country as string,
+        xScore: typeof node.data.x === 'number' ? node.data.x : Number(node.data.x),
+        yScore:
+          yDim && typeof node.data.y === 'number'
+            ? node.data.y
+            : yDim
+              ? Number(node.data.y)
+              : null,
+        x: relativeX,
+        y: relativeY,
+        position,
+      });
+    },
+    [yDim]
+  );
+
+  const handleNodeMouseLeave = useCallback(() => {
+    setHoveredNodeTooltip(null);
+  }, []);
+
   return (
     <div className="relative h-[500px] w-full rounded-xl border border-slate-200 bg-slate-50/50 p-6">
       {/* Quadrant Background & Axis Lines */}
@@ -1999,7 +2100,7 @@ const DimensionScatterPlot = ({
       </div>
 
       {/* Scatter plot layer - between axis lines and labels */}
-      <div className="absolute inset-0 z-10">
+      <div ref={chartContainerRef} className="absolute inset-0 z-10">
         <ResponsiveScatterPlot
           data={data}
           margin={{ top: 40, right: 40, bottom: 60, left: 60 }}
@@ -2039,23 +2140,9 @@ const DimensionScatterPlot = ({
           }
           colors={[CLUSTER_STYLES.clusterA.color, CLUSTER_STYLES.clusterB.color]}
           nodeSize={14}
-          tooltip={({ node }) => (
-            <div className="rounded-lg border border-slate-200 bg-white/95 px-3 py-2 text-xs shadow-xl backdrop-blur-sm">
-              <strong className="text-slate-700">{node.data.country as string}</strong>
-              <div className="mt-1 space-y-0.5 text-slate-500">
-                <div className="flex justify-between gap-4">
-                  <span>{xDim.short_name}:</span>
-                  <span className="font-mono text-slate-700">{node.data.x}</span>
-                </div>
-                {yDim && (
-                  <div className="flex justify-between gap-4">
-                    <span>{yDim.short_name}:</span>
-                    <span className="font-mono text-slate-700">{node.data.y}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+          tooltip={() => null}
+          onMouseMove={handleNodeMouseMove}
+          onMouseLeave={handleNodeMouseLeave}
         />
       </div>
 
@@ -2131,10 +2218,21 @@ const DimensionScatterPlot = ({
             </div>
           </div>
         </div>
-
-        {/* Tooltip */}
-        {hoveredLabel && <TooltipBubble tooltip={hoveredLabel} />}
       </div>
+
+      {/* Tooltip overlay */}
+      {(hoveredNodeTooltip || hoveredLabel) && (
+        <div className="pointer-events-none absolute inset-0 z-30">
+          {hoveredNodeTooltip && (
+            <ScatterNodeTooltip
+              tooltip={hoveredNodeTooltip}
+              xLabel={xDim.short_name}
+              yLabel={yDim?.short_name ?? null}
+            />
+          )}
+          {hoveredLabel && <TooltipBubble tooltip={hoveredLabel} />}
+        </div>
+      )}
     </div>
   );
 };
