@@ -13,6 +13,7 @@ import IndicatorCorrelationHeatmap from '@/components/analytics/IndicatorCorrela
 import RegressionDashboard from '@/components/analytics/RegressionDashboard';
 import CountryApprovalHeatmap from '@/components/analytics/CountryApprovalHeatmap';
 import CountryApprovalHeatmapDetailed from '@/components/analytics/CountryApprovalHeatmapDetailed';
+import UNGAMap from '@/components/unga/UNGAMap';
 
 const brandColorRgb = '0, 153, 168';
 const REGRESSION_ENABLED = false;
@@ -51,7 +52,9 @@ export const NarrativeLayout = () => {
   const [mounted, setMounted] = useState(false);
   const [isLogoDialogOpen, setIsLogoDialogOpen] = useState(false);
   const [isMainContentVisible, setIsMainContentVisible] = useState(false);
-  const [activeView, setActiveView] = useState<'connections' | 'correlations' | 'approvals' | 'approvals_detailed' | 'regression'>('connections');
+  const [activeView, setActiveView] = useState<
+    'connections' | 'correlations' | 'unga' | 'approvals' | 'approvals_detailed' | 'regression'
+  >('connections');
 
   const windowWidth = useWindowSize();
   const isMobile = windowWidth !== null && windowWidth < MOBILE_BREAKPOINT;
@@ -165,6 +168,12 @@ export const NarrativeLayout = () => {
           description:
             'Onderzoek hoe sterk de indicatoren met elkaar samenhangen. Scores zijn Spearman-correlaties op gedeelde landparen.',
           component: <IndicatorCorrelationHeatmap />,
+        };
+      case 'unga':
+        return {
+          title: 'UNGA',
+          description: 'Interactieve wereldkaart van de Algemene Vergadering als basis voor latere uitbreidingen.',
+          component: <UNGAMap />,
         };
       case 'approvals':
         return {
@@ -335,6 +344,17 @@ export const NarrativeLayout = () => {
                   }`}
               >
                 Correlaties
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveView('unga')}
+                className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                  activeView === 'unga'
+                    ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
+                    : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
+                }`}
+              >
+                UNGA
               </button>
               {/* <button
                 type="button"
