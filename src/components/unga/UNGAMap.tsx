@@ -39,6 +39,18 @@ const POWER_BLOC_HOME_KEYS: Record<PowerBloc, string[]> = {
   RUSSIA: ['RUSSIA', 'RUS'],
 };
 
+const FBIC_DEFAULT_METRICS = [
+  'fbic',
+  'bandwidth',
+  'politicalbandwidth',
+  'economicbandwidth',
+  'securitybandwidth',
+  'dependence',
+  'economicdependence',
+  'securitydependence',
+  'foreignaid2021usdafromb',
+];
+
 const EU_MEMBER_ISOS = new Set([
   'AUT',
   'BEL',
@@ -86,13 +98,13 @@ type OverallDistanceResponse = {
   countries: CountryDistanceRecord[];
 };
 
-type BlocDistances = Partial<Record<PowerBloc, number | null>>;
+type BlocMetricMap = Partial<Record<PowerBloc, number | null>>;
 
 type CountryAlignment = {
   bloc: PowerBloc;
-  distance: number | null;
+  value: number | null;
   strength: number;
-  distances: BlocDistances;
+  metrics: BlocMetricMap;
 };
 
 type AlignmentMap = Record<string, CountryAlignment>;
@@ -140,6 +152,34 @@ type UngaCategoryMapResponse = {
   available_blocs: string[];
   total_countries: number;
   countries: CountryDistanceRecord[];
+};
+
+type FbicMetricValue = {
+  bloc: string;
+  value: number | null;
+};
+
+type FbicCountryMetric = {
+  country: string;
+  blocs: FbicMetricValue[];
+};
+
+type FbicMetricResponse = {
+  metric: string;
+  available_metrics: string[];
+  available_blocs: string[];
+  total_countries: number;
+  countries: FbicCountryMetric[];
+};
+
+type FbicTimeSeriesPoint = {
+  year: number;
+  fbic: number | null;
+};
+
+type FbicCountryTimeSeriesResponse = {
+  country: string;
+  blocs: { bloc: string; points: FbicTimeSeriesPoint[] }[];
 };
 
 const UNGA_API_BASE =
@@ -210,22 +250,33 @@ const blendWithWhite = (hex: string, intensity: number) => {
 };
 
 const computeStrength = (
-  bestDistance: number | null,
-  runnerUpDistance: number | null,
-  isHomeland: boolean
+  bestValue: number | null,
+  runnerUpValue: number | null,
+  isHomeland: boolean,
+  preferLower: boolean
 ) => {
   if (isHomeland) {
     return 1;
   }
-  if (typeof bestDistance !== 'number') {
+  if (typeof bestValue !== 'number') {
     return 0;
   }
-  if (typeof runnerUpDistance !== 'number') {
-    return Math.max(0.5, 1 - Math.min(bestDistance / 2, 1));
+
+  if (preferLower) {
+    if (typeof runnerUpValue !== 'number') {
+      return Math.max(0.5, 1 - Math.min(bestValue / 2, 1));
+    }
+    const proximity = 1 - Math.min(bestValue / 2, 1);
+    const gap = Math.max(0, Math.min(1, (runnerUpValue - bestValue) / 0.8));
+    return Math.max(0.25, proximity * 0.5 + gap * 0.5);
   }
-  const proximity = 1 - Math.min(bestDistance / 2, 1);
-  const gap = Math.max(0, Math.min(1, (runnerUpDistance - bestDistance) / 0.8));
-  return Math.max(0.25, (proximity * 0.5) + (gap * 0.5));
+
+  const normalizedBest = Math.max(0, Math.min(1, bestValue));
+  if (typeof runnerUpValue !== 'number') {
+    return Math.max(0.4, normalizedBest);
+  }
+  const gap = Math.max(0, Math.min(1, (bestValue - runnerUpValue) / 0.5));
+  return Math.max(0.25, normalizedBest * 0.6 + gap * 0.4);
 };
 
 const getFillColor = (alignment?: CountryAlignment) => {
@@ -235,33 +286,50 @@ const getFillColor = (alignment?: CountryAlignment) => {
   return blendWithWhite(POWER_BLOC_COLORS[alignment.bloc], alignment.strength);
 };
 
-const formatDistance = (distance: number | null | undefined) =>
-  typeof distance === 'number' ? distance.toFixed(2) : 'n.v.t.';
+const formatMetricValue = (
+  value: number | null | undefined,
+  source: 'UNGA' | 'FBIC'
+) => {
+  if (typeof value !== 'number') {
+    return 'n.v.t.';
+  }
+  return source === 'UNGA' ? value.toFixed(2) : value.toFixed(3);
+};
 
-const buildAlignmentMap = (countryRows: CountryDistanceRecord[]) => {
+type AlignmentBuildOptions = {
+  preferLower: boolean;
+  treatEuMembersAsAligned?: boolean;
+};
+
+const buildAlignmentMap = (
+  countryRows: { country: string; blocs: { bloc: string; [key: string]: unknown }[] }[],
+  getMetric: (blocRow: { bloc: string; [key: string]: unknown }) => number | null,
+  options: AlignmentBuildOptions
+) => {
+  const { preferLower, treatEuMembersAsAligned = false } = options;
   const nextMap: AlignmentMap = {};
   countryRows.forEach((countryRecord) => {
     const countryKeys = deriveCountryKeys(countryRecord.country);
     const isEuMember = isEuMemberCountry(countryKeys);
 
-    const blocDistances: BlocDistances = {};
+    const blocMetrics: BlocMetricMap = {};
     POWER_BLOCS.forEach((bloc) => {
       const blocData = countryRecord.blocs.find(
         (entry) => entry.bloc.toUpperCase() === bloc
       );
-      blocDistances[bloc] = blocData?.average_distance ?? null;
+      blocMetrics[bloc] = blocData ? getMetric(blocData) : null;
     });
 
-    if (isEuMember) {
-      blocDistances.EU = 0;
+    if (treatEuMembersAsAligned && isEuMember) {
+      blocMetrics.EU = preferLower ? 0 : 1;
     }
 
     const ordered = POWER_BLOCS
-      .map((bloc) => ({ bloc, distance: blocDistances[bloc] }))
-      .filter((entry): entry is { bloc: PowerBloc; distance: number } =>
-        typeof entry.distance === 'number'
+      .map((bloc) => ({ bloc, value: blocMetrics[bloc] }))
+      .filter((entry): entry is { bloc: PowerBloc; value: number } =>
+        typeof entry.value === 'number'
       )
-      .sort((a, b) => a.distance - b.distance);
+      .sort((a, b) => (preferLower ? a.value - b.value : b.value - a.value));
 
     if (!ordered.length) {
       return;
@@ -273,18 +341,19 @@ const buildAlignmentMap = (countryRows: CountryDistanceRecord[]) => {
       homeKey.toUpperCase()
     );
     const isHomeland = homelandKeys.some((homeKey) => countryKeys.includes(homeKey));
-    const alignedHome = isHomeland || (best.bloc === 'EU' && isEuMember);
+    const alignedHome = isHomeland || (treatEuMembersAsAligned && best.bloc === 'EU' && isEuMember);
     const strength = computeStrength(
-      blocDistances[best.bloc] ?? null,
-      runnerUp?.distance ?? null,
-      alignedHome
+      blocMetrics[best.bloc] ?? null,
+      runnerUp?.value ?? null,
+      alignedHome,
+      preferLower
     );
 
     const alignment: CountryAlignment = {
       bloc: best.bloc,
-      distance: blocDistances[best.bloc] ?? null,
+      value: blocMetrics[best.bloc] ?? null,
       strength,
-      distances: blocDistances,
+      metrics: blocMetrics,
     };
 
     countryKeys.forEach((key) => {
@@ -306,24 +375,45 @@ const formatCategoryLabel = (category: string) => {
     .replace(/\b\w/g, (char) => char.toUpperCase());
 };
 
+const formatFbicMetricLabel = (metric: string) =>
+  metric
+    .replace(/_/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+
 export const UNGAMap = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
   const [overallAlignment, setOverallAlignment] = useState<AlignmentMap>({});
   const [categoryAlignmentMaps, setCategoryAlignmentMaps] = useState<Record<string, AlignmentMap>>({});
+  const [fbicAlignmentMaps, setFbicAlignmentMaps] = useState<Record<string, AlignmentMap>>({});
   const [mapLoading, setMapLoading] = useState(true);
   const [mapError, setMapError] = useState<string | null>(null);
+  const [dataSource, setDataSource] = useState<'UNGA' | 'FBIC'>('UNGA');
   const [selectedCategory, setSelectedCategory] = useState('overall');
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
+  const [selectedFbicMetric, setSelectedFbicMetric] = useState('fbic');
+  const [availableFbicMetrics, setAvailableFbicMetrics] = useState<string[]>([...FBIC_DEFAULT_METRICS]);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [countrySeries, setCountrySeries] = useState<TimeSeriesMap>({});
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState<string | null>(null);
 
-  const alignmentMap =
-    selectedCategory === 'overall'
-      ? overallAlignment
-      : categoryAlignmentMaps[selectedCategory] ?? {};
+  const alignmentMap = useMemo(() => {
+    if (dataSource === 'UNGA') {
+      return selectedCategory === 'overall'
+        ? overallAlignment
+        : categoryAlignmentMaps[selectedCategory] ?? {};
+    }
+    return fbicAlignmentMaps[selectedFbicMetric] ?? {};
+  }, [dataSource, selectedCategory, overallAlignment, categoryAlignmentMaps, fbicAlignmentMaps, selectedFbicMetric]);
+
+  useEffect(() => {
+    setTooltip(null);
+    setSelectedCountry(null);
+    setCountrySeries({});
+  }, [dataSource]);
 
   const svgMarkup = useMemo(() => {
     // Ensure the injected SVG scales responsively
@@ -410,7 +500,11 @@ export const UNGAMap = () => {
         }
 
         const data = (await response.json()) as OverallDistanceResponse;
-        const nextMap = buildAlignmentMap(data.countries);
+        const nextMap = buildAlignmentMap(
+          data.countries,
+          (blocRow) => (blocRow as BlocDistance).average_distance ?? null,
+          { preferLower: true, treatEuMembersAsAligned: true }
+        );
 
         if (!controller.signal.aborted) {
           setOverallAlignment(nextMap);
@@ -443,34 +537,64 @@ export const UNGAMap = () => {
       setDetailError(null);
       try {
         const encoded = encodeURIComponent(selectedCountry);
-        const response = await fetch(`${UNGA_API_BASE}/unga-distances/${encoded}/timeseries`, {
+        const endpoint =
+          dataSource === 'UNGA'
+            ? `${UNGA_API_BASE}/unga-distances/${encoded}/timeseries`
+            : `${UNGA_API_BASE}/fbic/countries/${encoded}/timeseries`;
+        const response = await fetch(endpoint, {
           signal: controller.signal,
         });
 
         if (!response.ok) {
-          throw new Error(`UNGA tijdreeksen fout (${response.status})`);
+          throw new Error(
+            dataSource === 'UNGA'
+              ? `UNGA tijdreeksen fout (${response.status})`
+              : `FBIC tijdreeksen fout (${response.status})`
+          );
         }
 
-        const seriesData = (await response.json()) as UngaCountryTimeSeriesResponse;
         const nextSeries: TimeSeriesMap = {};
-        POWER_BLOCS.forEach((bloc) => {
-          const blocSeries = seriesData.blocs.find(
-            (entry) => toPowerBloc(entry.bloc) === bloc
-          );
-          if (blocSeries) {
-            const points = blocSeries.points.filter(
-              (point): point is BlocTimeSeriesEntry & { distance: number } =>
-                typeof point.distance === 'number'
+        if (dataSource === 'UNGA') {
+          const seriesData = (await response.json()) as UngaCountryTimeSeriesResponse;
+          POWER_BLOCS.forEach((bloc) => {
+            const blocSeries = seriesData.blocs.find(
+              (entry) => toPowerBloc(entry.bloc) === bloc
             );
-            if (points.length) {
-              const orderedPoints = [...points].sort((a, b) => a.year - b.year);
-              nextSeries[bloc] = orderedPoints.map((point) => ({
-                year: point.year,
-                distance: point.distance,
-              }));
+            if (blocSeries) {
+              const points = blocSeries.points.filter(
+                (point): point is BlocTimeSeriesEntry & { distance: number } =>
+                  typeof point.distance === 'number'
+              );
+              if (points.length) {
+                const orderedPoints = [...points].sort((a, b) => a.year - b.year);
+                nextSeries[bloc] = orderedPoints.map((point) => ({
+                  year: point.year,
+                  distance: point.distance,
+                }));
+              }
             }
-          }
-        });
+          });
+        } else {
+          const seriesData = (await response.json()) as FbicCountryTimeSeriesResponse;
+          POWER_BLOCS.forEach((bloc) => {
+            const blocSeries = seriesData.blocs.find(
+              (entry) => toPowerBloc(entry.bloc) === bloc
+            );
+            if (blocSeries) {
+              const points = blocSeries.points.filter(
+                (point): point is FbicTimeSeriesPoint & { fbic: number } =>
+                  typeof point.fbic === 'number'
+              );
+              if (points.length) {
+                const orderedPoints = [...points].sort((a, b) => a.year - b.year);
+                nextSeries[bloc] = orderedPoints.map((point) => ({
+                  year: point.year,
+                  distance: point.fbic,
+                }));
+              }
+            }
+          });
+        }
 
         if (!controller.signal.aborted) {
           setCountrySeries(nextSeries);
@@ -489,7 +613,7 @@ export const UNGAMap = () => {
 
     fetchDetails();
     return () => controller.abort();
-  }, [selectedCountry]);
+  }, [selectedCountry, dataSource]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -563,7 +687,64 @@ export const UNGAMap = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedCategory !== 'overall') {
+    if (dataSource !== 'FBIC') {
+      return;
+    }
+
+    const cached = fbicAlignmentMaps[selectedFbicMetric];
+    if (cached && Object.keys(cached).length) {
+      setMapLoading(false);
+      setMapError(null);
+      return;
+    }
+
+    const controller = new AbortController();
+    const fetchFbicMetric = async () => {
+      setMapLoading(true);
+      setMapError(null);
+      try {
+        const response = await fetch(`${UNGA_API_BASE}/fbic/metrics`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ metric: selectedFbicMetric }),
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`FBIC metriek fout (${response.status})`);
+        }
+
+        const data = (await response.json()) as FbicMetricResponse;
+        const nextMap = buildAlignmentMap(
+          data.countries,
+          (blocRow) => (blocRow as FbicMetricValue).value ?? null,
+          { preferLower: false }
+        );
+
+        if (!controller.signal.aborted) {
+          setFbicAlignmentMaps((prev) => ({ ...prev, [selectedFbicMetric]: nextMap }));
+          if (data.available_metrics?.length) {
+            setAvailableFbicMetrics(
+              [...data.available_metrics].sort((a, b) => a.localeCompare(b))
+            );
+          }
+          setMapLoading(false);
+        }
+      } catch (err) {
+        if (controller.signal.aborted) {
+          return;
+        }
+        setMapError(err instanceof Error ? err.message : 'Kon FBIC-gegevens niet laden.');
+        setMapLoading(false);
+      }
+    };
+
+    fetchFbicMetric();
+    return () => controller.abort();
+  }, [dataSource, selectedFbicMetric, fbicAlignmentMaps]);
+
+  useEffect(() => {
+    if (dataSource !== 'UNGA' || selectedCategory !== 'overall') {
       return;
     }
     const hasOverallData = Object.keys(overallAlignment).length > 0;
@@ -575,10 +756,10 @@ export const UNGAMap = () => {
     } else {
       setMapLoading(true);
     }
-  }, [selectedCategory, overallAlignment, mapError]);
+  }, [dataSource, selectedCategory, overallAlignment, mapError]);
 
   useEffect(() => {
-    if (selectedCategory === 'overall') {
+    if (dataSource !== 'UNGA' || selectedCategory === 'overall') {
       return;
     }
 
@@ -597,7 +778,7 @@ export const UNGAMap = () => {
         const response = await fetch(`${UNGA_API_BASE}/unga-distances/category-map`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ category: selectedCategory, countries: [] }),
+          body: JSON.stringify({ category: selectedCategory }),
           signal: controller.signal,
         });
 
@@ -606,7 +787,11 @@ export const UNGAMap = () => {
         }
 
         const data = (await response.json()) as UngaCategoryMapResponse;
-        const nextMap = buildAlignmentMap(data.countries);
+        const nextMap = buildAlignmentMap(
+          data.countries,
+          (blocRow) => (blocRow as BlocDistance).average_distance ?? null,
+          { preferLower: true, treatEuMembersAsAligned: true }
+        );
 
         if (!controller.signal.aborted) {
           setCategoryAlignmentMaps((prev) => ({ ...prev, [selectedCategory]: nextMap }));
@@ -636,11 +821,22 @@ export const UNGAMap = () => {
 
     fetchCategoryMap();
     return () => controller.abort();
-  }, [selectedCategory, categoryAlignmentMaps]);
+  }, [dataSource, selectedCategory, categoryAlignmentMaps]);
 
   const selectedCountryName = selectedCountry
     ? getCountryDisplayName(selectedCountry, selectedCountry)
     : null;
+  const selectedAlignment = selectedCountry ? alignmentMap[selectedCountry] : null;
+  const currentMetricLabel =
+    dataSource === 'UNGA'
+      ? selectedCategory === 'overall'
+        ? 'Afstand (overall)'
+        : `Afstand (${formatCategoryLabel(selectedCategory)})`
+      : formatFbicMetricLabel(selectedFbicMetric);
+  const descriptionText =
+    dataSource === 'UNGA'
+      ? 'Elke kleur toont het machtsblok (EU, VS, China of Rusland) waar een land het dichtst bij stemt tijdens de Algemene Vergadering. Hoe voller de kleur, hoe sterker de uitlijning.'
+      : 'Elke kleur toont per FBIC-metriek welk machtsblok het zwaarst doorwerkt bij een land. Hoe voller de kleur, hoe sterker de band.';
 
   const lineChartDataset = useMemo<LineChartRow[]>(() => {
     const yearSet = new Set<number>();
@@ -701,13 +897,24 @@ export const UNGAMap = () => {
           />
           <YAxis
             tick={{ fontSize: 11 }}
-            width={32}
+            width={36}
             domain={[0, 'auto']}
-            tickFormatter={(value) => (typeof value === 'number' ? value.toFixed(1) : value)}
+            tickFormatter={(value) =>
+              typeof value === 'number' ? formatMetricValue(value, dataSource) : value
+            }
+            label={{
+              value: currentMetricLabel,
+              angle: -90,
+              position: 'insideLeft',
+              offset: 10,
+              style: { fill: '#475569', fontSize: 10 },
+            }}
           />
           <RechartsTooltip
             formatter={(value) =>
-              typeof value === 'number' ? value.toFixed(2) : 'n.v.t.'
+              typeof value === 'number'
+                ? formatMetricValue(value, dataSource)
+                : 'n.v.t.'
             }
             labelFormatter={(value) => `Jaar ${value}`}
           />
@@ -754,10 +961,7 @@ export const UNGAMap = () => {
         <h3 className="text-xl font-semibold text-[rgb(0,153,168)]">
           Algemene Vergadering (UNGA)
         </h3>
-        <p className="text-sm text-gray-600">
-          Elke kleur toont het machtsblok (EU, VS, China of Rusland) waar een land het dichtst bij
-          stemt tijdens de Algemene Vergadering. Hoe voller de kleur, hoe sterker de uitlijning.
-        </p>
+        <p className="text-sm text-gray-600">{descriptionText}</p>
       </div>
 
       <div className="flex flex-col gap-3 pb-4 text-sm text-gray-600 lg:flex-row lg:items-center lg:justify-between">
@@ -772,24 +976,64 @@ export const UNGAMap = () => {
             </div>
           ))}
         </div>
-        <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500">
-          <span>Klik op een land voor de exacte afstanden</span>
-          <div className="flex items-center gap-2 text-sm text-slate-600">
-            <label htmlFor="unga-category" className="text-xs uppercase tracking-wide text-slate-500">
-              Categorie
+        <div className="flex flex-col gap-2 text-xs text-gray-500 sm:flex-row sm:items-center sm:gap-4">
+          <span>Klik op een land voor de exacte waarden</span>
+          <div className="flex flex-wrap items-center gap-2 text-sm text-slate-600">
+            <label htmlFor="unga-source" className="text-xs uppercase tracking-wide text-slate-500">
+              Bron
             </label>
             <select
-              id="unga-category"
-              value={selectedCategory}
-              onChange={(event) => setSelectedCategory(event.target.value)}
+              id="unga-source"
+              value={dataSource}
+              onChange={(event) => setDataSource(event.target.value as 'UNGA' | 'FBIC')}
               className="rounded-md border border-slate-200 bg-white px-2 py-1 text-sm text-slate-700 shadow-sm focus:border-slate-400 focus:outline-none"
             >
-              {categoryOptions.map((category) => (
-                <option key={category} value={category}>
-                  {formatCategoryLabel(category)}
-                </option>
-              ))}
+              <option value="UNGA">UNGA</option>
+              <option value="FBIC">FBIC</option>
             </select>
+            {dataSource === 'UNGA' ? (
+              <>
+                <label
+                  htmlFor="unga-category"
+                  className="text-xs uppercase tracking-wide text-slate-500"
+                >
+                  Categorie
+                </label>
+                <select
+                  id="unga-category"
+                  value={selectedCategory}
+                  onChange={(event) => setSelectedCategory(event.target.value)}
+                  className="rounded-md border border-slate-200 bg-white px-2 py-1 text-sm text-slate-700 shadow-sm focus:border-slate-400 focus:outline-none"
+                >
+                  {categoryOptions.map((category) => (
+                    <option key={category} value={category}>
+                      {formatCategoryLabel(category)}
+                    </option>
+                  ))}
+                </select>
+              </>
+            ) : (
+              <>
+                <label
+                  htmlFor="fbic-metric"
+                  className="text-xs uppercase tracking-wide text-slate-500"
+                >
+                  FBIC metriek
+                </label>
+                <select
+                  id="fbic-metric"
+                  value={selectedFbicMetric}
+                  onChange={(event) => setSelectedFbicMetric(event.target.value)}
+                  className="rounded-md border border-slate-200 bg-white px-2 py-1 text-sm text-slate-700 shadow-sm focus:border-slate-400 focus:outline-none"
+                >
+                  {availableFbicMetrics.map((metric) => (
+                    <option key={metric} value={metric}>
+                      {formatFbicMetricLabel(metric)}
+                    </option>
+                  ))}
+                </select>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -837,19 +1081,22 @@ export const UNGAMap = () => {
                           ),
                         }}
                       />
-                      <span>
-                        Dichtst bij {POWER_BLOC_LABELS[tooltip.alignment.bloc]} (
-                        {formatDistance(tooltip.alignment.distance)})
-                      </span>
-                    </div>
-                    <div className="mt-1 space-y-0.5 text-[11px] text-gray-500">
-                      {POWER_BLOCS.map((bloc) => (
-                        <div key={bloc} className="flex items-center justify-between gap-6">
-                          <span>{POWER_BLOC_LABELS[bloc]}</span>
-                          <span>{formatDistance(tooltip.alignment.distances[bloc])}</span>
-                        </div>
-                      ))}
-                    </div>
+                    <span>
+                      {dataSource === 'UNGA' ? 'Dichtst bij' : 'Sterkste band met'}{' '}
+                      {POWER_BLOC_LABELS[tooltip.alignment.bloc]} (
+                      {formatMetricValue(tooltip.alignment.value, dataSource)})
+                    </span>
+                  </div>
+                  <div className="mt-1 space-y-0.5 text-[11px] text-gray-500">
+                    {POWER_BLOCS.map((bloc) => (
+                      <div key={bloc} className="flex items-center justify-between gap-6">
+                        <span>{POWER_BLOC_LABELS[bloc]}</span>
+                        <span>
+                          {formatMetricValue(tooltip.alignment.metrics[bloc], dataSource)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                   </>
                 ) : (
                   <div className="mt-0.5 text-xs text-gray-500">Geen data beschikbaar</div>
@@ -859,16 +1106,37 @@ export const UNGAMap = () => {
           </div>
         </div>
         <div className="w-full lg:w-[420px] flex flex-col gap-4">
-          <div className="rounded-xl border bg-white shadow-sm p-4 min-h-[120px]">
+          <div className="rounded-xl border bg-white shadow-sm p-4 min-h-[140px]">
             {selectedCountryName ? (
-              <div className="text-lg font-semibold text-slate-900">{selectedCountryName}</div>
+              <>
+                <div className="text-lg font-semibold text-slate-900">{selectedCountryName}</div>
+                <div className="text-xs uppercase tracking-wide text-slate-400">
+                  {currentMetricLabel}
+                </div>
+                {selectedAlignment ? (
+                  <div className="mt-3 space-y-1 text-xs text-slate-600">
+                    {POWER_BLOCS.map((bloc) => (
+                      <div key={bloc} className="flex items-center justify-between">
+                        <span>{POWER_BLOC_LABELS[bloc]}</span>
+                        <span>
+                          {formatMetricValue(selectedAlignment.metrics[bloc], dataSource)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="mt-2 text-sm text-slate-500">
+                    Geen kaartgegevens beschikbaar.
+                  </div>
+                )}
+              </>
             ) : (
               <div className="text-sm text-slate-500">Klik op een land om details te bekijken.</div>
             )}
           </div>
           <div className="rounded-xl border bg-white shadow-sm p-4 h-[320px]">
             <div className="flex items-center justify-between pb-2">
-              <h4 className="text-sm font-semibold text-slate-700">Afstand door de tijd</h4>
+              <h4 className="text-sm font-semibold text-slate-700">{currentMetricLabel} door de tijd</h4>
               {selectedCountry && detailLoading && (
                 <span className="text-xs text-slate-400">Laden...</span>
               )}
