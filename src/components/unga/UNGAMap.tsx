@@ -118,12 +118,23 @@ type TimeSeriesMap = Partial<Record<PowerBloc, BlocTimePoint[]>>;
 
 type LineChartRow = { year: string } & Partial<Record<PowerBloc, number | null>>;
 
-type TooltipState = {
+type TooltipAlignmentState = {
+  type: 'alignment';
   name: string;
   alignment: CountryAlignment | null;
   x: number;
   y: number;
 };
+
+type TooltipCriticalGoodsState = {
+  type: 'criticalGoods';
+  name: string;
+  count: number | null;
+  x: number;
+  y: number;
+};
+
+type TooltipState = TooltipAlignmentState | TooltipCriticalGoodsState;
 
 type BlocTimeSeriesEntry = {
   year: number;
@@ -133,6 +144,10 @@ type BlocTimeSeriesEntry = {
 type UngaCountryTimeSeriesResponse = {
   country: string;
   blocs: { bloc: string; points: BlocTimeSeriesEntry[] }[];
+};
+
+type UngaCountryCategoryTimeSeriesResponse = UngaCountryTimeSeriesResponse & {
+  category: string;
 };
 
 type CategoryDistanceApiEntry = {
@@ -180,6 +195,36 @@ type FbicTimeSeriesPoint = {
 type FbicCountryTimeSeriesResponse = {
   country: string;
   blocs: { bloc: string; points: FbicTimeSeriesPoint[] }[];
+};
+
+type CriticalGoodItem = {
+  hs22_code: string;
+  hs22_description: string;
+  subsectors: string[];
+  cdi1: number | null;
+  cdi2: number | null;
+  cdi3: number | null;
+  exporter_share_extra: number | null;
+  share_fraction: number | null;
+};
+
+type CriticalGoodsResponse = {
+  country: string;
+  total_goods: number;
+  limit: number;
+  goods: CriticalGoodItem[];
+};
+
+type CriticalGoodsThresholdEntry = {
+  country: string;
+  total_goods_above_threshold: number;
+  subsector_counts: Record<string, number>;
+};
+
+type CriticalGoodsThresholdResponse = {
+  threshold: number;
+  total_countries: number;
+  countries: CriticalGoodsThresholdEntry[];
 };
 
 const UNGA_API_BASE =
@@ -288,12 +333,15 @@ const getFillColor = (alignment?: CountryAlignment) => {
 
 const formatMetricValue = (
   value: number | null | undefined,
-  source: 'UNGA' | 'FBIC'
+  source: 'UNGA' | 'FBIC' | 'CRITICAL_GOODS'
 ) => {
   if (typeof value !== 'number') {
     return 'n.v.t.';
   }
-  return source === 'UNGA' ? value.toFixed(2) : value.toFixed(3);
+  if (source === 'FBIC') {
+    return value.toFixed(3);
+  }
+  return value.toFixed(2);
 };
 
 type AlignmentBuildOptions = {
@@ -382,6 +430,43 @@ const formatFbicMetricLabel = (metric: string) =>
     .trim()
     .replace(/\b\w/g, (char) => char.toUpperCase());
 
+const integerFormatter = new Intl.NumberFormat('nl-NL');
+
+const formatCountValue = (value: number | null | undefined) => {
+  if (typeof value !== 'number' || Number.isNaN(value)) {
+    return 'n.v.t.';
+  }
+  return integerFormatter.format(value);
+};
+
+const formatShareFraction = (value: number | null | undefined) => {
+  if (typeof value !== 'number' || Number.isNaN(value)) {
+    return 'n.v.t.';
+  }
+  return `${(value * 100).toFixed(1)}%`;
+};
+
+const formatSubsectorList = (subsectors?: string[] | null) => {
+  if (!Array.isArray(subsectors) || !subsectors.length) {
+    return 'Geen subsector-informatie';
+  }
+  return subsectors.join(', ');
+};
+
+const CRITICAL_GOODS_BASE_COLOR = '#b45309';
+const CRITICAL_GOODS_MIN_THRESHOLD = 0.05;
+const CRITICAL_GOODS_MAX_THRESHOLD = 1;
+
+const getCriticalGoodsFill = (count: number | null | undefined, maxCount: number) => {
+  if (typeof count !== 'number' || count <= 0 || maxCount <= 0) {
+    return '#e2e8f0';
+  }
+  const intensity = Math.min(1, Math.max(0, count / maxCount));
+  return blendWithWhite(CRITICAL_GOODS_BASE_COLOR, intensity);
+};
+
+type MapDataSource = 'UNGA' | 'FBIC' | 'CRITICAL_GOODS';
+
 export const UNGAMap = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
@@ -390,7 +475,7 @@ export const UNGAMap = () => {
   const [fbicAlignmentMaps, setFbicAlignmentMaps] = useState<Record<string, AlignmentMap>>({});
   const [mapLoading, setMapLoading] = useState(true);
   const [mapError, setMapError] = useState<string | null>(null);
-  const [dataSource, setDataSource] = useState<'UNGA' | 'FBIC'>('UNGA');
+  const [dataSource, setDataSource] = useState<MapDataSource>('UNGA');
   const [selectedCategory, setSelectedCategory] = useState('overall');
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [selectedFbicMetric, setSelectedFbicMetric] = useState('fbic');
@@ -399,6 +484,11 @@ export const UNGAMap = () => {
   const [countrySeries, setCountrySeries] = useState<TimeSeriesMap>({});
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState<string | null>(null);
+  const [criticalGoodsSummary, setCriticalGoodsSummary] = useState<
+    Record<string, { count: number; subsectors: Record<string, number> }>
+  >({});
+  const [criticalGoodsThreshold, setCriticalGoodsThreshold] = useState(0.25);
+  const [criticalGoodsDetails, setCriticalGoodsDetails] = useState<Record<string, CriticalGoodsResponse>>({});
 
   const alignmentMap = useMemo(() => {
     if (dataSource === 'UNGA') {
@@ -406,8 +496,18 @@ export const UNGAMap = () => {
         ? overallAlignment
         : categoryAlignmentMaps[selectedCategory] ?? {};
     }
-    return fbicAlignmentMaps[selectedFbicMetric] ?? {};
+    if (dataSource === 'FBIC') {
+      return fbicAlignmentMaps[selectedFbicMetric] ?? {};
+    }
+    return {};
   }, [dataSource, selectedCategory, overallAlignment, categoryAlignmentMaps, fbicAlignmentMaps, selectedFbicMetric]);
+
+  const criticalGoodsMaxCount = useMemo(() => {
+    return Object.values(criticalGoodsSummary).reduce((max, entry) => {
+      const value = typeof entry?.count === 'number' ? entry.count : 0;
+      return value > max ? value : max;
+    }, 0);
+  }, [criticalGoodsSummary]);
 
   useEffect(() => {
     setTooltip(null);
@@ -459,12 +559,25 @@ export const UNGAMap = () => {
         return;
       }
 
-      setTooltip({
-        name: getCountryDisplayName(key, formatCountryName(countryId)),
-        alignment: alignmentMap[key] ?? null,
-        x: mouseEvent.clientX - bounds.left,
-        y: mouseEvent.clientY - bounds.top,
-      });
+      const displayName = getCountryDisplayName(key, formatCountryName(countryId));
+      if (dataSource === 'CRITICAL_GOODS') {
+        const summary = criticalGoodsSummary[key];
+        setTooltip({
+          type: 'criticalGoods',
+          name: displayName,
+          count: summary?.count ?? null,
+          x: mouseEvent.clientX - bounds.left,
+          y: mouseEvent.clientY - bounds.top,
+        });
+      } else {
+        setTooltip({
+          type: 'alignment',
+          name: displayName,
+          alignment: alignmentMap[key] ?? null,
+          x: mouseEvent.clientX - bounds.left,
+          y: mouseEvent.clientY - bounds.top,
+        });
+      }
       setSelectedCountry(key);
     };
 
@@ -480,7 +593,7 @@ export const UNGAMap = () => {
       svgElement.removeEventListener('click', handleClick);
       container.removeEventListener('click', handleContainerClick);
     };
-  }, [alignmentMap]);
+  }, [alignmentMap, dataSource, criticalGoodsSummary]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -523,10 +636,65 @@ export const UNGAMap = () => {
   }, []);
 
   useEffect(() => {
+    if (dataSource !== 'CRITICAL_GOODS') {
+      return;
+    }
+
+    const controller = new AbortController();
+    const fetchCriticalGoodsSummary = async () => {
+      setMapLoading(true);
+      setMapError(null);
+      try {
+        const params = new URLSearchParams({ threshold: criticalGoodsThreshold.toString() });
+        const response = await fetch(
+          `${UNGA_API_BASE}/critical-goods/threshold-summary?${params.toString()}`,
+          { signal: controller.signal }
+        );
+        if (!response.ok) {
+          throw new Error(`Critical goods samenvatting fout (${response.status})`);
+        }
+        const data = (await response.json()) as CriticalGoodsThresholdResponse;
+        const nextSummary: Record<string, { count: number; subsectors: Record<string, number> }> = {};
+        data.countries.forEach((entry) => {
+          const keys = deriveCountryKeys(entry.country);
+          keys.forEach((key) => {
+            nextSummary[key] = {
+              count: entry.total_goods_above_threshold,
+              subsectors: entry.subsector_counts ?? {},
+            };
+          });
+        });
+        if (!controller.signal.aborted) {
+          setCriticalGoodsSummary(nextSummary);
+          setMapLoading(false);
+        }
+      } catch (err) {
+        if (controller.signal.aborted) {
+          return;
+        }
+        setMapError(
+          err instanceof Error ? err.message : 'Kon kritieke-goederenkaart niet laden.'
+        );
+        setMapLoading(false);
+      }
+    };
+
+    fetchCriticalGoodsSummary();
+    return () => controller.abort();
+  }, [dataSource, criticalGoodsThreshold]);
+
+  useEffect(() => {
     if (!selectedCountry) {
       setCountrySeries({});
       setDetailError(null);
       setDetailLoading(false);
+      return;
+    }
+
+    if (dataSource === 'CRITICAL_GOODS') {
+      setCountrySeries({});
+      setDetailLoading(false);
+      setDetailError(null);
       return;
     }
 
@@ -536,11 +704,17 @@ export const UNGAMap = () => {
       setDetailLoading(true);
       setDetailError(null);
       try {
-        const encoded = encodeURIComponent(selectedCountry);
+        const encodedCountry = encodeURIComponent(selectedCountry);
+        const isCategoryView = dataSource === 'UNGA' && selectedCategory !== 'overall';
+        const encodedCategory = isCategoryView
+          ? encodeURIComponent(selectedCategory)
+          : null;
         const endpoint =
           dataSource === 'UNGA'
-            ? `${UNGA_API_BASE}/unga-distances/${encoded}/timeseries`
-            : `${UNGA_API_BASE}/fbic/countries/${encoded}/timeseries`;
+            ? isCategoryView && encodedCategory
+              ? `${UNGA_API_BASE}/unga-distances/${encodedCountry}/categories/${encodedCategory}/timeseries`
+              : `${UNGA_API_BASE}/unga-distances/${encodedCountry}/timeseries`
+            : `${UNGA_API_BASE}/fbic/countries/${encodedCountry}/timeseries`;
         const response = await fetch(endpoint, {
           signal: controller.signal,
         });
@@ -555,7 +729,9 @@ export const UNGAMap = () => {
 
         const nextSeries: TimeSeriesMap = {};
         if (dataSource === 'UNGA') {
-          const seriesData = (await response.json()) as UngaCountryTimeSeriesResponse;
+          const seriesData = (await response.json()) as
+            | UngaCountryTimeSeriesResponse
+            | UngaCountryCategoryTimeSeriesResponse;
           POWER_BLOCS.forEach((bloc) => {
             const blocSeries = seriesData.blocs.find(
               (entry) => toPowerBloc(entry.bloc) === bloc
@@ -613,7 +789,59 @@ export const UNGAMap = () => {
 
     fetchDetails();
     return () => controller.abort();
-  }, [selectedCountry, dataSource]);
+  }, [selectedCountry, dataSource, selectedCategory]);
+
+  useEffect(() => {
+    if (dataSource !== 'CRITICAL_GOODS') {
+      return;
+    }
+    if (!selectedCountry) {
+      setDetailLoading(false);
+      setDetailError(null);
+      return;
+    }
+
+    const cached = criticalGoodsDetails[selectedCountry];
+    if (cached) {
+      setDetailLoading(false);
+      setDetailError(null);
+      return;
+    }
+
+    const controller = new AbortController();
+    const fetchCriticalGoodsDetails = async () => {
+      setDetailLoading(true);
+      setDetailError(null);
+      try {
+        const encoded = encodeURIComponent(selectedCountry);
+        const response = await fetch(
+          `${UNGA_API_BASE}/critical-goods/countries/${encoded}?limit=10`,
+          { signal: controller.signal }
+        );
+        if (!response.ok) {
+          throw new Error(`Critical goods landenfout (${response.status})`);
+        }
+        const data = (await response.json()) as CriticalGoodsResponse;
+        if (!controller.signal.aborted) {
+          setCriticalGoodsDetails((prev) => ({ ...prev, [selectedCountry]: data }));
+        }
+      } catch (err) {
+        if (controller.signal.aborted) {
+          return;
+        }
+        setDetailError(
+          err instanceof Error ? err.message : 'Kon kritieke goederen niet laden.'
+        );
+      } finally {
+        if (!controller.signal.aborted) {
+          setDetailLoading(false);
+        }
+      }
+    };
+
+    fetchCriticalGoodsDetails();
+    return () => controller.abort();
+  }, [dataSource, selectedCountry, criticalGoodsDetails]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -633,7 +861,11 @@ export const UNGAMap = () => {
       }
       path.style.pointerEvents = 'auto';
       const alignment = alignmentMap[key];
-      const fill = getFillColor(alignment);
+      const summary = criticalGoodsSummary[key];
+      const fill =
+        dataSource === 'CRITICAL_GOODS'
+          ? getCriticalGoodsFill(summary?.count ?? null, criticalGoodsMaxCount)
+          : getFillColor(alignment);
       path.style.fill = fill;
 
       if (selectedCountry) {
@@ -651,7 +883,7 @@ export const UNGAMap = () => {
         path.style.filter = 'none';
       }
     });
-  }, [alignmentMap, selectedCountry]);
+  }, [alignmentMap, selectedCountry, dataSource, criticalGoodsSummary, criticalGoodsMaxCount]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -827,16 +1059,33 @@ export const UNGAMap = () => {
     ? getCountryDisplayName(selectedCountry, selectedCountry)
     : null;
   const selectedAlignment = selectedCountry ? alignmentMap[selectedCountry] : null;
-  const currentMetricLabel =
-    dataSource === 'UNGA'
-      ? selectedCategory === 'overall'
+  const selectedCriticalGoodsSummary = selectedCountry
+    ? criticalGoodsSummary[selectedCountry] ?? null
+    : null;
+  const selectedCriticalGoodsDetail = selectedCountry
+    ? criticalGoodsDetails[selectedCountry] ?? null
+    : null;
+  const currentMetricLabel = useMemo(() => {
+    if (dataSource === 'UNGA') {
+      return selectedCategory === 'overall'
         ? 'Afstand (overall)'
-        : `Afstand (${formatCategoryLabel(selectedCategory)})`
-      : formatFbicMetricLabel(selectedFbicMetric);
-  const descriptionText =
-    dataSource === 'UNGA'
-      ? 'Elke kleur toont het machtsblok (EU, VS, China of Rusland) waar een land het dichtst bij stemt tijdens de Algemene Vergadering. Hoe voller de kleur, hoe sterker de uitlijning.'
-      : 'Elke kleur toont per FBIC-metriek welk machtsblok het zwaarst doorwerkt bij een land. Hoe voller de kleur, hoe sterker de band.';
+        : `Afstand (${formatCategoryLabel(selectedCategory)})`;
+    }
+    if (dataSource === 'FBIC') {
+      return formatFbicMetricLabel(selectedFbicMetric);
+    }
+    return `Kritieke goederen (CDI1 ≥ ${criticalGoodsThreshold.toFixed(2)})`;
+  }, [dataSource, selectedCategory, selectedFbicMetric, criticalGoodsThreshold]);
+
+  const descriptionText = useMemo(() => {
+    if (dataSource === 'UNGA') {
+      return 'Elke kleur toont het machtsblok (EU, VS, China of Rusland) waar een land het dichtst bij stemt tijdens de Algemene Vergadering. Hoe voller de kleur, hoe sterker de uitlijning.';
+    }
+    if (dataSource === 'FBIC') {
+      return 'Elke kleur toont per FBIC-metriek welk machtsblok het zwaarst doorwerkt bij een land. Hoe voller de kleur, hoe sterker de band.';
+    }
+    return 'De kleurintensiteit laat zien hoeveel kritieke goederenexporteurs (boven de CDI1-drempel) een land telt. Klik voor de top 10 goederen op basis van CDI1.';
+  }, [dataSource]);
 
   const lineChartDataset = useMemo<LineChartRow[]>(() => {
     const yearSet = new Set<number>();
@@ -943,12 +1192,63 @@ export const UNGAMap = () => {
     );
   };
 
+  const renderCriticalGoodsList = () => {
+    if (!selectedCountry) {
+      return renderPlaceholder('Selecteer een land om de top 10 goederen te bekijken.');
+    }
+    if (detailError && !selectedCriticalGoodsDetail) {
+      return renderPlaceholder(detailError, 'error');
+    }
+    if (detailLoading && !selectedCriticalGoodsDetail) {
+      return renderPlaceholder('Laden...');
+    }
+    const goods = (selectedCriticalGoodsDetail?.goods ?? [])
+      .filter((item) => {
+        const share = item.share_fraction;
+        const cdi1 = item.cdi1;
+        return typeof share === 'number' && share > 0.25 && typeof cdi1 === 'number' && cdi1 > 0.25;
+      })
+      .sort((a, b) => (b.share_fraction ?? 0) - (a.share_fraction ?? 0))
+      .slice(0, 10);
+
+    if (!goods.length) {
+      return renderPlaceholder('Geen kritieke goederen boven de drempel.');
+    }
+
+    return (
+      <div className="max-h-[260px] overflow-auto divide-y divide-slate-100 text-sm">
+        {goods.map((item, index) => (
+          <div key={`${item.hs22_code}-${index}`} className="py-2 space-y-1">
+            <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] uppercase tracking-wide text-slate-500">
+              <span>{item.hs22_code}</span>
+              <span>Aandeel {formatShareFraction(item.share_fraction)}</span>
+            </div>
+            <div className="text-sm font-medium text-slate-800">{item.hs22_description}</div>
+            <div className="text-xs text-slate-500">{formatSubsectorList(item.subsectors)}</div>
+            <div className="text-xs text-slate-500">
+              CDI1 {typeof item.cdi1 === 'number' ? item.cdi1.toFixed(3) : 'n.v.t.'}
+              {typeof item.exporter_share_extra === 'number'
+                ? ` · Extra aandeel ${formatShareFraction(item.exporter_share_extra)}`
+                : ''}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
 
   const blocLegend = POWER_BLOCS.map((bloc) => ({
     bloc,
     label: POWER_BLOC_LABELS[bloc],
     color: blendWithWhite(POWER_BLOC_COLORS[bloc], 0.85),
   }));
+
+  const criticalGoodsLegend = [
+    { label: 'Laag', color: blendWithWhite(CRITICAL_GOODS_BASE_COLOR, 0.2) },
+    { label: 'Gemiddeld', color: blendWithWhite(CRITICAL_GOODS_BASE_COLOR, 0.55) },
+    { label: 'Hoog', color: blendWithWhite(CRITICAL_GOODS_BASE_COLOR, 0.9) },
+  ];
 
   const categoryOptions = useMemo(
     () => ['overall', ...availableCategories],
@@ -965,16 +1265,26 @@ export const UNGAMap = () => {
       </div>
 
       <div className="flex flex-col gap-3 pb-4 text-sm text-gray-600 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-wrap gap-4">
-          {blocLegend.map((entry) => (
-            <div key={entry.bloc} className="flex items-center gap-2">
-              <span
-                className="inline-block h-3 w-6 rounded"
-                style={{ backgroundColor: entry.color }}
-              />
-              <span>{entry.label}</span>
-            </div>
-          ))}
+      <div className="flex flex-wrap gap-4">
+          {dataSource === 'CRITICAL_GOODS'
+            ? criticalGoodsLegend.map((entry) => (
+                <div key={entry.label} className="flex items-center gap-2">
+                  <span
+                    className="inline-block h-3 w-6 rounded"
+                    style={{ backgroundColor: entry.color }}
+                  />
+                  <span>{entry.label}</span>
+                </div>
+              ))
+            : blocLegend.map((entry) => (
+                <div key={entry.bloc} className="flex items-center gap-2">
+                  <span
+                    className="inline-block h-3 w-6 rounded"
+                    style={{ backgroundColor: entry.color }}
+                  />
+                  <span>{entry.label}</span>
+                </div>
+              ))}
         </div>
         <div className="flex flex-col gap-2 text-xs text-gray-500 sm:flex-row sm:items-center sm:gap-4">
           <span>Klik op een land voor de exacte waarden</span>
@@ -985,11 +1295,12 @@ export const UNGAMap = () => {
             <select
               id="unga-source"
               value={dataSource}
-              onChange={(event) => setDataSource(event.target.value as 'UNGA' | 'FBIC')}
+              onChange={(event) => setDataSource(event.target.value as MapDataSource)}
               className="rounded-md border border-slate-200 bg-white px-2 py-1 text-sm text-slate-700 shadow-sm focus:border-slate-400 focus:outline-none"
             >
               <option value="UNGA">UNGA</option>
               <option value="FBIC">FBIC</option>
+              <option value="CRITICAL_GOODS">Kritieke goederen</option>
             </select>
             {dataSource === 'UNGA' ? (
               <>
@@ -1012,7 +1323,7 @@ export const UNGAMap = () => {
                   ))}
                 </select>
               </>
-            ) : (
+            ) : dataSource === 'FBIC' ? (
               <>
                 <label
                   htmlFor="fbic-metric"
@@ -1032,6 +1343,35 @@ export const UNGAMap = () => {
                     </option>
                   ))}
                 </select>
+              </>
+            ) : (
+              <>
+                <label
+                  htmlFor="critical-threshold"
+                  className="text-xs uppercase tracking-wide text-slate-500"
+                >
+                  CDI1-drempel
+                </label>
+                <input
+                  id="critical-threshold"
+                  type="number"
+                  min={CRITICAL_GOODS_MIN_THRESHOLD}
+                  max={CRITICAL_GOODS_MAX_THRESHOLD}
+                  step={0.05}
+                  value={criticalGoodsThreshold}
+                  onChange={(event) => {
+                    const parsed = parseFloat(event.target.value);
+                    if (Number.isNaN(parsed)) {
+                      return;
+                    }
+                    const clamped = Math.min(
+                      CRITICAL_GOODS_MAX_THRESHOLD,
+                      Math.max(CRITICAL_GOODS_MIN_THRESHOLD, parsed)
+                    );
+                    setCriticalGoodsThreshold(Number(clamped.toFixed(2)));
+                  }}
+                  className="w-20 rounded-md border border-slate-200 bg-white px-2 py-1 text-sm text-slate-700 shadow-sm focus:border-slate-400 focus:outline-none"
+                />
               </>
             )}
           </div>
@@ -1069,38 +1409,55 @@ export const UNGAMap = () => {
                 style={{ left: tooltip.x, top: tooltip.y }}
               >
                 <div className="font-semibold">{tooltip.name}</div>
-                {tooltip.alignment ? (
-                  <>
-                    <div className="mt-0.5 flex items-center gap-2 text-xs text-gray-600">
-                      <span
-                        className="inline-flex h-2.5 w-2.5 rounded-full"
-                        style={{
-                          backgroundColor: blendWithWhite(
-                            POWER_BLOC_COLORS[tooltip.alignment.bloc],
-                            Math.max(tooltip.alignment.strength, 0.6)
-                          ),
-                        }}
-                      />
-                    <span>
-                      {dataSource === 'UNGA' ? 'Dichtst bij' : 'Sterkste band met'}{' '}
-                      {POWER_BLOC_LABELS[tooltip.alignment.bloc]} (
-                      {formatMetricValue(tooltip.alignment.value, dataSource)})
-                    </span>
-                  </div>
-                  <div className="mt-1 space-y-0.5 text-[11px] text-gray-500">
-                    {POWER_BLOCS.map((bloc) => (
-                      <div key={bloc} className="flex items-center justify-between gap-6">
-                        <span>{POWER_BLOC_LABELS[bloc]}</span>
-                        <span>
-                          {formatMetricValue(tooltip.alignment.metrics[bloc], dataSource)}
-                        </span>
+                {tooltip.type === 'alignment'
+                  ? (() => {
+                      const alignmentData = tooltip.alignment;
+                      if (!alignmentData) {
+                        return (
+                          <div className="mt-0.5 text-xs text-gray-500">Geen data beschikbaar</div>
+                        );
+                      }
+                      return (
+                        <>
+                          <div className="mt-0.5 flex items-center gap-2 text-xs text-gray-600">
+                            <span
+                              className="inline-flex h-2.5 w-2.5 rounded-full"
+                              style={{
+                                backgroundColor: blendWithWhite(
+                                  POWER_BLOC_COLORS[alignmentData.bloc],
+                                  Math.max(alignmentData.strength, 0.6)
+                                ),
+                              }}
+                            />
+                            <span>
+                              {dataSource === 'UNGA' ? 'Dichtst bij' : 'Sterkste band met'}{' '}
+                              {POWER_BLOC_LABELS[alignmentData.bloc]} (
+                              {formatMetricValue(alignmentData.value, dataSource)})
+                            </span>
+                          </div>
+                          <div className="mt-1 space-y-0.5 text-[11px] text-gray-500">
+                            {POWER_BLOCS.map((bloc) => (
+                              <div key={bloc} className="flex items-center justify-between gap-6">
+                                <span>{POWER_BLOC_LABELS[bloc]}</span>
+                                <span>
+                                  {formatMetricValue(alignmentData.metrics[bloc], dataSource)}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </>
+                      );
+                    })()
+                  : (
+                      <div className="mt-0.5 text-xs text-gray-600">
+                        {typeof tooltip.count === 'number'
+                          ? `${formatCountValue(tooltip.count)} kritieke goederen`
+                          : 'Geen data beschikbaar'}
+                        <div className="text-[11px] text-gray-400">
+                          CDI1-drempel {criticalGoodsThreshold.toFixed(2)}
+                        </div>
                       </div>
-                    ))}
-                  </div>
-                  </>
-                ) : (
-                  <div className="mt-0.5 text-xs text-gray-500">Geen data beschikbaar</div>
-                )}
+                    )}
               </div>
             )}
           </div>
@@ -1108,41 +1465,92 @@ export const UNGAMap = () => {
         <div className="w-full lg:w-[420px] flex flex-col gap-4">
           <div className="rounded-xl border bg-white shadow-sm p-4 min-h-[140px]">
             {selectedCountryName ? (
-              <>
-                <div className="text-lg font-semibold text-slate-900">{selectedCountryName}</div>
-                <div className="text-xs uppercase tracking-wide text-slate-400">
-                  {currentMetricLabel}
-                </div>
-                {selectedAlignment ? (
-                  <div className="mt-3 space-y-1 text-xs text-slate-600">
-                    {POWER_BLOCS.map((bloc) => (
-                      <div key={bloc} className="flex items-center justify-between">
-                        <span>{POWER_BLOC_LABELS[bloc]}</span>
-                        <span>
-                          {formatMetricValue(selectedAlignment.metrics[bloc], dataSource)}
-                        </span>
+              dataSource === 'CRITICAL_GOODS' ? (
+                <>
+                  <div className="text-lg font-semibold text-slate-900">{selectedCountryName}</div>
+                  <div className="text-xs uppercase tracking-wide text-slate-400">
+                    {currentMetricLabel}
+                  </div>
+                  {selectedCriticalGoodsSummary ? (
+                    <>
+                      <div className="mt-3 text-3xl font-bold text-amber-700">
+                        {formatCountValue(selectedCriticalGoodsSummary.count)}
                       </div>
-                    ))}
+                      <div className="text-xs text-slate-500">
+                        Exporteurs (Herfindahl-indicator boven de drempel)
+                      </div>
+                      {Object.keys(selectedCriticalGoodsSummary.subsectors || {}).length ? (
+                        <div className="mt-3 space-y-1 text-xs text-slate-600">
+                          {Object.entries(selectedCriticalGoodsSummary.subsectors)
+                            .sort((a, b) => b[1] - a[1])
+                            .map(([subsector, value]) => (
+                              <div key={subsector} className="flex items-center justify-between">
+                                <span>{subsector}</span>
+                                <span>{formatCountValue(value)}</span>
+                              </div>
+                            ))}
+                        </div>
+                      ) : (
+                        <div className="mt-2 text-xs text-slate-500">
+                          Geen subsector-uitsplitsing.
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="mt-2 text-sm text-slate-500">
+                      Geen kaartgegevens beschikbaar.
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <div className="text-lg font-semibold text-slate-900">{selectedCountryName}</div>
+                  <div className="text-xs uppercase tracking-wide text-slate-400">
+                    {currentMetricLabel}
                   </div>
-                ) : (
-                  <div className="mt-2 text-sm text-slate-500">
-                    Geen kaartgegevens beschikbaar.
-                  </div>
-                )}
-              </>
+                  {selectedAlignment ? (
+                    <div className="mt-3 space-y-1 text-xs text-slate-600">
+                      {POWER_BLOCS.map((bloc) => (
+                        <div key={bloc} className="flex items-center justify-between">
+                          <span>{POWER_BLOC_LABELS[bloc]}</span>
+                          <span>
+                            {formatMetricValue(selectedAlignment.metrics[bloc], dataSource)}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="mt-2 text-sm text-slate-500">
+                      Geen kaartgegevens beschikbaar.
+                    </div>
+                  )}
+                </>
+              )
             ) : (
               <div className="text-sm text-slate-500">Klik op een land om details te bekijken.</div>
             )}
           </div>
-          <div className="rounded-xl border bg-white shadow-sm p-4 h-[320px]">
-            <div className="flex items-center justify-between pb-2">
-              <h4 className="text-sm font-semibold text-slate-700">{currentMetricLabel} door de tijd</h4>
-              {selectedCountry && detailLoading && (
-                <span className="text-xs text-slate-400">Laden...</span>
-              )}
+          {dataSource === 'CRITICAL_GOODS' ? (
+            <div className="rounded-xl border bg-white shadow-sm p-4 h-[320px]">
+              <div className="flex items-center justify-between pb-2">
+                <h4 className="text-sm font-semibold text-slate-700">Top 10 CDI1-goederen</h4>
+                {selectedCountry && detailLoading && (
+                  <span className="text-xs text-slate-400">Laden...</span>
+                )}
+              </div>
+              <div className="h-[260px]">{renderCriticalGoodsList()}</div>
             </div>
-            <div className="h-[260px]">{renderLineChart()}</div>
-          </div>
+          ) : (
+            <div className="rounded-xl border bg-white shadow-sm p-4 h-[320px]">
+              <div className="flex items-center justify-between pb-2">
+                <h4 className="text-sm font-semibold text-slate-700">{currentMetricLabel} door de tijd</h4>
+                {selectedCountry && detailLoading && (
+                  <span className="text-xs text-slate-400">Laden...</span>
+                )}
+              </div>
+              <div className="h-[260px]">{renderLineChart()}</div>
+            </div>
+          )}
           {detailError && selectedCountry && (
             <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-700">
               {detailError}
