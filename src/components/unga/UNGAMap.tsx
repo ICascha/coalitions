@@ -9,11 +9,20 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Slider } from '@/components/ui/slider';
 import worldMapSvg from '@/../public/world_map_low_re.svg?raw';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { svgNameToAlpha3 } from '@/data/svgCountryAlpha3';
 import { alpha3ToCountryName } from '@/data/alpha3ToCountryName';
+// import { StoryMode } from './StoryMode';
 
 const POWER_BLOCS = ['EU', 'USA', 'CHINA', 'RUSSIA'] as const;
 type PowerBloc = (typeof POWER_BLOCS)[number];
@@ -350,8 +359,8 @@ type AlignmentBuildOptions = {
 };
 
 const buildAlignmentMap = (
-  countryRows: { country: string; blocs: { bloc: string; [key: string]: unknown }[] }[],
-  getMetric: (blocRow: { bloc: string; [key: string]: unknown }) => number | null,
+  countryRows: { country: string; blocs: { bloc: string;[key: string]: unknown }[] }[],
+  getMetric: (blocRow: { bloc: string;[key: string]: unknown }) => number | null,
   options: AlignmentBuildOptions
 ) => {
   const { preferLower, treatEuMembersAsAligned = false } = options;
@@ -1074,7 +1083,7 @@ export const UNGAMap = () => {
     if (dataSource === 'FBIC') {
       return formatFbicMetricLabel(selectedFbicMetric);
     }
-    return `Kritieke goederen (CDI1 ≥ ${criticalGoodsThreshold.toFixed(2)})`;
+    return `Kritieke goederen (HHI ≥ ${criticalGoodsThreshold.toFixed(2)})`;
   }, [dataSource, selectedCategory, selectedFbicMetric, criticalGoodsThreshold]);
 
   const descriptionText = useMemo(() => {
@@ -1136,17 +1145,20 @@ export const UNGAMap = () => {
     return (
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={lineChartDataset} margin={{ top: 8, right: 16, bottom: 24, left: 8 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
           <XAxis
             dataKey="year"
-            tick={{ fontSize: 11 }}
-            angle={-30}
-            textAnchor="end"
+            tick={{ fontSize: 10, fill: '#64748b' }}
+            axisLine={{ stroke: '#e2e8f0' }}
+            tickLine={false}
+            dy={10}
             height={40}
           />
           <YAxis
-            tick={{ fontSize: 11 }}
-            width={36}
+            tick={{ fontSize: 10, fill: '#64748b' }}
+            width={45}
+            axisLine={false}
+            tickLine={false}
             domain={[0, 'auto']}
             tickFormatter={(value) =>
               typeof value === 'number' ? formatMetricValue(value, dataSource) : value
@@ -1155,19 +1167,45 @@ export const UNGAMap = () => {
               value: currentMetricLabel,
               angle: -90,
               position: 'insideLeft',
-              offset: 10,
-              style: { fill: '#475569', fontSize: 10 },
+              offset: 0,
+              style: { fill: '#64748b', fontSize: 10, fontWeight: 500, textAnchor: 'middle' },
+              dy: 0,
+              dx: 4,
             }}
           />
           <RechartsTooltip
-            formatter={(value) =>
-              typeof value === 'number'
-                ? formatMetricValue(value, dataSource)
-                : 'n.v.t.'
-            }
-            labelFormatter={(value) => `Jaar ${value}`}
+            content={({ active, payload, label }: any) => {
+              if (active && payload && payload.length) {
+                return (
+                  <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-xl">
+                    <p className="mb-2 text-xs font-semibold text-slate-700">Jaar {label}</p>
+                    <div className="flex flex-col gap-1">
+                      {payload.map((entry: any) => (
+                        <div key={entry.name} className="flex items-center gap-2 text-xs">
+                          <span
+                            className="h-2 w-2 rounded-full"
+                            style={{ backgroundColor: entry.color }}
+                          />
+                          <span className="text-slate-500">{entry.name}:</span>
+                          <span className="font-medium text-slate-700">
+                            {typeof entry.value === 'number'
+                              ? formatMetricValue(entry.value, dataSource)
+                              : 'n.v.t.'}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+              return null;
+            }}
           />
-          <Legend wrapperStyle={{ fontSize: 11 }} />
+          <Legend
+            wrapperStyle={{ fontSize: 11, paddingTop: '10px' }}
+            iconType="circle"
+            iconSize={8}
+          />
           {POWER_BLOCS.map((bloc) => {
             const hasData = countrySeries[bloc]?.length;
             if (!hasData) {
@@ -1182,6 +1220,7 @@ export const UNGAMap = () => {
                 stroke={POWER_BLOC_COLORS[bloc]}
                 strokeWidth={2}
                 dot={false}
+                activeDot={{ r: 4, strokeWidth: 0 }}
                 connectNulls
                 isAnimationActive={false}
               />
@@ -1226,7 +1265,7 @@ export const UNGAMap = () => {
             <div className="text-sm font-medium text-slate-800">{item.hs22_description}</div>
             <div className="text-xs text-slate-500">{formatSubsectorList(item.subsectors)}</div>
             <div className="text-xs text-slate-500">
-              CDI1 {typeof item.cdi1 === 'number' ? item.cdi1.toFixed(3) : 'n.v.t.'}
+              HHI {typeof item.cdi1 === 'number' ? item.cdi1.toFixed(3) : 'n.v.t.'}
               {typeof item.exporter_share_extra === 'number'
                 ? ` · Extra aandeel ${formatShareFraction(item.exporter_share_extra)}`
                 : ''}
@@ -1256,7 +1295,7 @@ export const UNGAMap = () => {
   );
 
   return (
-    <Card className="h-full p-4 md:p-6">
+    <Card className="h-full p-4 md:p-6 flex-1 min-h-0 overflow-hidden flex flex-col">
       <div className="flex flex-col gap-2 pb-4">
         <h3 className="text-xl font-semibold text-[rgb(0,153,168)]">
           Algemene Vergadering (UNGA)
@@ -1265,114 +1304,115 @@ export const UNGAMap = () => {
       </div>
 
       <div className="flex flex-col gap-3 pb-4 text-sm text-gray-600 lg:flex-row lg:items-center lg:justify-between">
-      <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4">
           {dataSource === 'CRITICAL_GOODS'
             ? criticalGoodsLegend.map((entry) => (
-                <div key={entry.label} className="flex items-center gap-2">
-                  <span
-                    className="inline-block h-3 w-6 rounded"
-                    style={{ backgroundColor: entry.color }}
-                  />
-                  <span>{entry.label}</span>
-                </div>
-              ))
+              <div key={entry.label} className="flex items-center gap-2">
+                <span
+                  className="inline-block h-3 w-6 rounded"
+                  style={{ backgroundColor: entry.color }}
+                />
+                <span>{entry.label}</span>
+              </div>
+            ))
             : blocLegend.map((entry) => (
-                <div key={entry.bloc} className="flex items-center gap-2">
-                  <span
-                    className="inline-block h-3 w-6 rounded"
-                    style={{ backgroundColor: entry.color }}
-                  />
-                  <span>{entry.label}</span>
-                </div>
-              ))}
+              <div key={entry.bloc} className="flex items-center gap-2">
+                <span
+                  className="inline-block h-3 w-6 rounded"
+                  style={{ backgroundColor: entry.color }}
+                />
+                <span>{entry.label}</span>
+              </div>
+            ))}
         </div>
         <div className="flex flex-col gap-2 text-xs text-gray-500 sm:flex-row sm:items-center sm:gap-4">
           <span>Klik op een land voor de exacte waarden</span>
-          <div className="flex flex-wrap items-center gap-2 text-sm text-slate-600">
-            <label htmlFor="unga-source" className="text-xs uppercase tracking-wide text-slate-500">
-              Bron
-            </label>
-            <select
-              id="unga-source"
-              value={dataSource}
-              onChange={(event) => setDataSource(event.target.value as MapDataSource)}
-              className="rounded-md border border-slate-200 bg-white px-2 py-1 text-sm text-slate-700 shadow-sm focus:border-slate-400 focus:outline-none"
-            >
-              <option value="UNGA">UNGA</option>
-              <option value="FBIC">FBIC</option>
-              <option value="CRITICAL_GOODS">Kritieke goederen</option>
-            </select>
+          <div className="flex flex-wrap items-center gap-4 text-sm text-slate-600">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="unga-source" className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                Bron
+              </label>
+              <Select
+                value={dataSource}
+                onValueChange={(value) => setDataSource(value as MapDataSource)}
+              >
+                <SelectTrigger className="w-[180px] bg-slate-50 border-slate-200 hover:bg-slate-100 transition-colors text-slate-700 font-medium">
+                  <SelectValue placeholder="Selecteer bron" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="UNGA">UNGA</SelectItem>
+                  <SelectItem value="FBIC">FBIC</SelectItem>
+                  <SelectItem value="CRITICAL_GOODS">Kritieke goederen</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
             {dataSource === 'UNGA' ? (
-              <>
+              <div className="flex flex-col gap-1.5">
                 <label
                   htmlFor="unga-category"
-                  className="text-xs uppercase tracking-wide text-slate-500"
+                  className="text-xs font-medium uppercase tracking-wide text-slate-500"
                 >
                   Categorie
                 </label>
-                <select
-                  id="unga-category"
+                <Select
                   value={selectedCategory}
-                  onChange={(event) => setSelectedCategory(event.target.value)}
-                  className="rounded-md border border-slate-200 bg-white px-2 py-1 text-sm text-slate-700 shadow-sm focus:border-slate-400 focus:outline-none"
+                  onValueChange={setSelectedCategory}
                 >
-                  {categoryOptions.map((category) => (
-                    <option key={category} value={category}>
-                      {formatCategoryLabel(category)}
-                    </option>
-                  ))}
-                </select>
-              </>
+                  <SelectTrigger className="w-[240px] bg-slate-50 border-slate-200 hover:bg-slate-100 transition-colors text-slate-700 font-medium">
+                    <SelectValue placeholder="Selecteer categorie" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categoryOptions.map((category) => (
+                      <SelectItem key={category} value={category}>
+                        {formatCategoryLabel(category)}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             ) : dataSource === 'FBIC' ? (
-              <>
+              <div className="flex flex-col gap-1.5">
                 <label
                   htmlFor="fbic-metric"
-                  className="text-xs uppercase tracking-wide text-slate-500"
+                  className="text-xs font-medium uppercase tracking-wide text-slate-500"
                 >
                   FBIC metriek
                 </label>
-                <select
-                  id="fbic-metric"
+                <Select
                   value={selectedFbicMetric}
-                  onChange={(event) => setSelectedFbicMetric(event.target.value)}
-                  className="rounded-md border border-slate-200 bg-white px-2 py-1 text-sm text-slate-700 shadow-sm focus:border-slate-400 focus:outline-none"
+                  onValueChange={setSelectedFbicMetric}
                 >
-                  {availableFbicMetrics.map((metric) => (
-                    <option key={metric} value={metric}>
-                      {formatFbicMetricLabel(metric)}
-                    </option>
-                  ))}
-                </select>
-              </>
+                  <SelectTrigger className="w-[240px] bg-slate-50 border-slate-200 hover:bg-slate-100 transition-colors text-slate-700 font-medium">
+                    <SelectValue placeholder="Selecteer metriek" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {availableFbicMetrics.map((metric) => (
+                      <SelectItem key={metric} value={metric}>
+                        {formatFbicMetricLabel(metric)}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             ) : (
-              <>
+              <div className="flex flex-col gap-1.5">
                 <label
                   htmlFor="critical-threshold"
-                  className="text-xs uppercase tracking-wide text-slate-500"
+                  className="text-xs font-medium uppercase tracking-wide text-slate-500"
                 >
-                  CDI1-drempel
+                  HHI-drempel: {criticalGoodsThreshold.toFixed(2)}
                 </label>
-                <input
-                  id="critical-threshold"
-                  type="number"
-                  min={CRITICAL_GOODS_MIN_THRESHOLD}
-                  max={CRITICAL_GOODS_MAX_THRESHOLD}
-                  step={0.05}
-                  value={criticalGoodsThreshold}
-                  onChange={(event) => {
-                    const parsed = parseFloat(event.target.value);
-                    if (Number.isNaN(parsed)) {
-                      return;
-                    }
-                    const clamped = Math.min(
-                      CRITICAL_GOODS_MAX_THRESHOLD,
-                      Math.max(CRITICAL_GOODS_MIN_THRESHOLD, parsed)
-                    );
-                    setCriticalGoodsThreshold(Number(clamped.toFixed(2)));
-                  }}
-                  className="w-20 rounded-md border border-slate-200 bg-white px-2 py-1 text-sm text-slate-700 shadow-sm focus:border-slate-400 focus:outline-none"
-                />
-              </>
+                <div className="flex items-center gap-3 w-[200px] h-9 px-1">
+                  <Slider
+                    value={[criticalGoodsThreshold]}
+                    min={CRITICAL_GOODS_MIN_THRESHOLD}
+                    max={CRITICAL_GOODS_MAX_THRESHOLD}
+                    step={0.05}
+                    onValueChange={([value]) => setCriticalGoodsThreshold(value)}
+                    className="flex-1"
+                  />
+                </div>
+              </div>
             )}
           </div>
         </div>
@@ -1411,53 +1451,53 @@ export const UNGAMap = () => {
                 <div className="font-semibold">{tooltip.name}</div>
                 {tooltip.type === 'alignment'
                   ? (() => {
-                      const alignmentData = tooltip.alignment;
-                      if (!alignmentData) {
-                        return (
-                          <div className="mt-0.5 text-xs text-gray-500">Geen data beschikbaar</div>
-                        );
-                      }
+                    const alignmentData = tooltip.alignment;
+                    if (!alignmentData) {
                       return (
-                        <>
-                          <div className="mt-0.5 flex items-center gap-2 text-xs text-gray-600">
-                            <span
-                              className="inline-flex h-2.5 w-2.5 rounded-full"
-                              style={{
-                                backgroundColor: blendWithWhite(
-                                  POWER_BLOC_COLORS[alignmentData.bloc],
-                                  Math.max(alignmentData.strength, 0.6)
-                                ),
-                              }}
-                            />
-                            <span>
-                              {dataSource === 'UNGA' ? 'Dichtst bij' : 'Sterkste band met'}{' '}
-                              {POWER_BLOC_LABELS[alignmentData.bloc]} (
-                              {formatMetricValue(alignmentData.value, dataSource)})
-                            </span>
-                          </div>
-                          <div className="mt-1 space-y-0.5 text-[11px] text-gray-500">
-                            {POWER_BLOCS.map((bloc) => (
-                              <div key={bloc} className="flex items-center justify-between gap-6">
-                                <span>{POWER_BLOC_LABELS[bloc]}</span>
-                                <span>
-                                  {formatMetricValue(alignmentData.metrics[bloc], dataSource)}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </>
+                        <div className="mt-0.5 text-xs text-gray-500">Geen data beschikbaar</div>
                       );
-                    })()
-                  : (
-                      <div className="mt-0.5 text-xs text-gray-600">
-                        {typeof tooltip.count === 'number'
-                          ? `${formatCountValue(tooltip.count)} kritieke goederen`
-                          : 'Geen data beschikbaar'}
-                        <div className="text-[11px] text-gray-400">
-                          CDI1-drempel {criticalGoodsThreshold.toFixed(2)}
+                    }
+                    return (
+                      <>
+                        <div className="mt-0.5 flex items-center gap-2 text-xs text-gray-600">
+                          <span
+                            className="inline-flex h-2.5 w-2.5 rounded-full"
+                            style={{
+                              backgroundColor: blendWithWhite(
+                                POWER_BLOC_COLORS[alignmentData.bloc],
+                                Math.max(alignmentData.strength, 0.6)
+                              ),
+                            }}
+                          />
+                          <span>
+                            {dataSource === 'UNGA' ? 'Dichtst bij' : 'Sterkste band met'}{' '}
+                            {POWER_BLOC_LABELS[alignmentData.bloc]} (
+                            {formatMetricValue(alignmentData.value, dataSource)})
+                          </span>
                         </div>
+                        <div className="mt-1 space-y-0.5 text-[11px] text-gray-500">
+                          {POWER_BLOCS.map((bloc) => (
+                            <div key={bloc} className="flex items-center justify-between gap-6">
+                              <span>{POWER_BLOC_LABELS[bloc]}</span>
+                              <span>
+                                {formatMetricValue(alignmentData.metrics[bloc], dataSource)}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    );
+                  })()
+                  : (
+                    <div className="mt-0.5 text-xs text-gray-600">
+                      {typeof tooltip.count === 'number'
+                        ? `${formatCountValue(tooltip.count)} kritieke goederen`
+                        : 'Geen data beschikbaar'}
+                      <div className="text-[11px] text-gray-400">
+                        HHI-drempel {criticalGoodsThreshold.toFixed(2)}
                       </div>
-                    )}
+                    </div>
+                  )}
               </div>
             )}
           </div>
@@ -1533,7 +1573,7 @@ export const UNGAMap = () => {
           {dataSource === 'CRITICAL_GOODS' ? (
             <div className="rounded-xl border bg-white shadow-sm p-4 h-[320px]">
               <div className="flex items-center justify-between pb-2">
-                <h4 className="text-sm font-semibold text-slate-700">Top 10 CDI1-goederen</h4>
+                <h4 className="text-sm font-semibold text-slate-700">Top 10 HHI-goederen</h4>
                 {selectedCountry && detailLoading && (
                   <span className="text-xs text-slate-400">Laden...</span>
                 )}
