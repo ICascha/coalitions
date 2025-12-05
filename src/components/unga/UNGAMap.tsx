@@ -237,7 +237,10 @@ type CriticalGoodsThresholdResponse = {
 };
 
 const UNGA_API_BASE =
-  import.meta.env.VITE_UNGA_DISTANCE_API?.replace(/\/+$/, '') ?? 'http://localhost:8000';
+  import.meta.env.VITE_UNGA_DISTANCE_API?.replace(/\/+$/, '') ?? 
+  (import.meta.env.PROD 
+    ? 'https://backendclustering-production.up.railway.app' 
+    : 'http://localhost:8000');
 
 const formatCountryName = (rawId: string) =>
   rawId

@@ -147,7 +147,7 @@ const resolvedRegressionBase =
     ? rawRegressionBase.trim()
     : import.meta.env.PROD
       ? 'https://backendclustering-production.up.railway.app'
-      : '';
+      : 'http://localhost:8000';
 const regressionApiBase = resolvedRegressionBase.replace(/\/+$/, '');
 const regressionDatasetsEndpoint = regressionApiBase
   ? `${regressionApiBase}/regression/datasets`

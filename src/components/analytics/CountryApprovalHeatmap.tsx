@@ -84,7 +84,7 @@ const resolvedCountryPositionsBase =
     ? rawCountryPositionsBase.trim()
     : import.meta.env.PROD
       ? 'https://backendclustering-production.up.railway.app'
-      : '';
+      : 'http://localhost:8000';
 const API_BASE = resolvedCountryPositionsBase.replace(/\/+$/, '');
 const CLUSTER_OPTIONS: { id: ClusterId; label: string }[] = [
   { id: 'clusterA', label: 'Cluster A' },

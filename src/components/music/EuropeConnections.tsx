@@ -292,7 +292,7 @@ const rawClusterBase = import.meta.env.VITE_CLUSTER_API_BASE_URL as string | und
 const resolvedClusterBase =
   rawClusterBase && rawClusterBase.trim().length > 0
     ? rawClusterBase.trim()
-    : (import.meta.env.PROD ? 'https://backendclustering-production.up.railway.app' : '');
+    : (import.meta.env.PROD ? 'https://backendclustering-production.up.railway.app' : 'http://localhost:8000');
 const clusterApiBase = resolvedClusterBase.replace(/\/+$/, '');
 const clusterEndpoint = clusterApiBase ? `${clusterApiBase}/leiden` : '/leiden';
 const fallbackClusterPalette = ['#2563eb', '#f97316', '#10b981', '#8b5cf6', '#ec4899', '#14b8a6', '#facc15', '#ef4444'];

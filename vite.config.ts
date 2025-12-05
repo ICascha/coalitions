@@ -40,6 +40,24 @@ export default defineConfig({
           : 'http://localhost:8000',
         changeOrigin: true,
       },
+      '/unga-distances': {
+        target: process.env.NODE_ENV === 'production'
+          ? 'https://backendclustering-production.up.railway.app'
+          : 'http://localhost:8000',
+        changeOrigin: true,
+      },
+      '/fbic': {
+        target: process.env.NODE_ENV === 'production'
+          ? 'https://backendclustering-production.up.railway.app'
+          : 'http://localhost:8000',
+        changeOrigin: true,
+      },
+      '/critical-goods': {
+        target: process.env.NODE_ENV === 'production'
+          ? 'https://backendclustering-production.up.railway.app'
+          : 'http://localhost:8000',
+        changeOrigin: true,
+      },
     },
   },
   build: {
