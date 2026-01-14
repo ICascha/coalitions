@@ -165,7 +165,7 @@ type ViewBox = { x: number; y: number; w: number; h: number };
 // Rough Europe-ish starting point (tweak from here):
 // { x: -3500000, y: -8500000, w: 11000000, h: 7000000 }
 // Set to null to use the auto-detected Europe bbox.
-const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = { x: 15, y: 95, w: 100, h: 100 };
+const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = { x: -4000000, y: -8500000, w: 10000000, h: 7000000 };
 
 const parseViewBox = (raw: string | null): ViewBox | null => {
   if (!raw) return null;
