@@ -313,6 +313,8 @@ const UNGAMap = () => {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const baseViewBoxRef = useRef<ViewBox | null>(null);
   const europeViewBoxRef = useRef<ViewBox | null>(null);
+  const coalitionDelayTimeoutRef = useRef<number | null>(null);
+  const coalitionIntervalRef = useRef<number | null>(null);
 
   const interactionsEnabled = scrollProgress < 0.02;
 
@@ -541,14 +543,39 @@ const UNGAMap = () => {
   useEffect(() => {
     if (!isScrollComplete) {
       setActiveCoalitionIndex(0);
+      if (coalitionDelayTimeoutRef.current !== null) {
+        window.clearTimeout(coalitionDelayTimeoutRef.current);
+        coalitionDelayTimeoutRef.current = null;
+      }
+      if (coalitionIntervalRef.current !== null) {
+        window.clearInterval(coalitionIntervalRef.current);
+        coalitionIntervalRef.current = null;
+      }
       return;
     }
 
-    const interval = window.setInterval(() => {
-      setActiveCoalitionIndex((prev) => (prev + 1) % EU_COALITIONS.length);
-    }, 2600);
+    const startDelayMs = 3000;
+    const cycleMs = 2600;
 
-    return () => window.clearInterval(interval);
+    coalitionDelayTimeoutRef.current = window.setTimeout(() => {
+      // Advance once immediately after the delay, then start looping.
+      setActiveCoalitionIndex((prev) => (prev + 1) % EU_COALITIONS.length);
+
+      coalitionIntervalRef.current = window.setInterval(() => {
+        setActiveCoalitionIndex((prev) => (prev + 1) % EU_COALITIONS.length);
+      }, cycleMs);
+    }, startDelayMs);
+
+    return () => {
+      if (coalitionDelayTimeoutRef.current !== null) {
+        window.clearTimeout(coalitionDelayTimeoutRef.current);
+        coalitionDelayTimeoutRef.current = null;
+      }
+      if (coalitionIntervalRef.current !== null) {
+        window.clearInterval(coalitionIntervalRef.current);
+        coalitionIntervalRef.current = null;
+      }
+    };
   }, [isScrollComplete]);
 
   useEffect(() => {
