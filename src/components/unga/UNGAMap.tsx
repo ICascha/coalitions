@@ -25,6 +25,10 @@ import { useCoalitionLoop } from './hooks/useCoalitionLoop';
 import { useUngAMapSvgStyling } from './hooks/useUngAMapSvgStyling';
 import { CoalitionOverlayCard } from './components/CoalitionOverlayCard';
 import { useScrollScenes } from './hooks/useScrollScenes';
+import { useDiscreteScroll } from './hooks/useDiscreteScroll';
+
+const SECTION_COUNT = 3;
+const SCROLL_TRANSITION_MS = 350; // Fast but smooth
 
 const UNGAMap = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -33,8 +37,15 @@ const UNGAMap = () => {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const rawScrollProgress = useScrollContainerProgress(scrollContainerRef);
+  
+  // Discrete scroll: enforces one-section-at-a-time navigation
+  useDiscreteScroll(scrollContainerRef, {
+    sectionCount: SECTION_COUNT,
+    transitionDurationMs: SCROLL_TRANSITION_MS,
+  });
+  
   const { sceneId, sceneProgress, effectiveProgress } = useScrollScenes(rawScrollProgress, [
-    // With scroll-snapping (see JSX), these map to 3 snap positions (0, 1/2, 1):
+    // With discrete scroll, these map to 3 hard stops (0, 1/2, 1):
     // intro -> europe -> viz
     { id: 'intro', start: 0, end: 1 / 3 },
     { id: 'europe', start: 1 / 3, end: 2 / 3 },
@@ -318,14 +329,15 @@ const UNGAMap = () => {
 
       <div
         ref={scrollContainerRef}
-        className="absolute inset-0 overflow-y-auto snap-y snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:none]"
+        className="absolute inset-0 overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:none]"
+        style={{ scrollBehavior: 'smooth' }}
       >
-        {/* Scroll track: 3 snap stops (intro -> europe -> viz).
-            scroll-snap-stop: always prevents skipping over the Europe stop. */}
+        {/* Scroll track: 3 discrete sections (intro -> europe -> viz).
+            JS-controlled discrete scroll prevents skipping sections. */}
         <div className="w-full relative">
 
-          {/* Sticky container for the map view (snaps at the top). */}
-          <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col snap-start [scroll-snap-stop:always]">
+          {/* Sticky container for the map view. */}
+          <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col">
 
             <div
               className="flex flex-col items-center justify-center pt-8 pb-4 z-10 pointer-events-none relative transition-opacity duration-500"
@@ -475,9 +487,9 @@ const UNGAMap = () => {
 
           </div>
 
-          {/* Extra snap stops below the sticky view. These create the required "hard stops" between screens. */}
-          <div className="h-screen snap-start [scroll-snap-stop:always]" aria-hidden="true" />
-          <div className="h-screen snap-start [scroll-snap-stop:always]" aria-hidden="true" />
+          {/* Extra sections below the sticky view for scroll height calculation. */}
+          <div className="h-screen" aria-hidden="true" />
+          <div className="h-screen" aria-hidden="true" />
         </div>
       </div>
     </Card>
