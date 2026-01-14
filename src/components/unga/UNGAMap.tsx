@@ -34,8 +34,8 @@ const UNGAMap = () => {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const rawScrollProgress = useScrollContainerProgress(scrollContainerRef);
   const { sceneId, sceneProgress, effectiveProgress } = useScrollScenes(rawScrollProgress, [
-    // With scroll-snapping (see JSX), these map to 4 snap positions (0, 1/3, 2/3, 1):
-    // intro -> europe -> viz -> viz (settled)
+    // With scroll-snapping (see JSX), these map to 3 snap positions (0, 1/2, 1):
+    // intro -> europe -> viz
     { id: 'intro', start: 0, end: 1 / 3 },
     { id: 'europe', start: 1 / 3, end: 2 / 3 },
     { id: 'viz', start: 2 / 3, end: 1 },
@@ -107,7 +107,7 @@ const UNGAMap = () => {
     return {
       opacity: lerp(1, 0, t),
       transform: `translateY(${lerp(0, -24, t)}px) scale(${lerp(1, 0.985, t)})`,
-      transition: 'opacity 600ms ease, transform 700ms ease',
+      transition: 'opacity 350ms ease, transform 450ms ease',
       willChange: 'opacity, transform',
     } as const;
   }, [vizProgress]);
@@ -117,7 +117,7 @@ const UNGAMap = () => {
     return {
       opacity: t,
       transform: `translateY(${lerp(12, 0, t)}px)`,
-      transition: 'opacity 600ms ease, transform 700ms ease',
+      transition: 'opacity 350ms ease, transform 450ms ease',
       willChange: 'opacity, transform',
     } as const;
   }, [vizProgress]);
@@ -320,7 +320,7 @@ const UNGAMap = () => {
         ref={scrollContainerRef}
         className="absolute inset-0 overflow-y-auto snap-y snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:none]"
       >
-        {/* Scroll track: 4 snap stops (intro -> europe -> viz -> settled viz).
+        {/* Scroll track: 3 snap stops (intro -> europe -> viz).
             scroll-snap-stop: always prevents skipping over the Europe stop. */}
         <div className="w-full relative">
 
@@ -476,7 +476,6 @@ const UNGAMap = () => {
           </div>
 
           {/* Extra snap stops below the sticky view. These create the required "hard stops" between screens. */}
-          <div className="h-screen snap-start [scroll-snap-stop:always]" aria-hidden="true" />
           <div className="h-screen snap-start [scroll-snap-stop:always]" aria-hidden="true" />
           <div className="h-screen snap-start [scroll-snap-stop:always]" aria-hidden="true" />
         </div>
