@@ -114,6 +114,58 @@ const formatMetricValue = (value: number | null): string => {
   return value.toFixed(3);
 };
 
+const EUROPE_COUNTRY_NAMES = [
+  'Austria',
+  'Belarus',
+  'Belgium',
+  'Bulgaria',
+  'Czechia',
+  'Denmark',
+  'Estonia',
+  'Finland',
+  'France',
+  'Germany',
+  'Greece',
+  'Hungary',
+  'Iceland',
+  'Ireland',
+  'Italy',
+  'Latvia',
+  'Lithuania',
+  'Luxembourg',
+  'Netherlands',
+  'Norway',
+  'Poland',
+  'Portugal',
+  'Romania',
+  'Slovakia',
+  'Spain',
+  'Sweden',
+  'Switzerland',
+  'Ukraine',
+  'United Kingdom',
+] as const;
+
+const EUROPE_ALPHA3 = new Set(
+  EUROPE_COUNTRY_NAMES.map((name) => resolveCountryKey(name)).filter(Boolean) as string[]
+);
+
+type ViewBox = { x: number; y: number; w: number; h: number };
+
+const parseViewBox = (raw: string | null): ViewBox | null => {
+  if (!raw) return null;
+  const parts = raw
+    .trim()
+    .split(/[\s,]+/)
+    .map((p) => Number(p));
+  if (parts.length !== 4 || parts.some((n) => !Number.isFinite(n))) return null;
+  return { x: parts[0], y: parts[1], w: parts[2], h: parts[3] };
+};
+
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+const easeInOut = (t: number) => t * t * (3 - 2 * t); // smoothstep
+
 const buildAlignmentMap = (
   countries: any[],
   getValue: (blocRow: any) => number | null,
@@ -185,12 +237,15 @@ const UNGAMap = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [mapViewport, setMapViewport] = useState({ width: 0, height: 0 });
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
   const [overallAlignment, setOverallAlignment] = useState<AlignmentMap>({});
   const [mapLoading, setMapLoading] = useState(true);
   const [mapError, setMapError] = useState<string | null>(null);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
+  const baseViewBoxRef = useRef<ViewBox | null>(null);
+  const europeViewBoxRef = useRef<ViewBox | null>(null);
 
   /* Scroll logic fixed to ensure full zoom */
   useEffect(() => {
@@ -213,16 +268,21 @@ const UNGAMap = () => {
     return () => scrollContainer.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const zoomStyle = useMemo(() => {
-    // Zoom into Europe target
-    const scale = 1 + (scrollProgress * 2.5); // 1 -> 3.5
+  // Track the map viewport size so we can keep the Europe viewBox centered regardless of screen shape
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-    // Transform Origin: Adjusted to 53% 25% to better center on Europe (35% was likely too south)
-    return {
-      transform: `scale(${scale})`,
-      transformOrigin: '53% 25%',
+    const update = () => {
+      const rect = container.getBoundingClientRect();
+      setMapViewport({ width: rect.width, height: rect.height });
     };
-  }, [scrollProgress]);
+
+    update();
+    const ro = new ResizeObserver(() => update());
+    ro.observe(container);
+    return () => ro.disconnect();
+  }, []);
 
   const alignmentMap = useMemo(() => {
     return overallAlignment;
@@ -244,6 +304,120 @@ const UNGAMap = () => {
         'transition: fill 0.2s ease-out, stroke 0.15s ease-out, stroke-width 0.15s ease-out;'
       );
   }, []);
+
+  // Compute base + Europe-target viewBoxes from the rendered SVG paths (in SVG coordinate space).
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const svgElement = container.querySelector('svg') as SVGSVGElement | null;
+    if (!svgElement) return;
+
+    // Base viewBox is stable; capture once.
+    if (!baseViewBoxRef.current) {
+      baseViewBoxRef.current = parseViewBox(svgElement.getAttribute('viewBox'));
+    }
+
+    // Recompute Europe viewBox when viewport aspect changes (keeps framing consistent across view windows).
+    if (mapViewport.width <= 0 || mapViewport.height <= 0) return;
+
+    const raf = requestAnimationFrame(() => {
+      const paths = container.querySelectorAll<SVGPathElement>('path[id]');
+      let minX = Number.POSITIVE_INFINITY;
+      let minY = Number.POSITIVE_INFINITY;
+      let maxX = Number.NEGATIVE_INFINITY;
+      let maxY = Number.NEGATIVE_INFINITY;
+      let matched = 0;
+
+      paths.forEach((path) => {
+        const key = resolveCountryKey(path.id);
+        if (!key || !EUROPE_ALPHA3.has(key)) return;
+        try {
+          const bb = path.getBBox();
+          if (!Number.isFinite(bb.x) || !Number.isFinite(bb.y) || !Number.isFinite(bb.width) || !Number.isFinite(bb.height)) {
+            return;
+          }
+          matched += 1;
+          minX = Math.min(minX, bb.x);
+          minY = Math.min(minY, bb.y);
+          maxX = Math.max(maxX, bb.x + bb.width);
+          maxY = Math.max(maxY, bb.y + bb.height);
+        } catch {
+          // ignore
+        }
+      });
+
+      if (matched < 5 || !Number.isFinite(minX) || !Number.isFinite(minY) || !Number.isFinite(maxX) || !Number.isFinite(maxY)) {
+        return;
+      }
+
+      const bboxW = maxX - minX;
+      const bboxH = maxY - minY;
+      const cx = minX + bboxW / 2;
+      const cy = minY + bboxH / 2;
+
+      // Pad Europe bounds a bit to avoid feeling "too tight"
+      const pad = 1.35;
+      let targetW = bboxW * pad;
+      let targetH = bboxH * pad;
+
+      // Match the viewport aspect ratio to avoid letterboxing changing the perceived center.
+      const aspect = mapViewport.width / mapViewport.height;
+      if (targetW / targetH < aspect) {
+        targetW = targetH * aspect;
+      } else {
+        targetH = targetW / aspect;
+      }
+
+      europeViewBoxRef.current = {
+        x: cx - targetW / 2,
+        y: cy - targetH / 2,
+        w: targetW,
+        h: targetH,
+      };
+    });
+
+    return () => cancelAnimationFrame(raf);
+  }, [mapViewport.width, mapViewport.height, svgMarkup]);
+
+  // Scroll-driven viewBox interpolation (stable centering across viewport sizes).
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const svgElement = container.querySelector('svg') as SVGSVGElement | null;
+    if (!svgElement) return;
+    const base = baseViewBoxRef.current;
+    const target = europeViewBoxRef.current;
+    if (!base || !target) return;
+
+    const t = easeInOut(Math.min(1, Math.max(0, scrollProgress)));
+    const next = {
+      x: lerp(base.x, target.x, t),
+      y: lerp(base.y, target.y, t),
+      w: lerp(base.w, target.w, t),
+      h: lerp(base.h, target.h, t),
+    };
+
+    svgElement.setAttribute('viewBox', `${next.x} ${next.y} ${next.w} ${next.h}`);
+  }, [scrollProgress]);
+
+  const mapFadeStyle = useMemo(() => {
+    const t = easeInOut(Math.min(1, Math.max(0, scrollProgress)));
+    // Fade/soften map as we zoom in; keep it interactive but visually backgrounded.
+    const opacity = lerp(1, 0.18, t);
+    const blurPx = lerp(0, 2.5, t);
+    const saturate = lerp(1, 0.55, t);
+    const contrast = lerp(1, 0.9, t);
+    const brightness = lerp(1, 0.98, t);
+
+    return {
+      opacity,
+      filter: `blur(${blurPx}px) saturate(${saturate}) contrast(${contrast}) brightness(${brightness})`,
+      transition: 'opacity 0.05s linear, filter 0.05s linear',
+      willChange: 'opacity, filter',
+    } as const;
+  }, [scrollProgress]);
+
+  const isScrollComplete = scrollProgress >= 0.98;
 
   useEffect(() => {
     const container = containerRef.current;
@@ -557,17 +731,11 @@ const UNGAMap = () => {
                 <div
                   className="relative w-full h-full max-w-[1600px] unga-map-container-inner"
                 >
-                  <div
-                    className="relative w-full h-full"
-                    style={{
-                      willChange: 'transform',
-                      transition: 'transform 0.05s linear', // Faster response to scroll
-                      ...zoomStyle,
-                    }}
-                  >
+                  <div className="relative w-full h-full">
                   <div className="relative h-full w-full overflow-hidden rounded-xl bg-slate-50/0">
                     <div
                       ref={containerRef}
+                      style={mapFadeStyle}
                       className={cn(
                         'w-full h-full unga-map',
                         '[&_svg]:w-full [&_svg]:h-full [&_svg]:max-h-full',
@@ -577,6 +745,45 @@ const UNGAMap = () => {
                       )}
                       dangerouslySetInnerHTML={{ __html: svgMarkup }}
                     />
+                    {/* Placeholder foreground elements that appear once scrolling completes */}
+                    <div
+                      className="absolute inset-0 flex items-center justify-center p-6 pointer-events-none"
+                      style={{
+                        opacity: isScrollComplete ? 1 : 0,
+                        transform: `translateY(${isScrollComplete ? 0 : 10}px)`,
+                        transition: 'opacity 400ms ease, transform 500ms ease',
+                      }}
+                    >
+                      <div className="max-w-3xl w-full">
+                        <div className="rounded-2xl bg-white/85 backdrop-blur-md border border-white/60 shadow-xl px-6 py-6">
+                          <div className="text-xs uppercase tracking-widest text-slate-500">
+                            Next section (placeholder)
+                          </div>
+                          <div className="mt-2 text-2xl md:text-3xl font-semibold text-slate-900">
+                            New visual elements go here
+                          </div>
+                          <div className="mt-2 text-sm md:text-base text-slate-600 leading-relaxed">
+                            The map fades into the background; once the zoom finishes, this foreground layer can introduce
+                            the next story step.
+                          </div>
+
+                          <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div className="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3">
+                              <div className="text-xs text-slate-500">Placeholder metric</div>
+                              <div className="mt-1 text-lg font-semibold text-slate-900">42</div>
+                            </div>
+                            <div className="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3">
+                              <div className="text-xs text-slate-500">Placeholder metric</div>
+                              <div className="mt-1 text-lg font-semibold text-slate-900">0.73</div>
+                            </div>
+                            <div className="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3">
+                              <div className="text-xs text-slate-500">Placeholder metric</div>
+                              <div className="mt-1 text-lg font-semibold text-slate-900">+18%</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     {mapLoading && (
                       <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-sm bg-white/60">
                         Laden...
