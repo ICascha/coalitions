@@ -493,8 +493,8 @@ const UNGAMap = () => {
   const mapFadeStyle = useMemo(() => {
     const t = easeInOut(Math.min(1, Math.max(0, scrollProgress)));
     // Fade/soften map as we zoom in; keep it interactive but visually backgrounded.
-    const opacity = lerp(1, 0.18, t);
-    const blurPx = lerp(0, 1.1, t);
+    const opacity = lerp(1, 0.8, t);
+    const blurPx = lerp(0, 0, t);
     const saturate = lerp(1, 0.75, t);
     const contrast = lerp(1, 1.02, t);
     const brightness = lerp(1, 1.01, t);
@@ -805,8 +805,10 @@ const UNGAMap = () => {
           {/* Sticky container for the map view */}
           <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col">
 
-            <div className="flex flex-col items-center justify-center pt-8 pb-4 z-10 pointer-events-none relative transition-opacity duration-500"
-              style={{ opacity: 1 - scrollProgress * 2 }}>
+            <div
+              className="flex flex-col items-center justify-center pt-8 pb-4 z-10 pointer-events-none relative transition-opacity duration-500"
+              style={{ opacity: interactionsEnabled ? 1 - scrollProgress * 2 : 0 }}
+            >
               <h1 className="text-3xl md:text-4xl font-light text-slate-800 tracking-tight text-center animate-[fadeIn_1s_ease-out_0.5s_both]">
                 The world is more divided than ever before
               </h1>
@@ -815,8 +817,10 @@ const UNGAMap = () => {
               </p>
             </div>
 
-            <div className={`flex flex-col gap-3 pb-4 text-sm text-gray-600 lg:flex-row lg:items-center lg:justify-between opacity-0 animate-[fadeIn_1s_ease-out_1.5s_forwards] px-6 z-10 transition-opacity duration-500 relative`}
-              style={{ opacity: scrollProgress > 0.1 ? 0 : undefined }}>
+            <div
+              className={`flex flex-col gap-3 pb-4 text-sm text-gray-600 lg:flex-row lg:items-center lg:justify-between opacity-0 animate-[fadeIn_1s_ease-out_1.5s_forwards] px-6 z-10 transition-opacity duration-500 relative`}
+              style={{ opacity: interactionsEnabled ? undefined : 0 }}
+            >
               <div className="flex flex-wrap gap-4 justify-center w-full lg:w-auto mx-auto">
                 {blocLegend.map((entry) => (
                   <div key={entry.bloc} className="flex items-center gap-2">
