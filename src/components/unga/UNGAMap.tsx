@@ -287,6 +287,8 @@ const UNGAMap = () => {
   const baseViewBoxRef = useRef<ViewBox | null>(null);
   const europeViewBoxRef = useRef<ViewBox | null>(null);
 
+  const interactionsEnabled = scrollProgress < 0.02;
+
   /* Scroll logic fixed to ensure full zoom */
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
@@ -307,6 +309,15 @@ const UNGAMap = () => {
     scrollContainer.addEventListener('scroll', handleScroll);
     return () => scrollContainer.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Once the user scrolls, disable interactions (the map becomes a background).
+  useEffect(() => {
+    if (!interactionsEnabled) {
+      setTooltip(null);
+      setSelectedCountry(null);
+      setHoveredCountry(null);
+    }
+  }, [interactionsEnabled]);
 
   // Track the map viewport size so we can keep the Europe viewBox centered regardless of screen shape
   useEffect(() => {
@@ -506,6 +517,9 @@ const UNGAMap = () => {
     if (!svgElement) return;
 
     const handleClick = (event: Event) => {
+      if (!interactionsEnabled) {
+        return;
+      }
       const target = event.target as SVGElement | null;
       if (!target) {
         setTooltip(null);
@@ -554,7 +568,7 @@ const UNGAMap = () => {
       svgElement.removeEventListener('click', handleClick);
       container.removeEventListener('click', handleContainerClick);
     };
-  }, [alignmentMap]);
+  }, [alignmentMap, interactionsEnabled]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -563,6 +577,7 @@ const UNGAMap = () => {
     if (!svgElement) return;
 
     const handlePointerEnter = (event: Event) => {
+      if (!interactionsEnabled) return;
       const target = event.target as SVGElement | null;
       if (!target || target.id === 'selection-highlight-overlay' || target.id === 'hover-highlight-overlay') {
         return;
@@ -574,6 +589,7 @@ const UNGAMap = () => {
     };
 
     const handlePointerLeave = (event: Event) => {
+      if (!interactionsEnabled) return;
       const target = event.target as SVGElement | null;
       if (!target || target.id === 'selection-highlight-overlay' || target.id === 'hover-highlight-overlay') {
         return;
@@ -588,7 +604,7 @@ const UNGAMap = () => {
       svgElement.removeEventListener('pointerenter', handlePointerEnter, true);
       svgElement.removeEventListener('pointerleave', handlePointerLeave, true);
     };
-  }, []);
+  }, [interactionsEnabled]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -644,6 +660,10 @@ const UNGAMap = () => {
     const svgPaths = container.querySelectorAll<SVGPathElement>('path[id]');
     let selectedPathId: string | null = null;
 
+    // Fade non-Europe countries out near the end of the scroll (map becomes a subtle background).
+    const nonEuropeT = easeInOut(Math.min(1, Math.max(0, (scrollProgress - 0.72) / 0.28)));
+    const nonEuropeOpacity = lerp(1, 0.06, nonEuropeT);
+
     svgPaths.forEach((path) => {
       const key = resolveCountryKey(path.id);
       if (!key) {
@@ -654,7 +674,7 @@ const UNGAMap = () => {
         path.style.filter = '';
         return;
       }
-      path.style.pointerEvents = 'auto';
+      path.style.pointerEvents = interactionsEnabled ? 'auto' : 'none';
       const alignment = alignmentMap[key];
       const fill = getFillColor(alignment);
       path.style.fill = fill;
@@ -670,7 +690,12 @@ const UNGAMap = () => {
           selectedPathId = path.id;
         }
       } else {
-        path.style.opacity = '1';
+        // If no selection is active, apply end-of-scroll fade to non-Europe shapes.
+        if (EUROPE_ALPHA3.has(key)) {
+          path.style.opacity = '1';
+        } else {
+          path.style.opacity = `${nonEuropeOpacity}`;
+        }
         path.style.stroke = '';
         path.style.strokeWidth = '';
         path.style.filter = 'none';
@@ -697,7 +722,7 @@ const UNGAMap = () => {
         }
       }
     }
-  }, [alignmentMap, selectedCountry]);
+  }, [alignmentMap, selectedCountry, scrollProgress, interactionsEnabled]);
 
   useEffect(() => {
     const container = containerRef.current;
