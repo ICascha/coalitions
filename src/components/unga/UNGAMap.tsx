@@ -538,11 +538,13 @@ const UNGAMap = () => {
 
   const isScrollComplete = scrollProgress >= 0.98;
   const [activeCoalitionIndex, setActiveCoalitionIndex] = useState(0);
+  const [coalitionLoopEnabled, setCoalitionLoopEnabled] = useState(false);
 
   // Cycle coalition highlights once the zoom completes.
   useEffect(() => {
     if (!isScrollComplete) {
       setActiveCoalitionIndex(0);
+      setCoalitionLoopEnabled(false);
       if (coalitionDelayTimeoutRef.current !== null) {
         window.clearTimeout(coalitionDelayTimeoutRef.current);
         coalitionDelayTimeoutRef.current = null;
@@ -558,8 +560,9 @@ const UNGAMap = () => {
     const cycleMs = 2600;
 
     coalitionDelayTimeoutRef.current = window.setTimeout(() => {
-      // Advance once immediately after the delay, then start looping.
-      setActiveCoalitionIndex((prev) => (prev + 1) % EU_COALITIONS.length);
+      // Only start highlighting after the delay (prevents an "instant" highlight at scroll completion).
+      setCoalitionLoopEnabled(true);
+      setActiveCoalitionIndex(0);
 
       coalitionIntervalRef.current = window.setInterval(() => {
         setActiveCoalitionIndex((prev) => (prev + 1) % EU_COALITIONS.length);
@@ -575,6 +578,7 @@ const UNGAMap = () => {
         window.clearInterval(coalitionIntervalRef.current);
         coalitionIntervalRef.current = null;
       }
+      setCoalitionLoopEnabled(false);
     };
   }, [isScrollComplete]);
 
@@ -768,8 +772,8 @@ const UNGAMap = () => {
         // If no selection is active, apply end-of-scroll fade to non-Europe shapes.
         const isEurope = EUROPE_ALPHA3.has(key);
 
-        // At completion: loop-highlight coalition groups within Europe.
-        if (isScrollComplete && isEurope) {
+        // After a short settle delay: loop-highlight coalition groups within Europe.
+        if (coalitionLoopEnabled && isEurope) {
           const isInCoalition = activeCoalition.members.has(key);
           path.style.opacity = isInCoalition ? '1' : `${europeDeemphasizedOpacity}`;
           path.style.stroke = isInCoalition ? '#0f172a' : '';
@@ -809,7 +813,7 @@ const UNGAMap = () => {
         }
       }
     }
-  }, [alignmentMap, selectedCountry, scrollProgress, interactionsEnabled, isScrollComplete, activeCoalitionIndex]);
+  }, [alignmentMap, selectedCountry, scrollProgress, interactionsEnabled, coalitionLoopEnabled, activeCoalitionIndex]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -954,7 +958,7 @@ const UNGAMap = () => {
                             Coalitions within the EU (placeholder)
                           </div>
                           <div className="mt-2 text-2xl md:text-3xl font-semibold text-slate-900">
-                            {EU_COALITIONS[activeCoalitionIndex]?.label ?? '—'}
+                            {coalitionLoopEnabled ? (EU_COALITIONS[activeCoalitionIndex]?.label ?? '—') : '—'}
                           </div>
                           <div className="mt-2 text-sm md:text-base text-slate-600 leading-relaxed">
                             Every few seconds, a different coalition is highlighted on the map.
