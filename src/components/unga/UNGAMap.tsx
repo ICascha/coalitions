@@ -156,9 +156,16 @@ type ViewBox = { x: number; y: number; w: number; h: number };
 
 // --- Manual override ---
 // If you want to hardcode where the scroll zoom lands, set this to a viewBox in SVG coordinates.
-// Example (numbers are placeholders): { x: 250, y: 120, w: 520, h: 420 }
+// IMPORTANT: this SVG uses *very large* coordinates (see the SVG's viewBox; it's ~ ±20,000,000).
+// So overrides like { x: 15, y: 95, w: 100, h: 100 } will effectively point at the *center* of the world.
+//
+// Also note: the map paths live inside `<g transform="scale(1, -1)">`, so visually "north" corresponds to
+// *more negative* y values in this coordinate system.
+//
+// Rough Europe-ish starting point (tweak from here):
+// { x: -3500000, y: -8500000, w: 11000000, h: 7000000 }
 // Set to null to use the auto-detected Europe bbox.
-const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = { x: 20, y: 20, w: 100, h: 100 };
+const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = { x: 15, y: 95, w: 100, h: 100 };
 
 const parseViewBox = (raw: string | null): ViewBox | null => {
   if (!raw) return null;
