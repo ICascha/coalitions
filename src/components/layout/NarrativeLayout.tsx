@@ -1,396 +1,253 @@
-import { useEffect, useRef, useState } from 'react';
-import { ArrowUp } from 'lucide-react';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
-import ScreenAlert from '@/components/ui/ScreenAlert';
-import { useWindowSize, MOBILE_BREAKPOINT } from '@/hooks/useWindowSize';
-import EuropeConnections from '@/components/music/EuropeConnections';
-import IndicatorCorrelationHeatmap from '@/components/analytics/IndicatorCorrelationHeatmap';
-import RegressionDashboard from '@/components/analytics/RegressionDashboard';
-import CountryApprovalHeatmap from '@/components/analytics/CountryApprovalHeatmap';
-import CountryApprovalHeatmapDetailed from '@/components/analytics/CountryApprovalHeatmapDetailed';
+import { useRef, useState, useEffect } from 'react';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { useWindowSize } from '@/hooks/useWindowSize';
+import { Button } from '@/components/ui/button';
+import { Info, X, Menu } from 'lucide-react';
+
+// View Components
 import UNGAMap from '@/components/unga/UNGAMap';
 
-const brandColorRgb = '0, 153, 168';
-const REGRESSION_ENABLED = false;
-const ANIMATION_DURATION = 1000;
+const MOBILE_BREAKPOINT = 768; // md breakpoint
 
-const fadeInAnimation = `
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-`;
-
-const buttonAnimations = `
-  @keyframes buttonFadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 0.85; transform: translateY(0px); }
-  }
-
-  @keyframes subtleGlowPulse {
-    0%, 100% {
-      opacity: 0.85;
-      filter: drop-shadow(0 0 2px rgba(${brandColorRgb}, 0.2));
-    }
-    50% {
-      opacity: 1;
-      filter: drop-shadow(0 0 8px rgba(${brandColorRgb}, 0.5));
-    }
-  }
-`;
-
-export const NarrativeLayout = () => {
+const NarrativeLayout = () => {
   const introRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const basePath = import.meta.env.BASE_URL;
-
-  const [mounted, setMounted] = useState(false);
   const [isLogoDialogOpen, setIsLogoDialogOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showLogoDialog, setShowLogoDialog] = useState(true);
   const [isMainContentVisible, setIsMainContentVisible] = useState(false);
   const [activeView, setActiveView] = useState<
     'connections' | 'correlations' | 'unga' | 'approvals' | 'approvals_detailed' | 'regression'
-  >('connections');
+  >('unga');
 
   const windowWidth = useWindowSize();
   const isMobile = windowWidth !== null && windowWidth < MOBILE_BREAKPOINT;
 
+  // Preload images for faster viewing
   useEffect(() => {
-    const setDynamicViewportHeight = () => {
-      document.documentElement.style.setProperty('--dvh', `${window.innerHeight}px`);
-    };
-
-    setDynamicViewportHeight();
-    window.addEventListener('resize', setDynamicViewportHeight);
-
-    return () => {
-      window.removeEventListener('resize', setDynamicViewportHeight);
-    };
+    // Optional: Preload critical assets if any
   }, []);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsMainContentVisible(entry.isIntersecting);
-      },
-      { threshold: 0.4 }
-    );
-
-    const current = textRef.current;
-    if (current) {
-      observer.observe(current);
+  const viewDetails = {
+    unga: {
+      title: 'De Nieuwe Wereldkaart (UNGA)',
+      component: <UNGAMap />,
+    },
+    // Fallbacks for other views to prevent crashes if state changes
+    connections: {
+      title: 'Netwerk (Connections)',
+      component: <div className="p-4">Component niet beschikbaar</div>,
+    },
+    correlations: {
+      title: 'Correlaties',
+      component: <div className="p-4">Component niet beschikbaar</div>,
+    },
+    approvals: {
+      title: 'Raadsposities',
+      component: <div className="p-4">Component niet beschikbaar</div>,
+    },
+    approvals_detailed: {
+      title: 'Publieke Opinie',
+      component: <div className="p-4">Component niet beschikbaar</div>,
+    },
+    regression: {
+      title: 'Regressie',
+      component: <div className="p-4">Component niet beschikbaar</div>,
     }
+  }[activeView];
 
-    return () => {
-      if (current) {
-        observer.unobserve(current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const HASH_ROUTE_APPROVALS = '#raadsposities';
-
-    const maybeScrollToNarrative = () => {
-      if (textRef.current) {
-        textRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    };
-
-    const handleHashRoute = () => {
-      if (window.location.hash.toLowerCase() === HASH_ROUTE_APPROVALS) {
-        setActiveView('approvals_detailed');
-        maybeScrollToNarrative();
-      }
-    };
-
-    handleHashRoute();
-    window.addEventListener('hashchange', handleHashRoute);
-    return () => window.removeEventListener('hashchange', handleHashRoute);
-  }, []);
-
-  useEffect(() => {
-    const HASH_ROUTE_APPROVALS = '#raadsposities';
-    if (activeView === 'approvals_detailed') {
-      if (window.location.hash.toLowerCase() !== HASH_ROUTE_APPROVALS) {
-        window.history.replaceState(null, '', HASH_ROUTE_APPROVALS);
-      }
-      return;
+  // Animation styles
+  const fadeInAnimation = `
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
+  `;
 
-    if (window.location.hash.toLowerCase() === HASH_ROUTE_APPROVALS) {
-      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+  // Button hover animations
+  const buttonAnimations = `
+    .nav-button {
+      transition: all 0.2s ease-in-out;
     }
-  }, [activeView]);
-
-  const handleTopLeftButtonClick = () => {
-    if (isMainContentVisible) {
-      introRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      return;
+    .nav-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 153, 168, 0.15);
     }
-
-    if (isMobile) {
-      setIsLogoDialogOpen(true);
-      return;
+    .nav-button:active {
+      transform: translateY(0);
     }
-
-    scrollToNarrativeText();
-  };
-
-  const scrollToNarrativeText = () => {
-    textRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  `;
 
   const getAnimationStyle = (delay: number) => ({
+    animation: `fadeIn 0.8s ease-out ${delay}ms forwards`,
     opacity: 0,
-    animation: mounted ? `fadeIn ${ANIMATION_DURATION}ms ease-out forwards ${delay}ms` : 'none',
   });
 
-  const viewDetails = (() => {
-    switch (activeView) {
-      case 'connections':
-        return {
-          title: 'Verbindingen',
-          description: 'Verken hoe Europese landen met elkaar verweven zijn.',
-          component: <EuropeConnections />,
-        };
-      case 'correlations':
-        return {
-          title: 'Indicatorcorrelaties',
-          description:
-            'Onderzoek hoe sterk de indicatoren met elkaar samenhangen. Scores zijn Spearman-correlaties op gedeelde landparen.',
-          component: <IndicatorCorrelationHeatmap />,
-        };
-      case 'unga':
-        return {
-          title: 'UNGA',
-          description: 'Interactieve wereldkaart van de Algemene Vergadering als basis voor latere uitbreidingen.',
-          component: <UNGAMap />,
-        };
-      case 'approvals':
-        return {
-          title: 'Raadsposities',
-          description:
-            'Bekijk hoe landen op verschillende raden en thema’s met elkaar in lijn stemmen. Klik op een vakje voor het aantal gedeelde besluiten.',
-          component: <CountryApprovalHeatmap />,
-        };
-      case 'approvals_detailed':
-        return {
-          title: 'Raadsposities',
-          description:
-            'Bekijk gedetailleerde dimensiescores voor voorstellen.',
-          component: <CountryApprovalHeatmapDetailed />,
-        };
-      case 'regression':
-        if (REGRESSION_ENABLED) {
-          return {
-            title: 'Determinanten van coalities',
-            description:
-              'Voer vaste-effecten regressies uit om te zien welke indicatoren coalities verklaren en vergelijk indicatoren visueel.',
-            component: <RegressionDashboard />,
-          };
-        }
-        return {
-          title: 'Verbindingen',
-          description: 'Verken hoe Europese landen met elkaar verweven zijn.',
-          component: <EuropeConnections />,
-        };
-      default:
-        return {
-          title: 'Verbindingen',
-          description: 'Verken hoe Europese landen met elkaar verweven zijn.',
-          component: <EuropeConnections />,
-        };
-    }
-  })();
-
-  return (
-    <div className="w-full h-screen-dynamic overflow-y-scroll scroll-snap-type-y-mandatory">
-      <style>{`${fadeInAnimation}${buttonAnimations}`}</style>
-      <ScreenAlert />
-
-      <div className="fixed top-4 left-4 md:top-8 md:left-8 z-50">
-        <Dialog open={isLogoDialogOpen} onOpenChange={setIsLogoDialogOpen}>
-          <DialogContent className="w-[95vw] sm:w-[90vw] max-w-2xl bg-white/95 backdrop-blur-sm p-0">
-            <DialogHeader className="p-6 pb-4">
-              <DialogTitle className="text-xl">Over het Rapport</DialogTitle>
-            </DialogHeader>
-            <div className="px-6 pb-6 space-y-4">
-              <p className="text-gray-700 leading-relaxed text-left">
-                Dit analyse-instrument is ontwikkeld door{' '}
-                <a
-                  href="https://denkwerk.online/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[rgb(0,153,168)] hover:underline"
-                >
-                  DenkWerk
-                </a>{' '}
-                in samenwerking met{' '}
-                <a
-                  href="https://kickstart.ai/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[rgb(0,153,168)] hover:underline"
-                >
-                  KickstartAI
-                </a>{' '}
-                als onderdeel van het DenkWerk rapport &apos;Weerbaarheid by Design&apos;.
-              </p>
-              <p className="text-gray-700 leading-relaxed text-left">
-                DenkWerk is een onafhankelijke denktank die met krachtige ideeën bijdraagt aan een
-                welvarend, inclusief en vooruitstrevend Nederland.
-              </p>
-            </div>
-          </DialogContent>
-        </Dialog>
-
-        <button
-          onClick={handleTopLeftButtonClick}
-          aria-label={isMainContentVisible ? 'Terug naar banner' : "Open 'Over het Rapport' dialoog"}
-          className={`
-            group flex items-center justify-center h-14 md:h-16 bg-[rgb(0,153,168)] shadow-lg hover:scale-105
-            transition-all duration-500 ease-in-out rounded-full px-4
-            ${mounted ? 'animate-[buttonFadeIn_800ms_ease-in-out]' : ''}
-          `}
+  const LogoContent = () => (
+    <div className="flex flex-col items-center text-center p-8 bg-white h-full justify-center">
+      <div className="relative w-48 h-48 mb-8 animate-[fadeIn_1s_ease-out]">
+        <div className="absolute inset-0 bg-blue-100 rounded-full opacity-20 animate-pulse" />
+        <img
+          src="/hcss-logo.png"
+          alt="HCSS Logo"
+          className="relative z-10 w-full h-full object-contain p-4"
+        />
+      </div>
+      <h2
+        className="text-3xl font-bold text-[rgb(0,153,168)] mb-4"
+        style={getAnimationStyle(200)}
+      >
+        The Hague Centre for Strategic Studies
+      </h2>
+      <p className="text-gray-600 mb-8 max-w-lg" style={getAnimationStyle(400)}>
+        Data-driven inzichten in mondiale geopolitieke verhoudingen en strategische veiligheidsvraagstukken.
+      </p>
+      <div className="flex gap-4" style={getAnimationStyle(600)}>
+        <a
+          href="https://hcss.nl"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-6 py-2 bg-[rgb(0,153,168)] text-white rounded-full font-medium hover:bg-[rgb(0,123,138)] transition-colors"
         >
-          <div className="flex items-center space-x-3 text-white">
-            <img
-              src={`${basePath}denkwerk_logo.svg`}
-              alt="Denkwerk Logo"
-              className="h-6 md:h-7 w-auto"
-              style={{ filter: 'brightness(0) invert(1)' }}
-            />
-            <span className="text-sm md:text-base font-medium whitespace-nowrap">
-              {isMainContentVisible ? 'Naar banner' : 'Over het rapport'}
-            </span>
-            <ArrowUp className="h-4 w-4 md:h-5 md:w-5 text-white" />
-          </div>
+          Bezoek Website
+        </a>
+        <button
+          onClick={() => setIsLogoDialogOpen(false)}
+          className="px-6 py-2 border border-gray-300 rounded-full font-medium hover:bg-gray-50 transition-colors text-gray-700"
+        >
+          Sluiten
         </button>
       </div>
+    </div>
+  );
 
+  return (
+    <div className="w-full h-screen overflow-hidden bg-slate-50/50">
+      <style>{`${fadeInAnimation}${buttonAnimations}`}</style>
+      {/* <ScreenAlert /> */}
+
+      {/* Intro section and tabs temporarily hidden */}
+      {/*
+      <div className="fixed top-4 left-4 md:top-8 md:left-8 z-50">
+        <Dialog open={isLogoDialogOpen} onOpenChange={setIsLogoDialogOpen}>
+          <DialogTrigger asChild>
+            <button
+              className="group flex flex-col items-center bg-white/90 backdrop-blur-sm p-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100"
+              aria-label="Over HCSS"
+            >
+              <div className="w-10 h-10 md:w-12 md:h-12 relative flex items-center justify-center">
+                <img
+                  src="/hcss-logo.png"
+                  alt="HCSS Logo"
+                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+            </button>
+          </DialogTrigger>
+          <DialogContent className="w-[95vw] sm:w-[90vw] max-w-2xl bg-white/95 backdrop-blur-sm p-0">
+            <LogoContent />
+          </DialogContent>
+        </Dialog>
+      </div>
+      */}
+
+      {/*
       <section
         ref={introRef}
-        className="relative w-full bg-slate-50 scroll-snap-align-start overflow-hidden"
+        className="relative flex h-[40vh] w-full flex-col justify-center overflow-hidden bg-gradient-to-b from-slate-50 to-white px-6 md:px-12"
       >
-        <div className="relative w-full h-[220px] md:h-[280px] lg:h-[320px]">
-          <img
-            src={`${basePath}europe_from_above.jpg`}
-            alt="Nederland in de nacht vanuit de ruimte"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute bottom-2 left-2 text-white text-xs bg-black/50 px-2 py-1 rounded">
-            Foto: ©ESA/NASA - André Kuipers
-          </div>
-          <div className="absolute inset-0 bg-black/60 flex flex-col justify-center items-center text-white text-center px-4">
-            <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
-              style={getAnimationStyle(0)}
-            >
-              Netwerkanalyse (Placeholder)
-            </h1>
-            <p
-              className="text-base md:text-lg max-w-3xl"
-              style={getAnimationStyle(200)}
-            >
-              Ontdek de onderlinge verbondenheid van Europese landen
-            </p>
-          </div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="mx-auto flex w-full max-w-6xl flex-col items-center text-center z-10">
+          <h1
+            className="mb-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-6xl lg:text-7xl"
+            style={{
+              animation: 'fadeIn 1s ease-out forwards',
+              opacity: 0,
+            }}
+          >
+            Subjectieve Waarheden
+          </h1>
+          <p
+            className="mb-8 max-w-2xl text-lg text-slate-600 md:text-xl leading-relaxed"
+            style={getAnimationStyle(300)}
+          >
+            Een interactieve verkenning van hoe mondiale machten en allianties verschuiven in een steeds complexere wereld.
+          </p>
+
+          <Button
+            size="lg"
+            onClick={() => {
+              textRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="rounded-full bg-slate-900 px-8 py-6 text-lg font-medium text-white shadow-xl transition-all hover:translate-y-[-2px] hover:bg-slate-800 hover:shadow-2xl"
+            style={getAnimationStyle(600)}
+          >
+            Start Analyse
+          </Button>
         </div>
       </section>
+      */}
 
       <section
         ref={textRef}
-        className="scroll-snap-align-start bg-white min-h-screen"
+        className="h-full w-full bg-white"
       >
         <div className="relative flex h-full w-full flex-col">
+          {/* Tabs temporarily hidden
           <div
             className="flex flex-col gap-4 px-6 pt-8 pb-4 md:flex-row md:items-end md:justify-between md:pt-10 md:pb-6"
             style={getAnimationStyle(600)}
           >
-            <div className="flex flex-col gap-2">
-              <h2 className="text-2xl md:text-3xl font-semibold text-[rgb(0,153,168)]">
-                {viewDetails.title}
+            <div className="flex flex-col gap-1">
+              <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">
+                {viewDetails?.title}
               </h2>
-              <p className="text-sm md:text-base text-gray-600 max-w-2xl">
-                {viewDetails.description}
-              </p>
+              <div className="h-1 w-20 rounded-full bg-[rgb(0,153,168)] opacity-60"></div>
             </div>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setActiveView('connections')}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${activeView === 'connections'
-                  ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
-                  : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
-                  }`}
-              >
-                Verbindingen
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveView('correlations')}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${activeView === 'correlations'
-                  ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
-                  : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
-                  }`}
-              >
-                Correlaties
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveView('unga')}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                  activeView === 'unga'
-                    ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
-                    : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
-                }`}
-              >
-                UNGA
-              </button>
-              {/* <button
-                type="button"
-                onClick={() => setActiveView('approvals')}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${activeView === 'approvals'
-                    ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
-                    : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
-                  }`}
-              >
-                Raadsposities
-              </button> */}
-              <button
-                type="button"
-                onClick={() => setActiveView('approvals_detailed')}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${activeView === 'approvals_detailed'
-                  ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
-                  : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
-                  }`}
-              >
-                Raadsposities
-              </button>
-              {REGRESSION_ENABLED && (
+
+            <div className={`
+              ${isMobile ? 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-white/90 backdrop-blur-md p-2 rounded-full shadow-lg border border-slate-200' : 'bg-slate-100/50 p-1.5 rounded-full border border-slate-200'}
+            `}>
+              <div className="flex items-center gap-1 md:gap-2">
                 <button
                   type="button"
-                  onClick={() => setActiveView('regression')}
-                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${activeView === 'regression'
-                    ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
-                    : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
-                    }`}
+                  onClick={() => setActiveView('connections')}
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                    activeView === 'connections'
+                      ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
+                      : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
+                  }`}
                 >
-                  Regressie
+                  Netwerk
                 </button>
-              )}
+                <button
+                  type="button"
+                  onClick={() => setActiveView('unga')}
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                    activeView === 'unga'
+                      ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
+                      : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
+                  }`}
+                >
+                  UNGA
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveView('approvals_detailed')}
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                    activeView === 'approvals_detailed'
+                      ? 'bg-[rgb(0,153,168)] text-white border-[rgb(0,153,168)]'
+                      : 'bg-white text-[rgb(0,153,168)] border-[rgb(0,153,168)] hover:bg-[rgb(0,153,168)] hover:text-white'
+                  }`}
+                >
+                  Publieke Opinie
+                </button>
+              </div>
             </div>
           </div>
-          <div className="flex-1 min-h-0 px-4 pb-6 md:px-6">
+          */}
+
+          <div className="flex-1 min-h-0 w-full h-full">
             {viewDetails.component}
           </div>
         </div>
@@ -398,3 +255,5 @@ export const NarrativeLayout = () => {
     </div>
   );
 };
+
+export { NarrativeLayout };
