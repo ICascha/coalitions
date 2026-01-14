@@ -88,7 +88,7 @@ const resolveCountryKey = (rawId: string): string | null => {
 
 const getCountryDisplayName = (key: string, defaultName: string): string => {
   // Use alpha3 map if available
-  return alpha3ToCountryName[key] ?? defaultName;
+  return (alpha3ToCountryName as Record<string, string>)[key] ?? defaultName;
 };
 
 const blendWithWhite = (color: string, alpha: number): string => {
@@ -109,7 +109,7 @@ const getFillColor = (alignment: { bloc: PowerBloc; strength: number } | undefin
   return blendWithWhite(POWER_BLOC_COLORS[alignment.bloc], Math.max(alignment.strength, 0.45));
 };
 
-const formatMetricValue = (value: number | null, source: string): string => {
+const formatMetricValue = (value: number | null): string => {
   if (value === null) return '-';
   return value.toFixed(3);
 };
@@ -191,8 +191,6 @@ const UNGAMap = () => {
   const [mapError, setMapError] = useState<string | null>(null);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
-
-  const dataSource = 'UNGA';
 
   /* Scroll logic fixed to ensure full zoom */
   useEffect(() => {
@@ -506,12 +504,10 @@ const UNGAMap = () => {
           @keyframes mapReveal {
             0% {
               opacity: 0;
-              transform: scale(0.98) translateY(15px);
               filter: blur(10px);
             }
             100% {
               opacity: 1;
-              transform: scale(1) translateY(0);
               filter: blur(0);
             }
           }
@@ -560,12 +556,15 @@ const UNGAMap = () => {
               <div className="absolute inset-0 flex items-center justify-center p-4">
                 <div
                   className="relative w-full h-full max-w-[1600px] unga-map-container-inner"
-                  style={{
-                    willChange: 'transform',
-                    transition: 'transform 0.05s linear', // Faster response to scroll
-                    ...zoomStyle
-                  }}
                 >
+                  <div
+                    className="relative w-full h-full"
+                    style={{
+                      willChange: 'transform',
+                      transition: 'transform 0.05s linear', // Faster response to scroll
+                      ...zoomStyle,
+                    }}
+                  >
                   <div className="relative h-full w-full overflow-hidden rounded-xl bg-slate-50/0">
                     <div
                       ref={containerRef}
@@ -618,7 +617,7 @@ const UNGAMap = () => {
                                   />
                                   <span>
                                     Dichtst bij {POWER_BLOC_LABELS[alignmentData.bloc]} (
-                                    {formatMetricValue(alignmentData.value, dataSource)})
+                                    {formatMetricValue(alignmentData.value)})
                                   </span>
                                 </div>
                                 <div className="mt-1 space-y-0.5 text-[11px] text-gray-500">
@@ -626,7 +625,7 @@ const UNGAMap = () => {
                                     <div key={bloc} className="flex items-center justify-between gap-6">
                                       <span>{POWER_BLOC_LABELS[bloc]}</span>
                                       <span>
-                                        {formatMetricValue(alignmentData.metrics[bloc] ?? null, dataSource)}
+                                        {formatMetricValue(alignmentData.metrics[bloc] ?? null)}
                                       </span>
                                     </div>
                                   ))}
@@ -637,6 +636,7 @@ const UNGAMap = () => {
                         )}
                       </div>
                     )}
+                  </div>
                   </div>
                 </div>
               </div>
