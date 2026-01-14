@@ -28,7 +28,7 @@ import { useDiscreteScroll } from './hooks/useDiscreteScroll';
 
 const SECTION_COUNT = 3;
 const SCROLL_TRANSITION_MS = 300; // Fast transition
-const LOCK_IN_DURATION_MS = 800; // Cooldown after landing on a section
+const LOCK_IN_DURATION_MS = 200; // Cooldown after landing on a section
 
 const UNGAMap = () => {
   const containerRef = useRef<HTMLDivElement>(null);
