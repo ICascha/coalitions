@@ -533,11 +533,19 @@ export const UNGAMap = () => {
   }, [dataSource]);
 
   const svgMarkup = useMemo(() => {
-    // Ensure the injected SVG scales responsively
-    return worldMapSvg.replace(
-      /<svg([^>]+)>/,
-      '<svg$1 preserveAspectRatio="xMidYMid meet">'
-    );
+    // Ensure the injected SVG scales responsively and fix transitions
+    // that cause flashing on edge countries (Russia, USA, China)
+    return worldMapSvg
+      .replace(
+        /<svg([^>]+)>/,
+        '<svg$1 preserveAspectRatio="xMidYMid meet">'
+      )
+      // Override the SVG's built-in "transition: all" which causes flashing
+      // on complex paths at map edges. Only transition fill color.
+      .replace(
+        /transition:\s*all[^;]*;/g,
+        'transition: fill 0.2s ease-out;'
+      );
   }, []);
 
   useEffect(() => {
@@ -1445,7 +1453,8 @@ export const UNGAMap = () => {
               className={cn(
                 'w-full h-full unga-map',
                 '[&_svg]:w-full [&_svg]:h-full [&_svg]:max-h-[70vh]',
-                '[&_path]:transition-all [&_path]:duration-200 [&_path]:ease-out',
+                // Only transition fill color, not opacity/filter which cause flashing on edge countries
+                '[&_path]:transition-[fill] [&_path]:duration-200 [&_path]:ease-out',
                 '[&_path]:cursor-pointer',
                 '[&_path:hover]:brightness-[1.05]'
               )}
