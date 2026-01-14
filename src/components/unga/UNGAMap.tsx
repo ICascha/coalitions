@@ -260,6 +260,13 @@ const resolveCountryKey = (rawId: string) => {
 };
 const normalizeCountryName = (name: string) => normalizeSvgId(name);
 
+const bringSvgElementToFront = (element: SVGElement | null) => {
+  if (!element) return;
+  const parent = element.parentNode;
+  if (!parent) return;
+  parent.appendChild(element);
+};
+
 const deriveCountryKeys = (countryName: string) => {
   const normalized = normalizeCountryName(countryName);
   const keys = new Set<string>([countryName.toUpperCase(), normalized]);
@@ -608,6 +615,27 @@ export const UNGAMap = () => {
   }, [alignmentMap, dataSource, criticalGoodsSummary]);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const svgElement = container.querySelector('svg');
+    if (!svgElement) return;
+
+    // Ensure hovered countries are always drawn on top of neighbors (SVG paint order).
+    const handlePointerOver = (event: Event) => {
+      const target = event.target as SVGElement | null;
+      if (!target) return;
+
+      const path = target.closest?.('path[id]') as SVGPathElement | null;
+      if (!path) return;
+
+      bringSvgElementToFront(path);
+    };
+
+    svgElement.addEventListener('pointerover', handlePointerOver);
+    return () => svgElement.removeEventListener('pointerover', handlePointerOver);
+  }, []);
+
+  useEffect(() => {
     const controller = new AbortController();
     const fetchAlignments = async () => {
       setMapError(null);
@@ -883,15 +911,21 @@ export const UNGAMap = () => {
       if (selectedCountry) {
         const isSelected = selectedCountry === key;
         path.style.opacity = isSelected ? '1' : '0.25';
-        path.style.stroke = isSelected ? '#0f172a' : 'rgba(15,23,42,0.4)';
-        path.style.strokeWidth = isSelected ? '2' : '0.5';
+        // This SVG uses a very large viewBox (tens of millions of units).
+        // Keep the SVG-defined stroke widths for all countries, otherwise borders become invisible.
+        path.style.stroke = isSelected ? '#0f172a' : '';
+        path.style.strokeWidth = isSelected ? '45000' : '';
         path.style.filter = isSelected
           ? 'drop-shadow(0 0 8px rgba(15,23,42,0.45))'
           : 'none';
+        if (isSelected) {
+          bringSvgElementToFront(path);
+        }
       } else {
         path.style.opacity = '1';
-        path.style.stroke = '#94a3b8';
-        path.style.strokeWidth = '1';
+        // Let the SVG control country borders (stroke + stroke-width).
+        path.style.stroke = '';
+        path.style.strokeWidth = '';
         path.style.filter = 'none';
       }
     });
@@ -1430,7 +1464,7 @@ export const UNGAMap = () => {
                 'w-full h-full unga-map',
                 ' [&_svg]:w-full [&_svg]:h-full [&_svg]:max-h-[70vh]',
                 ' [&_path]:transition-[fill,stroke] [&_path]:duration-150',
-                ' [&_path]:cursor-pointer [&_path]:stroke-white [&_path]:stroke-[0.5]'
+                ' [&_path]:cursor-pointer'
               )}
               dangerouslySetInnerHTML={{ __html: svgMarkup }}
             />

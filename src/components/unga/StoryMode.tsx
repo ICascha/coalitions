@@ -98,15 +98,37 @@ const StoryMap = ({ year }: { year: number }) => {
     const container = containerRef.current;
     if (!container) return;
 
+    const bringToFront = (el: SVGElement | null) => {
+      if (!el) return;
+      const parent = el.parentNode;
+      if (!parent) return;
+      parent.appendChild(el);
+    };
+
+    const svgElement = container.querySelector('svg');
+    const handlePointerOver = (event: Event) => {
+      const target = event.target as SVGElement | null;
+      if (!target) return;
+      const path = target.closest?.('path[id]') as SVGPathElement | null;
+      if (!path) return;
+      bringToFront(path);
+    };
+    svgElement?.addEventListener('pointerover', handlePointerOver);
+
     const svgPaths = container.querySelectorAll<SVGPathElement>('path[id]');
     svgPaths.forEach((path) => {
       // In a real app we would resolve the country key properly
       // Here we just use the ID directly for the mock
       path.style.fill = getColor(path.id);
-      path.style.stroke = '#white';
-      path.style.strokeWidth = '0.5';
+      // Keep SVG-defined stroke styling (the map uses a large viewBox)
+      path.style.stroke = '';
+      path.style.strokeWidth = '';
       path.style.transition = 'fill 1s ease-in-out'; // Smooth transition for year change
     });
+
+    return () => {
+      svgElement?.removeEventListener('pointerover', handlePointerOver);
+    };
   }, [year, getColor]);
 
   return (
