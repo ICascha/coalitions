@@ -3,6 +3,8 @@ import { useEffect, useRef, useCallback, useState } from 'react';
 export type DiscreteScrollOptions = {
   sectionCount: number;
   transitionDurationMs?: number;
+  /** Cooldown period after arriving at a section before scroll is re-enabled */
+  lockInDurationMs?: number;
   onSectionChange?: (sectionIndex: number) => void;
 };
 
@@ -15,7 +17,7 @@ export function useDiscreteScroll(
   scrollContainerRef: React.RefObject<HTMLElement>,
   options: DiscreteScrollOptions
 ) {
-  const { sectionCount, transitionDurationMs = 300, onSectionChange } = options;
+  const { sectionCount, transitionDurationMs = 300, lockInDurationMs = 600, onSectionChange } = options;
 
   const [currentSection, setCurrentSection] = useState(0);
   const currentSectionRef = useRef(0);
@@ -67,10 +69,10 @@ export function useDiscreteScroll(
           setCurrentSection(clampedTarget);
           onSectionChange?.(clampedTarget);
           
-          // Keep locked for a brief moment to prevent immediate re-trigger
+          // Lock-in period: prevent scrolling for a while after landing
           setTimeout(() => {
             isLockedRef.current = false;
-          }, 50);
+          }, lockInDurationMs);
         }
       };
 

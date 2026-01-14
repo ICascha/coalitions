@@ -17,6 +17,7 @@ import { buildAlpha3SetFromNames, formatCountryName, getCountryDisplayName, reso
 import { blendWithWhite } from './ungaMapColors';
 import { clamp01, easeInOut, lerp } from './ungaMapMath';
 import { formatMetricValue } from './ungaMapFormat';
+import { useScrollContainerProgress } from './hooks/useScrollContainerProgress';
 import { useElementSize } from './hooks/useElementSize';
 import { useUngAAlignment } from './hooks/useUngAAlignment';
 import { useEuropeViewBoxZoom } from './hooks/useEuropeViewBoxZoom';
@@ -27,6 +28,7 @@ import { useDiscreteScroll } from './hooks/useDiscreteScroll';
 
 const SECTION_COUNT = 3;
 const SCROLL_TRANSITION_MS = 300; // Fast transition
+const LOCK_IN_DURATION_MS = 800; // Cooldown after landing on a section
 
 const UNGAMap = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,24 +37,29 @@ const UNGAMap = () => {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   
-  // Discrete scroll: enforces one-section-at-a-time navigation
-  // Returns the current section (0, 1, or 2) as state
+  // Continuous scroll progress for smooth visual transitions
+  const rawScrollProgress = useScrollContainerProgress(scrollContainerRef);
+  
+  // Discrete scroll: enforces one-section-at-a-time navigation with lock-in period
   const { currentSection } = useDiscreteScroll(scrollContainerRef, {
     sectionCount: SECTION_COUNT,
     transitionDurationMs: SCROLL_TRANSITION_MS,
+    lockInDurationMs: LOCK_IN_DURATION_MS,
   });
   
-  // Map discrete sections to scene states (no intermediate values)
+  // Map current section to scene ID
   const sceneId = currentSection === 0 ? 'intro' : currentSection === 1 ? 'europe' : 'viz';
   const mapViewport = useElementSize(containerRef);
   const { alignmentMap, loading: mapLoading, error: mapError } = useUngAAlignment();
 
-  // Zoom: 0 at intro, 1 at europe and beyond
-  const zoomProgress = currentSection >= 1 ? 1 : 0;
-  // Viz transition: 0 before viz section, 1 at viz section
-  const vizProgress = currentSection === 2 ? 1 : 0;
+  // Use scroll progress for smooth visual transitions
+  // rawScrollProgress: 0 = section 0, 0.5 = section 1, 1 = section 2
+  // zoomProgress: maps 0-0.5 to 0-1 (zoom completes at section 1)
+  const zoomProgress = clamp01(rawScrollProgress * 2);
+  // vizProgress: maps 0.5-1 to 0-1 (viz transition happens going to section 2)
+  const vizProgress = clamp01((rawScrollProgress - 0.5) * 2);
 
-  const interactionsEnabled = currentSection === 0;
+  const interactionsEnabled = rawScrollProgress < 0.05;
   const isZoomComplete = zoomProgress >= 0.98;
 
   useEffect(() => {
@@ -334,7 +341,7 @@ const UNGAMap = () => {
 
             <div
               className="flex flex-col items-center justify-center pt-8 pb-4 z-10 pointer-events-none relative transition-opacity duration-500"
-              style={{ opacity: interactionsEnabled ? 1 : 0 }}
+              style={{ opacity: interactionsEnabled ? 1 - rawScrollProgress * 4 : 0 }}
             >
               <h1 className="text-3xl md:text-4xl font-light text-slate-800 tracking-tight text-center animate-[fadeIn_1s_ease-out_0.5s_both]">
                 The world is more divided than ever before
@@ -470,7 +477,7 @@ const UNGAMap = () => {
             {/* Scroll Indicator */}
             <div
               className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 transition-opacity duration-500"
-              style={{ opacity: currentSection > 0 ? 0 : 1 }}
+              style={{ opacity: rawScrollProgress > 0.1 ? 0 : 1 }}
             >
               <span className="text-xs uppercase tracking-widest text-slate-400 font-medium">
                 Scroll to explore
