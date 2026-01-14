@@ -260,12 +260,10 @@ const resolveCountryKey = (rawId: string) => {
 };
 const normalizeCountryName = (name: string) => normalizeSvgId(name);
 
-const bringSvgElementToFront = (element: SVGElement | null) => {
-  if (!element) return;
-  const parent = element.parentNode;
-  if (!parent) return;
-  parent.appendChild(element);
-};
+// Note: We intentionally avoid DOM reordering (appendChild) for SVG paths
+// because it causes visual flashing for countries at the edge of the map
+// (like Russia, USA, China). Instead, we rely purely on CSS styling
+// (opacity, stroke, filter) for selection highlighting.
 
 const deriveCountryKeys = (countryName: string) => {
   const normalized = normalizeCountryName(countryName);
@@ -614,26 +612,9 @@ export const UNGAMap = () => {
     };
   }, [alignmentMap, dataSource, criticalGoodsSummary]);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const svgElement = container.querySelector('svg');
-    if (!svgElement) return;
-
-    // Ensure hovered countries are always drawn on top of neighbors (SVG paint order).
-    const handlePointerOver = (event: Event) => {
-      const target = event.target as SVGElement | null;
-      if (!target) return;
-
-      const path = target.closest?.('path[id]') as SVGPathElement | null;
-      if (!path) return;
-
-      bringSvgElementToFront(path);
-    };
-
-    svgElement.addEventListener('pointerover', handlePointerOver);
-    return () => svgElement.removeEventListener('pointerover', handlePointerOver);
-  }, []);
+  // Note: We removed the pointerover-based DOM reordering (bringSvgElementToFront)
+  // because it causes visual flashing for edge countries like Russia, USA, China.
+  // The hover effect is now purely CSS-based via the SVG's built-in :hover styles.
 
   useEffect(() => {
     const controller = new AbortController();
@@ -888,6 +869,7 @@ export const UNGAMap = () => {
     if (!container) {
       return;
     }
+
     const svgPaths = container.querySelectorAll<SVGPathElement>('path[id]');
     svgPaths.forEach((path) => {
       const key = resolveCountryKey(path.id);
@@ -918,9 +900,9 @@ export const UNGAMap = () => {
         path.style.filter = isSelected
           ? 'drop-shadow(0 0 80000px rgba(15, 23, 42, 0.4))'
           : 'none';
-        if (isSelected) {
-          bringSvgElementToFront(path);
-        }
+        // Note: We no longer call bringSvgElementToFront() here to avoid flashing
+        // for edge countries like Russia, USA, China. The visual highlighting
+        // is achieved purely through opacity/stroke/filter CSS properties.
       } else {
         path.style.opacity = '1';
         // Let the SVG control country borders (stroke + stroke-width).
