@@ -165,7 +165,7 @@ type ViewBox = { x: number; y: number; w: number; h: number };
 // Rough Europe-ish starting point (tweak from here):
 // { x: -3500000, y: -8500000, w: 11000000, h: 7000000 }
 // Set to null to use the auto-detected Europe bbox.
-const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = { x: -3000000, y: -8500000, w: 10000000/1.4, h: 7000000/1.4 };
+const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = { x: -5000000, y: -8500000, w: 10000000/1.4, h: 7000000/1.4 };
 
 const parseViewBox = (raw: string | null): ViewBox | null => {
   if (!raw) return null;
@@ -494,7 +494,7 @@ const UNGAMap = () => {
     const t = easeInOut(Math.min(1, Math.max(0, scrollProgress)));
     // Fade/soften map as we zoom in; keep it interactive but visually backgrounded.
     const opacity = lerp(1, 0.18, t);
-    const blurPx = lerp(0, 2.5, t);
+    const blurPx = lerp(0, 1.1, t);
     const saturate = lerp(1, 0.55, t);
     const contrast = lerp(1, 0.9, t);
     const brightness = lerp(1, 0.98, t);
@@ -851,14 +851,14 @@ const UNGAMap = () => {
                     />
                     {/* Placeholder foreground elements that appear once scrolling completes */}
                     <div
-                      className="absolute inset-0 flex items-center justify-center p-6 pointer-events-none"
+                      className="absolute inset-0 flex items-center justify-start p-6 md:p-10 pointer-events-none"
                       style={{
                         opacity: isScrollComplete ? 1 : 0,
                         transform: `translateY(${isScrollComplete ? 0 : 10}px)`,
                         transition: 'opacity 400ms ease, transform 500ms ease',
                       }}
                     >
-                      <div className="max-w-3xl w-full">
+                      <div className="w-full max-w-xl">
                         <div className="rounded-2xl bg-white/85 backdrop-blur-md border border-white/60 shadow-xl px-6 py-6">
                           <div className="text-xs uppercase tracking-widest text-slate-500">
                             Next section (placeholder)
