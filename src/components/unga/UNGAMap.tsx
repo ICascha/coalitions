@@ -498,6 +498,7 @@ export const UNGAMap = () => {
   const [selectedFbicMetric, setSelectedFbicMetric] = useState('fbic');
   const [availableFbicMetrics, setAvailableFbicMetrics] = useState<string[]>([...FBIC_DEFAULT_METRICS]);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+  const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const [countrySeries, setCountrySeries] = useState<TimeSeriesMap>({});
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState<string | null>(null);
@@ -621,9 +622,40 @@ export const UNGAMap = () => {
     };
   }, [alignmentMap, dataSource, criticalGoodsSummary]);
 
-  // Note: We removed the pointerover-based DOM reordering (bringSvgElementToFront)
-  // because it causes visual flashing for edge countries like Russia, USA, China.
-  // The hover effect is now purely CSS-based via the SVG's built-in :hover styles.
+  // Handle hover state for creating the hover overlay
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const svgElement = container.querySelector('svg');
+    if (!svgElement) return;
+
+    const handlePointerEnter = (event: Event) => {
+      const target = event.target as SVGElement | null;
+      if (!target || target.id === 'selection-highlight-overlay' || target.id === 'hover-highlight-overlay') {
+        return;
+      }
+      const key = resolveCountryKey(target.id);
+      if (key) {
+        setHoveredCountry(key);
+      }
+    };
+
+    const handlePointerLeave = (event: Event) => {
+      const target = event.target as SVGElement | null;
+      if (!target || target.id === 'selection-highlight-overlay' || target.id === 'hover-highlight-overlay') {
+        return;
+      }
+      setHoveredCountry(null);
+    };
+
+    svgElement.addEventListener('pointerenter', handlePointerEnter, true);
+    svgElement.addEventListener('pointerleave', handlePointerLeave, true);
+
+    return () => {
+      svgElement.removeEventListener('pointerenter', handlePointerEnter, true);
+      svgElement.removeEventListener('pointerleave', handlePointerLeave, true);
+    };
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -956,6 +988,58 @@ export const UNGAMap = () => {
       }
     }
   }, [alignmentMap, selectedCountry, dataSource, criticalGoodsSummary, criticalGoodsMaxCount]);
+
+  // Create hover overlay separately so it doesn't re-run all country styling
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const svgElement = container.querySelector('svg');
+    const countriesGroup = svgElement?.querySelector('#countries') ?? svgElement;
+
+    // Remove any previous hover overlay
+    const existingHoverOverlay = svgElement?.querySelector('#hover-highlight-overlay');
+    if (existingHoverOverlay) {
+      existingHoverOverlay.remove();
+    }
+
+    // Don't show hover overlay if the hovered country is the selected country
+    // or if no country is hovered
+    if (!hoveredCountry || hoveredCountry === selectedCountry || !countriesGroup || !svgElement) {
+      return;
+    }
+
+    // Find the path element for the hovered country
+    const svgPaths = container.querySelectorAll<SVGPathElement>('path[id]');
+    let hoveredPathId: string | null = null;
+    svgPaths.forEach((path) => {
+      const key = resolveCountryKey(path.id);
+      if (key === hoveredCountry) {
+        hoveredPathId = path.id;
+      }
+    });
+
+    if (hoveredPathId) {
+      const originalPath = svgElement.querySelector(`#${hoveredPathId}`) as SVGPathElement | null;
+      if (originalPath) {
+        const pathData = originalPath.getAttribute('d');
+        if (pathData) {
+          const overlay = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          overlay.setAttribute('id', 'hover-highlight-overlay');
+          overlay.setAttribute('d', pathData);
+          overlay.style.fill = 'none';
+          overlay.style.stroke = '#1e293b';
+          overlay.style.strokeWidth = '35000';
+          overlay.style.strokeLinejoin = 'round';
+          overlay.style.pointerEvents = 'none';
+          overlay.style.filter = 'drop-shadow(0 0 60000px rgba(30, 41, 59, 0.25))';
+          overlay.style.opacity = '1';
+          overlay.style.transition = 'none';
+          countriesGroup.appendChild(overlay);
+        }
+      }
+    }
+  }, [hoveredCountry, selectedCountry]);
 
   useEffect(() => {
     const controller = new AbortController();
