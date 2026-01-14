@@ -15,7 +15,7 @@ import {
 } from './ungaMapConfig';
 import { buildAlpha3SetFromNames, formatCountryName, getCountryDisplayName, resolveCountryKey } from './ungaMapSvgCountry';
 import { blendWithWhite } from './ungaMapColors';
-import { easeInOut, lerp } from './ungaMapMath';
+import { clamp01, easeInOut, lerp } from './ungaMapMath';
 import { formatMetricValue } from './ungaMapFormat';
 import { useScrollContainerProgress } from './hooks/useScrollContainerProgress';
 import { useElementSize } from './hooks/useElementSize';
@@ -33,16 +33,20 @@ const UNGAMap = () => {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const rawScrollProgress = useScrollContainerProgress(scrollContainerRef);
-  const { effectiveProgress: scrollProgress } = useScrollScenes(rawScrollProgress, [
-    // Today: a single scene.
-    // Later: add multiple scenes here and implement "resistance" at boundaries.
-    { id: 'europe', start: 0, end: 1 },
+  const { sceneId, sceneProgress, effectiveProgress } = useScrollScenes(rawScrollProgress, [
+    { id: 'intro', start: 0, end: 1 / 3 },
+    { id: 'europe', start: 1 / 3, end: 2 / 3 },
+    { id: 'viz', start: 2 / 3, end: 1 },
   ]);
   const mapViewport = useElementSize(containerRef);
   const { alignmentMap, loading: mapLoading, error: mapError } = useUngAAlignment();
 
-  const interactionsEnabled = scrollProgress < 0.02;
-  const isScrollComplete = scrollProgress >= 0.98;
+  // Zoom is mapped across the first two "screens" (intro -> europe). Third screen transitions away from the map.
+  const zoomProgress = clamp01(effectiveProgress / (2 / 3));
+  const vizProgress = sceneId === 'viz' ? sceneProgress : 0;
+
+  const interactionsEnabled = rawScrollProgress < 0.02;
+  const isZoomComplete = zoomProgress >= 0.98;
 
   useEffect(() => {
     setTooltip(null);
@@ -74,13 +78,13 @@ const UNGAMap = () => {
   useEuropeViewBoxZoom({
     containerRef,
     viewport: mapViewport,
-    scrollProgress,
+    scrollProgress: zoomProgress,
     europeAlpha3,
     override: EUROPE_VIEWBOX_OVERRIDE,
   });
 
   const mapFadeStyle = useMemo(() => {
-    const t = easeInOut(Math.min(1, Math.max(0, scrollProgress)));
+    const t = easeInOut(zoomProgress);
     // Fade/soften map as we zoom in; keep it interactive but visually backgrounded.
     const opacity = lerp(1, 0.8, t);
     const blurPx = lerp(0, 0, t);
@@ -94,9 +98,29 @@ const UNGAMap = () => {
       transition: 'opacity 0.05s linear, filter 0.05s linear',
       willChange: 'opacity, filter',
     } as const;
-  }, [scrollProgress]);
+  }, [zoomProgress]);
+
+  const mapExitStyle = useMemo(() => {
+    const t = easeInOut(vizProgress);
+    return {
+      opacity: lerp(1, 0, t),
+      transform: `translateY(${lerp(0, -24, t)}px) scale(${lerp(1, 0.985, t)})`,
+      transition: 'opacity 600ms ease, transform 700ms ease',
+      willChange: 'opacity, transform',
+    } as const;
+  }, [vizProgress]);
+
+  const vizEnterStyle = useMemo(() => {
+    const t = easeInOut(vizProgress);
+    return {
+      opacity: t,
+      transform: `translateY(${lerp(12, 0, t)}px)`,
+      transition: 'opacity 600ms ease, transform 700ms ease',
+      willChange: 'opacity, transform',
+    } as const;
+  }, [vizProgress]);
   const { activeIndex: activeCoalitionIndex, loopEnabled: coalitionLoopEnabled } = useCoalitionLoop({
-    enabled: isScrollComplete,
+    enabled: sceneId === 'europe' && isZoomComplete,
     coalitionCount: EU_COALITIONS.length,
     startDelayMs: 3000,
     cycleMs: 2600,
@@ -209,13 +233,13 @@ const UNGAMap = () => {
     setSelectedCountry,
     hoveredCountry,
     interactionsEnabled,
-    scrollProgress,
+    scrollProgress: zoomProgress,
     europeAlpha3,
     nonEuropeFade: { start: 0.72, duration: 0.28, minOpacity: 0.06 },
     coalition: {
-      enabled: coalitionLoopEnabled && isScrollComplete,
+      enabled: coalitionLoopEnabled && sceneId === 'europe' && isZoomComplete,
       activeMembers: activeCoalition?.members ?? new Set<string>(),
-      deemphasizeOpacity: lerp(1, 0.22, easeInOut(Math.min(1, Math.max(0, (scrollProgress - 0.9) / 0.1)))),
+      deemphasizeOpacity: lerp(1, 0.22, easeInOut(clamp01((zoomProgress - 0.9) / 0.1))),
     },
   });
 
@@ -294,15 +318,15 @@ const UNGAMap = () => {
         ref={scrollContainerRef}
         className="absolute inset-0 overflow-y-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:none]"
       >
-        {/* Scroll track height - 200vh ensures we have room to scroll and zoom */}
-        <div className="h-[200vh] w-full relative">
+        {/* Scroll track height - 300vh gives us 3 "screens" (intro -> europe -> viz) */}
+        <div className="h-[300vh] w-full relative">
 
           {/* Sticky container for the map view */}
           <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col">
 
             <div
               className="flex flex-col items-center justify-center pt-8 pb-4 z-10 pointer-events-none relative transition-opacity duration-500"
-              style={{ opacity: interactionsEnabled ? 1 - scrollProgress * 2 : 0 }}
+              style={{ opacity: interactionsEnabled ? 1 - rawScrollProgress * 2 : 0 }}
             >
               <h1 className="text-3xl md:text-4xl font-light text-slate-800 tracking-tight text-center animate-[fadeIn_1s_ease-out_0.5s_both]">
                 The world is more divided than ever before
@@ -314,24 +338,25 @@ const UNGAMap = () => {
 
             {interactionsEnabled && (
               <div className="flex flex-col gap-3 pb-4 text-sm text-gray-600 lg:flex-row lg:items-center lg:justify-between opacity-0 animate-[fadeIn_1s_ease-out_1.5s_forwards] px-6 z-10 transition-opacity duration-500 relative">
-                <div className="flex flex-wrap gap-4 justify-center w-full lg:w-auto mx-auto">
-                  {blocLegend.map((entry) => (
-                    <div key={entry.bloc} className="flex items-center gap-2">
-                      <span
-                        className="inline-block h-3 w-6 rounded"
-                        style={{ backgroundColor: entry.color }}
-                      />
-                      <span>{entry.label}</span>
-                    </div>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-4 justify-center w-full lg:w-auto mx-auto">
+                {blocLegend.map((entry) => (
+                  <div key={entry.bloc} className="flex items-center gap-2">
+                    <span
+                      className="inline-block h-3 w-6 rounded"
+                      style={{ backgroundColor: entry.color }}
+                    />
+                    <span>{entry.label}</span>
+                  </div>
+                ))}
               </div>
+            </div>
             )}
 
             <div className="flex-1 w-full relative">
               <div className="absolute inset-0 flex items-center justify-center p-4">
                 <div
                   className="relative w-full h-full max-w-[1600px] unga-map-container-inner"
+                  style={mapExitStyle}
                 >
                   <div className="relative w-full h-full">
                   <div className="relative h-full w-full overflow-hidden rounded-xl bg-slate-50/0">
@@ -348,7 +373,7 @@ const UNGAMap = () => {
                       dangerouslySetInnerHTML={{ __html: svgMarkup }}
                     />
                     <CoalitionOverlayCard
-                      isVisible={isScrollComplete}
+                      isVisible={isZoomComplete && sceneId !== 'intro'}
                       coalitionLoopEnabled={coalitionLoopEnabled}
                       activeCoalition={activeCoalition}
                     />
@@ -415,12 +440,29 @@ const UNGAMap = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Third screen: fullscreen visualization placeholder (map scrolls away) */}
+              <div
+                className="absolute inset-0 flex items-center justify-center bg-white"
+                style={{
+                  pointerEvents: sceneId === 'viz' ? 'auto' : 'none',
+                  ...vizEnterStyle,
+                }}
+              >
+                <div className="max-w-4xl w-full px-8">
+                  <div className="text-xs uppercase tracking-widest text-slate-500">Next screen (placeholder)</div>
+                  <div className="mt-3 text-4xl font-semibold text-slate-900">Fullscreen visualizations</div>
+                  <div className="mt-3 text-base text-slate-600 leading-relaxed">
+                    This is where we’ll render the next visualization full-bleed, once you scroll past the Europe map.
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Scroll Indicator */}
             <div
               className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 transition-opacity duration-500"
-              style={{ opacity: scrollProgress > 0.1 ? 0 : 1 }}
+              style={{ opacity: rawScrollProgress > 0.1 ? 0 : 1 }}
             >
               <span className="text-xs uppercase tracking-widest text-slate-400 font-medium">
                 Scroll to explore
