@@ -154,6 +154,12 @@ const EUROPE_ALPHA3 = new Set(
 
 type ViewBox = { x: number; y: number; w: number; h: number };
 
+// --- Manual override ---
+// If you want to hardcode where the scroll zoom lands, set this to a viewBox in SVG coordinates.
+// Example (numbers are placeholders): { x: 250, y: 120, w: 520, h: 420 }
+// Set to null to use the auto-detected Europe bbox.
+const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = null;
+
 const parseViewBox = (raw: string | null): ViewBox | null => {
   if (!raw) return null;
   const parts = raw
@@ -167,6 +173,19 @@ const parseViewBox = (raw: string | null): ViewBox | null => {
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 const easeInOut = (t: number) => t * t * (3 - 2 * t); // smoothstep
+
+const fitViewBoxToAspect = (vb: ViewBox, aspect: number): ViewBox => {
+  const cx = vb.x + vb.w / 2;
+  const cy = vb.y + vb.h / 2;
+  let w = vb.w;
+  let h = vb.h;
+  if (w / h < aspect) {
+    w = h * aspect;
+  } else {
+    h = w / aspect;
+  }
+  return { x: cx - w / 2, y: cy - h / 2, w, h };
+};
 
 const median = (values: number[]) => {
   if (values.length === 0) return 0;
@@ -335,8 +354,15 @@ const UNGAMap = () => {
     if (mapViewport.width <= 0 || mapViewport.height <= 0) return;
     const base = baseViewBoxRef.current;
     if (!base) return;
+    const aspect = mapViewport.width / mapViewport.height;
 
     const raf = requestAnimationFrame(() => {
+      // If overridden, use it (still fit to current viewport aspect).
+      if (EUROPE_VIEWBOX_OVERRIDE) {
+        europeViewBoxRef.current = fitViewBoxToAspect(EUROPE_VIEWBOX_OVERRIDE, aspect);
+        return;
+      }
+
       const paths = container.querySelectorAll<SVGPathElement>('path[id]');
       const candidates: Array<{ x: number; y: number; w: number; h: number; cx: number; cy: number; area: number }> =
         [];
@@ -404,7 +430,6 @@ const UNGAMap = () => {
       let targetH = bboxH * pad;
 
       // Match the viewport aspect ratio to avoid letterboxing changing the perceived center.
-      const aspect = mapViewport.width / mapViewport.height;
       if (targetW / targetH < aspect) {
         targetW = targetH * aspect;
       } else {
