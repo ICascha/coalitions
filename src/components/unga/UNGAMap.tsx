@@ -119,7 +119,8 @@ const EUROPE_COUNTRY_NAMES = [
   'Belarus',
   'Belgium',
   'Bulgaria',
-  'Czechia',
+  // SVG uses "CZECH"
+  'Czech',
   'Denmark',
   'Estonia',
   'Finland',
@@ -143,7 +144,8 @@ const EUROPE_COUNTRY_NAMES = [
   'Sweden',
   'Switzerland',
   'Ukraine',
-  'United Kingdom',
+  // SVG uses "BRITAIN" and also contains overseas territories; we filter by bbox region below.
+  'Britain',
 ] as const;
 
 const EUROPE_ALPHA3 = new Set(
@@ -319,6 +321,8 @@ const UNGAMap = () => {
 
     // Recompute Europe viewBox when viewport aspect changes (keeps framing consistent across view windows).
     if (mapViewport.width <= 0 || mapViewport.height <= 0) return;
+    const base = baseViewBoxRef.current;
+    if (!base) return;
 
     const raf = requestAnimationFrame(() => {
       const paths = container.querySelectorAll<SVGPathElement>('path[id]');
@@ -336,6 +340,19 @@ const UNGAMap = () => {
           if (!Number.isFinite(bb.x) || !Number.isFinite(bb.y) || !Number.isFinite(bb.width) || !Number.isFinite(bb.height)) {
             return;
           }
+
+          // Filter out overseas territories/islands by requiring the geometry to sit in a rough "Europe" region
+          // within the base world viewBox (normalized coordinates). This prevents e.g. UK territories in the South Atlantic
+          // from hijacking the Europe bbox.
+          const cx = bb.x + bb.width / 2;
+          const cy = bb.y + bb.height / 2;
+          const nx = (cx - base.x) / base.w;
+          const ny = (cy - base.y) / base.h;
+          const inEuropeRegion =
+            nx >= 0.30 && nx <= 0.78 && // west -> east (roughly Portugal/Iceland -> western Russia)
+            ny >= 0.05 && ny <= 0.42;   // north -> south (Scandinavia -> Mediterranean)
+          if (!inEuropeRegion) return;
+
           matched += 1;
           minX = Math.min(minX, bb.x);
           minY = Math.min(minY, bb.y);
