@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="508.17" viewBox="-17482535.85 -8622067.70 34965071.70 14806889.62">
   <style>
-    .country { fill: none; stroke: #94a3b8; stroke-width: 25000; stroke-linejoin: round; }
-    .country:hover { fill: #e2e8f0; stroke: #64748b; stroke-width: 30000; }
+    .country {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 20000;
+      stroke-linejoin: round;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: center;
+      filter: none;
+    }
+    .country:hover {
+      stroke: #1e293b;
+      stroke-width: 35000;
+      filter: drop-shadow(0 0 60000px rgba(30, 41, 59, 0.25));
+    }
   </style>
   <defs></defs>
   <g id="countries" transform="scale(1, -1)">

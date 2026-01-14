@@ -910,13 +910,13 @@ export const UNGAMap = () => {
 
       if (selectedCountry) {
         const isSelected = selectedCountry === key;
-        path.style.opacity = isSelected ? '1' : '0.25';
+        path.style.opacity = isSelected ? '1' : '0.35';
         // This SVG uses a very large viewBox (tens of millions of units).
         // Keep the SVG-defined stroke widths for all countries, otherwise borders become invisible.
         path.style.stroke = isSelected ? '#0f172a' : '';
-        path.style.strokeWidth = isSelected ? '45000' : '';
+        path.style.strokeWidth = isSelected ? '50000' : '';
         path.style.filter = isSelected
-          ? 'drop-shadow(0 0 8px rgba(15,23,42,0.45))'
+          ? 'drop-shadow(0 0 80000px rgba(15, 23, 42, 0.4))'
           : 'none';
         if (isSelected) {
           bringSvgElementToFront(path);
@@ -1457,14 +1457,15 @@ export const UNGAMap = () => {
 
       <div className="flex flex-col gap-6 lg:flex-row">
         <div className="flex-1 min-w-0">
-          <div className="relative min-h-[420px] overflow-hidden border rounded-xl bg-slate-50 shadow-inner">
+          <div className="relative min-h-[420px] overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 via-slate-100/50 to-slate-50 shadow-[inset_0_2px_20px_rgba(148,163,184,0.12)]">
             <div
               ref={containerRef}
               className={cn(
                 'w-full h-full unga-map',
-                ' [&_svg]:w-full [&_svg]:h-full [&_svg]:max-h-[70vh]',
-                ' [&_path]:transition-[fill,stroke] [&_path]:duration-150',
-                ' [&_path]:cursor-pointer'
+                '[&_svg]:w-full [&_svg]:h-full [&_svg]:max-h-[70vh]',
+                '[&_path]:transition-all [&_path]:duration-200 [&_path]:ease-out',
+                '[&_path]:cursor-pointer',
+                '[&_path:hover]:brightness-[1.05]'
               )}
               dangerouslySetInnerHTML={{ __html: svgMarkup }}
             />
