@@ -495,9 +495,9 @@ const UNGAMap = () => {
     // Fade/soften map as we zoom in; keep it interactive but visually backgrounded.
     const opacity = lerp(1, 0.18, t);
     const blurPx = lerp(0, 1.1, t);
-    const saturate = lerp(1, 0.55, t);
-    const contrast = lerp(1, 0.9, t);
-    const brightness = lerp(1, 0.98, t);
+    const saturate = lerp(1, 0.75, t);
+    const contrast = lerp(1, 1.02, t);
+    const brightness = lerp(1, 1.01, t);
 
     return {
       opacity,
