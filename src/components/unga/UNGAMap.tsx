@@ -541,10 +541,11 @@ export const UNGAMap = () => {
         '<svg$1 preserveAspectRatio="xMidYMid meet">'
       )
       // Override the SVG's built-in "transition: all" which causes flashing
-      // on complex paths at map edges. Only transition fill color.
+      // on complex paths at map edges. Transition fill and stroke properties
+      // but NOT opacity or filter (those cause the flash).
       .replace(
         /transition:\s*all[^;]*;/g,
-        'transition: fill 0.2s ease-out;'
+        'transition: fill 0.2s ease-out, stroke 0.15s ease-out, stroke-width 0.15s ease-out;'
       );
   }, []);
 
@@ -1453,8 +1454,8 @@ export const UNGAMap = () => {
               className={cn(
                 'w-full h-full unga-map',
                 '[&_svg]:w-full [&_svg]:h-full [&_svg]:max-h-[70vh]',
-                // Only transition fill color, not opacity/filter which cause flashing on edge countries
-                '[&_path]:transition-[fill] [&_path]:duration-200 [&_path]:ease-out',
+                // Transition fill and stroke properties, but NOT opacity/filter which cause flashing
+                '[&_path]:transition-[fill,stroke,stroke-width] [&_path]:duration-200 [&_path]:ease-out',
                 '[&_path]:cursor-pointer',
                 '[&_path:hover]:brightness-[1.05]'
               )}
