@@ -34,10 +34,11 @@ const UNGAMap = () => {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const rawScrollProgress = useScrollContainerProgress(scrollContainerRef);
   const { sceneId, sceneProgress, effectiveProgress } = useScrollScenes(rawScrollProgress, [
-    { id: 'intro', start: 0.0, end: 0.33 },
-    { id: 'europe', start: 0.33, end: 0.66 },
-    // Gap (0.66 -> 0.80) intentionally acts as a "stop" on the Europe screen.
-    { id: 'viz', start: 0.8, end: 1.0 },
+    // With scroll-snapping (see JSX), these map to 4 snap positions (0, 1/3, 2/3, 1):
+    // intro -> europe -> viz -> viz (settled)
+    { id: 'intro', start: 0, end: 1 / 3 },
+    { id: 'europe', start: 1 / 3, end: 2 / 3 },
+    { id: 'viz', start: 2 / 3, end: 1 },
   ]);
   const mapViewport = useElementSize(containerRef);
   const { alignmentMap, loading: mapLoading, error: mapError } = useUngAAlignment();
@@ -317,13 +318,14 @@ const UNGAMap = () => {
 
       <div
         ref={scrollContainerRef}
-        className="absolute inset-0 overflow-y-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:none]"
+        className="absolute inset-0 overflow-y-auto snap-y snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:none]"
       >
-        {/* Scroll track height - 300vh gives us 3 "screens" (intro -> europe -> viz) */}
-        <div className="h-[300vh] w-full relative">
+        {/* Scroll track: 4 snap stops (intro -> europe -> viz -> settled viz).
+            scroll-snap-stop: always prevents skipping over the Europe stop. */}
+        <div className="w-full relative">
 
-          {/* Sticky container for the map view */}
-          <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col">
+          {/* Sticky container for the map view (snaps at the top). */}
+          <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col snap-start [scroll-snap-stop:always]">
 
             <div
               className="flex flex-col items-center justify-center pt-8 pb-4 z-10 pointer-events-none relative transition-opacity duration-500"
@@ -472,6 +474,11 @@ const UNGAMap = () => {
             </div>
 
           </div>
+
+          {/* Extra snap stops below the sticky view. These create the required "hard stops" between screens. */}
+          <div className="h-screen snap-start [scroll-snap-stop:always]" aria-hidden="true" />
+          <div className="h-screen snap-start [scroll-snap-stop:always]" aria-hidden="true" />
+          <div className="h-screen snap-start [scroll-snap-stop:always]" aria-hidden="true" />
         </div>
       </div>
     </Card>
