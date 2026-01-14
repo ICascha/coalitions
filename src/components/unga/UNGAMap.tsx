@@ -34,9 +34,10 @@ const UNGAMap = () => {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const rawScrollProgress = useScrollContainerProgress(scrollContainerRef);
   const { sceneId, sceneProgress, effectiveProgress } = useScrollScenes(rawScrollProgress, [
-    { id: 'intro', start: 0, end: 1 / 3 },
-    { id: 'europe', start: 1 / 3, end: 2 / 3 },
-    { id: 'viz', start: 2 / 3, end: 1 },
+    { id: 'intro', start: 0.0, end: 0.33 },
+    { id: 'europe', start: 0.33, end: 0.66 },
+    // Gap (0.66 -> 0.80) intentionally acts as a "stop" on the Europe screen.
+    { id: 'viz', start: 0.8, end: 1.0 },
   ]);
   const mapViewport = useElementSize(containerRef);
   const { alignmentMap, loading: mapLoading, error: mapError } = useUngAAlignment();
