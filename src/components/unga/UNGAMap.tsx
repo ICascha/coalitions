@@ -194,7 +194,7 @@ const UNGAMap = () => {
 
   const dataSource = 'UNGA';
 
-  // Handle scroll for zoom effect
+  /* Scroll logic fixed to ensure full zoom */
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
@@ -204,10 +204,9 @@ const UNGAMap = () => {
       const clientHeight = scrollContainer.clientHeight;
       const scrollHeight = scrollContainer.scrollHeight;
 
-      // Calculate progress roughly: 0 at top, 1 when we've scrolled 1 viewport height
-      // We want the zoom to complete after scrolling 100vh
-      const maxScroll = clientHeight * 1.5; // Use slightly more than 1 screen to make it feel smoother
-      const progress = Math.min(1, Math.max(0, scrollTop / maxScroll));
+      // Calculate progress: 0 at top, 1 when we've scrolled the full available distance
+      const maxScroll = scrollHeight - clientHeight;
+      const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollTop / maxScroll)) : 0;
 
       setScrollProgress(progress);
     };
@@ -220,11 +219,10 @@ const UNGAMap = () => {
     // Zoom into Europe target
     const scale = 1 + (scrollProgress * 2.5); // 1 -> 3.5
 
-    // Transform Origin: 53% 35% works for 'world_map_svg',
-    // For 'world_map_interactive_t0.2.svg' it should be broadly similar if the viewbox is the world.
+    // Transform Origin: Adjusted to 53% 25% to better center on Europe (35% was likely too south)
     return {
       transform: `scale(${scale})`,
-      transformOrigin: '53% 35%',
+      transformOrigin: '53% 25%',
     };
   }, [scrollProgress]);
 
@@ -525,13 +523,13 @@ const UNGAMap = () => {
 
       <div
         ref={scrollContainerRef}
-        className="absolute inset-0 overflow-y-auto scroll-smooth"
+        className="absolute inset-0 overflow-y-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:none]"
       >
         {/* Scroll track height - 200vh ensures we have room to scroll and zoom */}
         <div className="h-[200vh] w-full relative">
 
           {/* Sticky container for the map view */}
-          <div className="sticky top-0 h-full max-h-screen w-full overflow-hidden flex flex-col">
+          <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col">
 
             <div className="flex flex-col items-center justify-center pt-8 pb-4 z-10 pointer-events-none relative transition-opacity duration-500"
               style={{ opacity: 1 - scrollProgress * 2 }}>
@@ -564,7 +562,7 @@ const UNGAMap = () => {
                   className="relative w-full h-full max-w-[1600px] unga-map-container-inner"
                   style={{
                     willChange: 'transform',
-                    transition: 'transform 0.1s linear',
+                    transition: 'transform 0.05s linear', // Faster response to scroll
                     ...zoomStyle
                   }}
                 >
