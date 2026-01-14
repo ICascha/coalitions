@@ -168,6 +168,18 @@ const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 const easeInOut = (t: number) => t * t * (3 - 2 * t); // smoothstep
 
+const median = (values: number[]) => {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
+};
+
+const mad = (values: number[], med: number) => {
+  const absDevs = values.map((v) => Math.abs(v - med));
+  return median(absDevs);
+};
+
 const buildAlignmentMap = (
   countries: any[],
   getValue: (blocRow: any) => number | null,
@@ -326,11 +338,8 @@ const UNGAMap = () => {
 
     const raf = requestAnimationFrame(() => {
       const paths = container.querySelectorAll<SVGPathElement>('path[id]');
-      let minX = Number.POSITIVE_INFINITY;
-      let minY = Number.POSITIVE_INFINITY;
-      let maxX = Number.NEGATIVE_INFINITY;
-      let maxY = Number.NEGATIVE_INFINITY;
-      let matched = 0;
+      const candidates: Array<{ x: number; y: number; w: number; h: number; cx: number; cy: number; area: number }> =
+        [];
 
       paths.forEach((path) => {
         const key = resolveCountryKey(path.id);
@@ -340,30 +349,47 @@ const UNGAMap = () => {
           if (!Number.isFinite(bb.x) || !Number.isFinite(bb.y) || !Number.isFinite(bb.width) || !Number.isFinite(bb.height)) {
             return;
           }
-
-          // Filter out overseas territories/islands by requiring the geometry to sit in a rough "Europe" region
-          // within the base world viewBox (normalized coordinates). This prevents e.g. UK territories in the South Atlantic
-          // from hijacking the Europe bbox.
           const cx = bb.x + bb.width / 2;
           const cy = bb.y + bb.height / 2;
-          const nx = (cx - base.x) / base.w;
-          const ny = (cy - base.y) / base.h;
-          const inEuropeRegion =
-            nx >= 0.30 && nx <= 0.78 && // west -> east (roughly Portugal/Iceland -> western Russia)
-            ny >= 0.05 && ny <= 0.42;   // north -> south (Scandinavia -> Mediterranean)
-          if (!inEuropeRegion) return;
-
-          matched += 1;
-          minX = Math.min(minX, bb.x);
-          minY = Math.min(minY, bb.y);
-          maxX = Math.max(maxX, bb.x + bb.width);
-          maxY = Math.max(maxY, bb.y + bb.height);
+          const area = bb.width * bb.height;
+          candidates.push({ x: bb.x, y: bb.y, w: bb.width, h: bb.height, cx, cy, area });
         } catch {
           // ignore
         }
       });
 
-      if (matched < 5 || !Number.isFinite(minX) || !Number.isFinite(minY) || !Number.isFinite(maxX) || !Number.isFinite(maxY)) {
+      if (candidates.length < 5) {
+        return;
+      }
+
+      // Robustly select the "mainland Europe" cluster by removing outliers based on centroid distance.
+      // This avoids overseas territories (e.g. far-away islands) hijacking the bbox.
+      const xs = candidates.map((c) => c.cx);
+      const ys = candidates.map((c) => c.cy);
+      const medX = median(xs);
+      const medY = median(ys);
+
+      const dists = candidates.map((c) => Math.hypot(c.cx - medX, c.cy - medY));
+      const distMed = median(dists);
+      const distMad = mad(dists, distMed);
+
+      // Threshold: allow a generous radius; if MAD collapses to ~0, fall back to a relative threshold.
+      const threshold = distMad > 0 ? distMed + 6 * distMad : distMed * 3 + 1;
+      const filtered = candidates.filter((_, idx) => dists[idx] <= threshold);
+      const finalSet = filtered.length >= 5 ? filtered : candidates;
+
+      let minX = Number.POSITIVE_INFINITY;
+      let minY = Number.POSITIVE_INFINITY;
+      let maxX = Number.NEGATIVE_INFINITY;
+      let maxY = Number.NEGATIVE_INFINITY;
+      finalSet.forEach((c) => {
+        minX = Math.min(minX, c.x);
+        minY = Math.min(minY, c.y);
+        maxX = Math.max(maxX, c.x + c.w);
+        maxY = Math.max(maxY, c.y + c.h);
+      });
+
+      if (!Number.isFinite(minX) || !Number.isFinite(minY) || !Number.isFinite(maxX) || !Number.isFinite(maxY)) {
         return;
       }
 
