@@ -158,7 +158,7 @@ type ViewBox = { x: number; y: number; w: number; h: number };
 // If you want to hardcode where the scroll zoom lands, set this to a viewBox in SVG coordinates.
 // Example (numbers are placeholders): { x: 250, y: 120, w: 520, h: 420 }
 // Set to null to use the auto-detected Europe bbox.
-const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = null;
+const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = { x: 20, y: 20, w: 100, h: 100 };
 
 const parseViewBox = (raw: string | null): ViewBox | null => {
   if (!raw) return null;
@@ -454,7 +454,11 @@ const UNGAMap = () => {
     const svgElement = container.querySelector('svg') as SVGSVGElement | null;
     if (!svgElement) return;
     const base = baseViewBoxRef.current;
-    const target = europeViewBoxRef.current;
+    const aspect = mapViewport.width > 0 && mapViewport.height > 0 ? mapViewport.width / mapViewport.height : null;
+    const target =
+      EUROPE_VIEWBOX_OVERRIDE && aspect
+        ? fitViewBoxToAspect(EUROPE_VIEWBOX_OVERRIDE, aspect)
+        : europeViewBoxRef.current;
     if (!base || !target) return;
 
     const t = easeInOut(Math.min(1, Math.max(0, scrollProgress)));
@@ -466,7 +470,7 @@ const UNGAMap = () => {
     };
 
     svgElement.setAttribute('viewBox', `${next.x} ${next.y} ${next.w} ${next.h}`);
-  }, [scrollProgress]);
+  }, [scrollProgress, mapViewport.width, mapViewport.height]);
 
   const mapFadeStyle = useMemo(() => {
     const t = easeInOut(Math.min(1, Math.max(0, scrollProgress)));
