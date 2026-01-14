@@ -1,4 +1,4 @@
-// Auto-generated from public/world_map_low_re.svg and public/iso_country_codes.csv
+// Auto-generated from public/world_map_interactive_t0.2.svg and public/iso_country_codes.csv
 export const svgNameToAlpha3: Record<string, string> = {
   'ADAK': 'USA',
   'ADAK WEST': 'USA',

@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Card } from '@/components/ui/card';
-import worldMapSvg from '@/../public/world_map_low_re.svg?raw';
+import worldMapSvg from '@/assets/world_map_interactive_t0.2.svg?raw';
 
 // Reusing constants/types where possible or defining local mocks
 const POWER_BLOCS = ['EU', 'USA', 'CHINA', 'RUSSIA'] as const;

@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
-import worldMapSvg from '@/../public/world_map_low_re.svg?raw';
+import worldMapSvg from '@/assets/world_map_interactive_t0.2.svg?raw';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { svgNameToAlpha3 } from '@/data/svgCountryAlpha3';
