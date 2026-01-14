@@ -932,17 +932,21 @@ export const UNGAMap = () => {
 
     // Create a highlight overlay for the selected country that renders on top
     // This avoids the z-index issue where adjacent countries hide the selection border
-    if (selectedPathId && countriesGroup) {
-      const overlay = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-      overlay.setAttribute('id', 'selection-highlight-overlay');
-      overlay.setAttribute('href', `#${selectedPathId}`);
-      overlay.style.fill = 'none';
-      overlay.style.stroke = '#0f172a';
-      overlay.style.strokeWidth = '50000';
-      overlay.style.pointerEvents = 'none';
-      overlay.style.filter = 'drop-shadow(0 0 80000px rgba(15, 23, 42, 0.4))';
-      // Append at the end so it renders on top of all countries
-      countriesGroup.appendChild(overlay);
+    // We clone the path element (not <use>) for better browser compatibility
+    if (selectedPathId && countriesGroup && svgElement) {
+      const originalPath = svgElement.querySelector(`#${selectedPathId}`) as SVGPathElement | null;
+      if (originalPath) {
+        const overlay = originalPath.cloneNode(false) as SVGPathElement;
+        overlay.setAttribute('id', 'selection-highlight-overlay');
+        overlay.style.fill = 'none';
+        overlay.style.stroke = '#0f172a';
+        overlay.style.strokeWidth = '50000';
+        overlay.style.pointerEvents = 'none';
+        overlay.style.filter = 'drop-shadow(0 0 80000px rgba(15, 23, 42, 0.4))';
+        overlay.style.opacity = '1';
+        // Append at the end so it renders on top of all countries
+        countriesGroup.appendChild(overlay);
+      }
     }
   }, [alignmentMap, selectedCountry, dataSource, criticalGoodsSummary, criticalGoodsMaxCount]);
 
