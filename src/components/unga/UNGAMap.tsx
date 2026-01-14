@@ -154,6 +154,33 @@ const EUROPE_ALPHA3 = new Set(
 
 type ViewBox = { x: number; y: number; w: number; h: number };
 
+type Coalition = { id: string; label: string; members: ReadonlySet<string> };
+
+// Simple rotating "within-EU" coalitions (ISO3 codes).
+// Tweak/extend these sets to match your narrative.
+const EU_COALITIONS: Coalition[] = [
+  {
+    id: 'nordics',
+    label: 'Nordics',
+    members: new Set(['DNK', 'SWE', 'FIN']),
+  },
+  {
+    id: 'western',
+    label: 'Western Europe',
+    members: new Set(['NLD', 'BEL', 'LUX', 'FRA', 'DEU', 'AUT']),
+  },
+  {
+    id: 'southern',
+    label: 'Southern Europe',
+    members: new Set(['ESP', 'PRT', 'ITA', 'GRC']),
+  },
+  {
+    id: 'eastern',
+    label: 'Central & Eastern Europe',
+    members: new Set(['POL', 'CZE', 'SVK', 'HUN', 'ROU', 'BGR', 'HRV', 'SVN']),
+  },
+];
+
 // --- Manual override ---
 // If you want to hardcode where the scroll zoom lands, set this to a viewBox in SVG coordinates.
 // IMPORTANT: this SVG uses *very large* coordinates (see the SVG's viewBox; it's ~ ±20,000,000).
@@ -508,6 +535,21 @@ const UNGAMap = () => {
   }, [scrollProgress]);
 
   const isScrollComplete = scrollProgress >= 0.98;
+  const [activeCoalitionIndex, setActiveCoalitionIndex] = useState(0);
+
+  // Cycle coalition highlights once the zoom completes.
+  useEffect(() => {
+    if (!isScrollComplete) {
+      setActiveCoalitionIndex(0);
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setActiveCoalitionIndex((prev) => (prev + 1) % EU_COALITIONS.length);
+    }, 2600);
+
+    return () => window.clearInterval(interval);
+  }, [isScrollComplete]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -664,6 +706,10 @@ const UNGAMap = () => {
     const nonEuropeT = easeInOut(Math.min(1, Math.max(0, (scrollProgress - 0.72) / 0.28)));
     const nonEuropeOpacity = lerp(1, 0.06, nonEuropeT);
 
+    const activeCoalition = EU_COALITIONS[activeCoalitionIndex] ?? EU_COALITIONS[0];
+    const coalitionT = easeInOut(Math.min(1, Math.max(0, (scrollProgress - 0.9) / 0.1))); // ramp in near completion
+    const europeDeemphasizedOpacity = lerp(1, 0.22, coalitionT);
+
     svgPaths.forEach((path) => {
       const key = resolveCountryKey(path.id);
       if (!key) {
@@ -678,6 +724,8 @@ const UNGAMap = () => {
       const alignment = alignmentMap[key];
       const fill = getFillColor(alignment);
       path.style.fill = fill;
+      path.style.transition =
+        'fill 0.2s ease-out, stroke 0.15s ease-out, stroke-width 0.15s ease-out, opacity 700ms ease, filter 700ms ease';
 
       if (selectedCountry) {
         const isSelected = selectedCountry === key;
@@ -691,14 +739,26 @@ const UNGAMap = () => {
         }
       } else {
         // If no selection is active, apply end-of-scroll fade to non-Europe shapes.
-        if (EUROPE_ALPHA3.has(key)) {
+        const isEurope = EUROPE_ALPHA3.has(key);
+
+        // At completion: loop-highlight coalition groups within Europe.
+        if (isScrollComplete && isEurope) {
+          const isInCoalition = activeCoalition.members.has(key);
+          path.style.opacity = isInCoalition ? '1' : `${europeDeemphasizedOpacity}`;
+          path.style.stroke = isInCoalition ? '#0f172a' : '';
+          path.style.strokeWidth = isInCoalition ? '35000' : '';
+          path.style.filter = isInCoalition ? 'drop-shadow(0 0 70000px rgba(15, 23, 42, 0.35))' : 'none';
+        } else if (isEurope) {
           path.style.opacity = '1';
+          path.style.stroke = '';
+          path.style.strokeWidth = '';
+          path.style.filter = 'none';
         } else {
           path.style.opacity = `${nonEuropeOpacity}`;
+          path.style.stroke = '';
+          path.style.strokeWidth = '';
+          path.style.filter = 'none';
         }
-        path.style.stroke = '';
-        path.style.strokeWidth = '';
-        path.style.filter = 'none';
       }
     });
 
@@ -722,7 +782,7 @@ const UNGAMap = () => {
         }
       }
     }
-  }, [alignmentMap, selectedCountry, scrollProgress, interactionsEnabled]);
+  }, [alignmentMap, selectedCountry, scrollProgress, interactionsEnabled, isScrollComplete, activeCoalitionIndex]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -864,14 +924,13 @@ const UNGAMap = () => {
                       <div className="w-full max-w-xl">
                         <div className="rounded-2xl bg-white/85 backdrop-blur-md border border-white/60 shadow-xl px-6 py-6">
                           <div className="text-xs uppercase tracking-widest text-slate-500">
-                            Next section (placeholder)
+                            Coalitions within the EU (placeholder)
                           </div>
                           <div className="mt-2 text-2xl md:text-3xl font-semibold text-slate-900">
-                            New visual elements go here
+                            {EU_COALITIONS[activeCoalitionIndex]?.label ?? '—'}
                           </div>
                           <div className="mt-2 text-sm md:text-base text-slate-600 leading-relaxed">
-                            The map fades into the background; once the zoom finishes, this foreground layer can introduce
-                            the next story step.
+                            Every few seconds, a different coalition is highlighted on the map.
                           </div>
 
                           <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
