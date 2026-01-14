@@ -879,7 +879,18 @@ export const UNGAMap = () => {
       return;
     }
 
+    const svgElement = container.querySelector('svg');
+    const countriesGroup = svgElement?.querySelector('#countries') ?? svgElement;
+
+    // Remove any previous highlight overlay
+    const existingOverlay = svgElement?.querySelector('#selection-highlight-overlay');
+    if (existingOverlay) {
+      existingOverlay.remove();
+    }
+
     const svgPaths = container.querySelectorAll<SVGPathElement>('path[id]');
+    let selectedPathId: string | null = null;
+
     svgPaths.forEach((path) => {
       const key = resolveCountryKey(path.id);
       if (!key) {
@@ -902,24 +913,37 @@ export const UNGAMap = () => {
       if (selectedCountry) {
         const isSelected = selectedCountry === key;
         path.style.opacity = isSelected ? '1' : '0.35';
-        // This SVG uses a very large viewBox (tens of millions of units).
-        // Keep the SVG-defined stroke widths for all countries, otherwise borders become invisible.
-        path.style.stroke = isSelected ? '#0f172a' : '';
-        path.style.strokeWidth = isSelected ? '50000' : '';
-        path.style.filter = isSelected
-          ? 'drop-shadow(0 0 80000px rgba(15, 23, 42, 0.4))'
-          : 'none';
-        // Note: We no longer call bringSvgElementToFront() here to avoid flashing
-        // for edge countries like Russia, USA, China. The visual highlighting
-        // is achieved purely through opacity/stroke/filter CSS properties.
+        // Don't set stroke on the original path - we'll use an overlay instead
+        // to ensure the highlight border is always on top of adjacent countries
+        path.style.stroke = '';
+        path.style.strokeWidth = '';
+        path.style.filter = 'none';
+        
+        if (isSelected) {
+          selectedPathId = path.id;
+        }
       } else {
         path.style.opacity = '1';
-        // Let the SVG control country borders (stroke + stroke-width).
         path.style.stroke = '';
         path.style.strokeWidth = '';
         path.style.filter = 'none';
       }
     });
+
+    // Create a highlight overlay for the selected country that renders on top
+    // This avoids the z-index issue where adjacent countries hide the selection border
+    if (selectedPathId && countriesGroup) {
+      const overlay = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      overlay.setAttribute('id', 'selection-highlight-overlay');
+      overlay.setAttribute('href', `#${selectedPathId}`);
+      overlay.style.fill = 'none';
+      overlay.style.stroke = '#0f172a';
+      overlay.style.strokeWidth = '50000';
+      overlay.style.pointerEvents = 'none';
+      overlay.style.filter = 'drop-shadow(0 0 80000px rgba(15, 23, 42, 0.4))';
+      // Append at the end so it renders on top of all countries
+      countriesGroup.appendChild(overlay);
+    }
   }, [alignmentMap, selectedCountry, dataSource, criticalGoodsSummary, criticalGoodsMaxCount]);
 
   useEffect(() => {
