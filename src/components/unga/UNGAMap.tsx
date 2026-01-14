@@ -817,22 +817,21 @@ const UNGAMap = () => {
               </p>
             </div>
 
-            <div
-              className={`flex flex-col gap-3 pb-4 text-sm text-gray-600 lg:flex-row lg:items-center lg:justify-between opacity-0 animate-[fadeIn_1s_ease-out_1.5s_forwards] px-6 z-10 transition-opacity duration-500 relative`}
-              style={{ opacity: interactionsEnabled ? undefined : 0 }}
-            >
-              <div className="flex flex-wrap gap-4 justify-center w-full lg:w-auto mx-auto">
-                {blocLegend.map((entry) => (
-                  <div key={entry.bloc} className="flex items-center gap-2">
-                    <span
-                      className="inline-block h-3 w-6 rounded"
-                      style={{ backgroundColor: entry.color }}
-                    />
-                    <span>{entry.label}</span>
-                  </div>
-                ))}
+            {interactionsEnabled && (
+              <div className="flex flex-col gap-3 pb-4 text-sm text-gray-600 lg:flex-row lg:items-center lg:justify-between opacity-0 animate-[fadeIn_1s_ease-out_1.5s_forwards] px-6 z-10 transition-opacity duration-500 relative">
+                <div className="flex flex-wrap gap-4 justify-center w-full lg:w-auto mx-auto">
+                  {blocLegend.map((entry) => (
+                    <div key={entry.bloc} className="flex items-center gap-2">
+                      <span
+                        className="inline-block h-3 w-6 rounded"
+                        style={{ backgroundColor: entry.color }}
+                      />
+                      <span>{entry.label}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="flex-1 w-full relative">
               <div className="absolute inset-0 flex items-center justify-center p-4">
