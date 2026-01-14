@@ -56,9 +56,9 @@ const generateMockMapData = (year: number) => {
     const rand = Math.abs(Math.sin(hash + year) * 10000) % 1;
     
     // Shift probabilities
-    let euProb = year === 2000 ? 0.4 : 0.2;
-    let usaProb = year === 2000 ? 0.3 : 0.25;
-    let chinaProb = year === 2000 ? 0.1 : 0.3;
+    const euProb = year === 2000 ? 0.4 : 0.2;
+    const usaProb = year === 2000 ? 0.3 : 0.25;
+    const chinaProb = year === 2000 ? 0.1 : 0.3;
     // russia gets the rest
     
     if (rand < euProb) return POWER_BLOC_COLORS.EU;
