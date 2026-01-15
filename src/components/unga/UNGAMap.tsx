@@ -27,7 +27,7 @@ import { CoalitionOverlayCard } from './components/CoalitionOverlayCard';
 import { useDiscreteScroll } from './hooks/useDiscreteScroll';
 import { ClustermapViz } from './components/ClustermapViz';
 
-const SECTION_COUNT = 3;
+const SECTION_COUNT = 4;
 const SCROLL_TRANSITION_MS = 300; // Fast transition
 const LOCK_IN_DURATION_MS = 200; // Cooldown after landing on a section
 const HOVER_COOLDOWN_MS = 400; // Cooldown before re-enabling hover after scroll animation
@@ -85,19 +85,24 @@ const UNGAMap = () => {
   });
   
   // Map current section to scene ID
-  const sceneId = currentSection === 0 ? 'intro' : currentSection === 1 ? 'europe' : 'viz';
+  const sceneId = currentSection === 0 ? 'context' : currentSection === 1 ? 'intro' : currentSection === 2 ? 'europe' : 'viz';
   const mapViewport = useElementSize(containerRef);
   const { alignmentMap, loading: mapLoading, error: mapError } = useUngAAlignment();
 
   // Use scroll progress for smooth visual transitions
-  // rawScrollProgress: 0 = section 0, 0.5 = section 1, 1 = section 2
-  // zoomProgress: maps 0-0.5 to 0-1 (zoom completes at section 1)
-  const zoomProgress = clamp01(rawScrollProgress * 2);
-  // vizProgress: maps 0.5-1 to 0-1 (viz transition happens going to section 2)
-  const vizProgress = clamp01((rawScrollProgress - 0.5) * 2);
+  // rawScrollProgress: 0 = section 0 (context), 0.33 = section 1 (intro), 0.66 = section 2 (europe), 1 = section 3 (viz)
+  
+  // introProgress: maps 0-0.33 to 0-1 (context fades out, map fades in)
+  const introProgress = clamp01(rawScrollProgress * 3);
+  
+  // zoomProgress: maps 0.33-0.66 to 0-1 (zoom completes at section 2)
+  const zoomProgress = clamp01((rawScrollProgress - 1/3) * 3);
+  
+  // vizProgress: maps 0.66-1 to 0-1 (viz transition happens going to section 3)
+  const vizProgress = clamp01((rawScrollProgress - 2/3) * 3);
 
-  // Hover is only enabled when at section 0 AND not in scroll cooldown
-  const interactionsEnabled = rawScrollProgress < 0.05;
+  // Hover is only enabled when at section 1 (intro) AND not in scroll cooldown
+  const interactionsEnabled = Math.abs(rawScrollProgress - 1/3) < 0.05;
   const hoverEnabled = interactionsEnabled && !isScrollCooldown;
   const isZoomComplete = zoomProgress >= 0.98;
 
@@ -145,13 +150,36 @@ const UNGAMap = () => {
     const contrast = lerp(1, 1.02, t);
     const brightness = lerp(1, 1.01, t);
 
+    // Also consider intro transition for opacity
+    const introT = easeInOut(introProgress);
+    const finalOpacity = opacity * introT;
+
     return {
-      opacity,
+      opacity: finalOpacity,
       filter: `blur(${blurPx}px) saturate(${saturate}) contrast(${contrast}) brightness(${brightness})`,
       transition: 'opacity 0.05s linear, filter 0.05s linear',
       willChange: 'opacity, filter',
     } as const;
-  }, [zoomProgress]);
+  }, [zoomProgress, introProgress]);
+
+  const introTextStyle = useMemo(() => {
+    const t = easeInOut(introProgress);
+    return {
+      opacity: 1 - t,
+      transform: `translateY(${lerp(0, -50, t)}px)`,
+      pointerEvents: t > 0.9 ? 'none' : 'auto',
+      transition: 'opacity 300ms ease, transform 300ms ease',
+    } as const;
+  }, [introProgress]);
+  
+  const mapOverlayTextStyle = useMemo(() => {
+    const t = easeInOut(introProgress);
+    return {
+      opacity: (interactionsEnabled ? 1 - zoomProgress * 4 : 0) * t, // Fade in as intro fades out, then fade out on zoom
+      transform: `translateY(${lerp(20, 0, t)}px)`,
+      transition: 'opacity 300ms ease, transform 300ms ease',
+    } as const;
+  }, [introProgress, interactionsEnabled, zoomProgress]);
 
   const mapExitStyle = useMemo(() => {
     const t = easeInOut(vizProgress);
@@ -395,7 +423,7 @@ const UNGAMap = () => {
         <div className="w-full relative">
 
           {/* Sticky container for the map view. */}
-          <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col">
+            <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col">
 
             {/* Logo - top left */}
             <div className="absolute top-5 left-5 z-20">
@@ -406,9 +434,28 @@ const UNGAMap = () => {
               />
             </div>
 
+            {/* Section 0: Context Text */}
+            <div 
+              className="absolute inset-0 flex flex-col items-center justify-center p-8 z-30"
+              style={introTextStyle as any}
+            >
+               <div className="max-w-2xl text-center space-y-6">
+                 <h1 className="text-4xl md:text-5xl font-light text-slate-800 tracking-tight">
+                   Context & Achtergrond
+                 </h1>
+                 <p className="text-lg text-slate-600 leading-relaxed">
+                   Hier is ruimte voor extra context aan het begin van het verhaal. 
+                   De gebruiker kan dit lezen alvorens naar beneden te scrollen naar de interactieve kaart.
+                 </p>
+                 <p className="text-slate-500">
+                   (Plaats hier uw introductietekst...)
+                 </p>
+               </div>
+            </div>
+
             <div
               className="flex flex-col items-center justify-center pt-8 pb-4 z-10 pointer-events-none relative transition-opacity duration-500"
-              style={{ opacity: interactionsEnabled ? 1 - rawScrollProgress * 4 : 0 }}
+              style={mapOverlayTextStyle as any}
             >
               <h1 className="text-3xl md:text-4xl font-light text-slate-800 tracking-tight text-center animate-[fadeIn_1s_ease-out_0.5s_both]">
                 De wereld als geopolitieke arena
@@ -533,19 +580,19 @@ const UNGAMap = () => {
               </div>
             </div>
 
-            {/* Scroll Indicator - shows on section 0 and 1, hidden on section 2 */}
+            {/* Scroll Indicator - shows on section 0, 1 and 2, hidden on section 3 */}
             <button
               onClick={goToNextSection}
               className={cn(
                 'absolute bottom-8 left-1/2 -translate-x-1/2 z-20',
                 'flex flex-col items-center gap-2 group cursor-pointer',
                 'transition-all duration-300',
-                currentSection >= 2 ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                currentSection >= 3 ? 'opacity-0 pointer-events-none' : 'opacity-100'
               )}
               aria-label="Scroll to next section"
             >
               <span className="text-[10px] uppercase tracking-[0.15em] text-slate-400 group-hover:text-slate-600 transition-colors">
-                {currentSection === 0 ? 'Scroll' : 'Verder'}
+                {currentSection === 0 ? 'Start' : 'Verder'}
               </span>
               <div className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center group-hover:border-slate-400 group-hover:bg-slate-50 transition-all">
                 <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors animate-[gentleBounce_2.5s_ease-in-out_infinite]" />
@@ -555,6 +602,7 @@ const UNGAMap = () => {
           </div>
 
           {/* Extra sections below the sticky view for scroll height calculation. */}
+          <div className="h-screen" aria-hidden="true" />
           <div className="h-screen" aria-hidden="true" />
           <div className="h-screen" aria-hidden="true" />
         </div>
