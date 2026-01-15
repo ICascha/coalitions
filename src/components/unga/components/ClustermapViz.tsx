@@ -168,6 +168,12 @@ export function ClustermapViz() {
     return matrixToHeatmapData(data.data.countries, data.data.distance_matrix);
   }, [data]);
 
+  // Preserve backend's hierarchical sorting for columns
+  const columnKeys = useMemo(() => {
+    if (!data) return [];
+    return data.data.countries;
+  }, [data]);
+
   // Compute color scale range
   const { minDistance, maxDistance } = useMemo(() => {
     if (!data) return { minDistance: 0, maxDistance: 1 };
@@ -264,6 +270,7 @@ export function ClustermapViz() {
             >
               <ResponsiveHeatMapCanvas
                 data={heatmapData}
+                keys={columnKeys}
                 margin={{ top: 90, right: 20, bottom: 20, left: 90 }}
                 axisTop={{
                   tickSize: 0,
