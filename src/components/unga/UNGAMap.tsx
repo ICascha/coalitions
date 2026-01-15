@@ -391,7 +391,7 @@ const UNGAMap = () => {
                         </p>
                         <Button 
                             onClick={scrollToBottom}
-                            className="bg-slate-900 text-white hover:bg-slate-800 rounded-full px-8 py-6 text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 group"
+                            className="bg-slate-900 text-white hover:bg-slate-800 rounded-full px-8 py-6 text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 group font-serif"
                         >
                             <span>Start Coalitie Explorer</span>
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
