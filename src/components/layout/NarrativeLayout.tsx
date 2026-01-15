@@ -30,28 +30,28 @@ const NarrativeLayout = () => {
 
   const viewDetails = {
     unga: {
-      title: 'De Nieuwe Wereldkaart (UNGA)',
+      title: 'Mondiale Verhoudingen (UNGA)',
       component: <UNGAMap />,
     },
     // Fallbacks for other views to prevent crashes if state changes
     connections: {
-      title: 'Netwerk (Connections)',
+      title: 'Asymmetrische Afhankelijkheden',
       component: <div className="p-4">Component niet beschikbaar</div>,
     },
     correlations: {
-      title: 'Correlaties',
+      title: 'Strategische Correlaties',
       component: <div className="p-4">Component niet beschikbaar</div>,
     },
     approvals: {
-      title: 'Raadsposities',
+      title: 'Europese Raadsposities',
       component: <div className="p-4">Component niet beschikbaar</div>,
     },
     approvals_detailed: {
-      title: 'Publieke Opinie',
+      title: 'Mondiale Publieke Opinie',
       component: <div className="p-4">Component niet beschikbaar</div>,
     },
     regression: {
-      title: 'Regressie',
+      title: 'Strategische Regressie-analyse',
       component: <div className="p-4">Component niet beschikbaar</div>,
     }
   }[activeView];
@@ -100,7 +100,7 @@ const NarrativeLayout = () => {
         The Hague Centre for Strategic Studies
       </h2>
       <p className="text-gray-600 mb-8 max-w-lg" style={getAnimationStyle(400)}>
-        Data-driven inzichten in mondiale geopolitieke verhoudingen en strategische veiligheidsvraagstukken.
+        Onafhankelijke analyse van geopolitieke machtsverschuivingen en de architectuur van Europese coalities.
       </p>
       <div className="flex gap-4" style={getAnimationStyle(600)}>
         <a

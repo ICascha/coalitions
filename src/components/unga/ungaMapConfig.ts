@@ -59,23 +59,23 @@ export const EUROPE_COUNTRY_NAMES = [
 // Tweak/extend these sets to match your narrative.
 export const EU_COALITIONS: Coalition[] = [
   {
-    id: 'nordics',
-    label: 'Nordics',
+    id: 'coalition-1',
+    label: 'Coalitie voor Digitale Infrastructuur',
     members: new Set(['DNK', 'SWE', 'FIN']),
   },
   {
-    id: 'western',
-    label: 'Western Europe',
+    id: 'coalition-2',
+    label: 'Coalitie voor Energiezekerheid',
     members: new Set(['NLD', 'BEL', 'LUX', 'FRA', 'DEU', 'AUT']),
   },
   {
-    id: 'southern',
-    label: 'Southern Europe',
+    id: 'coalition-3',
+    label: 'Coalitie voor Defensiesamenwerking',
     members: new Set(['ESP', 'PRT', 'ITA', 'GRC']),
   },
   {
-    id: 'eastern',
-    label: 'Central & Eastern Europe',
+    id: 'coalition-4',
+    label: 'Coalitie voor Kritieke Grondstoffen',
     members: new Set(['POL', 'CZE', 'SVK', 'HUN', 'ROU', 'BGR', 'HRV', 'SVN']),
   },
 ];

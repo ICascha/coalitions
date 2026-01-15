@@ -227,16 +227,16 @@ const interpolateColor = (t: number): string => {
 
 // Build topic options from manifest
 const TOPIC_OPTIONS: TopicOption[] = [
-  { id: 'overall', path: 'overall.json', label: 'All Topics' },
-  { id: 'climate_environment', path: 'topics/climate_environment.json', label: 'Climate & Environment' },
-  { id: 'energy_infrastructure', path: 'topics/energy_infrastructure.json', label: 'Energy & Infrastructure' },
-  { id: 'trade_industrial_policy', path: 'topics/trade_industrial_policy.json', label: 'Trade & Industrial Policy' },
-  { id: 'economic_financial', path: 'topics/economic_financial.json', label: 'Economic & Financial' },
-  { id: 'digital_innovation', path: 'topics/digital_innovation.json', label: 'Digital & Innovation' },
-  { id: 'social_health_employment', path: 'topics/social_health_employment.json', label: 'Social, Health & Employment' },
-  { id: 'justice_home_affairs', path: 'topics/justice_home_affairs.json', label: 'Justice & Home Affairs' },
-  { id: 'agriculture_food_systems', path: 'topics/agriculture_food_systems.json', label: 'Agriculture & Food Systems' },
-  { id: 'institutional_governance', path: 'topics/institutional_governance.json', label: 'Institutional Governance' },
+  { id: 'overall', path: 'overall.json', label: 'Overkoepelend' },
+  { id: 'climate_environment', path: 'topics/climate_environment.json', label: 'Klimaat & Milieu' },
+  { id: 'energy_infrastructure', path: 'topics/energy_infrastructure.json', label: 'Energie & Infrastructuur' },
+  { id: 'trade_industrial_policy', path: 'topics/trade_industrial_policy.json', label: 'Handel & Industriebeleid' },
+  { id: 'economic_financial', path: 'topics/economic_financial.json', label: 'Economie & Financiën' },
+  { id: 'digital_innovation', path: 'topics/digital_innovation.json', label: 'Digitaal & Innovatie' },
+  { id: 'social_health_employment', path: 'topics/social_health_employment.json', label: 'Sociaal & Volksgezondheid' },
+  { id: 'justice_home_affairs', path: 'topics/justice_home_affairs.json', label: 'Justitie & Veiligheid' },
+  { id: 'agriculture_food_systems', path: 'topics/agriculture_food_systems.json', label: 'Landbouw & Voedselzekerheid' },
+  { id: 'institutional_governance', path: 'topics/institutional_governance.json', label: 'Institutionele Structuur' },
 ];
 
 // Cluster colors
@@ -260,7 +260,7 @@ const HeatmapTooltip = memo(function HeatmapTooltip({
 
   return (
     <div className="bg-slate-900/95 backdrop-blur-sm text-white px-3 py-2 rounded-lg shadow-xl border border-white/10">
-      <div className="text-xs text-slate-400 mb-1">Voting Distance</div>
+      <div className="text-xs text-slate-400 mb-1">Stemafstand</div>
       <div className="font-medium">
         {cell.serieId} ↔ {cell.data.x}
       </div>
@@ -268,7 +268,7 @@ const HeatmapTooltip = memo(function HeatmapTooltip({
         {distance.toFixed(3)}
       </div>
       <div className="text-[10px] text-slate-500 mt-1">
-        Lower = more similar voting
+        Lager = meer vergelijkbaar stemgedrag
       </div>
     </div>
   );
@@ -436,15 +436,15 @@ export function ClustermapViz() {
       <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200/50">
         <div>
           <h2 className="text-xl font-semibold text-slate-800">
-            EU Council Voting Patterns
+            De architectuur van Europese coalities
           </h2>
           <p className="text-sm text-slate-500 mt-0.5">
-            Pairwise voting distances between member states
+            Analyse van strategische resonantie en coalitiepotentieel binnen de EU
           </p>
         </div>
         
         <div className="flex items-center gap-3">
-          <span className="text-xs uppercase tracking-wide text-slate-400">Topic</span>
+          <span className="text-xs uppercase tracking-wide text-slate-400">Strategisch Domein</span>
           <Select value={selectedTopic} onValueChange={setSelectedTopic}>
             <SelectTrigger className="w-[220px] bg-white border-slate-200">
               <SelectValue />
@@ -468,7 +468,7 @@ export function ClustermapViz() {
             <div className="absolute inset-0 flex items-center justify-center bg-white/80 z-10">
               <div className="flex items-center gap-3 text-slate-500">
                 <div className="w-5 h-5 border-2 border-slate-300 border-t-slate-600 rounded-full animate-spin" />
-                <span>Loading clustermap...</span>
+                <span>Clustermap laden...</span>
               </div>
             </div>
           )}
@@ -558,21 +558,21 @@ export function ClustermapViz() {
         <div className="w-72 border-l border-slate-200/50 bg-slate-50/50 p-5 flex flex-col gap-5">
           {/* Stats */}
           <div>
-            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Statistics</h3>
+            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Kerncijfers</h3>
             <div className="bg-white rounded-lg border border-slate-200 p-4">
-              <div className="text-sm text-slate-600">Average Distance</div>
+              <div className="text-sm text-slate-600">Gemiddelde stemafstand</div>
               <div className="text-2xl font-semibold text-slate-800 mt-1">
                 {avgDistance.toFixed(3)}
               </div>
               <div className="text-xs text-slate-400 mt-1">
-                Across all country pairs
+                Over alle lidstaten heen
               </div>
             </div>
           </div>
 
           {/* Color scale legend */}
           <div>
-            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Color Scale</h3>
+            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Mate van resonantie</h3>
             <div className="bg-white rounded-lg border border-slate-200 p-4">
               <div className="flex items-center gap-2">
                 <span className="text-xs text-slate-600">{minDistance.toFixed(2)}</span>
@@ -585,8 +585,8 @@ export function ClustermapViz() {
                 <span className="text-xs text-slate-600">{maxDistance.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-[10px] text-slate-400 mt-1">
-                <span>Similar</span>
-                <span>Different</span>
+                <span>Hoge resonantie</span>
+                <span>Lage resonantie</span>
               </div>
             </div>
           </div>
@@ -594,7 +594,7 @@ export function ClustermapViz() {
           {/* Cluster highlighting toggle */}
           <div>
             <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">
-              Clusters
+              Coalitie-clusters
             </h3>
             <button
               onClick={() => setShowClusters(!showClusters)}
@@ -620,12 +620,12 @@ export function ClustermapViz() {
                     d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" 
                   />
                 </svg>
-                <span>{showClusters ? 'Hide Clusters' : 'Show Clusters'}</span>
+                <span>{showClusters ? 'Visualisatie Verbergen' : 'Clusters Visualiseren'}</span>
               </div>
             </button>
             {showClusters && clusters.length > 0 && (
               <div className="mt-3 text-xs text-slate-500 text-center">
-                {clusters.length} clusters detected
+                {clusters.length} clusters gedetecteerd
               </div>
             )}
           </div>

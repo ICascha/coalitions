@@ -411,10 +411,10 @@ const UNGAMap = () => {
               style={{ opacity: interactionsEnabled ? 1 - rawScrollProgress * 4 : 0 }}
             >
               <h1 className="text-3xl md:text-4xl font-light text-slate-800 tracking-tight text-center animate-[fadeIn_1s_ease-out_0.5s_both]">
-                The world is more divided than ever before
+                De wereld als geopolitieke arena
               </h1>
               <p className="mt-2 text-slate-500 text-sm animate-[fadeIn_1s_ease-out_1s_both]">
-                General Assembly Voting Alignment
+                Stemgedrag in de VN: van internationale samenwerking naar strategische competitie
               </p>
             </div>
 
@@ -547,7 +547,7 @@ const UNGAMap = () => {
               aria-label="Scroll to next section"
             >
               <span className="text-[10px] uppercase tracking-[0.15em] text-slate-400 group-hover:text-slate-600 transition-colors">
-                {currentSection === 0 ? 'Scroll' : 'Continue'}
+                {currentSection === 0 ? 'Scroll' : 'Verder'}
               </span>
               <div className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center group-hover:border-slate-400 group-hover:bg-slate-50 transition-all">
                 <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors animate-[gentleBounce_2.5s_ease-in-out_infinite]" />
