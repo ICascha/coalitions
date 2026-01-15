@@ -25,6 +25,7 @@ import { useCoalitionLoop } from './hooks/useCoalitionLoop';
 import { useUngAMapSvgStyling } from './hooks/useUngAMapSvgStyling';
 import { CoalitionOverlayCard } from './components/CoalitionOverlayCard';
 import { useDiscreteScroll } from './hooks/useDiscreteScroll';
+import { ClustermapViz } from './components/ClustermapViz';
 
 const SECTION_COUNT = 3;
 const SCROLL_TRANSITION_MS = 300; // Fast transition
@@ -473,21 +474,15 @@ const UNGAMap = () => {
                 </div>
               </div>
 
-              {/* Third screen: fullscreen visualization placeholder (map scrolls away) */}
+              {/* Third screen: Clustermap visualization (map scrolls away) */}
               <div
-                className="absolute inset-0 flex items-center justify-center bg-white"
+                className="absolute inset-0 bg-[#fafbfc]"
                 style={{
                   pointerEvents: sceneId === 'viz' ? 'auto' : 'none',
                   ...vizEnterStyle,
                 }}
               >
-                <div className="max-w-4xl w-full px-8">
-                  <div className="text-xs uppercase tracking-widest text-slate-500">Next screen (placeholder)</div>
-                  <div className="mt-3 text-4xl font-semibold text-slate-900">Fullscreen visualizations</div>
-                  <div className="mt-3 text-base text-slate-600 leading-relaxed">
-                    This is where we’ll render the next visualization full-bleed, once you scroll past the Europe map.
-                  </div>
-                </div>
+                <ClustermapViz />
               </div>
             </div>
 
