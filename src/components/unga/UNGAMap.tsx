@@ -86,8 +86,8 @@ const UNGAMap = () => {
   const mapViewport = useElementSize(containerRef);
   const { alignmentMap, loading: mapLoading, error: mapError } = useUngAAlignment();
 
-  // Hover enabled when not scrolling
-  const interactionsEnabled = true; 
+  // Hover enabled when not scrolling and not at the final section
+  const interactionsEnabled = !isZoomComplete;
   const hoverEnabled = interactionsEnabled && !isScrollCooldown;
 
   useEffect(() => {
