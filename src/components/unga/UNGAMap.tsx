@@ -30,6 +30,7 @@ import { ClustermapViz } from './components/ClustermapViz';
 const SECTION_COUNT = 3;
 const SCROLL_TRANSITION_MS = 300; // Fast transition
 const LOCK_IN_DURATION_MS = 200; // Cooldown after landing on a section
+const HOVER_COOLDOWN_MS = 400; // Cooldown before re-enabling hover after scroll animation
 
 const UNGAMap = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,8 +39,43 @@ const UNGAMap = () => {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   
+  // Track scroll activity to prevent hover flickering during animations
+  const lastScrollProgressRef = useRef(0);
+  const scrollCooldownRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [isScrollCooldown, setIsScrollCooldown] = useState(false);
+  
   // Continuous scroll progress for smooth visual transitions
   const rawScrollProgress = useScrollContainerProgress(scrollContainerRef);
+  
+  // Detect scroll activity and manage cooldown
+  useEffect(() => {
+    const progressChanged = Math.abs(rawScrollProgress - lastScrollProgressRef.current) > 0.001;
+    lastScrollProgressRef.current = rawScrollProgress;
+    
+    if (progressChanged) {
+      // Scrolling is happening - enter cooldown mode
+      setIsScrollCooldown(true);
+      
+      // Clear hover state immediately when scrolling starts
+      setHoveredCountry(null);
+      
+      // Clear any existing cooldown timer
+      if (scrollCooldownRef.current) {
+        clearTimeout(scrollCooldownRef.current);
+      }
+      
+      // Set a new cooldown timer
+      scrollCooldownRef.current = setTimeout(() => {
+        setIsScrollCooldown(false);
+      }, HOVER_COOLDOWN_MS);
+    }
+    
+    return () => {
+      if (scrollCooldownRef.current) {
+        clearTimeout(scrollCooldownRef.current);
+      }
+    };
+  }, [rawScrollProgress]);
   
   // Discrete scroll: enforces one-section-at-a-time navigation with lock-in period
   const { currentSection, goToNextSection } = useDiscreteScroll(scrollContainerRef, {
@@ -60,7 +96,9 @@ const UNGAMap = () => {
   // vizProgress: maps 0.5-1 to 0-1 (viz transition happens going to section 2)
   const vizProgress = clamp01((rawScrollProgress - 0.5) * 2);
 
+  // Hover is only enabled when at section 0 AND not in scroll cooldown
   const interactionsEnabled = rawScrollProgress < 0.05;
+  const hoverEnabled = interactionsEnabled && !isScrollCooldown;
   const isZoomComplete = zoomProgress >= 0.98;
 
   useEffect(() => {
@@ -69,11 +107,11 @@ const UNGAMap = () => {
   }, []);
 
   // Once the user scrolls, disable interactions (the map becomes a background).
+  // Note: hoveredCountry is now cleared by the scroll cooldown effect above
   useEffect(() => {
     if (!interactionsEnabled) {
       setTooltip(null);
       setSelectedCountry(null);
-      setHoveredCountry(null);
     }
   }, [interactionsEnabled]);
 
@@ -210,7 +248,8 @@ const UNGAMap = () => {
     if (!svgElement) return;
 
     const handlePointerEnter = (event: Event) => {
-      if (!interactionsEnabled) return;
+      // Use hoverEnabled to prevent hover during scroll cooldown
+      if (!hoverEnabled) return;
       const target = event.target as SVGElement | null;
       if (!target || target.id === 'selection-highlight-overlay' || target.id === 'hover-highlight-overlay') {
         return;
@@ -222,7 +261,8 @@ const UNGAMap = () => {
     };
 
     const handlePointerLeave = (event: Event) => {
-      if (!interactionsEnabled) return;
+      // Use hoverEnabled to prevent hover during scroll cooldown
+      if (!hoverEnabled) return;
       const target = event.target as SVGElement | null;
       if (!target || target.id === 'selection-highlight-overlay' || target.id === 'hover-highlight-overlay') {
         return;
@@ -237,7 +277,7 @@ const UNGAMap = () => {
       svgElement.removeEventListener('pointerenter', handlePointerEnter, true);
       svgElement.removeEventListener('pointerleave', handlePointerLeave, true);
     };
-  }, [interactionsEnabled]);
+  }, [hoverEnabled]);
 
   // (data fetching moved to useUngAAlignment)
 
