@@ -60,7 +60,14 @@ export function useUngAMapSvgStyling(options: {
 
       path.style.pointerEvents = interactionsEnabled ? 'auto' : 'none';
       const alignment = alignmentMap[key];
-      path.style.fill = getFillColor(alignment);
+      const newFill = getFillColor(alignment);
+      // Only update fill if it actually changed to prevent transition flickering during animation
+      // Use data attribute for comparison since browsers normalize color values differently
+      const currentFill = path.getAttribute('data-unga-fill');
+      if (currentFill !== newFill) {
+        path.style.fill = newFill;
+        path.setAttribute('data-unga-fill', newFill);
+      }
       path.style.transition =
         'fill 0.2s ease-out, stroke 0.15s ease-out, stroke-width 0.15s ease-out, opacity 700ms ease, filter 700ms ease';
 
