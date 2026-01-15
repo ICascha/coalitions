@@ -41,7 +41,7 @@ const UNGAMap = () => {
   const rawScrollProgress = useScrollContainerProgress(scrollContainerRef);
   
   // Discrete scroll: enforces one-section-at-a-time navigation with lock-in period
-  const { currentSection } = useDiscreteScroll(scrollContainerRef, {
+  const { currentSection, goToNextSection } = useDiscreteScroll(scrollContainerRef, {
     sectionCount: SECTION_COUNT,
     transitionDurationMs: SCROLL_TRANSITION_MS,
     lockInDurationMs: LOCK_IN_DURATION_MS,
@@ -474,16 +474,47 @@ const UNGAMap = () => {
               </div>
             </div>
 
-            {/* Scroll Indicator */}
-            <div
-              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 transition-opacity duration-500"
-              style={{ opacity: rawScrollProgress > 0.1 ? 0 : 1 }}
+            {/* Scroll Indicator - shows on section 0 and 1, hidden on section 2 */}
+            <button
+              onClick={goToNextSection}
+              className={cn(
+                'absolute bottom-6 left-1/2 -translate-x-1/2 z-20',
+                'flex flex-col items-center gap-3 group cursor-pointer',
+                'transition-all duration-500 ease-out',
+                'hover:scale-105 active:scale-95',
+                currentSection >= 2 ? 'opacity-0 pointer-events-none' : 'opacity-100'
+              )}
+              aria-label="Scroll to next section"
             >
-              <span className="text-xs uppercase tracking-widest text-slate-400 font-medium">
-                Scroll to explore
+              <span className={cn(
+                'text-[11px] uppercase tracking-[0.2em] font-medium',
+                'px-4 py-2 rounded-full',
+                'bg-white/80 backdrop-blur-sm shadow-lg shadow-slate-200/50',
+                'border border-slate-200/60',
+                'text-slate-600 group-hover:text-slate-800',
+                'transition-all duration-300',
+                'group-hover:shadow-xl group-hover:shadow-slate-200/60',
+                'group-hover:bg-white group-hover:border-slate-300'
+              )}>
+                {currentSection === 0 ? 'Scroll to explore' : 'Continue'}
               </span>
-              <ChevronDown className="h-6 w-6 text-slate-400 animate-bounce" />
-            </div>
+              <div className={cn(
+                'w-10 h-10 rounded-full',
+                'bg-white shadow-lg shadow-slate-200/50',
+                'border border-slate-200/60',
+                'flex items-center justify-center',
+                'transition-all duration-300',
+                'group-hover:shadow-xl group-hover:shadow-slate-300/60',
+                'group-hover:bg-slate-50 group-hover:border-slate-300'
+              )}>
+                <ChevronDown className={cn(
+                  'h-5 w-5 text-slate-500',
+                  'transition-all duration-300',
+                  'group-hover:text-slate-700',
+                  'animate-[bounce_2s_ease-in-out_infinite]'
+                )} />
+              </div>
+            </button>
 
           </div>
 
