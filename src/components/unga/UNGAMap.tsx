@@ -347,6 +347,15 @@ const UNGAMap = () => {
           {/* Sticky container for the map view. */}
           <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col">
 
+            {/* Logo - top left */}
+            <div className="absolute top-5 left-5 z-20">
+              <img 
+                src="/denkwerk_logo.svg" 
+                alt="Denkwerk" 
+                className="h-8 w-auto opacity-40 grayscale"
+              />
+            </div>
+
             <div
               className="flex flex-col items-center justify-center pt-8 pb-4 z-10 pointer-events-none relative transition-opacity duration-500"
               style={{ opacity: interactionsEnabled ? 1 - rawScrollProgress * 4 : 0 }}
