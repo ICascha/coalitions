@@ -358,13 +358,14 @@ export function ClustermapViz() {
     }
     const avgDistance = count > 0 ? sum / count : 0;
 
-    // Determine threshold for cutting (use median merge distance)
+    // Determine threshold for cutting (lower percentile = larger clusters)
     const sortedMerges = [...mergeHistory].sort((a, b) => a.distance - b.distance);
-    const medianIdx = Math.floor(sortedMerges.length * 0.6); // Cut at 60th percentile
+    const medianIdx = Math.floor(sortedMerges.length * 0.4); // Cut at 40th percentile for larger clusters
     const threshold = sortedMerges[medianIdx]?.distance ?? 0.2;
 
-    // Cut dendrogram to get clusters
-    const clusters = cutDendrogram(root, threshold, countries, order);
+    // Cut dendrogram to get clusters, filter out single-country clusters
+    const allClusters = cutDendrogram(root, threshold, countries, order);
+    const clusters = allClusters.filter((c) => c.countries.length >= 2);
     
     return { heatmapData, columnKeys: orderedCountries, clusters, avgDistance };
   }, [data]);
