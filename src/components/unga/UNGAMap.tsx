@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 // Use the raw import for the interactive SVG
-import worldMapSvg from '@/assets/world_map_interactive_t0.2.svg?raw';
+import worldMapSvg from '@/assets/world_map_interactive_110m.svg?raw';
 import { POWER_BLOCS } from './ungaMapTypes';
 import type { TooltipState } from './ungaMapTypes';
 import {
