@@ -18,6 +18,7 @@ import { buildAlpha3SetFromNames, formatCountryName, getCountryDisplayName, reso
 import { blendWithWhite } from './ungaMapColors';
 import { clamp01, easeInOut, lerp } from './ungaMapMath';
 import { formatMetricValue } from './ungaMapFormat';
+import { useWindowSize } from '@/hooks/useWindowSize';
 import { useScrollContainerProgress } from './hooks/useScrollContainerProgress';
 import { useElementSize } from './hooks/useElementSize';
 import { useUngAAlignment } from './hooks/useUngAAlignment';
@@ -42,6 +43,9 @@ const UNGAMap = () => {
   const scrollCooldownRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isScrollCooldown, setIsScrollCooldown] = useState(false);
   
+  const width = useWindowSize();
+  const isMobile = width !== null && width < 768;
+
   // Continuous scroll progress
   const rawScrollProgress = useScrollContainerProgress(scrollContainerRef);
   
@@ -330,7 +334,10 @@ const UNGAMap = () => {
       
       <div 
         ref={scrollContainerRef}
-        className="absolute inset-0 overflow-y-auto overflow-x-hidden"
+        className={cn(
+          "absolute overflow-y-auto overflow-x-hidden transition-all duration-500",
+          isMobile && !isExplorerOpen ? "top-0 left-0 right-0 bottom-[40%]" : "inset-0"
+        )}
       >
         <div className="min-h-[300vh] w-full flex flex-col md:flex-row relative">
             
@@ -394,7 +401,18 @@ const UNGAMap = () => {
             </div>
 
             {/* Right Column: Sticky Map */}
-            <div className="w-full md:w-[55%] lg:w-[60%] h-screen sticky top-0 right-0 overflow-hidden bg-slate-50/50 border-l border-slate-100">
+            <div className={cn(
+              "w-full overflow-hidden bg-slate-50/50 border-l border-slate-100 transition-all duration-300",
+              isMobile ? (
+                // Mobile: Fixed at bottom
+                "fixed bottom-0 left-0 right-0 h-[40%] border-t z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]"
+              ) : (
+                // Desktop: Sticky on right
+                "md:w-[55%] lg:w-[60%] h-screen sticky top-0 right-0"
+              ),
+              // Hide map when explorer is open on mobile to give space to Viz
+              isMobile && isExplorerOpen && "translate-y-full opacity-0 pointer-events-none"
+            )}>
                 <div className="absolute inset-0 flex items-center justify-center p-4 md:p-12">
                      <div className="relative w-full h-full max-w-[1200px]">
                         <div 
@@ -452,7 +470,7 @@ const UNGAMap = () => {
 
         {/* Final Full-Screen Visualization Section */}
         {isExplorerOpen && (
-          <div id="viz-section" className="h-screen w-full bg-white relative z-30 border-t border-slate-200">
+          <div id="viz-section" className="h-screen w-full bg-white relative z-50 border-t border-slate-200">
               <ClustermapViz />
           </div>
         )}
