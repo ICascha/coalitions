@@ -16,7 +16,14 @@ export const getFillColor = (alignment: { bloc: PowerBloc; strength: number } | 
   if (!alignment) {
     return '#f1f5f9'; // slate-100
   }
-  return blendWithWhite(POWER_BLOC_COLORS[alignment.bloc], Math.max(alignment.strength, 0.45));
+  
+  // The strength in our data typically ranges from ~0.7 to 1.0.
+  // To make differences more visible, we use a power function to expand the range.
+  // This pushes weaker alignments towards white, making the gradient much more apparent.
+  const visualStrength = Math.pow(alignment.strength, 6);
+  
+  // Clamp to 0.1 to ensure countries are still slightly colored even if very weak
+  return blendWithWhite(POWER_BLOC_COLORS[alignment.bloc], Math.max(visualStrength, 0.1));
 };
 
 
