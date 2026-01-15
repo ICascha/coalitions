@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback, memo } from 'react';
+import { useState, useEffect, useMemo, useCallback, memo, useRef } from 'react';
 import { ResponsiveHeatMapCanvas, type ComputedCell, type HeatMapSerie } from '@nivo/heatmap';
 import {
   Select,
@@ -7,7 +7,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { cn } from '@/lib/utils';
+
+// Hook to get element size and compute square dimension
+function useSquareSize(ref: React.RefObject<HTMLDivElement | null>) {
+  const [size, setSize] = useState(0);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const updateSize = () => {
+      const { width, height } = element.getBoundingClientRect();
+      // Use the smaller of width/height to ensure square fits
+      const squareSize = Math.min(width, height);
+      setSize(squareSize);
+    };
+
+    updateSize();
+
+    const observer = new ResizeObserver(updateSize);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [ref]);
+
+  return size;
+}
 
 // Types
 type ClustermapData = {
@@ -97,6 +121,10 @@ export function ClustermapViz() {
   const [data, setData] = useState<ClustermapData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  // Ref and size for square aspect ratio
+  const containerRef = useRef<HTMLDivElement>(null);
+  const squareSize = useSquareSize(containerRef);
 
   // Find current topic option
   const currentTopic = TOPIC_OPTIONS.find((t) => t.id === selectedTopic) ?? TOPIC_OPTIONS[0];
@@ -208,7 +236,7 @@ export function ClustermapViz() {
       </div>
 
       {/* Main visualization area */}
-      <div className="flex-1 min-h-0 relative">
+      <div ref={containerRef} className="flex-1 min-h-0 relative flex items-center justify-center p-4">
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center bg-white/80 z-10">
             <div className="flex items-center gap-3 text-slate-500">
@@ -226,11 +254,17 @@ export function ClustermapViz() {
           </div>
         )}
         
-        {!loading && !error && heatmapData.length > 0 && (
-          <div className="w-full h-full p-4">
+        {!loading && !error && heatmapData.length > 0 && squareSize > 0 && (
+          <div
+            className="relative"
+            style={{
+              width: squareSize,
+              height: squareSize,
+            }}
+          >
             <ResponsiveHeatMapCanvas
               data={heatmapData}
-              margin={{ top: 90, right: 60, bottom: 60, left: 90 }}
+              margin={{ top: 90, right: 20, bottom: 20, left: 90 }}
               axisTop={{
                 tickSize: 0,
                 tickPadding: 8,
@@ -253,36 +287,32 @@ export function ClustermapViz() {
               tooltip={HeatmapTooltip}
               animate={false}
             />
-          </div>
-        )}
+            
+            {/* Legend - positioned inside the square */}
+            <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg border border-slate-200 p-3 shadow-sm">
+              <div className="text-[10px] uppercase tracking-wide text-slate-500 mb-2">
+                Voting Distance
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-slate-600">{minDistance.toFixed(2)}</span>
+                <div 
+                  className="w-24 h-3 rounded-sm"
+                  style={{
+                    background: `linear-gradient(to right, ${interpolateColor(0)}, ${interpolateColor(0.5)}, ${interpolateColor(1)})`,
+                  }}
+                />
+                <span className="text-xs text-slate-600">{maxDistance.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between text-[10px] text-slate-400 mt-1 px-6">
+                <span>Similar</span>
+                <span>Different</span>
+              </div>
+            </div>
 
-        {/* Legend */}
-        {!loading && !error && data && (
-          <div className="absolute bottom-6 right-6 bg-white/95 backdrop-blur-sm rounded-lg border border-slate-200 p-3 shadow-sm">
-            <div className="text-[10px] uppercase tracking-wide text-slate-500 mb-2">
-              Voting Distance
+            {/* Stats badge - positioned inside the square */}
+            <div className="absolute top-[94px] left-[94px] bg-slate-100/90 backdrop-blur-sm rounded-md px-3 py-1.5 text-xs text-slate-600">
+              {countryCount} EU Member States
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-slate-600">{minDistance.toFixed(2)}</span>
-              <div 
-                className="w-24 h-3 rounded-sm"
-                style={{
-                  background: `linear-gradient(to right, ${interpolateColor(0)}, ${interpolateColor(0.5)}, ${interpolateColor(1)})`,
-                }}
-              />
-              <span className="text-xs text-slate-600">{maxDistance.toFixed(2)}</span>
-            </div>
-            <div className="flex justify-between text-[10px] text-slate-400 mt-1 px-6">
-              <span>Similar</span>
-              <span>Different</span>
-            </div>
-          </div>
-        )}
-
-        {/* Stats badge */}
-        {!loading && !error && data && (
-          <div className="absolute top-4 left-4 bg-slate-100/90 backdrop-blur-sm rounded-md px-3 py-1.5 text-xs text-slate-600">
-            {countryCount} EU Member States
           </div>
         )}
       </div>
