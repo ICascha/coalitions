@@ -58,8 +58,11 @@ export function useUngAMapSvgStyling(options: {
         return;
       }
 
-      path.style.pointerEvents = interactionsEnabled ? 'auto' : 'none';
       const alignment = alignmentMap[key];
+      // Disable interactions for countries without UN voting data (e.g., Taiwan, Kosovo, Somaliland)
+      const hasData = !!alignment;
+      path.style.pointerEvents = interactionsEnabled && hasData ? 'auto' : 'none';
+      path.style.cursor = hasData ? 'pointer' : 'default';
       const newFill = getFillColor(alignment);
       // Only update fill if it actually changed to prevent transition flickering during animation
       // Use data attribute for comparison since browsers normalize color values differently

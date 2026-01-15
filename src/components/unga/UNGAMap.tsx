@@ -216,11 +216,19 @@ const UNGAMap = () => {
         return;
       }
 
+      // Skip countries without UN voting data (e.g., Taiwan, Kosovo, Somaliland)
+      const alignment = alignmentMap[key];
+      if (!alignment) {
+        setTooltip(null);
+        setSelectedCountry(null);
+        return;
+      }
+
       const displayName = getCountryDisplayName(key, formatCountryName(countryId));
       setTooltip({
         type: 'alignment',
         name: displayName,
-        alignment: alignmentMap[key] ?? null,
+        alignment: alignment,
         x: mouseEvent.clientX - bounds.left,
         y: mouseEvent.clientY - bounds.top,
       });
@@ -255,7 +263,8 @@ const UNGAMap = () => {
         return;
       }
       const key = resolveCountryKey(target.id);
-      if (key) {
+      // Skip countries without UN voting data (e.g., Taiwan, Kosovo, Somaliland)
+      if (key && alignmentMap[key]) {
         setHoveredCountry(key);
       }
     };
@@ -277,7 +286,7 @@ const UNGAMap = () => {
       svgElement.removeEventListener('pointerenter', handlePointerEnter, true);
       svgElement.removeEventListener('pointerleave', handlePointerLeave, true);
     };
-  }, [hoverEnabled]);
+  }, [hoverEnabled, alignmentMap]);
 
   // (data fetching moved to useUngAAlignment)
 
