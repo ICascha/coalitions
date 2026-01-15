@@ -325,6 +325,14 @@ const UNGAMap = () => {
           .unga-map-container-inner {
             animation: mapReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           }
+          @keyframes gentleBounce {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(3px);
+            }
+          }
         `}
       </style>
 
@@ -478,41 +486,18 @@ const UNGAMap = () => {
             <button
               onClick={goToNextSection}
               className={cn(
-                'absolute bottom-6 left-1/2 -translate-x-1/2 z-20',
-                'flex flex-col items-center gap-3 group cursor-pointer',
-                'transition-all duration-500 ease-out',
-                'hover:scale-105 active:scale-95',
+                'absolute bottom-8 left-1/2 -translate-x-1/2 z-20',
+                'flex flex-col items-center gap-2 group cursor-pointer',
+                'transition-all duration-300',
                 currentSection >= 2 ? 'opacity-0 pointer-events-none' : 'opacity-100'
               )}
               aria-label="Scroll to next section"
             >
-              <span className={cn(
-                'text-[11px] uppercase tracking-[0.2em] font-medium',
-                'px-4 py-2 rounded-full',
-                'bg-white/80 backdrop-blur-sm shadow-lg shadow-slate-200/50',
-                'border border-slate-200/60',
-                'text-slate-600 group-hover:text-slate-800',
-                'transition-all duration-300',
-                'group-hover:shadow-xl group-hover:shadow-slate-200/60',
-                'group-hover:bg-white group-hover:border-slate-300'
-              )}>
-                {currentSection === 0 ? 'Scroll to explore' : 'Continue'}
+              <span className="text-[10px] uppercase tracking-[0.15em] text-slate-400 group-hover:text-slate-600 transition-colors">
+                {currentSection === 0 ? 'Scroll' : 'Continue'}
               </span>
-              <div className={cn(
-                'w-10 h-10 rounded-full',
-                'bg-white shadow-lg shadow-slate-200/50',
-                'border border-slate-200/60',
-                'flex items-center justify-center',
-                'transition-all duration-300',
-                'group-hover:shadow-xl group-hover:shadow-slate-300/60',
-                'group-hover:bg-slate-50 group-hover:border-slate-300'
-              )}>
-                <ChevronDown className={cn(
-                  'h-5 w-5 text-slate-500',
-                  'transition-all duration-300',
-                  'group-hover:text-slate-700',
-                  'animate-[bounce_2s_ease-in-out_infinite]'
-                )} />
+              <div className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center group-hover:border-slate-400 group-hover:bg-slate-50 transition-all">
+                <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors animate-[gentleBounce_2.5s_ease-in-out_infinite]" />
               </div>
             </button>
 
