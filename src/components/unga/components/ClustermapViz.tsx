@@ -54,6 +54,89 @@ type HeatmapCellData = {
   y: number | null;
 };
 
+type ClusterNode = {
+  indices: number[];
+  left?: ClusterNode;
+  right?: ClusterNode;
+};
+
+// Hierarchical clustering utilities
+const sanitizeMatrix = (matrix: (number | null)[][]) =>
+  matrix.map((row, rowIndex) =>
+    row.map((value, columnIndex) => {
+      if (rowIndex === columnIndex) return 0;
+      if (typeof value === 'number' && Number.isFinite(value)) return value;
+      return 1;
+    })
+  );
+
+const averageLinkageDistance = (a: ClusterNode, b: ClusterNode, distanceMatrix: number[][]) => {
+  let sum = 0;
+  let count = 0;
+  for (const i of a.indices) {
+    for (const j of b.indices) {
+      sum += distanceMatrix[i][j];
+      count++;
+    }
+  }
+  return count > 0 ? sum / count : 1;
+};
+
+const computeHierarchicalOrder = (distanceMatrix: (number | null)[][]) => {
+  const sanitized = sanitizeMatrix(distanceMatrix);
+  const size = sanitized.length;
+
+  if (size === 0) return [];
+  if (size === 1) return [0];
+
+  const nodes: ClusterNode[] = Array.from({ length: size }, (_, index) => ({
+    indices: [index],
+  }));
+
+  while (nodes.length > 1) {
+    let minDistance = Number.POSITIVE_INFINITY;
+    let minI = 0;
+    let minJ = 1;
+
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const distance = averageLinkageDistance(nodes[i], nodes[j], sanitized);
+        if (distance < minDistance) {
+          minDistance = distance;
+          minI = i;
+          minJ = j;
+        }
+      }
+    }
+
+    const right = nodes[minJ];
+    const left = nodes[minI];
+    const merged: ClusterNode = {
+      indices: [...left.indices, ...right.indices],
+      left,
+      right,
+    };
+
+    nodes.splice(minJ, 1);
+    nodes.splice(minI, 1);
+    nodes.push(merged);
+  }
+
+  const order: number[] = [];
+  const traverse = (node?: ClusterNode) => {
+    if (!node) return;
+    if (!node.left && !node.right) {
+      order.push(node.indices[0]);
+      return;
+    }
+    traverse(node.left);
+    traverse(node.right);
+  };
+
+  traverse(nodes[0]);
+  return order;
+};
+
 // Color interpolation for heatmap
 const interpolateColor = (t: number): string => {
   // Cool teal to warm coral gradient
@@ -77,18 +160,27 @@ const TOPIC_OPTIONS: TopicOption[] = [
   { id: 'institutional_governance', path: 'topics/institutional_governance.json', label: 'Institutional Governance' },
 ];
 
-// Convert distance matrix to nivo heatmap format
+// Convert distance matrix to nivo heatmap format with hierarchical ordering
 function matrixToHeatmapData(
   countries: string[],
   matrix: number[][]
-): HeatMapSerie<HeatmapCellData, Record<string, unknown>>[] {
-  return countries.map((country, rowIndex) => ({
-    id: country,
-    data: countries.map((otherCountry, colIndex) => ({
-      x: otherCountry,
+): { data: HeatMapSerie<HeatmapCellData, Record<string, unknown>>[]; orderedCountries: string[] } {
+  // Compute hierarchical clustering order
+  const order = computeHierarchicalOrder(matrix);
+  
+  // Reorder countries based on clustering
+  const orderedCountries = order.map((i) => countries[i]);
+  
+  // Build heatmap data in clustered order
+  const data = order.map((rowIndex) => ({
+    id: countries[rowIndex],
+    data: order.map((colIndex) => ({
+      x: countries[colIndex],
       y: matrix[rowIndex]?.[colIndex] ?? null,
     })),
   }));
+  
+  return { data, orderedCountries };
 }
 
 // Custom tooltip component
@@ -162,16 +254,14 @@ export function ClustermapViz() {
     return () => controller.abort();
   }, [currentTopic.path]);
 
-  // Transform data for heatmap
-  const heatmapData = useMemo(() => {
-    if (!data) return [];
-    return matrixToHeatmapData(data.data.countries, data.data.distance_matrix);
-  }, [data]);
-
-  // Preserve backend's hierarchical sorting for columns
-  const columnKeys = useMemo(() => {
-    if (!data) return [];
-    return data.data.countries;
+  // Transform data for heatmap with hierarchical clustering
+  const { heatmapData, columnKeys } = useMemo(() => {
+    if (!data) return { heatmapData: [], columnKeys: [] };
+    const { data: heatmapData, orderedCountries } = matrixToHeatmapData(
+      data.data.countries,
+      data.data.distance_matrix
+    );
+    return { heatmapData, columnKeys: orderedCountries };
   }, [data]);
 
   // Compute color scale range
