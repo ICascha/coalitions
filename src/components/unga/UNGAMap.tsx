@@ -78,7 +78,7 @@ const UNGAMap = () => {
   }, [rawScrollProgress]);
   
   // Discrete scroll: enforces one-section-at-a-time navigation with lock-in period
-  const { currentSection, goToNextSection } = useDiscreteScroll(scrollContainerRef, {
+  const { currentSection, goToNextSection, scrollToSection } = useDiscreteScroll(scrollContainerRef, {
     sectionCount: SECTION_COUNT,
     transitionDurationMs: SCROLL_TRANSITION_MS,
     lockInDurationMs: LOCK_IN_DURATION_MS,
@@ -436,29 +436,63 @@ const UNGAMap = () => {
 
             {/* Section 0: Context Text */}
             <div 
-              className="absolute inset-0 flex flex-col items-center justify-center p-8 z-30"
+              className="absolute inset-0 flex flex-col z-30 bg-white"
               style={introTextStyle as any}
             >
-              {/* Hero Background Image */}
-              <div 
-                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: 'url(/europe_from_above.jpg)' }}
-              />
-              {/* Gradient Overlay for better text readability */}
-              <div className="absolute inset-0 z-10 bg-black/40 backdrop-blur-[2px]" />
+              {/* Hero Banner (Top 35%) */}
+              <div className="relative w-full h-[35%] min-h-[250px] overflow-hidden">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: 'url(/europe_from_above.jpg)' }}
+                />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent" />
+                
+                {/* Hero Title Content */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-white">
+                  <h1 className="text-3xl md:text-5xl font-light tracking-tight drop-shadow-md mb-2">
+                    Context & Achtergrond
+                  </h1>
+                  <p className="text-base md:text-xl font-light text-slate-100 drop-shadow-sm max-w-2xl">
+                    Een diepere blik op de geopolitieke verhoudingen
+                  </p>
+                </div>
+              </div>
 
-               <div className="relative z-20 max-w-2xl text-center space-y-6">
-                 <h1 className="text-4xl md:text-5xl font-light text-white tracking-tight drop-shadow-md">
-                   Context & Achtergrond
-                 </h1>
-                 <p className="text-lg text-slate-100 leading-relaxed drop-shadow">
-                   Hier is ruimte voor extra context aan het begin van het verhaal. 
-                   De gebruiker kan dit lezen alvorens naar beneden te scrollen naar de interactieve kaart.
-                 </p>
-                 <p className="text-slate-300 drop-shadow-sm">
-                   (Plaats hier uw introductietekst...)
-                 </p>
-               </div>
+              {/* Content Area (Bottom 65%) */}
+              <div className="flex-1 w-full max-w-4xl mx-auto p-8 md:p-12 flex flex-col items-center">
+                 <div className="flex-1 space-y-6 text-center text-slate-600 leading-relaxed overflow-y-auto pr-2 custom-scrollbar">
+                   <p className="text-lg font-medium text-slate-800">
+                     Hier is ruimte voor extra context aan het begin van het verhaal.
+                   </p>
+                   <p>
+                     De Verenigde Naties vormen een complex toneel waar landen niet alleen individueel stemmen, 
+                     maar vaak opereren binnen vaste blokken en coalities. Deze visualisatie toont hoe deze dynamiek 
+                     zich in de afgelopen jaren heeft ontwikkeld.
+                   </p>
+                   <p className="text-sm text-slate-500 italic">
+                     (Plaats hier uw verdere introductietekst...)
+                   </p>
+                 </div>
+
+                 {/* Jump Navigation Buttons */}
+                 <div className="mt-8 flex flex-wrap gap-4 justify-center w-full">
+                    <button
+                      onClick={() => scrollToSection(1)}
+                      className="px-6 py-3 rounded-full bg-slate-100 text-slate-700 font-medium text-sm hover:bg-slate-200 transition-colors flex items-center gap-2 group"
+                    >
+                      <span>Naar de kaart</span>
+                      <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+                    </button>
+                    <button
+                      onClick={() => scrollToSection(3)}
+                      className="px-6 py-3 rounded-full bg-slate-800 text-white font-medium text-sm hover:bg-slate-700 transition-colors flex items-center gap-2 group shadow-sm hover:shadow-md"
+                    >
+                      <span>Direct naar EU Coalities</span>
+                      <div className="w-2 h-2 rounded-full bg-blue-400 group-hover:bg-blue-300 transition-colors" />
+                    </button>
+                 </div>
+              </div>
             </div>
 
             <div
@@ -599,10 +633,16 @@ const UNGAMap = () => {
               )}
               aria-label="Scroll to next section"
             >
-              <span className="text-[10px] uppercase tracking-[0.15em] text-slate-400 group-hover:text-slate-600 transition-colors drop-shadow-sm">
+              <span className={cn(
+                "text-[10px] uppercase tracking-[0.15em] transition-colors drop-shadow-sm",
+                currentSection === 0 ? "text-slate-400 group-hover:text-slate-600" : "text-slate-400 group-hover:text-slate-600"
+              )}>
                 {currentSection === 0 ? 'Start' : 'Verder'}
               </span>
-              <div className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center group-hover:border-slate-400 group-hover:bg-slate-50 transition-all backdrop-blur-sm bg-white/10">
+              <div className={cn(
+                "w-8 h-8 rounded-full border flex items-center justify-center transition-all backdrop-blur-sm",
+                currentSection === 0 ? "border-slate-300 group-hover:border-slate-400 bg-white/50" : "border-slate-300 group-hover:border-slate-400 group-hover:bg-slate-50"
+              )}>
                 <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors animate-[gentleBounce_2.5s_ease-in-out_infinite]" />
               </div>
             </button>
