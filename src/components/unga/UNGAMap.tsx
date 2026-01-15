@@ -439,15 +439,23 @@ const UNGAMap = () => {
               className="absolute inset-0 flex flex-col items-center justify-center p-8 z-30"
               style={introTextStyle as any}
             >
-               <div className="max-w-2xl text-center space-y-6">
-                 <h1 className="text-4xl md:text-5xl font-light text-slate-800 tracking-tight">
+              {/* Hero Background Image */}
+              <div 
+                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: 'url(/europe_from_above.jpg)' }}
+              />
+              {/* Gradient Overlay for better text readability */}
+              <div className="absolute inset-0 z-10 bg-black/40 backdrop-blur-[2px]" />
+
+               <div className="relative z-20 max-w-2xl text-center space-y-6">
+                 <h1 className="text-4xl md:text-5xl font-light text-white tracking-tight drop-shadow-md">
                    Context & Achtergrond
                  </h1>
-                 <p className="text-lg text-slate-600 leading-relaxed">
+                 <p className="text-lg text-slate-100 leading-relaxed drop-shadow">
                    Hier is ruimte voor extra context aan het begin van het verhaal. 
                    De gebruiker kan dit lezen alvorens naar beneden te scrollen naar de interactieve kaart.
                  </p>
-                 <p className="text-slate-500">
+                 <p className="text-slate-300 drop-shadow-sm">
                    (Plaats hier uw introductietekst...)
                  </p>
                </div>
@@ -591,10 +599,10 @@ const UNGAMap = () => {
               )}
               aria-label="Scroll to next section"
             >
-              <span className="text-[10px] uppercase tracking-[0.15em] text-slate-400 group-hover:text-slate-600 transition-colors">
+              <span className="text-[10px] uppercase tracking-[0.15em] text-slate-400 group-hover:text-slate-600 transition-colors drop-shadow-sm">
                 {currentSection === 0 ? 'Start' : 'Verder'}
               </span>
-              <div className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center group-hover:border-slate-400 group-hover:bg-slate-50 transition-all">
+              <div className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center group-hover:border-slate-400 group-hover:bg-slate-50 transition-all backdrop-blur-sm bg-white/10">
                 <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors animate-[gentleBounce_2.5s_ease-in-out_infinite]" />
               </div>
             </button>
