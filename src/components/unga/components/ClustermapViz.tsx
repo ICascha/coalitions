@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/select';
 
 // Hook to get element size and compute square dimension
-function useSquareSize(ref: React.RefObject<HTMLDivElement | null>) {
+function useSquareSize(ref: React.RefObject<HTMLDivElement | null>, maxSize?: number) {
   const [size, setSize] = useState(0);
 
   useEffect(() => {
@@ -18,8 +18,8 @@ function useSquareSize(ref: React.RefObject<HTMLDivElement | null>) {
 
     const updateSize = () => {
       const { width, height } = element.getBoundingClientRect();
-      // Use the smaller of width/height to ensure square fits
-      const squareSize = Math.min(width, height);
+      let squareSize = Math.min(width, height);
+      if (maxSize) squareSize = Math.min(squareSize, maxSize);
       setSize(squareSize);
     };
 
@@ -28,7 +28,7 @@ function useSquareSize(ref: React.RefObject<HTMLDivElement | null>) {
     const observer = new ResizeObserver(updateSize);
     observer.observe(element);
     return () => observer.disconnect();
-  }, [ref]);
+  }, [ref, maxSize]);
 
   return size;
 }
@@ -58,6 +58,14 @@ type ClusterNode = {
   indices: number[];
   left?: ClusterNode;
   right?: ClusterNode;
+  mergeDistance?: number;
+};
+
+type ClusterGroup = {
+  id: number;
+  countries: string[];
+  indices: number[]; // indices in the ordered array
+  avgDistance: number;
 };
 
 // Hierarchical clustering utilities
@@ -82,16 +90,18 @@ const averageLinkageDistance = (a: ClusterNode, b: ClusterNode, distanceMatrix: 
   return count > 0 ? sum / count : 1;
 };
 
-const computeHierarchicalOrder = (distanceMatrix: (number | null)[][]) => {
+const computeHierarchicalClustering = (distanceMatrix: (number | null)[][]) => {
   const sanitized = sanitizeMatrix(distanceMatrix);
   const size = sanitized.length;
 
-  if (size === 0) return [];
-  if (size === 1) return [0];
+  if (size === 0) return { order: [], root: undefined, mergeHistory: [] };
+  if (size === 1) return { order: [0], root: { indices: [0] } as ClusterNode, mergeHistory: [] };
 
   const nodes: ClusterNode[] = Array.from({ length: size }, (_, index) => ({
     indices: [index],
   }));
+
+  const mergeHistory: { distance: number; leftSize: number; rightSize: number }[] = [];
 
   while (nodes.length > 1) {
     let minDistance = Number.POSITIVE_INFINITY;
@@ -115,7 +125,14 @@ const computeHierarchicalOrder = (distanceMatrix: (number | null)[][]) => {
       indices: [...left.indices, ...right.indices],
       left,
       right,
+      mergeDistance: minDistance,
     };
+
+    mergeHistory.push({
+      distance: minDistance,
+      leftSize: left.indices.length,
+      rightSize: right.indices.length,
+    });
 
     nodes.splice(minJ, 1);
     nodes.splice(minI, 1);
@@ -134,7 +151,69 @@ const computeHierarchicalOrder = (distanceMatrix: (number | null)[][]) => {
   };
 
   traverse(nodes[0]);
-  return order;
+  return { order, root: nodes[0], mergeHistory };
+};
+
+// Cut dendrogram at a threshold to get clusters
+const cutDendrogram = (
+  root: ClusterNode | undefined,
+  threshold: number,
+  countries: string[],
+  orderedIndices: number[]
+): ClusterGroup[] => {
+  if (!root) return [];
+
+  const clusters: number[][] = [];
+
+  const collectClusters = (node: ClusterNode) => {
+    // If this node's merge distance is above threshold, or it's a leaf, it's a cluster
+    if (!node.left || !node.right || (node.mergeDistance && node.mergeDistance > threshold)) {
+      // Collect all leaf indices under this node
+      if (node.left && node.right && node.mergeDistance && node.mergeDistance > threshold) {
+        // Split into children
+        collectClusters(node.left);
+        collectClusters(node.right);
+      } else {
+        clusters.push(node.indices);
+      }
+    } else {
+      collectClusters(node.left);
+      collectClusters(node.right);
+    }
+  };
+
+  // Simpler approach: just cut at threshold
+  const simpleCut = (node: ClusterNode): number[][] => {
+    if (!node.left || !node.right) {
+      return [node.indices];
+    }
+    if (node.mergeDistance !== undefined && node.mergeDistance > threshold) {
+      return [...simpleCut(node.left), ...simpleCut(node.right)];
+    }
+    return [node.indices];
+  };
+
+  const rawClusters = simpleCut(root);
+
+  // Map original indices to ordered positions
+  const originalToOrdered = new Map<number, number>();
+  orderedIndices.forEach((origIdx, orderedIdx) => {
+    originalToOrdered.set(origIdx, orderedIdx);
+  });
+
+  // Convert to ClusterGroup with ordered indices
+  return rawClusters.map((indices, id) => {
+    const orderedIdxs = indices
+      .map((i) => originalToOrdered.get(i)!)
+      .sort((a, b) => a - b);
+    
+    return {
+      id,
+      countries: indices.map((i) => countries[i]),
+      indices: orderedIdxs,
+      avgDistance: 0, // Will compute later if needed
+    };
+  }).sort((a, b) => a.indices[0] - b.indices[0]);
 };
 
 // Color interpolation for heatmap
@@ -160,28 +239,15 @@ const TOPIC_OPTIONS: TopicOption[] = [
   { id: 'institutional_governance', path: 'topics/institutional_governance.json', label: 'Institutional Governance' },
 ];
 
-// Convert distance matrix to nivo heatmap format with hierarchical ordering
-function matrixToHeatmapData(
-  countries: string[],
-  matrix: number[][]
-): { data: HeatMapSerie<HeatmapCellData, Record<string, unknown>>[]; orderedCountries: string[] } {
-  // Compute hierarchical clustering order
-  const order = computeHierarchicalOrder(matrix);
-  
-  // Reorder countries based on clustering
-  const orderedCountries = order.map((i) => countries[i]);
-  
-  // Build heatmap data in clustered order
-  const data = order.map((rowIndex) => ({
-    id: countries[rowIndex],
-    data: order.map((colIndex) => ({
-      x: countries[colIndex],
-      y: matrix[rowIndex]?.[colIndex] ?? null,
-    })),
-  }));
-  
-  return { data, orderedCountries };
-}
+// Cluster colors
+const CLUSTER_COLORS = [
+  { bg: 'rgba(239, 68, 68, 0.15)', border: 'rgb(239, 68, 68)', text: 'text-red-600' },
+  { bg: 'rgba(59, 130, 246, 0.15)', border: 'rgb(59, 130, 246)', text: 'text-blue-600' },
+  { bg: 'rgba(34, 197, 94, 0.15)', border: 'rgb(34, 197, 94)', text: 'text-green-600' },
+  { bg: 'rgba(168, 85, 247, 0.15)', border: 'rgb(168, 85, 247)', text: 'text-purple-600' },
+  { bg: 'rgba(249, 115, 22, 0.15)', border: 'rgb(249, 115, 22)', text: 'text-orange-600' },
+  { bg: 'rgba(236, 72, 153, 0.15)', border: 'rgb(236, 72, 153)', text: 'text-pink-600' },
+];
 
 // Custom tooltip component
 const HeatmapTooltip = memo(function HeatmapTooltip({
@@ -208,11 +274,15 @@ const HeatmapTooltip = memo(function HeatmapTooltip({
   );
 });
 
+// Heatmap margins
+const HEATMAP_MARGIN = { top: 90, right: 20, bottom: 20, left: 90 };
+
 export function ClustermapViz() {
   const [selectedTopic, setSelectedTopic] = useState('overall');
   const [data, setData] = useState<ClustermapData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [highlightedClusters, setHighlightedClusters] = useState<Set<number>>(new Set());
   
   // Ref and size for square aspect ratio
   const containerRef = useRef<HTMLDivElement>(null);
@@ -228,6 +298,7 @@ export function ClustermapViz() {
     async function loadData() {
       setLoading(true);
       setError(null);
+      setHighlightedClusters(new Set());
       
       try {
         const response = await fetch(`/country_clustermaps/${currentTopic.path}`, {
@@ -254,14 +325,48 @@ export function ClustermapViz() {
     return () => controller.abort();
   }, [currentTopic.path]);
 
-  // Transform data for heatmap with hierarchical clustering
-  const { heatmapData, columnKeys } = useMemo(() => {
-    if (!data) return { heatmapData: [], columnKeys: [] };
-    const { data: heatmapData, orderedCountries } = matrixToHeatmapData(
-      data.data.countries,
-      data.data.distance_matrix
-    );
-    return { heatmapData, columnKeys: orderedCountries };
+  // Compute hierarchical clustering and derive clusters
+  const { heatmapData, columnKeys, clusters, avgDistance } = useMemo(() => {
+    if (!data) return { heatmapData: [], columnKeys: [], clusters: [], avgDistance: 0 };
+    
+    const { countries, distance_matrix } = data.data;
+    const { order, root, mergeHistory } = computeHierarchicalClustering(distance_matrix);
+    
+    // Reorder countries based on clustering
+    const orderedCountries = order.map((i) => countries[i]);
+    
+    // Build heatmap data in clustered order
+    const heatmapData = order.map((rowIndex) => ({
+      id: countries[rowIndex],
+      data: order.map((colIndex) => ({
+        x: countries[colIndex],
+        y: distance_matrix[rowIndex]?.[colIndex] ?? null,
+      })),
+    }));
+
+    // Compute average distance (excluding diagonal)
+    let sum = 0;
+    let count = 0;
+    for (let i = 0; i < distance_matrix.length; i++) {
+      for (let j = i + 1; j < distance_matrix.length; j++) {
+        const val = distance_matrix[i][j];
+        if (val !== null && Number.isFinite(val)) {
+          sum += val;
+          count++;
+        }
+      }
+    }
+    const avgDistance = count > 0 ? sum / count : 0;
+
+    // Determine threshold for cutting (use median merge distance)
+    const sortedMerges = [...mergeHistory].sort((a, b) => a.distance - b.distance);
+    const medianIdx = Math.floor(sortedMerges.length * 0.6); // Cut at 60th percentile
+    const threshold = sortedMerges[medianIdx]?.distance ?? 0.2;
+
+    // Cut dendrogram to get clusters
+    const clusters = cutDendrogram(root, threshold, countries, order);
+    
+    return { heatmapData, columnKeys: orderedCountries, clusters, avgDistance };
   }, [data]);
 
   // Compute color scale range
@@ -273,7 +378,7 @@ export function ClustermapViz() {
     
     for (const row of data.data.distance_matrix) {
       for (const val of row) {
-        if (val !== null && val > 0) { // Exclude diagonal (0s)
+        if (val !== null && val > 0) {
           min = Math.min(min, val);
           max = Math.max(max, val);
         }
@@ -290,14 +395,52 @@ export function ClustermapViz() {
   const getColor = useCallback(
     (cell: Omit<ComputedCell<HeatmapCellData>, 'color' | 'opacity' | 'borderColor'>) => {
       const value = cell.data.y;
-      if (value === null || value === 0) return 'rgb(240, 240, 240)'; // Diagonal/null
-      
-      // Normalize to 0-1 range based on data range
+      if (value === null || value === 0) return 'rgb(240, 240, 240)';
       const t = (value - minDistance) / (maxDistance - minDistance || 1);
       return interpolateColor(Math.min(1, Math.max(0, t)));
     },
     [minDistance, maxDistance]
   );
+
+  const toggleCluster = (clusterId: number) => {
+    setHighlightedClusters((prev) => {
+      const next = new Set(prev);
+      if (next.has(clusterId)) {
+        next.delete(clusterId);
+      } else {
+        next.add(clusterId);
+      }
+      return next;
+    });
+  };
+
+  // Compute cluster overlay positions
+  const clusterOverlays = useMemo(() => {
+    if (!squareSize || clusters.length === 0) return [];
+    
+    const chartWidth = squareSize - HEATMAP_MARGIN.left - HEATMAP_MARGIN.right;
+    const chartHeight = squareSize - HEATMAP_MARGIN.top - HEATMAP_MARGIN.bottom;
+    const cellWidth = chartWidth / columnKeys.length;
+    const cellHeight = chartHeight / columnKeys.length;
+
+    return clusters
+      .filter((cluster) => highlightedClusters.has(cluster.id))
+      .map((cluster) => {
+        const startIdx = cluster.indices[0];
+        const endIdx = cluster.indices[cluster.indices.length - 1];
+        const colorIdx = cluster.id % CLUSTER_COLORS.length;
+        const color = CLUSTER_COLORS[colorIdx];
+
+        return {
+          id: cluster.id,
+          x: HEATMAP_MARGIN.left + startIdx * cellWidth,
+          y: HEATMAP_MARGIN.top + startIdx * cellHeight,
+          width: (endIdx - startIdx + 1) * cellWidth,
+          height: (endIdx - startIdx + 1) * cellHeight,
+          color,
+        };
+      });
+  }, [squareSize, clusters, highlightedClusters, columnKeys.length]);
 
   return (
     <div className="w-full h-full flex flex-col">
@@ -329,28 +472,28 @@ export function ClustermapViz() {
         </div>
       </div>
 
-      {/* Main visualization area */}
-      <div ref={containerRef} className="flex-1 min-h-0 relative flex items-center justify-center p-4">
-        {loading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white/80 z-10">
-            <div className="flex items-center gap-3 text-slate-500">
-              <div className="w-5 h-5 border-2 border-slate-300 border-t-slate-600 rounded-full animate-spin" />
-              <span>Loading clustermap...</span>
+      {/* Main content: clustermap on left, info panel on right */}
+      <div className="flex-1 min-h-0 flex">
+        {/* Left: Clustermap */}
+        <div ref={containerRef} className="flex-1 min-w-0 relative flex items-center justify-center p-4">
+          {loading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-white/80 z-10">
+              <div className="flex items-center gap-3 text-slate-500">
+                <div className="w-5 h-5 border-2 border-slate-300 border-t-slate-600 rounded-full animate-spin" />
+                <span>Loading clustermap...</span>
+              </div>
             </div>
-          </div>
-        )}
-        
-        {error && !loading && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">
-              {error}
+          )}
+          
+          {error && !loading && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">
+                {error}
+              </div>
             </div>
-          </div>
-        )}
-        
-        {!loading && !error && heatmapData.length > 0 && squareSize > 0 && (
-          <div className="flex items-center gap-6">
-            {/* Square heatmap container */}
+          )}
+          
+          {!loading && !error && heatmapData.length > 0 && squareSize > 0 && (
             <div
               className="relative flex-shrink-0"
               style={{
@@ -361,7 +504,7 @@ export function ClustermapViz() {
               <ResponsiveHeatMapCanvas
                 data={heatmapData}
                 keys={columnKeys}
-                margin={{ top: 90, right: 20, bottom: 20, left: 90 }}
+                margin={HEATMAP_MARGIN}
                 axisTop={{
                   tickSize: 0,
                   tickPadding: 8,
@@ -384,34 +527,135 @@ export function ClustermapViz() {
                 tooltip={HeatmapTooltip}
                 animate={false}
               />
+              
+              {/* Cluster overlay boxes */}
+              <svg
+                className="absolute inset-0 pointer-events-none"
+                width={squareSize}
+                height={squareSize}
+              >
+                {clusterOverlays.map((overlay) => (
+                  <g key={overlay.id}>
+                    {/* Background fill */}
+                    <rect
+                      x={overlay.x}
+                      y={overlay.y}
+                      width={overlay.width}
+                      height={overlay.height}
+                      fill={overlay.color.bg}
+                      rx={4}
+                    />
+                    {/* Border */}
+                    <rect
+                      x={overlay.x}
+                      y={overlay.y}
+                      width={overlay.width}
+                      height={overlay.height}
+                      fill="none"
+                      stroke={overlay.color.border}
+                      strokeWidth={2.5}
+                      rx={4}
+                      style={{
+                        filter: `drop-shadow(0 0 4px ${overlay.color.border})`,
+                      }}
+                    />
+                  </g>
+                ))}
+              </svg>
             </div>
-            
-            {/* Legend - positioned outside the square */}
-            <div className="flex-shrink-0 bg-white/95 backdrop-blur-sm rounded-lg border border-slate-200 p-4 shadow-sm self-end mb-6">
-              <div className="text-[10px] uppercase tracking-wide text-slate-500 mb-2">
-                Voting Distance
+          )}
+        </div>
+
+        {/* Right: Info panel */}
+        <div className="w-72 border-l border-slate-200/50 bg-slate-50/50 p-5 flex flex-col gap-6 overflow-y-auto">
+          {/* Stats */}
+          <div>
+            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Statistics</h3>
+            <div className="bg-white rounded-lg border border-slate-200 p-4">
+              <div className="text-sm text-slate-600">Average Distance</div>
+              <div className="text-2xl font-semibold text-slate-800 mt-1">
+                {avgDistance.toFixed(3)}
               </div>
+              <div className="text-xs text-slate-400 mt-1">
+                Across all country pairs
+              </div>
+            </div>
+          </div>
+
+          {/* Color scale legend */}
+          <div>
+            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Color Scale</h3>
+            <div className="bg-white rounded-lg border border-slate-200 p-4">
               <div className="flex items-center gap-2">
                 <span className="text-xs text-slate-600">{minDistance.toFixed(2)}</span>
                 <div 
-                  className="w-24 h-3 rounded-sm"
+                  className="flex-1 h-3 rounded-sm"
                   style={{
                     background: `linear-gradient(to right, ${interpolateColor(0)}, ${interpolateColor(0.5)}, ${interpolateColor(1)})`,
                   }}
                 />
                 <span className="text-xs text-slate-600">{maxDistance.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-[10px] text-slate-400 mt-1 px-6">
+              <div className="flex justify-between text-[10px] text-slate-400 mt-1">
                 <span>Similar</span>
                 <span>Different</span>
               </div>
             </div>
           </div>
-        )}
+
+          {/* Cluster highlighting */}
+          <div>
+            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">
+              Highlight Clusters
+            </h3>
+            <div className="space-y-2">
+              {clusters.map((cluster) => {
+                const isActive = highlightedClusters.has(cluster.id);
+                const colorIdx = cluster.id % CLUSTER_COLORS.length;
+                const color = CLUSTER_COLORS[colorIdx];
+                
+                return (
+                  <button
+                    key={cluster.id}
+                    onClick={() => toggleCluster(cluster.id)}
+                    className={`
+                      w-full text-left px-3 py-2.5 rounded-lg border transition-all
+                      ${isActive 
+                        ? 'border-transparent shadow-md' 
+                        : 'border-slate-200 bg-white hover:border-slate-300'
+                      }
+                    `}
+                    style={isActive ? {
+                      backgroundColor: color.bg,
+                      borderColor: color.border,
+                      boxShadow: `0 0 0 1px ${color.border}, 0 4px 12px ${color.bg}`,
+                    } : undefined}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div 
+                        className="w-3 h-3 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: color.border }}
+                      />
+                      <span className={`text-sm font-medium ${isActive ? color.text : 'text-slate-700'}`}>
+                        Cluster {cluster.id + 1}
+                      </span>
+                      <span className="text-xs text-slate-400 ml-auto">
+                        {cluster.countries.length} countries
+                      </span>
+                    </div>
+                    <div className="mt-1.5 text-xs text-slate-500 line-clamp-2">
+                      {cluster.countries.slice(0, 4).join(', ')}
+                      {cluster.countries.length > 4 && ` +${cluster.countries.length - 4} more`}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
 export default ClustermapViz;
-
