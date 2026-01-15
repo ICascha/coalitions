@@ -358,9 +358,9 @@ export function ClustermapViz() {
     }
     const avgDistance = count > 0 ? sum / count : 0;
 
-    // Determine threshold for cutting (lower percentile = larger clusters)
+    // Determine threshold for cutting dendrogram
     const sortedMerges = [...mergeHistory].sort((a, b) => a.distance - b.distance);
-    const medianIdx = Math.floor(sortedMerges.length * 0.4); // Cut at 40th percentile for larger clusters
+    const medianIdx = Math.floor(sortedMerges.length * 0.6); // Cut at 60th percentile
     const threshold = sortedMerges[medianIdx]?.distance ?? 0.2;
 
     // Cut dendrogram to get clusters, filter out single-country clusters
