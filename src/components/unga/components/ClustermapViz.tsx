@@ -203,8 +203,6 @@ export function ClustermapViz() {
     [minDistance, maxDistance]
   );
 
-  const countryCount = data?.data.countries.length ?? 0;
-
   return (
     <div className="w-full h-full flex flex-col">
       {/* Header with topic selector */}
@@ -255,41 +253,44 @@ export function ClustermapViz() {
         )}
         
         {!loading && !error && heatmapData.length > 0 && squareSize > 0 && (
-          <div
-            className="relative"
-            style={{
-              width: squareSize,
-              height: squareSize,
-            }}
-          >
-            <ResponsiveHeatMapCanvas
-              data={heatmapData}
-              margin={{ top: 90, right: 20, bottom: 20, left: 90 }}
-              axisTop={{
-                tickSize: 0,
-                tickPadding: 8,
-                tickRotation: -45,
-                legend: '',
+          <div className="flex items-center gap-6">
+            {/* Square heatmap container */}
+            <div
+              className="relative flex-shrink-0"
+              style={{
+                width: squareSize,
+                height: squareSize,
               }}
-              axisLeft={{
-                tickSize: 0,
-                tickPadding: 8,
-                tickRotation: 0,
-                legend: '',
-              }}
-              axisRight={null}
-              axisBottom={null}
-              colors={getColor}
-              borderWidth={0.5}
-              borderColor="rgba(255,255,255,0.3)"
-              enableLabels={false}
-              hoverTarget="cell"
-              tooltip={HeatmapTooltip}
-              animate={false}
-            />
+            >
+              <ResponsiveHeatMapCanvas
+                data={heatmapData}
+                margin={{ top: 90, right: 20, bottom: 20, left: 90 }}
+                axisTop={{
+                  tickSize: 0,
+                  tickPadding: 8,
+                  tickRotation: -45,
+                  legend: '',
+                }}
+                axisLeft={{
+                  tickSize: 0,
+                  tickPadding: 8,
+                  tickRotation: 0,
+                  legend: '',
+                }}
+                axisRight={null}
+                axisBottom={null}
+                colors={getColor}
+                borderWidth={0.5}
+                borderColor="rgba(255,255,255,0.3)"
+                enableLabels={false}
+                hoverTarget="cell"
+                tooltip={HeatmapTooltip}
+                animate={false}
+              />
+            </div>
             
-            {/* Legend - positioned inside the square */}
-            <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg border border-slate-200 p-3 shadow-sm">
+            {/* Legend - positioned outside the square */}
+            <div className="flex-shrink-0 bg-white/95 backdrop-blur-sm rounded-lg border border-slate-200 p-4 shadow-sm self-end mb-6">
               <div className="text-[10px] uppercase tracking-wide text-slate-500 mb-2">
                 Voting Distance
               </div>
@@ -307,11 +308,6 @@ export function ClustermapViz() {
                 <span>Similar</span>
                 <span>Different</span>
               </div>
-            </div>
-
-            {/* Stats badge - positioned inside the square */}
-            <div className="absolute top-[94px] left-[94px] bg-slate-100/90 backdrop-blur-sm rounded-md px-3 py-1.5 text-xs text-slate-600">
-              {countryCount} EU Member States
             </div>
           </div>
         )}
