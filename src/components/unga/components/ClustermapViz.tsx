@@ -282,7 +282,7 @@ export function ClustermapViz() {
   const [data, setData] = useState<ClustermapData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [highlightedClusters, setHighlightedClusters] = useState<Set<number>>(new Set());
+  const [showClusters, setShowClusters] = useState(false);
   
   // Ref and size for square aspect ratio
   const containerRef = useRef<HTMLDivElement>(null);
@@ -298,7 +298,7 @@ export function ClustermapViz() {
     async function loadData() {
       setLoading(true);
       setError(null);
-      setHighlightedClusters(new Set());
+      setShowClusters(false);
       
       try {
         const response = await fetch(`/country_clustermaps/${currentTopic.path}`, {
@@ -402,45 +402,32 @@ export function ClustermapViz() {
     [minDistance, maxDistance]
   );
 
-  const toggleCluster = (clusterId: number) => {
-    setHighlightedClusters((prev) => {
-      const next = new Set(prev);
-      if (next.has(clusterId)) {
-        next.delete(clusterId);
-      } else {
-        next.add(clusterId);
-      }
-      return next;
-    });
-  };
-
   // Compute cluster overlay positions
   const clusterOverlays = useMemo(() => {
-    if (!squareSize || clusters.length === 0) return [];
+    if (!showClusters || !squareSize || clusters.length === 0) return [];
     
     const chartWidth = squareSize - HEATMAP_MARGIN.left - HEATMAP_MARGIN.right;
     const chartHeight = squareSize - HEATMAP_MARGIN.top - HEATMAP_MARGIN.bottom;
     const cellWidth = chartWidth / columnKeys.length;
     const cellHeight = chartHeight / columnKeys.length;
 
-    return clusters
-      .filter((cluster) => highlightedClusters.has(cluster.id))
-      .map((cluster) => {
-        const startIdx = cluster.indices[0];
-        const endIdx = cluster.indices[cluster.indices.length - 1];
-        const colorIdx = cluster.id % CLUSTER_COLORS.length;
-        const color = CLUSTER_COLORS[colorIdx];
+    return clusters.map((cluster) => {
+      const startIdx = cluster.indices[0];
+      const endIdx = cluster.indices[cluster.indices.length - 1];
+      const colorIdx = cluster.id % CLUSTER_COLORS.length;
+      const color = CLUSTER_COLORS[colorIdx];
 
-        return {
-          id: cluster.id,
-          x: HEATMAP_MARGIN.left + startIdx * cellWidth,
-          y: HEATMAP_MARGIN.top + startIdx * cellHeight,
-          width: (endIdx - startIdx + 1) * cellWidth,
-          height: (endIdx - startIdx + 1) * cellHeight,
-          color,
-        };
-      });
-  }, [squareSize, clusters, highlightedClusters, columnKeys.length]);
+      return {
+        id: cluster.id,
+        x: HEATMAP_MARGIN.left + startIdx * cellWidth,
+        y: HEATMAP_MARGIN.top + startIdx * cellHeight,
+        width: (endIdx - startIdx + 1) * cellWidth,
+        height: (endIdx - startIdx + 1) * cellHeight,
+        color,
+        countries: cluster.countries,
+      };
+    });
+  }, [showClusters, squareSize, clusters, columnKeys.length]);
 
   return (
     <div className="w-full h-full flex flex-col">
@@ -567,7 +554,7 @@ export function ClustermapViz() {
         </div>
 
         {/* Right: Info panel */}
-        <div className="w-72 border-l border-slate-200/50 bg-slate-50/50 p-5 flex flex-col gap-6 overflow-y-auto">
+        <div className="w-72 border-l border-slate-200/50 bg-slate-50/50 p-5 flex flex-col gap-5">
           {/* Stats */}
           <div>
             <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Statistics</h3>
@@ -603,54 +590,43 @@ export function ClustermapViz() {
             </div>
           </div>
 
-          {/* Cluster highlighting */}
+          {/* Cluster highlighting toggle */}
           <div>
             <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">
-              Highlight Clusters
+              Clusters
             </h3>
-            <div className="space-y-2">
-              {clusters.map((cluster) => {
-                const isActive = highlightedClusters.has(cluster.id);
-                const colorIdx = cluster.id % CLUSTER_COLORS.length;
-                const color = CLUSTER_COLORS[colorIdx];
-                
-                return (
-                  <button
-                    key={cluster.id}
-                    onClick={() => toggleCluster(cluster.id)}
-                    className={`
-                      w-full text-left px-3 py-2.5 rounded-lg border transition-all
-                      ${isActive 
-                        ? 'border-transparent shadow-md' 
-                        : 'border-slate-200 bg-white hover:border-slate-300'
-                      }
-                    `}
-                    style={isActive ? {
-                      backgroundColor: color.bg,
-                      borderColor: color.border,
-                      boxShadow: `0 0 0 1px ${color.border}, 0 4px 12px ${color.bg}`,
-                    } : undefined}
-                  >
-                    <div className="flex items-center gap-2">
-                      <div 
-                        className="w-3 h-3 rounded-full flex-shrink-0"
-                        style={{ backgroundColor: color.border }}
-                      />
-                      <span className={`text-sm font-medium ${isActive ? color.text : 'text-slate-700'}`}>
-                        Cluster {cluster.id + 1}
-                      </span>
-                      <span className="text-xs text-slate-400 ml-auto">
-                        {cluster.countries.length} countries
-                      </span>
-                    </div>
-                    <div className="mt-1.5 text-xs text-slate-500 line-clamp-2">
-                      {cluster.countries.slice(0, 4).join(', ')}
-                      {cluster.countries.length > 4 && ` +${cluster.countries.length - 4} more`}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
+            <button
+              onClick={() => setShowClusters(!showClusters)}
+              className={`
+                w-full px-4 py-3 rounded-lg border-2 transition-all font-medium
+                ${showClusters 
+                  ? 'bg-slate-800 border-slate-800 text-white shadow-lg' 
+                  : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
+                }
+              `}
+            >
+              <div className="flex items-center justify-center gap-2">
+                <svg 
+                  className={`w-5 h-5 transition-transform ${showClusters ? 'scale-110' : ''}`} 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" 
+                  />
+                </svg>
+                <span>{showClusters ? 'Hide Clusters' : 'Show Clusters'}</span>
+              </div>
+            </button>
+            {showClusters && clusters.length > 0 && (
+              <div className="mt-3 text-xs text-slate-500 text-center">
+                {clusters.length} clusters detected
+              </div>
+            )}
           </div>
         </div>
       </div>
