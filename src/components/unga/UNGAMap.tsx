@@ -408,7 +408,7 @@ const UNGAMap = () => {
                             onClick={scrollToBottom}
                             className="bg-slate-900 text-white hover:bg-slate-800 rounded-full px-8 py-6 text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 group font-serif"
                         >
-                            <span>Start Analyse Raad van Ministers</span>
+                            <span>Ga naar Analyse Raad van Ministers</span>
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Button>
                      </div>

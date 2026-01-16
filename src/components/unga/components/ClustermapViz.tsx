@@ -556,6 +556,15 @@ export function ClustermapViz() {
 
         {/* Right: Info panel */}
         <div className="w-72 border-l border-slate-200/50 bg-slate-50/50 p-5 flex flex-col gap-5">
+          {/* Methodology */}
+          <div>
+            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Uitleg</h3>
+            <div className="text-[13px] leading-relaxed text-slate-600 font-serif">
+              Deze kaart toont de mate van overeenstemming in stemgedrag tussen EU-lidstaten. 
+              Landen die vaak hetzelfde stemmen staan dichter bij elkaar en vormen clusters.
+            </div>
+          </div>
+
           {/* Stats */}
           <div>
             <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Kerncijfers</h3>
