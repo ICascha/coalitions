@@ -78,6 +78,15 @@ export const EU_COALITIONS: Coalition[] = [
     label: 'Coalitie voor Kritieke Grondstoffen',
     members: new Set(['POL', 'CZE', 'SVK', 'HUN', 'ROU', 'BGR', 'HRV', 'SVN']),
   },
+  {
+    id: 'coalition-eu',
+    label: 'De Europese Unie',
+    members: new Set([
+      'AUT', 'BEL', 'BGR', 'HRV', 'CYP', 'CZE', 'DNK', 'EST', 'FIN', 'FRA',
+      'DEU', 'GRC', 'HUN', 'IRL', 'ITA', 'LVA', 'LTU', 'LUX', 'MLT', 'NLD',
+      'POL', 'PRT', 'ROU', 'SVK', 'SVN', 'ESP', 'SWE'
+    ]),
+  },
 ];
 
 // --- Manual override ---
