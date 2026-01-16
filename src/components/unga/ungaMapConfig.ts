@@ -90,6 +90,6 @@ export const EU_COALITIONS: Coalition[] = [
 //
 // Rough Europe-ish starting point (tweak from here):
 // { x: -3500000, y: -8500000, w: 11000000, h: 7000000 }
-export const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = { x: -5000000, y: -8500000, w: 10000000 / 1.4, h: 7000000 / 1.4 };
+export const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = { x: -2500000, y: -8500000, w: 10000000 / 1.4, h: 7000000 / 1.4 };
 
 
