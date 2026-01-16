@@ -4,8 +4,10 @@ import path from "path"
 import compression from 'vite-plugin-compression';
 
 // https://vite.dev/config/
+// Use VITE_BASE_PATH env var if set, otherwise default to '/' for dev/preview
+// Set VITE_BASE_PATH=/coalitions/ when deploying to GitHub Pages or similar
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/coalitions/' : '/',
+  base: process.env.VITE_BASE_PATH || '/',
   plugins: [react(),     
   compression({
     algorithm: 'gzip',  // or 'brotliCompress', 'deflate', etc.
