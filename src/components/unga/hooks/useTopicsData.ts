@@ -42,7 +42,7 @@ export function useTopicsData(): {
 
     const loadData = async () => {
       try {
-        const response = await fetch('/unga_topics_compact.json');
+        const response = await fetch(`${import.meta.env.BASE_URL}unga_topics_compact.json`);
         if (!response.ok) throw new Error('Failed to load topics data');
         
         const data: CompactTopicsData = await response.json();

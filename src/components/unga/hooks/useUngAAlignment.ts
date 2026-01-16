@@ -38,7 +38,7 @@ export function useUngAAlignment() {
       setLoading(true);
 
       try {
-        const response = await fetch('/unga_alignment_precomputed.json', {
+        const response = await fetch(`${import.meta.env.BASE_URL}unga_alignment_precomputed.json`, {
           signal: controller.signal,
         });
 

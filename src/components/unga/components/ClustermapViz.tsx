@@ -301,7 +301,7 @@ export function ClustermapViz() {
       setShowClusters(false);
       
       try {
-        const response = await fetch(`/country_clustermaps/${currentTopic.path}`, {
+        const response = await fetch(`${import.meta.env.BASE_URL}country_clustermaps/${currentTopic.path}`, {
           signal: controller.signal,
         });
         

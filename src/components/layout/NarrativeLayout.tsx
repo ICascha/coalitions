@@ -64,7 +64,7 @@ const NarrativeLayout = () => {
       <div className="flex items-center gap-6 border-b border-slate-100 pb-8 mb-8">
         <div className="w-16 h-16 relative flex-shrink-0 opacity-90">
           <img
-            src="/denkwerk_logo.svg"
+            src={`${import.meta.env.BASE_URL}denkwerk_logo.svg`}
             alt="DenkWerk Logo"
             className="w-full h-full object-contain"
           />
@@ -79,7 +79,7 @@ const NarrativeLayout = () => {
         <div className="float-right ml-8 mb-6 w-64 md:w-80 hidden md:block">
           <div className="relative transition-transform duration-700 hover:scale-[1.02]">
             <img
-              src="/cover_image.webp"
+              src={`${import.meta.env.BASE_URL}cover_image.webp`}
               alt="Rapport Cover"
               className="w-full h-auto object-contain grayscale-[10%] hover:grayscale-0 transition-all duration-700 drop-shadow-xl"
             />
@@ -134,7 +134,7 @@ const NarrativeLayout = () => {
             >
               <div className="w-12 h-12 relative flex items-center justify-center">
                 <img
-                  src="/denkwerk_logo.svg"
+                  src={`${import.meta.env.BASE_URL}denkwerk_logo.svg`}
                   alt="DenkWerk Logo"
                   className="w-full h-full object-contain opacity-90 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100"
                 />
