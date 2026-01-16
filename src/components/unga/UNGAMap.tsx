@@ -15,7 +15,6 @@ import {
   POWER_BLOC_LABELS,
 } from './ungaMapConfig';
 import { buildAlpha3SetFromNames, formatCountryName, getCountryDisplayName, resolveCountryKey } from './ungaMapSvgCountry';
-import { blendWithWhite } from './ungaMapColors';
 import { clamp01, easeInOut, lerp } from './ungaMapMath';
 import { formatMetricValue } from './ungaMapFormat';
 import { useWindowSize } from '@/hooks/useWindowSize';
@@ -25,7 +24,6 @@ import { useUngAAlignment } from './hooks/useUngAAlignment';
 import { useEuropeViewBoxZoom } from './hooks/useEuropeViewBoxZoom';
 import { useCoalitionLoop } from './hooks/useCoalitionLoop';
 import { useUngAMapSvgStyling } from './hooks/useUngAMapSvgStyling';
-import { CoalitionOverlayCard } from './components/CoalitionOverlayCard';
 import { ClustermapViz } from './components/ClustermapViz';
 
 const HOVER_COOLDOWN_MS = 400; // Cooldown before re-enabling hover after scroll animation
@@ -88,7 +86,7 @@ const UNGAMap = () => {
   const isZoomComplete = zoomProgress >= 0.98;
 
   const mapViewport = useElementSize(containerRef);
-  const { alignmentMap, loading: mapLoading, error: mapError } = useUngAAlignment();
+  const { alignmentMap } = useUngAAlignment();
 
   // Hover enabled when not scrolling and not at the final section
   const interactionsEnabled = !isZoomComplete;
@@ -425,7 +423,6 @@ const UNGAMap = () => {
                             style={mapFadeStyle}
                             dangerouslySetInnerHTML={{ __html: svgMarkup }}
                         />
-                        <CoalitionOverlayCard isVisible={isZoomComplete} />
                         
                         {/* Map Legend - Only show when interactive/zoomed out somewhat */}
                         <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur p-4 rounded-lg shadow-sm border border-slate-100 text-xs text-slate-600 max-w-[200px]">
