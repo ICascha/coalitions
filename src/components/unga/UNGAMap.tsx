@@ -380,9 +380,11 @@ const UNGAMap = () => {
                             VN-stemgedrag laat zien dat China structureel nauwer aansluit bij het mondiale zuiden, 
                             terwijl de EU vaak dichter bij het wereldgemiddelde staat dan de VS — zeker bij partners als Japan en Canada.
                         </p>
-                        <div className="flex items-center gap-4 text-sm text-slate-500">
-                             <span className="w-2 h-2 rounded-full bg-blue-500" />
-                             <span>Hoge convergentie</span>
+                        <div className="space-y-2 text-sm text-slate-500 font-serif">
+                             <p>
+                                De kleur op de kaart geeft aan bij welk machtsblok een land het dichtst ligt. 
+                                Hoe dieper de kleur, hoe sterker de overeenstemming in stemgedrag.
+                             </p>
                         </div>
                     </div>
                 </div>
@@ -391,16 +393,22 @@ const UNGAMap = () => {
                 <div className="min-h-screen flex flex-col justify-center p-8 md:p-16 pointer-events-auto pb-32">
                      <div className="max-w-md">
                         <h2 className="text-3xl font-serif text-slate-900 mb-6">
-                            Ontdek de Patronen
+                            Verdeeldheid en Coalities
                         </h2>
                         <p className="text-slate-600 leading-relaxed mb-8 font-serif">
-                            Duik dieper in de data om de specifieke clusters en relaties te onderzoeken die het moderne Europa definiëren.
+                            De interne schaal van de EU is groot genoeg om industriële ketens te dragen, maar besluitvorming met 27 lidstaten is voor strategische dossiers vaak te traag. 
+                            Hier wreekt zich de grote verscheidenheid aan belangen en het gebrek aan uitvoeringsmacht op Europees niveau.
+                        </p>
+                        <p className="text-slate-600 leading-relaxed mb-8 font-serif">
+                            Data over het stemgedrag binnen de Raad laat zien dat voor beladen onderwerpen (landbouw, klimaat, financiën) er een grote afstand is tussen de posities, met duidelijke 'blokken' van landen. 
+                            Tegelijkertijd is er bij Energie, Infrastructuur en Digitaal nauwelijks sprake van polarisatie. 
+                            Dit biedt kansen voor 'coalitions of the willing' op projecten zoals een onafhankelijke EU cloud.
                         </p>
                         <Button 
                             onClick={scrollToBottom}
                             className="bg-slate-900 text-white hover:bg-slate-800 rounded-full px-8 py-6 text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 group font-serif"
                         >
-                            <span>Start Coalitie Explorer</span>
+                            <span>Start Analyse Raad van Ministers</span>
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Button>
                      </div>

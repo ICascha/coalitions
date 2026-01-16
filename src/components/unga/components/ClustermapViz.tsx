@@ -436,10 +436,10 @@ export function ClustermapViz() {
       <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200/50">
         <div>
           <h2 className="text-xl font-semibold text-slate-800">
-            De architectuur van Europese coalities
+            Analyse Raad van Ministers
           </h2>
           <p className="text-sm text-slate-500 mt-0.5">
-            Analyse van strategische resonantie en coalitiepotentieel binnen de EU
+            Onderzoek naar stemafstand en coalitievorming binnen de Europese Unie
           </p>
         </div>
         
@@ -572,7 +572,7 @@ export function ClustermapViz() {
 
           {/* Color scale legend */}
           <div>
-            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Mate van resonantie</h3>
+            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Stemafstand</h3>
             <div className="bg-white rounded-lg border border-slate-200 p-4">
               <div className="flex items-center gap-2">
                 <span className="text-xs text-slate-600">{minDistance.toFixed(2)}</span>
@@ -585,8 +585,8 @@ export function ClustermapViz() {
                 <span className="text-xs text-slate-600">{maxDistance.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-[10px] text-slate-400 mt-1">
-                <span>Hoge resonantie</span>
-                <span>Lage resonantie</span>
+                <span>Kleine afstand</span>
+                <span>Grote afstand</span>
               </div>
             </div>
           </div>
