@@ -16,7 +16,7 @@ const NarrativeLayout = () => {
     },
     // Fallbacks for other views to prevent crashes if state changes
     connections: {
-      title: 'Markt en Macht: Asymmetrische Afhankelijkheden',
+      title: 'Markt en Macht',
       component: <div className="p-4">Component niet beschikbaar</div>,
     },
     correlations: {
@@ -91,7 +91,7 @@ const NarrativeLayout = () => {
           Precies een jaar na de inauguratie van Donald Trump moeten we constateren dat de Verenigde Staten niet langer een vertrouwde 'vriend' of 'ally' zijn, maar zijn veranderd in een harde geopolitieke concurrent.
         </p>
         <p className="mb-8">
-          Dit rapport, <em className="text-slate-800">'Markt en Macht: Asymmetrische afhankelijkheden'</em>, analyseert onze huidige positie vanuit een nuchter realisme. Hoeveel geopolitieke en geo-economische macht hebben wij werkelijk? Hoe hebben we deze kwetsbare positie laten ontstaan? En vooral: wat is er nu nodig om onze speelruimte terug te winnen?
+          Dit rapport, <em className="text-slate-800">'Markt en Macht'</em>, analyseert onze huidige positie vanuit een nuchter realisme. Hoeveel geopolitieke en geo-economische macht hebben wij werkelijk? Hoe hebben we deze kwetsbare positie laten ontstaan? En vooral: wat is er nu nodig om onze speelruimte terug te winnen?
         </p>
         
         <h3 className="text-xl font-serif text-slate-900 mb-3">Over DenkWerk</h3>
