@@ -356,11 +356,12 @@ const UNGAMap = () => {
                     <div className="max-w-md">
                         <div className="mb-6 h-1 w-12 bg-slate-900" />
                         <h1 className="text-4xl md:text-5xl font-serif text-slate-900 mb-6 leading-tight">
-                            Subjectieve Waarheden
+                            Speler of speelveld
                         </h1>
                         <p className="text-lg text-slate-600 leading-relaxed font-serif">
-                            De geopolitieke arena is geen statisch speelveld, maar een dynamisch netwerk van wisselende loyaliteiten. 
-                            Door te kijken naar stemgedrag in de VN onthullen we de onzichtbare lijnen die de wereld verdelen.
+                            Europa is in de strijd om hegemonie tussen de VS en China veranderd van speler in een speelveld. 
+                            Wie speelveld is wordt gebruikt; wie speler is bepaalt de kaders. 
+                            De keuze is simpel: accepteren we onze rol als toeschouwer, of bouwen we opnieuw aan ons strategisch vermogen?
                         </p>
                         <div className="mt-12 text-sm uppercase tracking-widest text-slate-400 flex items-center gap-2">
                             Scroll om te verkennen <ChevronDown className="w-4 h-4 animate-bounce" />
@@ -372,12 +373,12 @@ const UNGAMap = () => {
                 <div className="min-h-screen flex flex-col justify-center p-8 md:p-16 pointer-events-auto">
                     <div className="max-w-md bg-white/80 p-6 md:p-0 md:bg-transparent rounded-xl backdrop-blur-md md:backdrop-blur-none">
                         <h2 className="text-3xl font-serif text-slate-900 mb-4">
-                            De Europese Kern
+                            Onze uitgangspositie
                         </h2>
                         <p className="text-slate-600 leading-relaxed mb-6 font-serif">
-                            In een steeds meer gepolariseerde wereld zoekt Europa naar eenheid. 
-                            Terwijl mondiale blokken verschuiven, vormen zich binnen het continent nieuwe coalities. 
-                            Sommige zijn historisch geworteld, andere puur strategisch.
+                            Om ons strategisch vermogen te herstellen, moeten we kijken naar onze huidige uitgangspositie. 
+                            VN-stemgedrag laat zien dat China structureel nauwer aansluit bij het mondiale zuiden, 
+                            terwijl de EU vaak dichter bij het wereldgemiddelde staat dan de VS — zeker bij partners als Japan en Canada.
                         </p>
                         <div className="flex items-center gap-4 text-sm text-slate-500">
                              <span className="w-2 h-2 rounded-full bg-blue-500" />
