@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback, memo, useRef } from 'react';
-import { ResponsiveHeatMapCanvas, type ComputedCell, type HeatMapSerie } from '@nivo/heatmap';
+import { ResponsiveHeatMapCanvas, type ComputedCell } from '@nivo/heatmap';
 import {
   Select,
   SelectContent,
@@ -394,7 +394,7 @@ export function ClustermapViz() {
 
   // Color scale function
   const getColor = useCallback(
-    (cell: Omit<ComputedCell<HeatmapCellData>, 'color' | 'opacity' | 'borderColor'>) => {
+    (cell: Omit<ComputedCell<HeatmapCellData>, 'color' | 'opacity' | 'borderColor' | 'labelTextColor'>) => {
       const value = cell.data.y;
       if (value === null || value === 0) return 'rgb(240, 240, 240)';
       const t = (value - minDistance) / (maxDistance - minDistance || 1);
@@ -491,7 +491,6 @@ export function ClustermapViz() {
             >
               <ResponsiveHeatMapCanvas
                 data={heatmapData}
-                keys={columnKeys}
                 margin={HEATMAP_MARGIN}
                 axisTop={{
                   tickSize: 0,

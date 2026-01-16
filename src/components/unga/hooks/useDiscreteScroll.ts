@@ -186,7 +186,7 @@ export function useDiscreteScroll(
     };
 
     // Prevent any scroll events
-    const handleScroll = (e: Event) => {
+    const handleScroll = () => {
       if (isLockedRef.current) return;
       // Snap to nearest section if somehow scrolled
       const sectionHeight = el.clientHeight;

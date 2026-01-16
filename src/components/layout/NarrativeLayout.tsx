@@ -1,32 +1,13 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { useWindowSize } from '@/hooks/useWindowSize';
-import { Button } from '@/components/ui/button';
-import { Info, X, Menu } from 'lucide-react';
 
 // View Components
 import UNGAMap from '@/components/unga/UNGAMap';
 
-const MOBILE_BREAKPOINT = 768; // md breakpoint
-
 const NarrativeLayout = () => {
-  const introRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const [isLogoDialogOpen, setIsLogoDialogOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showLogoDialog, setShowLogoDialog] = useState(true);
-  const [isMainContentVisible, setIsMainContentVisible] = useState(false);
-  const [activeView, setActiveView] = useState<
-    'connections' | 'correlations' | 'unga' | 'approvals' | 'approvals_detailed' | 'regression'
-  >('unga');
-
-  const windowWidth = useWindowSize();
-  const isMobile = windowWidth !== null && windowWidth < MOBILE_BREAKPOINT;
-
-  // Preload images for faster viewing
-  useEffect(() => {
-    // Optional: Preload critical assets if any
-  }, []);
+  const activeView = 'unga' as const;
 
   const viewDetails = {
     unga: {
@@ -77,11 +58,6 @@ const NarrativeLayout = () => {
       transform: translateY(0);
     }
   `;
-
-  const getAnimationStyle = (delay: number) => ({
-    animation: `fadeIn 0.8s ease-out ${delay}ms forwards`,
-    opacity: 0,
-  });
 
   const LogoContent = () => (
     <div className="p-8 md:p-12 max-h-[85vh] overflow-y-auto bg-white">
