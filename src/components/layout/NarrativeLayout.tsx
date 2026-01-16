@@ -16,7 +16,7 @@ const NarrativeLayout = () => {
     },
     // Fallbacks for other views to prevent crashes if state changes
     connections: {
-      title: 'Asymmetrische Afhankelijkheden',
+      title: 'Markt en Macht: Asymmetrische Afhankelijkheden',
       component: <div className="p-4">Component niet beschikbaar</div>,
     },
     correlations: {
@@ -71,7 +71,7 @@ const NarrativeLayout = () => {
         </div>
         <div>
           <h2 className="text-3xl font-serif text-slate-900 tracking-tight">DenkWerk</h2>
-          <p className="text-sm text-slate-500 font-medium tracking-wide uppercase mt-1">Onafhankelijk platform</p>
+          <p className="text-sm text-slate-500 font-medium tracking-wide uppercase mt-1">Onafhankelijke denktank</p>
         </div>
       </div>
 
@@ -91,12 +91,12 @@ const NarrativeLayout = () => {
           Precies een jaar na de inauguratie van Donald Trump moeten we constateren dat de Verenigde Staten niet langer een vertrouwde 'vriend' of 'ally' zijn, maar zijn veranderd in een harde geopolitieke concurrent.
         </p>
         <p className="mb-8">
-          Dit rapport, <em className="text-slate-800">'Asymmetrische afhankelijkheden'</em>, analyseert onze huidige positie vanuit een nuchter realisme. Hoeveel geopolitieke en geo-economische macht hebben wij werkelijk? Hoe hebben we deze kwetsbare positie laten ontstaan? En vooral: wat is er nu nodig om onze speelruimte terug te winnen?
+          Dit rapport, <em className="text-slate-800">'Markt en Macht: Asymmetrische afhankelijkheden'</em>, analyseert onze huidige positie vanuit een nuchter realisme. Hoeveel geopolitieke en geo-economische macht hebben wij werkelijk? Hoe hebben we deze kwetsbare positie laten ontstaan? En vooral: wat is er nu nodig om onze speelruimte terug te winnen?
         </p>
         
         <h3 className="text-xl font-serif text-slate-900 mb-3">Over DenkWerk</h3>
         <p>
-          DenkWerk is een onafhankelijk platform dat maatschappelijke thema's agendeert en analyseert. Wij duiden geopolitieke machtsverschuivingen en onderzoeken de architectuur van Europese coalities om Nederland en Europa weerbaar te maken in een veranderende wereld.
+          DenkWerk is een onafhankelijke denktank die maatschappelijke thema's agendeert en analyseert. Wij duiden geopolitieke machtsverschuivingen en onderzoeken de architectuur van Europese coalities om Nederland en Europa weerbaar te maken in een veranderende wereld.
         </p>
 
         <div className="pt-10 flex gap-4 clear-both">

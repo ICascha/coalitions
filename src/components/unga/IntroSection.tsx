@@ -107,9 +107,9 @@ export const IntroSection = ({
           )}
           style={getAnimationDelay(2)}
         >
-          Asymmetrische{' '}
+          Markt en Macht:{' '}
           <span className="font-medium bg-gradient-to-r from-[#004494] to-[#991B1B] bg-clip-text text-transparent">
-            Afhankelijkheden
+            Asymmetrische Afhankelijkheden
           </span>
         </h1>
         
