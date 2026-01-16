@@ -8,10 +8,17 @@ export type CountryAlignment = {
   metrics: Partial<Record<PowerBloc, number | null>>;
 };
 
+export type TopicInfo = {
+  disagreements: string[];
+  agreements: string[];
+};
+
 export type TooltipAlignmentState = {
   type: 'alignment';
   name: string;
+  countryCode: string;
   alignment: CountryAlignment | null;
+  topics: TopicInfo | null;
   x: number;
   y: number;
 };

@@ -24,6 +24,7 @@ import { useUngAAlignment } from './hooks/useUngAAlignment';
 import { useEuropeViewBoxZoom } from './hooks/useEuropeViewBoxZoom';
 import { useCoalitionLoop } from './hooks/useCoalitionLoop';
 import { useUngAMapSvgStyling } from './hooks/useUngAMapSvgStyling';
+import { useTopicsData, getTopicLabel } from './hooks/useTopicsData';
 import { ClustermapViz } from './components/ClustermapViz';
 
 const HOVER_COOLDOWN_MS = 400; // Cooldown before re-enabling hover after scroll animation
@@ -87,6 +88,7 @@ const UNGAMap = () => {
 
   const mapViewport = useElementSize(containerRef);
   const { alignmentMap } = useUngAAlignment();
+  const { topicsMap } = useTopicsData();
 
   // Hover enabled when not scrolling and not at the final section
   const interactionsEnabled = !isZoomComplete;
@@ -178,10 +180,16 @@ const UNGAMap = () => {
       }
 
       const displayName = getCountryDisplayName(key, formatCountryName(countryId));
+      const countryTopics = topicsMap?.[key];
       setTooltip({
         type: 'alignment',
         name: displayName,
+        countryCode: key,
         alignment: alignment,
+        topics: countryTopics ? {
+          disagreements: countryTopics.disagreements,
+          agreements: countryTopics.agreements,
+        } : null,
         x: mouseEvent.clientX - bounds.left,
         y: mouseEvent.clientY - bounds.top,
       });
@@ -200,7 +208,7 @@ const UNGAMap = () => {
       svgElement.removeEventListener('click', handleClick);
       container.removeEventListener('click', handleContainerClick);
     };
-  }, [alignmentMap, interactionsEnabled]);
+  }, [alignmentMap, interactionsEnabled, topicsMap]);
 
   // Hover handlers
   useEffect(() => {
@@ -439,13 +447,13 @@ const UNGAMap = () => {
 
                         {tooltip && (
                              <div
-                                className="absolute rounded-lg bg-white px-3 py-2 text-sm text-slate-800 shadow-xl border border-slate-100 pointer-events-none z-50 min-w-[180px]"
+                                className="absolute rounded-lg bg-white px-3 py-2.5 text-sm text-slate-800 shadow-xl border border-slate-100 pointer-events-none z-50 min-w-[220px] max-w-[280px]"
                                 style={{ left: tooltip.x + 20, top: tooltip.y - 20 }}
                               >
-                                <div className="font-serif font-medium border-b border-slate-100 pb-1 mb-1">{tooltip.name}</div>
+                                <div className="font-serif font-medium border-b border-slate-100 pb-1.5 mb-2">{tooltip.name}</div>
                                 {tooltip.type === 'alignment' && tooltip.alignment && (
-                                    <div className="text-xs text-slate-500">
-                                        <div className="flex items-center gap-2 mb-1">
+                                    <div className="text-xs text-slate-500 mb-2">
+                                        <div className="flex items-center gap-2">
                                             <span 
                                                 className="w-2 h-2 rounded-full" 
                                                 style={{ backgroundColor: POWER_BLOC_COLORS[tooltip.alignment.bloc] }} 
@@ -455,6 +463,38 @@ const UNGAMap = () => {
                                                 {formatMetricValue(tooltip.alignment.value)}
                                             </span>
                                         </div>
+                                    </div>
+                                )}
+                                {tooltip.topics && (
+                                    <div className="text-xs space-y-2 border-t border-slate-100 pt-2">
+                                        {tooltip.topics.disagreements.length > 0 && (
+                                            <div>
+                                                <div className="text-[10px] uppercase tracking-wider text-rose-500 font-medium mb-1">
+                                                    Onenigheid met EU
+                                                </div>
+                                                <div className="flex flex-wrap gap-1">
+                                                    {tooltip.topics.disagreements.slice(0, 3).map((topic, i) => (
+                                                        <span key={i} className="inline-block px-1.5 py-0.5 bg-rose-50 text-rose-700 rounded text-[10px]">
+                                                            {getTopicLabel(topic as Parameters<typeof getTopicLabel>[0])}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+                                        {tooltip.topics.agreements.length > 0 && (
+                                            <div>
+                                                <div className="text-[10px] uppercase tracking-wider text-emerald-600 font-medium mb-1">
+                                                    Overeenstemming met EU
+                                                </div>
+                                                <div className="flex flex-wrap gap-1">
+                                                    {tooltip.topics.agreements.slice(0, 3).map((topic, i) => (
+                                                        <span key={i} className="inline-block px-1.5 py-0.5 bg-emerald-50 text-emerald-700 rounded text-[10px]">
+                                                            {getTopicLabel(topic as Parameters<typeof getTopicLabel>[0])}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                               </div>
