@@ -21,13 +21,15 @@ export const UNGA_API_BASE =
     ? 'https://backendclustering-production.up.railway.app'
     : 'http://localhost:8000');
 
+// EU-27 member states for Europe zoom and coalition highlighting
+// Note: Malta (MLT) is not in the SVG due to size at this map resolution
 export const EUROPE_COUNTRY_NAMES = [
   'Austria',
-  'Belarus',
   'Belgium',
   'Bulgaria',
-  // SVG uses "CZECH"
-  'Czech',
+  'Croatia',
+  'Cyprus',
+  'Czech',      // SVG uses "CZECH" for Czechia
   'Denmark',
   'Estonia',
   'Finland',
@@ -35,24 +37,19 @@ export const EUROPE_COUNTRY_NAMES = [
   'Germany',
   'Greece',
   'Hungary',
-  'Iceland',
   'Ireland',
   'Italy',
   'Latvia',
   'Lithuania',
   'Luxembourg',
   'Netherlands',
-  'Norway',
   'Poland',
   'Portugal',
   'Romania',
   'Slovakia',
+  'Slovenia',
   'Spain',
   'Sweden',
-  'Switzerland',
-  'Ukraine',
-  // SVG uses "BRITAIN"
-  'Britain',
 ] as const;
 
 // Simple rotating "within-EU" coalitions (ISO3 codes).

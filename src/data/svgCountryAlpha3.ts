@@ -172,6 +172,7 @@ export const svgNameToAlpha3: Record<string, string> = {
   'LIBYA': 'LBY',
   'LITHUANIA': 'LTU',
   'LOMBOK': 'IDN',
+  'LUXEMBOURG': 'LUX',
   'LUZON': 'PHL',
   'LYAKHOVSKY': 'RUS',
   'MACEDONIA': 'MKD',
