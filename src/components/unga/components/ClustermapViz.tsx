@@ -555,13 +555,19 @@ export function ClustermapViz() {
         </div>
 
         {/* Right: Info panel */}
-        <div className="w-72 border-l border-slate-200/50 bg-slate-50/50 p-5 flex flex-col gap-5">
+        <div className="w-72 border-l border-slate-200/50 bg-slate-50/50 p-5 flex flex-col gap-5 overflow-y-auto">
           {/* Methodology */}
           <div>
             <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Uitleg</h3>
-            <div className="text-[13px] leading-relaxed text-slate-600 font-serif">
-              Deze kaart toont de mate van overeenstemming in stemgedrag tussen EU-lidstaten. 
-              Landen die vaak hetzelfde stemmen staan dichter bij elkaar en vormen clusters.
+            <div className="text-[13px] leading-relaxed text-slate-600 font-serif space-y-3">
+              <p>
+                Deze kaart toont de mate van overeenstemming in stemgedrag tussen EU-lidstaten. 
+                De landen zijn <strong>gesorteerd op nabijheid</strong>: hoe dichter bij elkaar op de as, hoe vergelijkbaarder hun posities.
+              </p>
+              <p>
+                Sommige onderwerpen, zoals <em>Klimaat & Milieu</em>, zijn veel <strong>polariserender</strong> dan andere. 
+                Bij <em>Energie</em> of <em>Digitaal</em> is de consensus vaak groter en de afstand kleiner.
+              </p>
             </div>
           </div>
 
@@ -632,8 +638,11 @@ export function ClustermapViz() {
                 <span>{showClusters ? 'Visualisatie Verbergen' : 'Clusters Visualiseren'}</span>
               </div>
             </button>
+            <div className="mt-3 text-[11px] leading-snug text-slate-500 font-serif">
+              Markeert groepen landen die binnen dit thema een duidelijk blok vormen.
+            </div>
             {showClusters && clusters.length > 0 && (
-              <div className="mt-3 text-xs text-slate-500 text-center">
+              <div className="mt-2 text-[10px] text-slate-400 text-center font-mono uppercase tracking-tight">
                 {clusters.length} clusters gedetecteerd
               </div>
             )}
