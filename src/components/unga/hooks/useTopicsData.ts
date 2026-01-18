@@ -74,17 +74,18 @@ export function useTopicsData(): {
 
 export function getTopicLabel(topic: TopicName): string {
   // Return a shorter/friendlier label for display
+  // Using exact Dutch terms as specified
   const labels: Record<TopicName, string> = {
     "Decolonization": "Dekolonisatie",
-    "Development & Economy": "Ontwikkeling & Economie",
+    "Development & Economy": "Ontwikkeling en economie",
     "Environment": "Milieu",
     "Human Rights / Social": "Mensenrechten",
-    "International Law & Justice": "Internationaal Recht",
-    "Middle East (General)": "Midden-Oosten",
-    "Nuclear / Arms / Disarmament": "Ontwapening",
+    "International Law & Justice": "Internationaal recht en justitie",
+    "Middle East (General)": "Midden-Oosten (algemeen)",
+    "Nuclear / Arms / Disarmament": "Nucleair / wapens",
     "Palestine / Israel": "Palestina / Israël",
-    "Peacekeeping & Security": "Vrede & Veiligheid",
-    "UN Administration": "VN Administratie"
+    "Peacekeeping & Security": "Vredeshandhaving",
+    "UN Administration": "VN bestuur"
   };
   return labels[topic];
 }
