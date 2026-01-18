@@ -409,8 +409,8 @@ const UNGAMap = () => {
                         </p>
                         <p className="text-slate-600 leading-relaxed mb-8 font-serif">
                             Data over het stemgedrag binnen de Raad laat zien dat voor beladen onderwerpen (landbouw, klimaat, financiën) er een grote afstand is tussen de posities, met duidelijke 'blokken' van landen. 
-                            Tegelijkertijd is er bij Energie, Infrastructuur en Digitaal nauwelijks sprake van polarisatie. 
-                            Dit biedt kansen voor 'coalitions of the willing' op projecten zoals een onafhankelijke EU cloud.
+                            Dit biedt kansen voor 'coalitions of the willing' op deze gepolariseerde dossiers. 
+                            Tegelijkertijd is er bij Energie, Infrastructuur en Digitaal nauwelijks sprake van polarisatie — dit biedt juist kansen voor een EU-brede aanpak, zoals bij een onafhankelijke EU cloud.
                         </p>
                         <Button 
                             onClick={scrollToBottom}
@@ -465,26 +465,63 @@ const UNGAMap = () => {
                         {tooltip && (() => {
                           // Position tooltip to the left if cursor is on right side of container
                           const containerWidth = containerRef.current?.offsetWidth ?? 800;
-                          const tooltipWidth = 240;
+                          const tooltipWidth = 280;
                           const isRightSide = tooltip.x > containerWidth * 0.6;
                           const left = isRightSide ? tooltip.x - tooltipWidth - 16 : tooltip.x + 20;
                           
+                          // Helper to get qualitative interpretation of distance
+                          const getDistanceLabel = (distance: number | null | undefined): { label: string; color: string } => {
+                            if (distance === null || distance === undefined) return { label: '-', color: 'text-slate-400' };
+                            if (distance <= 0.5) return { label: 'Laag', color: 'text-emerald-600' };
+                            if (distance <= 1.0) return { label: 'Middel', color: 'text-amber-600' };
+                            return { label: 'Hoog', color: 'text-rose-600' };
+                          };
+                          
                           return (
                              <div
-                                className="absolute rounded-lg bg-white/95 backdrop-blur-sm px-4 py-3 text-sm text-slate-800 shadow-lg border border-slate-200/60 pointer-events-none z-50 w-[240px]"
+                                className="absolute rounded-lg bg-white/95 backdrop-blur-sm px-4 py-3 text-sm text-slate-800 shadow-lg border border-slate-200/60 pointer-events-none z-50 w-[280px]"
                                 style={{ left, top: tooltip.y - 20 }}
                               >
                                 <div className="font-serif text-base text-slate-900 mb-2">{tooltip.name}</div>
                                 {tooltip.type === 'alignment' && tooltip.alignment && (
                                     <div className="text-xs text-slate-500 mb-3 pb-3 border-b border-slate-100">
-                                        <div className="flex items-center gap-2">
-                                            <span 
-                                                className="w-2 h-2 rounded-full" 
-                                                style={{ backgroundColor: POWER_BLOC_COLORS[tooltip.alignment.bloc] }} 
-                                            />
-                                            <span className="text-slate-600">{POWER_BLOC_LABELS[tooltip.alignment.bloc]}</span>
-                                            <span className="ml-auto font-mono text-slate-400 text-[11px]">
-                                                {formatMetricValue(tooltip.alignment.value)}
+                                        <div className="text-[11px] text-slate-400 mb-2 font-serif italic">
+                                            Stemafstand tot machtsblokken
+                                        </div>
+                                        <div className="space-y-1.5">
+                                            {POWER_BLOCS.map(bloc => {
+                                                const distance = tooltip.alignment?.metrics[bloc];
+                                                const distanceInfo = getDistanceLabel(distance);
+                                                const isClosest = bloc === tooltip.alignment?.bloc;
+                                                return (
+                                                    <div key={bloc} className={cn(
+                                                        "flex items-center gap-2 py-1 px-2 rounded",
+                                                        isClosest && "bg-slate-50"
+                                                    )}>
+                                                        <span 
+                                                            className="w-2 h-2 rounded-full flex-shrink-0" 
+                                                            style={{ backgroundColor: POWER_BLOC_COLORS[bloc] }} 
+                                                        />
+                                                        <span className="text-slate-600 flex-1">{POWER_BLOC_LABELS[bloc]}</span>
+                                                        <span className={cn("text-[10px] font-medium", distanceInfo.color)}>
+                                                            {distanceInfo.label}
+                                                        </span>
+                                                        <span className="font-mono text-slate-400 text-[10px] w-8 text-right">
+                                                            {formatMetricValue(distance)}
+                                                        </span>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                        <div className="mt-2 text-[10px] text-slate-400 flex items-center gap-4">
+                                            <span className="flex items-center gap-1">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> ≤0.5
+                                            </span>
+                                            <span className="flex items-center gap-1">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> ≤1.0
+                                            </span>
+                                            <span className="flex items-center gap-1">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-rose-500" /> &gt;1.0
                                             </span>
                                         </div>
                                     </div>
