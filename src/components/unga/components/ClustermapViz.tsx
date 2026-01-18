@@ -422,7 +422,7 @@ export function ClustermapViz({
   }, [currentTopic.path]);
 
   // Compute hierarchical clustering and derive clusters
-  const { heatmapData, columnKeys, clusters, avgDistance, minDistance, maxDistance } = useMemo(() => {
+  const { heatmapData, columnKeys, clusters, minDistance, maxDistance } = useMemo(() => {
     if (!data) return { heatmapData: [], columnKeys: [], clusters: [], avgDistance: 0, minDistance: 0, maxDistance: 1 };
     
     const { countries, distance_matrix } = data.data;
