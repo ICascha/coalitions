@@ -20,6 +20,7 @@ export function useUngAMapSvgStyling(options: {
   europeAlpha3: ReadonlySet<string>;
   nonEuropeFade: { start: number; duration: number; minOpacity: number };
   coalition: { enabled: boolean; activeMembers: ReadonlySet<string>; deemphasizeOpacity: number };
+  highlightColor?: string;
 }) {
   const {
     containerRef,
@@ -32,6 +33,7 @@ export function useUngAMapSvgStyling(options: {
     europeAlpha3,
     nonEuropeFade,
     coalition,
+    highlightColor,
   } = options;
 
   useEffect(() => {
@@ -95,7 +97,7 @@ export function useUngAMapSvgStyling(options: {
       if (coalition.enabled && isEurope) {
         const isInCoalition = coalition.activeMembers.has(key);
         path.style.opacity = isInCoalition ? '1' : `${coalition.deemphasizeOpacity}`;
-        path.style.stroke = isInCoalition ? '#0f172a' : '';
+        path.style.stroke = isInCoalition ? (highlightColor ?? '#0f172a') : '';
         path.style.strokeWidth = isInCoalition ? '35000' : '';
         path.style.filter = isInCoalition ? 'drop-shadow(0 0 70000px rgba(15, 23, 42, 0.35))' : 'none';
         return;

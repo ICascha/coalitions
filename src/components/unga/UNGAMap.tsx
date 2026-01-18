@@ -25,7 +25,7 @@ import { useEuropeViewBoxZoom } from './hooks/useEuropeViewBoxZoom';
 import { useCoalitionLoop } from './hooks/useCoalitionLoop';
 import { useUngAMapSvgStyling } from './hooks/useUngAMapSvgStyling';
 import { useTopicsData, getTopicLabel } from './hooks/useTopicsData';
-import { ClustermapViz } from './components/ClustermapViz';
+import { ClustermapViz, AnalysisStats, interpolateColor } from './components/ClustermapViz';
 
 const HOVER_COOLDOWN_MS = 400; // Cooldown before re-enabling hover after scroll animation
 
@@ -35,7 +35,9 @@ const UNGAMap = () => {
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
-  const [isExplorerOpen, setIsExplorerOpen] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [activeClusterCountries, setActiveClusterCountries] = useState<ReadonlySet<string>>(new Set());
+  const [analysisStats, setAnalysisStats] = useState<AnalysisStats | null>(null);
   
   // Track scroll activity to prevent hover flickering during animations
   const lastScrollProgressRef = useRef(0);
@@ -50,6 +52,9 @@ const UNGAMap = () => {
   
   // Detect scroll activity and manage cooldown
   useEffect(() => {
+    // Skip if analyzing
+    if (isAnalyzing) return;
+
     const progressChanged = Math.abs(rawScrollProgress - lastScrollProgressRef.current) > 0.001;
     lastScrollProgressRef.current = rawScrollProgress;
     
@@ -71,20 +76,43 @@ const UNGAMap = () => {
         clearTimeout(scrollCooldownRef.current);
       }
     };
-  }, [rawScrollProgress]);
+  }, [rawScrollProgress, isAnalyzing]);
+
+  // Lock scroll and reset position when analyzing
+  useEffect(() => {
+    if (isAnalyzing && scrollContainerRef.current) {
+      // Force scroll to top immediately
+      scrollContainerRef.current.scrollTop = 0;
+      // Disable scroll via overflow style directly to ensure it takes precedence
+      scrollContainerRef.current.style.overflowY = 'hidden';
+    } else if (scrollContainerRef.current) {
+      scrollContainerRef.current.style.overflowY = '';
+    }
+  }, [isAnalyzing]);
   
   // Map logic mapping
   // We have a long scroll container with a split view followed by a viz section.
   // The split view is roughly 75% of the total height (300vh / 400vh).
   // Zoom should happen while the map is sticky in view.
   
-  const zoomStart = isExplorerOpen ? 0.15 : 0.225;
-  const zoomEnd = isExplorerOpen ? 0.6 : 0.9; // Finish zoom before we scroll past the split view
+  const zoomStart = 0.225;
+  const zoomEnd = 0.9; // Finish zoom before we scroll past the split view
 
   // Zoom progress: 0 before zoomStart, 1 after zoomEnd
-  const zoomProgress = clamp01((rawScrollProgress - zoomStart) / (zoomEnd - zoomStart));
+  const scrollZoomProgress = clamp01((rawScrollProgress - zoomStart) / (zoomEnd - zoomStart));
+  const zoomProgress = isAnalyzing ? 1 : scrollZoomProgress;
   
   const isZoomComplete = zoomProgress >= 0.98;
+
+  // Handle cluster selection from ClustermapViz
+  const handleClusterHover = (countries: string[] | null) => {
+    if (!countries) {
+      setActiveClusterCountries(new Set());
+      return;
+    }
+    const codes = buildAlpha3SetFromNames(countries);
+    setActiveClusterCountries(codes);
+  };
 
   const mapViewport = useElementSize(containerRef);
   const { alignmentMap } = useUngAAlignment();
@@ -256,12 +284,15 @@ const UNGAMap = () => {
     interactionsEnabled,
     scrollProgress: zoomProgress,
     europeAlpha3,
-    nonEuropeFade: { start: 0.72, duration: 0.28, minOpacity: 0.06 },
+    nonEuropeFade: isAnalyzing 
+      ? { start: 0, duration: 0.1, minOpacity: 0 } // Hide immediately in analysis mode
+      : { start: 0.72, duration: 0.28, minOpacity: 0.06 },
     coalition: {
-      enabled: coalitionLoopEnabled && isZoomComplete,
-      activeMembers: activeCoalition?.members ?? new Set<string>(),
-      deemphasizeOpacity: lerp(1, 0.22, easeInOut(clamp01((zoomProgress - 0.9) / 0.1))),
+      enabled: (coalitionLoopEnabled && isZoomComplete && !isAnalyzing) || (isAnalyzing && activeClusterCountries.size > 0),
+      activeMembers: isAnalyzing ? activeClusterCountries : (activeCoalition?.members ?? new Set<string>()),
+      deemphasizeOpacity: isAnalyzing ? 0.1 : lerp(1, 0.22, easeInOut(clamp01((zoomProgress - 0.9) / 0.1))),
     },
+    highlightColor: isAnalyzing ? '#e62159' : undefined,
   });
 
   // Handle Hover Overlay
@@ -310,18 +341,14 @@ const UNGAMap = () => {
     }
   }, [hoveredCountry, selectedCountry]);
 
-  const scrollToBottom = () => {
-    if (!isExplorerOpen) {
-      setIsExplorerOpen(true);
-      // Wait for render to ensure element exists
-      setTimeout(() => {
-        const vizSection = document.getElementById('viz-section');
-        vizSection?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
-      const vizSection = document.getElementById('viz-section');
-      vizSection?.scrollIntoView({ behavior: 'smooth' });
-    }
+  const startAnalysis = () => {
+    setIsAnalyzing(true);
+  };
+
+  const stopAnalysis = () => {
+    setIsAnalyzing(false);
+    setActiveClusterCountries(new Set());
+    setAnalysisStats(null);
   };
 
   return (
@@ -342,17 +369,32 @@ const UNGAMap = () => {
         ref={scrollContainerRef}
         className={cn(
           "absolute overflow-y-auto overflow-x-hidden transition-all duration-500",
-          isMobile && !isExplorerOpen ? "top-0 left-0 right-0 bottom-[40%]" : "inset-0"
+          isMobile && !isAnalyzing ? "top-0 left-0 right-0 bottom-[40%]" : "inset-0",
+          // When analyzing, we lock scroll via style, but this class is good to keep
+          isAnalyzing && "overflow-hidden"
         )}
       >
-        <div className="min-h-[300vh] w-full flex flex-col md:flex-row relative">
+        <div className={cn(
+            "w-full flex flex-col md:flex-row relative",
+            !isAnalyzing && "min-h-[300vh]"
+        )}>
             
             {/* Left Column: Narrative Content */}
-            <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col relative z-20 pointer-events-none">
+            <div 
+              className={cn(
+                "w-full flex flex-col relative z-20 transition-all duration-700 ease-in-out",
+                isAnalyzing ? "md:w-[50%]" : "md:w-[45%] lg:w-[40%]"
+              )}
+            >
                 {/* Spacer to push content down if needed, or stick to sections */}
                 
                 {/* Section 1: Introduction */}
-                <div className="min-h-screen flex flex-col justify-center p-8 md:p-16 pointer-events-auto bg-white/5 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
+                <div 
+                  className={cn(
+                    "min-h-screen flex flex-col justify-center p-8 md:p-16 pointer-events-auto bg-white/5 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none transition-opacity duration-500",
+                    isAnalyzing && "hidden"
+                  )}
+                >
                     <div className="max-w-md">
                         <div className="mb-6 h-1 w-12 bg-slate-900" />
                         <h1 className="text-4xl md:text-5xl font-serif text-slate-900 mb-6 leading-tight">
@@ -370,7 +412,12 @@ const UNGAMap = () => {
                 </div>
 
                 {/* Section 2: Europe Focus */}
-                <div className="min-h-screen flex flex-col justify-center p-8 md:p-16 pointer-events-auto">
+                <div 
+                  className={cn(
+                    "min-h-screen flex flex-col justify-center p-8 md:p-16 pointer-events-auto transition-opacity duration-500",
+                    isAnalyzing && "hidden"
+                  )}
+                >
                     <div className="max-w-md bg-white/80 p-6 md:p-0 md:bg-transparent rounded-xl backdrop-blur-md md:backdrop-blur-none">
                         <h2 className="text-3xl font-serif text-slate-900 mb-4">
                             Onze uitgangspositie
@@ -397,9 +444,18 @@ const UNGAMap = () => {
                     </div>
                 </div>
 
-                {/* Section 3: Call to Action */}
-                <div className="min-h-screen flex flex-col justify-center p-8 md:p-16 pointer-events-auto pb-32">
-                     <div className="max-w-md">
+                {/* Section 3: Call to Action OR Analysis View */}
+                <div className="min-h-screen flex flex-col justify-center pointer-events-auto pb-32">
+                     {isAnalyzing ? (
+                       <div className="w-full h-full p-4 animate-in fade-in slide-in-from-bottom-8 duration-700">
+                         <ClustermapViz 
+                            onClusterHover={handleClusterHover} 
+                            onBack={stopAnalysis}
+                            onStatsChange={setAnalysisStats} 
+                         />
+                       </div>
+                     ) : (
+                       <div className="p-8 md:p-16 max-w-md">
                         <h2 className="text-3xl font-serif text-slate-900 mb-6">
                             Verdeeldheid en Coalities
                         </h2>
@@ -413,28 +469,31 @@ const UNGAMap = () => {
                             Tegelijkertijd is er bij Energie, Infrastructuur en Digitaal nauwelijks sprake van polarisatie — dit biedt juist kansen voor een EU-brede aanpak, zoals bij een onafhankelijke EU cloud.
                         </p>
                         <Button 
-                            onClick={scrollToBottom}
+                            onClick={startAnalysis}
                             className="bg-slate-900 text-white hover:bg-slate-800 rounded-full px-8 py-6 text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 group font-serif"
                         >
                             <span>Ga naar Analyse Raad van Ministers</span>
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Button>
                      </div>
+                     )}
                 </div>
             </div>
 
             {/* Right Column: Sticky Map */}
             <div className={cn(
-              "w-full overflow-hidden bg-slate-50/50 border-l border-slate-100 transition-all duration-300",
+              "w-full overflow-hidden bg-slate-50/50 border-l border-slate-100 transition-all duration-700 ease-in-out",
               isMobile ? (
                 // Mobile: Fixed at bottom
                 "fixed bottom-0 left-0 right-0 h-[40%] border-t z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]"
               ) : (
                 // Desktop: Sticky on right
-                "md:w-[55%] lg:w-[60%] h-screen sticky top-0 right-0"
+                isAnalyzing 
+                  ? "md:w-[50%] h-screen sticky top-0 right-0" 
+                  : "md:w-[55%] lg:w-[60%] h-screen sticky top-0 right-0"
               ),
               // Hide map when explorer is open on mobile to give space to Viz
-              isMobile && isExplorerOpen && "translate-y-full opacity-0 pointer-events-none"
+              isMobile && isAnalyzing && "translate-y-full opacity-0 pointer-events-none"
             )}>
                 <div className="absolute inset-0 flex items-center justify-center p-4 md:p-12">
                      <div className="relative w-full h-full max-w-[1200px]">
@@ -449,18 +508,66 @@ const UNGAMap = () => {
                             dangerouslySetInnerHTML={{ __html: svgMarkup }}
                         />
                         
-                        {/* Map Legend - Only show when interactive/zoomed out somewhat */}
-                        <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur p-4 rounded-lg shadow-sm border border-slate-100 text-xs text-slate-600 max-w-[200px]">
-                            <div className="font-semibold mb-2 text-slate-900">Machtblokken</div>
-                            <div className="space-y-1.5">
-                                {POWER_BLOCS.map(bloc => (
-                                    <div key={bloc} className="flex items-center gap-2">
-                                        <span className="w-3 h-3 rounded-full" style={{ backgroundColor: POWER_BLOC_COLORS[bloc] }} />
-                                        <span>{POWER_BLOC_LABELS[bloc]}</span>
-                                    </div>
-                                ))}
+                        {/* Map Legend - Only show when interactive/zoomed out somewhat - and NOT in analysis mode */}
+                        {!isAnalyzing && (
+                            <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur p-4 rounded-lg shadow-sm border border-slate-100 text-xs text-slate-600 max-w-[200px]">
+                                <div className="font-semibold mb-2 text-slate-900">Machtblokken</div>
+                                <div className="space-y-1.5">
+                                    {POWER_BLOCS.map(bloc => (
+                                        <div key={bloc} className="flex items-center gap-2">
+                                            <span className="w-3 h-3 rounded-full" style={{ backgroundColor: POWER_BLOC_COLORS[bloc] }} />
+                                            <span>{POWER_BLOC_LABELS[bloc]}</span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
+
+                        {/* Analysis Info Panel - Overlay in analysis mode */}
+                        {isAnalyzing && analysisStats && (
+                            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur p-4 rounded-xl border border-slate-100 shadow-sm max-w-[280px] space-y-4">
+                                {/* Stats */}
+                                <div>
+                                    <h3 className="text-[10px] uppercase tracking-wide text-slate-400 mb-1">Kerncijfers</h3>
+                                    <div className="bg-slate-50 rounded-lg border border-slate-100 p-2">
+                                        <div className="text-[10px] text-slate-500">Gemiddelde afstand</div>
+                                        <div className="text-lg font-semibold text-slate-800">
+                                            {analysisStats.avgDistance.toFixed(3)}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Color Scale */}
+                                <div>
+                                    <h3 className="text-[10px] uppercase tracking-wide text-slate-400 mb-1">Stemafstand</h3>
+                                    <div className="bg-slate-50 rounded-lg border border-slate-100 p-2">
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <span className="text-[9px] text-slate-500 font-mono">0</span>
+                                            <div 
+                                                className="flex-1 h-2 rounded-sm"
+                                                style={{
+                                                    background: `linear-gradient(to right, ${interpolateColor(0)}, ${interpolateColor(0.25)}, ${interpolateColor(0.5)}, ${interpolateColor(0.75)}, ${interpolateColor(1)})`,
+                                                }}
+                                            />
+                                            <span className="text-[9px] text-slate-500 font-mono">1</span>
+                                        </div>
+                                        <div className="flex justify-between text-[8px] text-slate-400">
+                                            <span>Gelijk</span>
+                                            <span>Verschillend</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Cluster Info */}
+                                <div>
+                                    <h3 className="text-[10px] uppercase tracking-wide text-slate-400 mb-1">Coalitie-clusters</h3>
+                                    <p className="text-[10px] leading-snug text-slate-500 font-serif">
+                                        Groepen met sterk overeenkomstig stemgedrag.
+                                        <span className="italic opacity-80 block mt-0.5">Beweeg over clusters voor details.</span>
+                                    </p>
+                                </div>
+                            </div>
+                        )}
 
                         {tooltip && (() => {
                           // Position tooltip to the left if cursor is on right side of container
@@ -567,12 +674,7 @@ const UNGAMap = () => {
 
         </div>
 
-        {/* Final Full-Screen Visualization Section */}
-        {isExplorerOpen && (
-          <div id="viz-section" className="h-screen w-full bg-white relative z-50 border-t border-slate-200">
-              <ClustermapViz />
-          </div>
-        )}
+        {/* Final Full-Screen Visualization Section - Removed in favor of inline transition */}
       </div>
     </Card>
   );

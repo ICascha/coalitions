@@ -1,5 +1,7 @@
 import { useState, useEffect, useMemo, useCallback, memo, useRef } from 'react';
 import { ResponsiveHeatMapCanvas, type ComputedCell } from '@nivo/heatmap';
+import { ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
   Select,
   SelectContent,
@@ -91,6 +93,13 @@ type ClustermapData = {
     countries: string[];
     distance_matrix: number[][];
   };
+};
+
+export type AnalysisStats = {
+  avgDistance: number;
+  clusters: ClusterGroup[];
+  minDistance: number;
+  maxDistance: number;
 };
 
 type TopicOption = {
@@ -280,7 +289,7 @@ const MAKO_STOPS = [
 ];
 
 // Color interpolation for heatmap using mako colormap
-const interpolateColor = (t: number): string => {
+export const interpolateColor = (t: number): string => {
   // Clamp t to [0, 1]
   const clampedT = Math.max(0, Math.min(1, t));
   
@@ -356,12 +365,19 @@ const HeatmapTooltip = memo(function HeatmapTooltip({
 // Heatmap margins
 const HEATMAP_MARGIN = { top: 90, right: 20, bottom: 20, left: 90 };
 
-export function ClustermapViz() {
+export function ClustermapViz({ 
+  onClusterHover,
+  onBack,
+  onStatsChange
+}: { 
+  onClusterHover?: (countries: string[] | null) => void;
+  onBack?: () => void;
+  onStatsChange?: (stats: AnalysisStats) => void;
+}) {
   const [selectedTopic, setSelectedTopic] = useState('overall');
   const [data, setData] = useState<ClustermapData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showClusters, setShowClusters] = useState(false);
   
   // Ref and size for square aspect ratio
   const containerRef = useRef<HTMLDivElement>(null);
@@ -377,7 +393,8 @@ export function ClustermapViz() {
     async function loadData() {
       setLoading(true);
       setError(null);
-      setShowClusters(false);
+      // Always notify parent that clusters are cleared when topic changes
+      if (onClusterHover) onClusterHover(null);
       
       try {
         const response = await fetch(`${import.meta.env.BASE_URL}country_clustermaps/${currentTopic.path}`, {
@@ -481,8 +498,16 @@ export function ClustermapViz() {
       clusters = allClusters.filter((c) => c.countries.length >= 2);
     }
     
-    return { heatmapData, columnKeys: orderedCountries, clusters, avgDistance, minDistance, maxDistance };
-  }, [data, selectedTopic]);
+    const result = { heatmapData, columnKeys: orderedCountries, clusters, avgDistance, minDistance, maxDistance };
+    
+    // Notify parent of stats
+    if (onStatsChange) {
+      // Defer to avoid render loop
+      setTimeout(() => onStatsChange(result), 0);
+    }
+    
+    return result;
+  }, [data, selectedTopic]); // Removed onStatsChange from dependency to avoid loop if it's not memoized
 
   // Color scale function - normalizes to 0-1 range based on actual data range
   const getColor = useCallback(
@@ -498,7 +523,7 @@ export function ClustermapViz() {
 
   // Compute cluster overlay positions
   const clusterOverlays = useMemo(() => {
-    if (!showClusters || !squareSize || clusters.length === 0) return [];
+    if (!squareSize || clusters.length === 0) return [];
     
     const chartWidth = squareSize - HEATMAP_MARGIN.left - HEATMAP_MARGIN.right;
     const chartHeight = squareSize - HEATMAP_MARGIN.top - HEATMAP_MARGIN.bottom;
@@ -519,19 +544,32 @@ export function ClustermapViz() {
         countries: cluster.countries,
       };
     });
-  }, [showClusters, squareSize, clusters, columnKeys.length]);
+  }, [squareSize, clusters, columnKeys.length]);
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full h-full flex flex-col pt-8 md:pt-12">
       {/* Header with topic selector */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200/50">
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800">
-            Analyse Raad van Ministers
-          </h2>
-          <p className="text-sm text-slate-500 mt-0.5">
-            Onderzoek naar stemafstand en coalitievorming binnen de Europese Unie
-          </p>
+        <div className="flex items-center gap-4">
+          {onBack && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onBack}
+              className="rounded-full hover:bg-slate-100 text-slate-500 hover:text-slate-900"
+              title="Terug naar overzicht"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </Button>
+          )}
+          <div>
+            <h2 className="text-xl font-semibold text-slate-800">
+              Analyse Raad van Ministers
+            </h2>
+            <p className="text-sm text-slate-500 mt-0.5">
+              Onderzoek naar stemafstand en coalitievorming binnen de Europese Unie
+            </p>
+          </div>
         </div>
         
         <div className="flex items-center gap-3">
@@ -551,10 +589,10 @@ export function ClustermapViz() {
         </div>
       </div>
 
-      {/* Main content: clustermap on left, info panel on right */}
-      <div className="flex-1 min-h-0 flex">
-        {/* Left: Clustermap */}
-        <div ref={containerRef} className="flex-1 min-w-0 relative flex items-center justify-center p-4">
+      {/* Main content: clustermap only */}
+      <div className="flex-1 min-h-0 flex flex-col p-4 overflow-hidden">
+        {/* Clustermap Section - full height */}
+        <div ref={containerRef} className="w-full h-full relative flex items-center justify-center">
           {loading && (
             <div className="absolute inset-0 flex items-center justify-center bg-white/80 z-10">
               <div className="flex items-center gap-3 text-slate-500">
@@ -608,12 +646,19 @@ export function ClustermapViz() {
               
               {/* Cluster overlay boxes */}
               <svg
-                className="absolute inset-0 pointer-events-none"
+                className="absolute inset-0"
                 width={squareSize}
                 height={squareSize}
+                style={{ pointerEvents: 'none' }}
               >
                 {clusterOverlays.map((overlay) => (
-                  <g key={overlay.id}>
+                  <g 
+                    key={overlay.id} 
+                    style={{ pointerEvents: 'auto', cursor: 'pointer' }}
+                    onMouseEnter={() => onClusterHover?.(overlay.countries)}
+                    onMouseLeave={() => onClusterHover?.(null)}
+                    onClick={() => onClusterHover?.(overlay.countries)}
+                  >
                     {/* Background fill */}
                     <rect
                       x={overlay.x}
@@ -642,101 +687,6 @@ export function ClustermapViz() {
               </svg>
             </div>
           )}
-        </div>
-
-        {/* Right: Info panel */}
-        <div className="w-72 border-l border-slate-200/50 bg-slate-50/50 p-5 flex flex-col gap-5 overflow-y-auto">
-          {/* Methodology */}
-          <div>
-            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Uitleg</h3>
-            <div className="text-[13px] leading-relaxed text-slate-600 font-serif space-y-3">
-              <p>
-                Deze kaart toont de mate van overeenstemming in stemgedrag tussen EU-lidstaten. 
-                De landen zijn <strong>gesorteerd op nabijheid</strong>: hoe dichter bij elkaar op de as, hoe vergelijkbaarder hun posities.
-              </p>
-              <p>
-                Sommige onderwerpen, zoals <em>Klimaat & Milieu</em>, zijn veel <strong>polariserender</strong> dan andere. 
-                Bij <em>Energie</em> of <em>Digitaal</em> is de consensus vaak groter en de afstand kleiner.
-              </p>
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div>
-            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Kerncijfers</h3>
-            <div className="bg-white rounded-lg border border-slate-200 p-4">
-              <div className="text-sm text-slate-600">Gemiddelde stemafstand</div>
-              <div className="text-2xl font-semibold text-slate-800 mt-1">
-                {avgDistance.toFixed(3)}
-              </div>
-              <div className="text-xs text-slate-400 mt-1">
-                Over alle lidstaten heen
-              </div>
-            </div>
-          </div>
-
-          {/* Color scale legend - standardized 0-1 scale */}
-          <div>
-            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Stemafstand (genormaliseerd)</h3>
-            <div className="bg-white rounded-lg border border-slate-200 p-4">
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-slate-600 font-mono">0</span>
-                <div 
-                  className="flex-1 h-3 rounded-sm"
-                  style={{
-                    background: `linear-gradient(to right, ${interpolateColor(0)}, ${interpolateColor(0.25)}, ${interpolateColor(0.5)}, ${interpolateColor(0.75)}, ${interpolateColor(1)})`,
-                  }}
-                />
-                <span className="text-xs text-slate-600 font-mono">1</span>
-              </div>
-              <div className="flex justify-between text-[10px] text-slate-400 mt-1">
-                <span>Kleine afstand</span>
-                <span>Grote afstand</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Cluster highlighting toggle */}
-          <div>
-            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">
-              Coalitie-clusters
-            </h3>
-            <button
-              onClick={() => setShowClusters(!showClusters)}
-              className={`
-                w-full px-4 py-3 rounded-lg border-2 transition-all font-medium
-                ${showClusters 
-                  ? 'bg-slate-800 border-slate-800 text-white shadow-lg' 
-                  : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
-                }
-              `}
-            >
-              <div className="flex items-center justify-center gap-2">
-                <svg 
-                  className={`w-5 h-5 transition-transform ${showClusters ? 'scale-110' : ''}`} 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" 
-                  />
-                </svg>
-                <span>{showClusters ? 'Visualisatie Verbergen' : 'Clusters Visualiseren'}</span>
-              </div>
-            </button>
-            <div className="mt-3 text-[11px] leading-snug text-slate-500 font-serif">
-              Markeert groepen landen die binnen dit thema een duidelijk blok vormen.
-            </div>
-            {showClusters && clusters.length > 0 && (
-              <div className="mt-2 text-[10px] text-slate-400 text-center font-mono uppercase tracking-tight">
-                {clusters.length} clusters gedetecteerd
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </div>
