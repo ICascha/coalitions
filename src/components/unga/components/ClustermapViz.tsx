@@ -33,6 +33,56 @@ function useSquareSize(ref: React.RefObject<HTMLDivElement | null>, maxSize?: nu
   return size;
 }
 
+// Dutch translations for EU country names in Raad van Ministers
+const COUNTRY_NAME_NL: Record<string, string> = {
+  'Austria': 'Oostenrijk',
+  'Belgium': 'België',
+  'Bulgaria': 'Bulgarije',
+  'Croatia': 'Kroatië',
+  'Cyprus': 'Cyprus',
+  'Czechia': 'Tsjechië',
+  'Czech Republic': 'Tsjechië',
+  'Denmark': 'Denemarken',
+  'Estonia': 'Estland',
+  'Finland': 'Finland',
+  'France': 'Frankrijk',
+  'Germany': 'Duitsland',
+  'Greece': 'Griekenland',
+  'Hungary': 'Hongarije',
+  'Ireland': 'Ierland',
+  'Italy': 'Italië',
+  'Latvia': 'Letland',
+  'Lithuania': 'Litouwen',
+  'Luxembourg': 'Luxemburg',
+  'Malta': 'Malta',
+  'Netherlands': 'Nederland',
+  'Poland': 'Polen',
+  'Portugal': 'Portugal',
+  'Romania': 'Roemenië',
+  'Slovakia': 'Slowakije',
+  'Slovenia': 'Slovenië',
+  'Spain': 'Spanje',
+  'Sweden': 'Zweden',
+};
+
+// Get Dutch country name or return original
+const getDutchCountryName = (name: string): string => {
+  return COUNTRY_NAME_NL[name] ?? name;
+};
+
+// Manual cluster definitions per category
+// Structure: { [topicId]: string[][] } where each inner array is a list of country names (English) forming a cluster
+// All clusters use the same border color #e62159
+type ManualClusterConfig = Record<string, string[][]>;
+
+const MANUAL_CLUSTERS: ManualClusterConfig = {
+  // Example structure - can be populated with actual cluster definitions
+  // 'climate_environment': [
+  //   ['Germany', 'France', 'Netherlands', 'Belgium'],
+  //   ['Poland', 'Hungary', 'Czechia'],
+  // ],
+};
+
 // Types
 type ClustermapData = {
   label: string;
@@ -216,12 +266,44 @@ const cutDendrogram = (
   }).sort((a, b) => a.indices[0] - b.indices[0]);
 };
 
-// Color interpolation for heatmap
+// Mako colormap stops from the report palette
+const MAKO_STOPS = [
+  { pos: 0.0, color: [222, 244, 228] },   // #DEF4E4
+  { pos: 0.125, color: [150, 220, 181] }, // #96DCB5
+  { pos: 0.25, color: [73, 193, 173] },   // #49C1AD
+  { pos: 0.375, color: [52, 157, 170] },  // #349DAA
+  { pos: 0.5, color: [52, 121, 162] },    // #3479A2
+  { pos: 0.625, color: [59, 84, 151] },   // #3B5497
+  { pos: 0.75, color: [61, 51, 105] },    // #3D3369
+  { pos: 0.875, color: [42, 26, 50] },    // #2A1A32
+  { pos: 1.0, color: [11, 3, 5] },        // #0B0305
+];
+
+// Color interpolation for heatmap using mako colormap
 const interpolateColor = (t: number): string => {
-  // Cool teal to warm coral gradient
-  const r = Math.round(0 + t * 249);
-  const g = Math.round(153 - t * 38);
-  const b = Math.round(168 - t * 146);
+  // Clamp t to [0, 1]
+  const clampedT = Math.max(0, Math.min(1, t));
+  
+  // Find the two stops to interpolate between
+  let lowerIdx = 0;
+  for (let i = 0; i < MAKO_STOPS.length - 1; i++) {
+    if (MAKO_STOPS[i + 1].pos >= clampedT) {
+      lowerIdx = i;
+      break;
+    }
+  }
+  
+  const lower = MAKO_STOPS[lowerIdx];
+  const upper = MAKO_STOPS[Math.min(lowerIdx + 1, MAKO_STOPS.length - 1)];
+  
+  // Interpolate between the two stops
+  const range = upper.pos - lower.pos;
+  const localT = range > 0 ? (clampedT - lower.pos) / range : 0;
+  
+  const r = Math.round(lower.color[0] + (upper.color[0] - lower.color[0]) * localT);
+  const g = Math.round(lower.color[1] + (upper.color[1] - lower.color[1]) * localT);
+  const b = Math.round(lower.color[2] + (upper.color[2] - lower.color[2]) * localT);
+  
   return `rgb(${r}, ${g}, ${b})`;
 };
 
@@ -239,15 +321,12 @@ const TOPIC_OPTIONS: TopicOption[] = [
   { id: 'institutional_governance', path: 'topics/institutional_governance.json', label: 'Institutionele Structuur' },
 ];
 
-// Cluster colors
-const CLUSTER_COLORS = [
-  { bg: 'rgba(239, 68, 68, 0.15)', border: 'rgb(239, 68, 68)', text: 'text-red-600' },
-  { bg: 'rgba(59, 130, 246, 0.15)', border: 'rgb(59, 130, 246)', text: 'text-blue-600' },
-  { bg: 'rgba(34, 197, 94, 0.15)', border: 'rgb(34, 197, 94)', text: 'text-green-600' },
-  { bg: 'rgba(168, 85, 247, 0.15)', border: 'rgb(168, 85, 247)', text: 'text-purple-600' },
-  { bg: 'rgba(249, 115, 22, 0.15)', border: 'rgb(249, 115, 22)', text: 'text-orange-600' },
-  { bg: 'rgba(236, 72, 153, 0.15)', border: 'rgb(236, 72, 153)', text: 'text-pink-600' },
-];
+// Single cluster color as per report specifications (#e62159)
+const CLUSTER_COLOR = {
+  bg: 'rgba(230, 33, 89, 0.12)',
+  border: '#e62159',
+  text: 'text-rose-600',
+};
 
 // Custom tooltip component
 const HeatmapTooltip = memo(function HeatmapTooltip({
@@ -326,77 +405,91 @@ export function ClustermapViz() {
   }, [currentTopic.path]);
 
   // Compute hierarchical clustering and derive clusters
-  const { heatmapData, columnKeys, clusters, avgDistance } = useMemo(() => {
-    if (!data) return { heatmapData: [], columnKeys: [], clusters: [], avgDistance: 0 };
+  const { heatmapData, columnKeys, clusters, avgDistance, minDistance, maxDistance } = useMemo(() => {
+    if (!data) return { heatmapData: [], columnKeys: [], clusters: [], avgDistance: 0, minDistance: 0, maxDistance: 1 };
     
     const { countries, distance_matrix } = data.data;
     const { order, root, mergeHistory } = computeHierarchicalClustering(distance_matrix);
     
-    // Reorder countries based on clustering
-    const orderedCountries = order.map((i) => countries[i]);
+    // Reorder countries based on clustering, translate to Dutch
+    const orderedCountries = order.map((i) => getDutchCountryName(countries[i]));
     
-    // Build heatmap data in clustered order
+    // Build heatmap data in clustered order with Dutch country names
     const heatmapData = order.map((rowIndex) => ({
-      id: countries[rowIndex],
+      id: getDutchCountryName(countries[rowIndex]),
       data: order.map((colIndex) => ({
-        x: countries[colIndex],
+        x: getDutchCountryName(countries[colIndex]),
         y: distance_matrix[rowIndex]?.[colIndex] ?? null,
       })),
     }));
 
-    // Compute average distance (excluding diagonal)
+    // Compute average distance and find min/max (excluding diagonal)
     let sum = 0;
     let count = 0;
+    let min = Infinity;
+    let max = -Infinity;
     for (let i = 0; i < distance_matrix.length; i++) {
       for (let j = i + 1; j < distance_matrix.length; j++) {
         const val = distance_matrix[i][j];
         if (val !== null && Number.isFinite(val)) {
           sum += val;
           count++;
+          if (val > 0) {
+            min = Math.min(min, val);
+            max = Math.max(max, val);
+          }
         }
       }
     }
     const avgDistance = count > 0 ? sum / count : 0;
+    const minDistance = min === Infinity ? 0 : min;
+    const maxDistance = max === -Infinity ? 1 : max;
 
-    // Determine threshold for cutting dendrogram
-    const sortedMerges = [...mergeHistory].sort((a, b) => a.distance - b.distance);
-    const medianIdx = Math.floor(sortedMerges.length * 0.6); // Cut at 60th percentile
-    const threshold = sortedMerges[medianIdx]?.distance ?? 0.2;
+    // Check if there are manual clusters defined for this topic
+    const manualClusterDef = MANUAL_CLUSTERS[selectedTopic];
+    let clusters: ClusterGroup[];
+    
+    if (manualClusterDef && manualClusterDef.length > 0) {
+      // Use manual cluster definitions
+      // Map English country names to their indices in the ordered array
+      const countryToOrderedIdx = new Map<string, number>();
+      order.forEach((origIdx, orderedIdx) => {
+        countryToOrderedIdx.set(countries[origIdx], orderedIdx);
+      });
+      
+      clusters = manualClusterDef.map((clusterCountries, id) => {
+        const indices = clusterCountries
+          .map(name => countryToOrderedIdx.get(name))
+          .filter((idx): idx is number => idx !== undefined)
+          .sort((a, b) => a - b);
+        
+        return {
+          id,
+          countries: clusterCountries,
+          indices,
+          avgDistance: 0,
+        };
+      }).filter(c => c.indices.length >= 2);
+    } else {
+      // Use automatic clustering
+      const sortedMerges = [...mergeHistory].sort((a, b) => a.distance - b.distance);
+      const medianIdx = Math.floor(sortedMerges.length * 0.6); // Cut at 60th percentile
+      const threshold = sortedMerges[medianIdx]?.distance ?? 0.2;
 
-    // Cut dendrogram to get clusters, filter out single-country clusters
-    const allClusters = cutDendrogram(root, threshold, countries, order);
-    const clusters = allClusters.filter((c) => c.countries.length >= 2);
-    
-    return { heatmapData, columnKeys: orderedCountries, clusters, avgDistance };
-  }, [data]);
-
-  // Compute color scale range
-  const { minDistance, maxDistance } = useMemo(() => {
-    if (!data) return { minDistance: 0, maxDistance: 1 };
-    
-    let min = Infinity;
-    let max = -Infinity;
-    
-    for (const row of data.data.distance_matrix) {
-      for (const val of row) {
-        if (val !== null && val > 0) {
-          min = Math.min(min, val);
-          max = Math.max(max, val);
-        }
-      }
+      // Cut dendrogram to get clusters, filter out single-country clusters
+      const allClusters = cutDendrogram(root, threshold, countries, order);
+      clusters = allClusters.filter((c) => c.countries.length >= 2);
     }
     
-    return {
-      minDistance: min === Infinity ? 0 : min,
-      maxDistance: max === -Infinity ? 1 : max,
-    };
-  }, [data]);
+    return { heatmapData, columnKeys: orderedCountries, clusters, avgDistance, minDistance, maxDistance };
+  }, [data, selectedTopic]);
 
-  // Color scale function
+  // Color scale function - normalizes to 0-1 range based on actual data range
   const getColor = useCallback(
     (cell: Omit<ComputedCell<HeatmapCellData>, 'color' | 'opacity' | 'borderColor' | 'labelTextColor'>) => {
       const value = cell.data.y;
       if (value === null || value === 0) return 'rgb(240, 240, 240)';
+      // Normalize to 0-1 using the actual data range
       const t = (value - minDistance) / (maxDistance - minDistance || 1);
       return interpolateColor(Math.min(1, Math.max(0, t)));
     },
@@ -415,8 +508,6 @@ export function ClustermapViz() {
     return clusters.map((cluster) => {
       const startIdx = cluster.indices[0];
       const endIdx = cluster.indices[cluster.indices.length - 1];
-      const colorIdx = cluster.id % CLUSTER_COLORS.length;
-      const color = CLUSTER_COLORS[colorIdx];
 
       return {
         id: cluster.id,
@@ -424,7 +515,7 @@ export function ClustermapViz() {
         y: HEATMAP_MARGIN.top + startIdx * cellHeight,
         width: (endIdx - startIdx + 1) * cellWidth,
         height: (endIdx - startIdx + 1) * cellHeight,
-        color,
+        color: CLUSTER_COLOR, // All clusters use the same #e62159 color
         countries: cluster.countries,
       };
     });
@@ -584,19 +675,19 @@ export function ClustermapViz() {
             </div>
           </div>
 
-          {/* Color scale legend */}
+          {/* Color scale legend - standardized 0-1 scale */}
           <div>
-            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Stemafstand</h3>
+            <h3 className="text-xs uppercase tracking-wide text-slate-400 mb-3">Stemafstand (genormaliseerd)</h3>
             <div className="bg-white rounded-lg border border-slate-200 p-4">
               <div className="flex items-center gap-2">
-                <span className="text-xs text-slate-600">{minDistance.toFixed(2)}</span>
+                <span className="text-xs text-slate-600 font-mono">0</span>
                 <div 
                   className="flex-1 h-3 rounded-sm"
                   style={{
-                    background: `linear-gradient(to right, ${interpolateColor(0)}, ${interpolateColor(0.5)}, ${interpolateColor(1)})`,
+                    background: `linear-gradient(to right, ${interpolateColor(0)}, ${interpolateColor(0.25)}, ${interpolateColor(0.5)}, ${interpolateColor(0.75)}, ${interpolateColor(1)})`,
                   }}
                 />
-                <span className="text-xs text-slate-600">{maxDistance.toFixed(2)}</span>
+                <span className="text-xs text-slate-600 font-mono">1</span>
               </div>
               <div className="flex justify-between text-[10px] text-slate-400 mt-1">
                 <span>Kleine afstand</span>
