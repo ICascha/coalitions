@@ -4,6 +4,11 @@ import { easeInOut, lerp } from '../ungaMapMath';
 import { getFillColor } from '../ungaMapColors';
 import { resolveCountryKey } from '../ungaMapSvgCountry';
 
+// Greenland (GRL) should inherit Denmark's (DNK) color
+const COUNTRY_COLOR_INHERIT: Record<string, string> = {
+  'GRL': 'DNK',
+};
+
 export function useUngAMapSvgStyling(options: {
   containerRef: React.RefObject<HTMLDivElement>;
   alignmentMap: AlignmentMap;
@@ -58,7 +63,9 @@ export function useUngAMapSvgStyling(options: {
         return;
       }
 
-      const alignment = alignmentMap[key];
+      // Check if this country should inherit another country's color (e.g., Greenland -> Denmark)
+      const colorKey = COUNTRY_COLOR_INHERIT[key] ?? key;
+      const alignment = alignmentMap[colorKey];
       // Disable interactions for countries without UN voting data (e.g., Taiwan, Kosovo, Somaliland)
       const hasData = !!alignment;
       path.style.pointerEvents = interactionsEnabled && hasData ? 'auto' : 'none';
