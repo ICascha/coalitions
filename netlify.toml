@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  VITE_BASE_PATH = "/markt-en-macht/"
+
+# SPA redirect - all routes go to index.html
+[[redirects]]
+  from = "/markt-en-macht/*"
+  to = "/markt-en-macht/index.html"
+  status = 200
+
