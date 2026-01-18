@@ -85,3 +85,4 @@ console.log(`Output size: ${(outputSize / 1024).toFixed(1)} KB`);
 console.log(`Reduction:   ${reduction}%`);
 console.log(`\nWritten to: ${OUTPUT_PATH}`);
 
+

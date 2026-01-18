@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="50" viewBox="0 0 400 50">
+  <defs>
+    <linearGradient id="makoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0.0%" stop-color="#DEF4E4"/>
+    <stop offset="3.1%" stop-color="#CEEED7"/>
+    <stop offset="6.3%" stop-color="#BDE7CA"/>
+    <stop offset="9.4%" stop-color="#ABE2BE"/>
+    <stop offset="12.5%" stop-color="#96DCB5"/>
+    <stop offset="15.7%" stop-color="#7FD7AF"/>
+    <stop offset="18.8%" stop-color="#67D1AC"/>
+    <stop offset="22.0%" stop-color="#55C9AC"/>
+    <stop offset="25.1%" stop-color="#49C1AD"/>
+    <stop offset="28.2%" stop-color="#41B8AD"/>
+    <stop offset="31.4%" stop-color="#3BAFAC"/>
+    <stop offset="34.5%" stop-color="#37A6AB"/>
+    <stop offset="37.6%" stop-color="#349DAA"/>
+    <stop offset="40.8%" stop-color="#3394A8"/>
+    <stop offset="43.9%" stop-color="#338BA6"/>
+    <stop offset="47.1%" stop-color="#3482A4"/>
+    <stop offset="50.2%" stop-color="#3479A2"/>
+    <stop offset="53.3%" stop-color="#3570A0"/>
+    <stop offset="56.5%" stop-color="#36679E"/>
+    <stop offset="59.6%" stop-color="#385E9B"/>
+    <stop offset="62.7%" stop-color="#3B5497"/>
+    <stop offset="65.9%" stop-color="#3F4B90"/>
+    <stop offset="69.0%" stop-color="#404285"/>
+    <stop offset="72.2%" stop-color="#403A77"/>
+    <stop offset="75.3%" stop-color="#3D3369"/>
+    <stop offset="78.4%" stop-color="#3A2D5B"/>
+    <stop offset="81.6%" stop-color="#36264D"/>
+    <stop offset="84.7%" stop-color="#30203F"/>
+    <stop offset="87.8%" stop-color="#2A1A32"/>
+    <stop offset="91.0%" stop-color="#221526"/>
+    <stop offset="94.1%" stop-color="#1A0F1A"/>
+    <stop offset="97.3%" stop-color="#12080E"/>
+    <stop offset="100%" stop-color="#0B0305"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Gradient bar -->
+  <rect x="0" y="0" width="400" height="30" fill="url(#makoGradient)"/>
+  
+  <!-- Labels -->
+  <text x="0" y="45" font-family="sans-serif" font-size="12">0.00</text>
+  <text x="100" y="45" font-family="sans-serif" font-size="12" text-anchor="middle">0.10</text>
+  <text x="200" y="45" font-family="sans-serif" font-size="12" text-anchor="middle">0.20</text>
+  <text x="300" y="45" font-family="sans-serif" font-size="12" text-anchor="middle">0.30</text>
+  <text x="400" y="45" font-family="sans-serif" font-size="12" text-anchor="end">0.40</text>
+</svg>
