@@ -407,7 +407,7 @@ export function ClustermapViz({
   onBack?: () => void;
   onStatsChange?: (stats: AnalysisStats) => void;
 }) {
-  const [selectedTopic, setSelectedTopic] = useState('overall');
+  const [selectedTopic, setSelectedTopic] = useState('economic_financial');
   const [data, setData] = useState<ClustermapData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
