@@ -29,7 +29,7 @@ import { ClustermapViz, AnalysisStats, interpolateColor } from './components/Clu
 
 const HOVER_COOLDOWN_MS = 400; // Cooldown before re-enabling hover after scroll animation
 
-const UNGAMap = () => {
+const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing: boolean) => void }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
@@ -343,12 +343,14 @@ const UNGAMap = () => {
 
   const startAnalysis = () => {
     setIsAnalyzing(true);
+    onAnalysisModeChange?.(true);
   };
 
   const stopAnalysis = () => {
     setIsAnalyzing(false);
     setActiveClusterCountries(new Set());
     setAnalysisStats(null);
+    onAnalysisModeChange?.(false);
   };
 
   return (

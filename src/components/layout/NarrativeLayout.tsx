@@ -7,12 +7,13 @@ import UNGAMap from '@/components/unga/UNGAMap';
 const NarrativeLayout = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const [isLogoDialogOpen, setIsLogoDialogOpen] = useState(false);
+  const [isLogoVisible, setIsLogoVisible] = useState(true);
   const activeView = 'unga' as const;
 
   const viewDetails = {
     unga: {
       title: 'Mondiale Verhoudingen (UNGA)',
-      component: <UNGAMap />,
+      component: <UNGAMap onAnalysisModeChange={(isAnalyzing) => setIsLogoVisible(!isAnalyzing)} />,
     },
     // Fallbacks for other views to prevent crashes if state changes
     connections: {
@@ -125,7 +126,7 @@ const NarrativeLayout = () => {
       {/* <ScreenAlert /> */}
 
       {/* Logo Button & Dialog */}
-      <div className="fixed top-6 left-6 z-50 mix-blend-multiply">
+      <div className={`fixed top-6 left-6 z-50 mix-blend-multiply transition-opacity duration-300 ${isLogoVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <Dialog open={isLogoDialogOpen} onOpenChange={setIsLogoDialogOpen}>
           <DialogTrigger asChild>
             <button
