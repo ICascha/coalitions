@@ -7,12 +7,18 @@ export const MOBILE_BREAKPOINT = 800 // Typical tablet/mobile breakpoint
 
 export const useWindowSize = () => {
   // Initialize with null to handle SSR
-  const [width, setWidth] = useState<number | null>(null)
+  const [windowSize, setWindowSize] = useState<{ width: number | null, height: number | null }>({
+    width: null,
+    height: null,
+  })
 
   useEffect(() => {
     // Handler to call on window resize
     const handleResize = () => {
-      setWidth(window.innerWidth)
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      })
     }
     
     // Set initial size
@@ -25,5 +31,5 @@ export const useWindowSize = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, []) // Empty array ensures effect is only run on mount
 
-  return width
+  return windowSize
 }

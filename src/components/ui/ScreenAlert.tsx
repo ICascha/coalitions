@@ -5,7 +5,7 @@ import { useWindowSize, MOBILE_BREAKPOINT } from '@/hooks/useWindowSize';
 
 const ScreenAlert = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const windowWidth = useWindowSize();
+  const { width: windowWidth } = useWindowSize();
 
   // Don't render anything during SSR or on desktop
   if (!windowWidth || windowWidth >= MOBILE_BREAKPOINT || !isVisible) return null;

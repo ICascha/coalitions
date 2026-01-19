@@ -43,7 +43,7 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
   const scrollCooldownRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isScrollCooldown, setIsScrollCooldown] = useState(false);
   
-  const width = useWindowSize();
+  const { width } = useWindowSize();
   const isMobile = width !== null && width < 768;
 
   // Continuous scroll progress

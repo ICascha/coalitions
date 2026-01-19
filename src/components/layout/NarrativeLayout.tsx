@@ -1,5 +1,8 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { useWindowSize } from '@/hooks/useWindowSize';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { Monitor, X, Smartphone } from 'lucide-react';
 
 // View Components
 import UNGAMap from '@/components/unga/UNGAMap';
@@ -8,7 +11,89 @@ const NarrativeLayout = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const [isLogoDialogOpen, setIsLogoDialogOpen] = useState(false);
   const [isLogoVisible, setIsLogoVisible] = useState(true);
+  const [isRotationAlertVisible, setIsRotationAlertVisible] = useState(true);
   const activeView = 'unga' as const;
+  const { width, height } = useWindowSize();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Show mobile blocking screen for small screens (less than 768px)
+  if (isClient && width !== null && width < 768) {
+    return (
+      <div className="fixed inset-0 bg-slate-50 z-50 flex flex-col items-center justify-center p-8 text-center">
+        <div className="w-16 h-16 relative mb-8 opacity-90">
+          <img
+            src={`${import.meta.env.BASE_URL}denkwerk_logo.svg`}
+            alt="DenkWerk Logo"
+            className="w-full h-full object-contain"
+          />
+        </div>
+        
+        <h1 className="text-2xl font-serif text-slate-900 mb-4">
+          Niet geschikt voor mobiele telefoons
+        </h1>
+        
+        <p className="text-slate-600 mb-8 max-w-sm font-serif leading-relaxed">
+          Deze interactieve data-analyse is geoptimaliseerd voor desktop, laptop en tablets. Voor de beste ervaring raden we aan een groter scherm te gebruiken.
+        </p>
+
+        <div className="w-48 mb-8 transform rotate-3 transition-transform hover:rotate-0 duration-500">
+           <a 
+            href="https://denkwerk.online/media/1160/markt-en-macht.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <img
+              src={`${import.meta.env.BASE_URL}cover_image.webp`}
+              alt="Rapport Cover"
+              className="w-full h-auto mix-blend-multiply"
+            />
+          </a>
+        </div>
+
+        <a 
+          href="https://denkwerk.online/media/1160/markt-en-macht.pdf" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center px-6 py-3 bg-slate-900 text-white rounded-full text-sm font-medium hover:bg-slate-800 transition-colors font-serif shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200"
+        >
+          Open PDF Rapport
+        </a>
+      </div>
+    );
+  }
+
+  // Rotation Alert for non-mobile portrait devices (e.g. tablets in portrait)
+  const showRotationAlert = isClient && width !== null && height !== null && 
+                            width >= 768 && height > width && isRotationAlertVisible;
+
+  const RotationAlert = () => {
+    if (!showRotationAlert) return null;
+    
+    return (
+      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-full max-w-md px-4 animate-in slide-in-from-top fade-in duration-500">
+        <Alert className="bg-white/95 backdrop-blur-md border-slate-200 shadow-lg flex items-start gap-3">
+          <Smartphone className="h-5 w-5 rotate-90 text-slate-900 mt-0.5" />
+          <div className="flex-1">
+            <AlertTitle className="text-slate-900 font-serif font-medium mb-1">Kantel uw scherm</AlertTitle>
+            <AlertDescription className="text-slate-600 text-sm">
+              Voor de beste ervaring raden we aan uw tablet te kantelen (landscape).
+            </AlertDescription>
+          </div>
+          <button 
+            onClick={() => setIsRotationAlertVisible(false)}
+            className="text-slate-400 hover:text-slate-600 transition-colors"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </Alert>
+      </div>
+    );
+  };
+
 
   const viewDetails = {
     unga: {
@@ -123,6 +208,7 @@ const NarrativeLayout = () => {
   return (
     <div className="w-full h-screen overflow-hidden bg-white">
       <style>{`${fadeInAnimation}${buttonAnimations}`}</style>
+      <RotationAlert />
       {/* <ScreenAlert /> */}
 
       {/* Logo Button & Dialog */}
