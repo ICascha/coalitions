@@ -111,6 +111,17 @@ const MANUAL_CLUSTERS: ManualClusterConfig = {
       'Slovenia', 'Spain', 'Sweden'
     ],
   ],
+  'strategic_raw_materials_circular_supply_chains': [
+    [
+      'Luxembourg', 'Germany', 'Romania', 'Spain', 'Austria', 'Slovenia',
+      'Finland', 'Lithuania', 'Portugal', 'Poland', 'Estonia', 'Latvia',
+      'Ireland', 'Belgium', 'Netherlands', 'France', 'Denmark', 'Sweden'
+    ],
+    [
+      'Czechia', 'Slovakia', 'Greece', 'Italy', 'Bulgaria', 'Cyprus',
+      'Malta', 'Croatia', 'Hungary'
+    ],
+  ],
 };
 
 // Types
