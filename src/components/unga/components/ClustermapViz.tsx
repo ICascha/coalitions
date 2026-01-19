@@ -415,7 +415,8 @@ export function ClustermapViz({
   const [data, setData] = useState<ClustermapData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
+  const [lockedClusterId, setLockedClusterId] = useState<number | null>(null);
+
   // Ref and size for square aspect ratio
   const containerRef = useRef<HTMLDivElement>(null);
   const squareSize = useSquareSize(containerRef);
@@ -424,6 +425,11 @@ export function ClustermapViz({
 
   // Find current topic option
   const currentTopic = TOPIC_OPTIONS.find((t) => t.id === selectedTopic) ?? TOPIC_OPTIONS[0];
+
+  // Reset locked cluster when topic changes
+  useEffect(() => {
+    setLockedClusterId(null);
+  }, [selectedTopic, data]);
 
   // Load clustermap data
   useEffect(() => {
@@ -694,13 +700,43 @@ export function ClustermapViz({
                 height={squareSize}
                 style={{ pointerEvents: 'none' }}
               >
+                {/* Background click handler to unlock selection */}
+                <rect
+                  width="100%"
+                  height="100%"
+                  fill="transparent"
+                  style={{ pointerEvents: 'auto' }}
+                  onClick={() => {
+                    setLockedClusterId(null);
+                    onClusterHover?.(null);
+                  }}
+                />
+
                 {clusterOverlays.map((overlay) => (
                   <g 
                     key={overlay.id} 
                     style={{ pointerEvents: 'auto', cursor: 'pointer' }}
-                    onMouseEnter={() => onClusterHover?.(overlay.countries)}
-                    onMouseLeave={() => onClusterHover?.(null)}
-                    onClick={() => onClusterHover?.(overlay.countries)}
+                    onMouseEnter={() => {
+                      onClusterHover?.(overlay.countries);
+                    }}
+                    onMouseLeave={() => {
+                      if (lockedClusterId !== null) {
+                        // Restore locked cluster if exists
+                        const locked = clusterOverlays.find(c => c.id === lockedClusterId);
+                        if (locked) {
+                          onClusterHover?.(locked.countries);
+                        } else {
+                          onClusterHover?.(null);
+                        }
+                      } else {
+                        onClusterHover?.(null);
+                      }
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setLockedClusterId(overlay.id);
+                      onClusterHover?.(overlay.countries);
+                    }}
                   >
                     {/* Background fill */}
                     <rect
