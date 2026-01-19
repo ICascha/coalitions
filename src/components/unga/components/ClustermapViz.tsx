@@ -94,11 +94,12 @@ const MANUAL_CLUSTERS: ManualClusterConfig = {
     ],
   ],
   'economic_financial': [
-    ['Hungary', 'Croatia', 'Estonia', 'Slovenia'],
+    ['Croatia', 'Estonia', 'Slovenia'],
+    ['Austria', 'Sweden', 'Netherlands', 'Finland', 'Germany'],
     [
       'Slovakia', 'Italy', 'Portugal', 'Bulgaria', 'Latvia', 'Luxembourg',
       'Lithuania', 'Denmark', 'Greece', 'Cyprus', 'Ireland', 'Malta',
-      'Romania', 'France', 'Spain'
+      'Romania', 'Poland'
     ],
   ],
 };
@@ -527,16 +528,20 @@ export function ClustermapViz({
     return result;
   }, [data, selectedTopic]); // Removed onStatsChange from dependency to avoid loop if it's not memoized
 
-  // Color scale function - normalizes to 0-1 range based on actual data range
+  // Color scale function - uses fixed global scale (0 to 0.5) for cross-figure comparability
+  // 0 = identical voting, 0.5 = maximum realistic divergence
+  const GLOBAL_MIN_DISTANCE = 0;
+  const GLOBAL_MAX_DISTANCE = 0.5;
+  
   const getColor = useCallback(
     (cell: Omit<ComputedCell<HeatmapCellData>, 'color' | 'opacity' | 'borderColor' | 'labelTextColor'>) => {
       const value = cell.data.y;
       if (value === null || value === 0) return 'rgb(240, 240, 240)';
-      // Normalize to 0-1 using the actual data range
-      const t = (value - minDistance) / (maxDistance - minDistance || 1);
+      // Normalize to 0-1 using fixed global scale for cross-figure comparability
+      const t = (value - GLOBAL_MIN_DISTANCE) / (GLOBAL_MAX_DISTANCE - GLOBAL_MIN_DISTANCE);
       return interpolateColor(Math.min(1, Math.max(0, t)));
     },
-    [minDistance, maxDistance]
+    []
   );
 
   // Compute cluster overlay positions
