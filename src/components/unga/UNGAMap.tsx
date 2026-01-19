@@ -10,7 +10,6 @@ import type { TooltipState } from './ungaMapTypes';
 import {
   EUROPE_COUNTRY_NAMES,
   EUROPE_VIEWBOX_OVERRIDE,
-  EU_COALITIONS,
   POWER_BLOC_COLORS,
   POWER_BLOC_LABELS,
 } from './ungaMapConfig';
@@ -25,7 +24,7 @@ import { useEuropeViewBoxZoom } from './hooks/useEuropeViewBoxZoom';
 import { useCoalitionLoop } from './hooks/useCoalitionLoop';
 import { useUngAMapSvgStyling } from './hooks/useUngAMapSvgStyling';
 import { useTopicsData, getTopicLabel } from './hooks/useTopicsData';
-import { ClustermapViz, AnalysisStats, interpolateColor } from './components/ClustermapViz';
+import { ClustermapViz, AnalysisStats, interpolateColor, MANUAL_CLUSTERS } from './components/ClustermapViz';
 
 const HOVER_COOLDOWN_MS = 400; // Cooldown before re-enabling hover after scroll animation
 
@@ -118,6 +117,21 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
   const { alignmentMap } = useUngAAlignment();
   const { topicsMap } = useTopicsData();
 
+  const manualCoalitions = useMemo(() => {
+    const coalitions = [];
+    let idCounter = 0;
+    for (const [topic, clusters] of Object.entries(MANUAL_CLUSTERS)) {
+      for (const clusterCountries of clusters) {
+        coalitions.push({
+          id: `manual-${idCounter++}`,
+          label: '', // No text required
+          members: buildAlpha3SetFromNames(clusterCountries)
+        });
+      }
+    }
+    return coalitions;
+  }, []);
+
   // Hover enabled when not scrolling and not at the final section
   const interactionsEnabled = !isZoomComplete;
   const hoverEnabled = interactionsEnabled && !isScrollCooldown;
@@ -165,11 +179,11 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
 
   const { activeIndex: activeCoalitionIndex, loopEnabled: coalitionLoopEnabled } = useCoalitionLoop({
     enabled: isZoomComplete,
-    coalitionCount: EU_COALITIONS.length,
+    coalitionCount: manualCoalitions.length,
     startDelayMs: 1000,
     cycleMs: 3000,
   });
-  const activeCoalition = EU_COALITIONS[activeCoalitionIndex] ?? null;
+  const activeCoalition = manualCoalitions[activeCoalitionIndex] ?? null;
 
   // Event handlers for map interaction
   useEffect(() => {
@@ -292,7 +306,7 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
       activeMembers: isAnalyzing ? activeClusterCountries : (activeCoalition?.members ?? new Set<string>()),
       deemphasizeOpacity: isAnalyzing ? 0.1 : lerp(1, 0.22, easeInOut(clamp01((zoomProgress - 0.9) / 0.1))),
     },
-    highlightColor: isAnalyzing ? '#e62159' : undefined,
+    highlightColor: '#e62159',
   });
 
   // Handle Hover Overlay

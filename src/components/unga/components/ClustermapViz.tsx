@@ -75,9 +75,9 @@ const getDutchCountryName = (name: string): string => {
 // Manual cluster definitions per category
 // Structure: { [topicId]: string[][] } where each inner array is a list of country names (English) forming a cluster
 // All clusters use the same border color #e62159
-type ManualClusterConfig = Record<string, string[][]>;
+export type ManualClusterConfig = Record<string, string[][]>;
 
-const MANUAL_CLUSTERS: ManualClusterConfig = {
+export const MANUAL_CLUSTERS: ManualClusterConfig = {
   'energy_infrastructure': [
     [
       'Austria', 'Belgium', 'Bulgaria', 'Croatia', 'Cyprus', 'Czechia',
