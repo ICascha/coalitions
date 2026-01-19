@@ -484,7 +484,7 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
                          />
                        </div>
                      ) : (
-                       <div className="p-8 md:p-16 max-w-md">
+                       <div className="p-8 md:p-12 lg:p-16 max-w-md w-full">
                         <h2 className="text-3xl font-serif text-slate-900 mb-6">
                             Verdeeldheid en Coalities
                         </h2>
@@ -499,10 +499,10 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
                         </p>
                         <Button 
                             onClick={startAnalysis}
-                            className="bg-slate-900 text-white hover:bg-slate-800 rounded-full px-5 py-4 text-base md:px-8 md:py-6 md:text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-2 md:gap-3 group font-serif"
+                            className="bg-slate-900 text-white hover:bg-slate-800 rounded-2xl md:rounded-full px-5 py-4 h-auto min-h-[3rem] text-base md:px-8 md:py-6 md:text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-2 md:gap-3 group font-serif max-w-full"
                         >
-                            <span>Ga naar Analyse Raad van Ministers</span>
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            <span className="text-left md:text-center whitespace-normal leading-tight">Ga naar Analyse Raad van Ministers</span>
+                            <ArrowRight className="w-5 h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
                         </Button>
                      </div>
                      )}
