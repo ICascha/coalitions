@@ -87,6 +87,12 @@ const MANUAL_CLUSTERS: ManualClusterConfig = {
       'Slovenia', 'Spain', 'Sweden'
     ],
   ],
+  'climate_environment': [
+    [
+      'Czechia', 'Slovakia', 'Italy', 'Hungary', 'Poland', 'Bulgaria',
+      'Greece', 'Romania', 'Latvia', 'Malta', 'Croatia', 'Cyprus'
+    ],
+  ],
 };
 
 // Types
