@@ -526,17 +526,6 @@ const UNGAMap = () => {
                         {/* Analysis Info Panel - Overlay in analysis mode */}
                         {isAnalyzing && analysisStats && (
                             <div className="absolute top-4 left-4 bg-white/95 backdrop-blur p-4 rounded-xl border border-slate-100 shadow-sm max-w-[280px] space-y-4">
-                                {/* Stats */}
-                                <div>
-                                    <h3 className="text-[10px] uppercase tracking-wide text-slate-400 mb-1">Kerncijfers</h3>
-                                    <div className="bg-slate-50 rounded-lg border border-slate-100 p-2">
-                                        <div className="text-[10px] text-slate-500">Gemiddelde afstand</div>
-                                        <div className="text-lg font-semibold text-slate-800">
-                                            {analysisStats.avgDistance.toFixed(3)}
-                                        </div>
-                                    </div>
-                                </div>
-
                                 {/* Color Scale */}
                                 <div>
                                     <h3 className="text-[10px] uppercase tracking-wide text-slate-400 mb-1">Stemafstand</h3>
