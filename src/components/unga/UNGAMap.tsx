@@ -499,7 +499,7 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
                         </p>
                         <Button 
                             onClick={startAnalysis}
-                            className="bg-slate-900 text-white hover:bg-slate-800 rounded-full px-8 py-6 text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 group font-serif"
+                            className="bg-slate-900 text-white hover:bg-slate-800 rounded-full px-5 py-4 text-base md:px-8 md:py-6 md:text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-2 md:gap-3 group font-serif"
                         >
                             <span>Ga naar Analyse Raad van Ministers</span>
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
