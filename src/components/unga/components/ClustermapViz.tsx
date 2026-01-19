@@ -78,11 +78,15 @@ const getDutchCountryName = (name: string): string => {
 type ManualClusterConfig = Record<string, string[][]>;
 
 const MANUAL_CLUSTERS: ManualClusterConfig = {
-  // Example structure - can be populated with actual cluster definitions
-  // 'climate_environment': [
-  //   ['Germany', 'France', 'Netherlands', 'Belgium'],
-  //   ['Poland', 'Hungary', 'Czechia'],
-  // ],
+  'energy_infrastructure': [
+    [
+      'Austria', 'Belgium', 'Bulgaria', 'Croatia', 'Cyprus', 'Czechia',
+      'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece',
+      'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta',
+      'Netherlands', 'Poland', 'Portugal', 'Romania', 'Slovakia',
+      'Slovenia', 'Spain', 'Sweden'
+    ],
+  ],
 };
 
 // Types
