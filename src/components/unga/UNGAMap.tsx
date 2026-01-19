@@ -122,6 +122,9 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
     let idCounter = 0;
     for (const [topic, clusters] of Object.entries(MANUAL_CLUSTERS)) {
       for (const clusterCountries of clusters) {
+        // Filter out large coalitions (> 22 members) as requested
+        if (clusterCountries.length > 22) continue;
+
         coalitions.push({
           id: `manual-${idCounter++}`,
           label: '', // No text required
@@ -129,6 +132,13 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
         });
       }
     }
+    
+    // Shuffle the coalitions to have a random fixed order on mount
+    for (let i = coalitions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [coalitions[i], coalitions[j]] = [coalitions[j], coalitions[i]];
+    }
+    
     return coalitions;
   }, []);
 
