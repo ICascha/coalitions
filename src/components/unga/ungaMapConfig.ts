@@ -95,7 +95,13 @@ export const EU_COALITIONS: Coalition[] = [
 // *more negative* y values in this coordinate system.
 //
 // Rough Europe-ish starting point (tweak from here):
-// { x: -3500000, y: -8500000, w: 11000000, h: 7000000 }
-export const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = { x: -2500000, y: -8500000, w: 10000000 / 1.4, h: 7000000 / 1.4 };
+// Old generous box: { x: -2500000, y: -8500000, w: 7142857, h: 5000000 }
+// Tighter zoom to minimize whitespace on sides:
+export const EUROPE_VIEWBOX_OVERRIDE: ViewBox | null = { 
+  x: -1600000, 
+  y: -8300000, 
+  w: 5400000, 
+  h: 4600000 
+};
 
 
