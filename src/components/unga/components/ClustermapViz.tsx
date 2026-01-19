@@ -356,6 +356,7 @@ const TOPIC_OPTIONS: TopicOption[] = [
   { id: 'justice_home_affairs', path: 'topics/justice_home_affairs.json', label: 'Justitie & Veiligheid' },
   { id: 'agriculture_food_systems', path: 'topics/agriculture_food_systems.json', label: 'Landbouw & Voedselzekerheid' },
   { id: 'institutional_governance', path: 'topics/institutional_governance.json', label: 'Institutionele Structuur' },
+  { id: 'strategic_raw_materials_circular_supply_chains', path: 'topics/strategic_raw_materials_circular_supply_chains.json', label: 'Circulaire ketens van kritieke materialen' },
 ];
 
 // Single cluster color as per report specifications (#e62159)
