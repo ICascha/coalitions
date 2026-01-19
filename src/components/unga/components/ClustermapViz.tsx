@@ -102,6 +102,15 @@ const MANUAL_CLUSTERS: ManualClusterConfig = {
       'Romania', 'Poland'
     ],
   ],
+  'digital_innovation': [
+    [
+      'Austria', 'Belgium', 'Bulgaria', 'Croatia', 'Cyprus', 'Czechia',
+      'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece',
+      'Hungary', 'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg',
+      'Malta', 'Netherlands', 'Poland', 'Portugal', 'Romania', 'Slovakia',
+      'Slovenia', 'Spain', 'Sweden'
+    ],
+  ],
 };
 
 // Types
