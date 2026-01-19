@@ -593,8 +593,11 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
                         {tooltip && (() => {
                           // Position tooltip to the left if cursor is on right side of container
                           const containerWidth = containerRef.current?.offsetWidth ?? 800;
+                          const containerHeight = containerRef.current?.offsetHeight ?? 600;
                           const tooltipWidth = 280;
                           const isRightSide = tooltip.x > containerWidth * 0.6;
+                          const isBottomSide = tooltip.y > containerHeight * 0.6;
+                          
                           const left = isRightSide ? tooltip.x - tooltipWidth - 16 : tooltip.x + 20;
                           
                           // Helper to get qualitative interpretation of distance
@@ -608,7 +611,13 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
                           return (
                              <div
                                 className="absolute rounded-lg bg-white/95 backdrop-blur-sm px-4 py-3 text-sm text-slate-800 shadow-lg border border-slate-200/60 pointer-events-none z-50 w-[280px]"
-                                style={{ left, top: tooltip.y - 20 }}
+                                style={{ 
+                                    left, 
+                                    ...(isBottomSide 
+                                        ? { bottom: (containerHeight - tooltip.y) + 20, top: 'auto' } 
+                                        : { top: tooltip.y - 20 }
+                                    )
+                                }}
                               >
                                 <div className="font-serif text-base text-slate-900 mb-2">{tooltip.name}</div>
                                 {tooltip.type === 'alignment' && tooltip.alignment && (
