@@ -61,9 +61,9 @@ const NarrativeLayout = () => {
   `;
 
   const LogoContent = () => (
-    <div className="p-8 md:p-12 max-h-[85vh] overflow-y-auto bg-white">
-      <div className="flex items-center gap-6 border-b border-slate-100 pb-8 mb-8">
-        <div className="w-16 h-16 relative flex-shrink-0 opacity-90">
+    <div className="p-6 md:p-8 max-h-[85vh] overflow-y-auto bg-white">
+      <div className="flex items-center gap-4 border-b border-slate-100 pb-6 mb-6">
+        <div className="w-12 h-12 relative flex-shrink-0 opacity-90">
           <img
             src={`${import.meta.env.BASE_URL}denkwerk_logo.svg`}
             alt="DenkWerk Logo"
@@ -71,13 +71,13 @@ const NarrativeLayout = () => {
           />
         </div>
         <div>
-          <h2 className="text-3xl font-serif text-slate-900 tracking-tight">DenkWerk</h2>
-          <p className="text-sm text-slate-500 font-medium tracking-wide uppercase mt-1">Onafhankelijke denktank</p>
+          <h2 className="text-2xl font-serif text-slate-900 tracking-tight">DenkWerk</h2>
+          <p className="text-xs text-slate-500 font-medium tracking-wide uppercase mt-0.5">Onafhankelijke denktank</p>
         </div>
       </div>
 
-      <div className="text-slate-600 leading-relaxed font-serif text-lg">
-        <div className="float-right ml-8 mb-6 w-64 md:w-80 hidden md:block">
+      <div className="text-slate-600 leading-relaxed font-serif text-base">
+        <div className="float-right ml-6 mb-4 w-48 md:w-56 hidden md:block">
           <div className="relative transition-transform duration-700 hover:scale-[1.02]">
             <img
               src={`${import.meta.env.BASE_URL}cover_image.webp`}
@@ -87,31 +87,31 @@ const NarrativeLayout = () => {
           </div>
         </div>
 
-        <h3 className="text-xl font-serif text-slate-900 mb-3 mt-0">Over dit rapport</h3>
-        <p className="mb-4">
+        <h3 className="text-lg font-serif text-slate-900 mb-2 mt-0">Over dit rapport</h3>
+        <p className="mb-3">
           Precies een jaar na de inauguratie van Donald Trump moeten we constateren dat de Verenigde Staten niet langer een vertrouwde 'vriend' of 'ally' zijn, maar zijn veranderd in een harde geopolitieke concurrent.
         </p>
-        <p className="mb-8">
-          Dit rapport, <em className="text-slate-800">'Markt en Macht'</em>, analyseert onze huidige positie vanuit een nuchter realisme. Hoeveel geopolitieke en geo-economische macht hebben wij werkelijk? Hoe hebben we deze kwetsbare positie laten ontstaan? En vooral: wat is er nu nodig om onze speelruimte terug te winnen?
+        <p className="mb-6">
+          Dit rapport, <a href="https://denkwerk.online/media/1160/markt-en-macht.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline decoration-blue-300 underline-offset-2 transition-colors">'Markt en Macht'</a>, analyseert onze huidige positie vanuit een nuchter realisme. Hoeveel geopolitieke en geo-economische macht hebben wij werkelijk? Hoe hebben we deze kwetsbare positie laten ontstaan? En vooral: wat is er nu nodig om onze speelruimte terug te winnen?
         </p>
         
-        <h3 className="text-xl font-serif text-slate-900 mb-3">Over DenkWerk</h3>
+        <h3 className="text-lg font-serif text-slate-900 mb-2">Over DenkWerk</h3>
         <p>
-          DenkWerk is een onafhankelijke denktank die maatschappelijke thema's agendeert en analyseert. Wij duiden geopolitieke machtsverschuivingen en onderzoeken de architectuur van Europese coalities om Nederland en Europa weerbaar te maken in een veranderende wereld.
+          DenkWerk is een onafhankelijke denktank die met krachtige ideeën bij wil dragen aan een welvarend, inclusief en vooruitstrevend Nederland. Hiervoor brengt DenkWerk Nederlanders bij elkaar die hun rijke kennis, ervaring en creativiteit willen inzetten om richting te geven aan brede maatschappelijke vraagstukken die hen na aan het hart liggen.
         </p>
 
-        <div className="pt-10 flex gap-4 clear-both">
+        <div className="pt-8 flex gap-3 clear-both">
           <a
             href="https://denkwerk.online"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-8 py-3 bg-slate-900 text-white rounded-full text-sm font-medium hover:bg-slate-800 transition-colors font-serif"
+            className="inline-flex items-center justify-center px-6 py-2.5 bg-slate-900 text-white rounded-full text-xs font-medium hover:bg-slate-800 transition-colors font-serif"
           >
             Bezoek Website
           </a>
           <button
             onClick={() => setIsLogoDialogOpen(false)}
-            className="px-8 py-3 border border-slate-200 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors text-slate-600 font-serif"
+            className="px-6 py-2.5 border border-slate-200 rounded-full text-xs font-medium hover:bg-slate-50 transition-colors text-slate-600 font-serif"
           >
             Sluiten
           </button>
@@ -142,7 +142,7 @@ const NarrativeLayout = () => {
               </div>
             </button>
           </DialogTrigger>
-          <DialogContent className="max-w-5xl bg-white p-0 overflow-hidden border-none shadow-none rounded-none block">
+          <DialogContent className="max-w-4xl bg-white p-0 overflow-hidden border-none shadow-none rounded-none block">
             <LogoContent />
           </DialogContent>
         </Dialog>

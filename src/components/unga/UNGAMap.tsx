@@ -450,8 +450,8 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
                         </h2>
                         <p className="text-slate-600 leading-relaxed mb-6 font-serif">
                             Om ons strategisch vermogen te herstellen, moeten we kijken naar onze huidige uitgangspositie. 
-                            VN-stemgedrag laat zien dat China structureel nauwer aansluit bij het mondiale zuiden, 
-                            terwijl de EU vaak dichter bij het wereldgemiddelde staat dan de VS — zeker bij partners als Japan en Canada.
+                            VN-stemgedrag laat zien dat China structureel nauwer aansluit bij het mondiale zuiden. 
+                            De EU staat echter vaak dichter bij het wereldgemiddelde dan de VS, zeker bij partners als Japan en Canada.
                         </p>
                         <div className="space-y-2 text-sm text-slate-500 font-serif">
                              <p>
@@ -484,25 +484,25 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
                          />
                        </div>
                      ) : (
-                       <div className="p-8 md:p-12 lg:p-16 max-w-md w-full">
+                       <div className="p-8 md:p-16 max-w-md">
                         <h2 className="text-3xl font-serif text-slate-900 mb-6">
                             Verdeeldheid en Coalities
                         </h2>
                         <p className="text-slate-600 leading-relaxed mb-8 font-serif">
                             De interne schaal van de EU is groot genoeg om industriële ketens te dragen, maar besluitvorming met 27 lidstaten is voor strategische dossiers vaak te traag. 
-                            Hier wreekt zich de grote verscheidenheid aan belangen en het gebrek aan uitvoeringsmacht op Europees niveau.
+                            Hier manifesteert zich de grote verscheidenheid aan belangen en het gebrek aan uitvoeringsmacht op Europees niveau.
                         </p>
                         <p className="text-slate-600 leading-relaxed mb-8 font-serif">
                             Data over het stemgedrag binnen de Raad laat zien dat voor beladen onderwerpen (landbouw, klimaat, financiën) er een grote afstand is tussen de posities, met duidelijke 'blokken' van landen. 
-                            Dit biedt kansen voor 'coalitions of the willing' op deze gepolariseerde dossiers. 
-                            Tegelijkertijd is er bij Energie, Infrastructuur en Digitaal nauwelijks sprake van polarisatie — dit biedt juist kansen voor een EU-brede aanpak, zoals bij een onafhankelijke EU cloud.
+                            Dit vereist 'coalitions of the willing' op deze gepolariseerde dossiers. 
+                            Tegelijkertijd is er bij Energie, Infrastructuur en Digitaal nauwelijks sprake van polarisatie, dit biedt juist kansen voor een EU-brede aanpak, zoals bij een onafhankelijke EU cloud.
                         </p>
                         <Button 
                             onClick={startAnalysis}
-                            className="bg-slate-900 text-white hover:bg-slate-800 rounded-2xl md:rounded-full px-5 py-4 h-auto min-h-[3rem] text-base md:px-8 md:py-6 md:text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-2 md:gap-3 group font-serif max-w-full"
+                            className="bg-slate-900 text-white hover:bg-slate-800 rounded-full px-5 py-4 text-base md:px-8 md:py-6 md:text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-2 md:gap-3 group font-serif"
                         >
-                            <span className="text-left md:text-center whitespace-normal leading-tight">Ga naar Analyse Raad van Ministers</span>
-                            <ArrowRight className="w-5 h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+                            <span>Ga naar Analyse Raad van Ministers</span>
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Button>
                      </div>
                      )}
