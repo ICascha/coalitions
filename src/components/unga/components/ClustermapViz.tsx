@@ -610,7 +610,7 @@ export function ClustermapViz({
         </div>
         
         <div className="flex items-center gap-3">
-          <span className="text-xs uppercase tracking-wide text-slate-400">Strategisch Domein</span>
+          <span className="text-xs uppercase tracking-wide text-slate-400">Domein</span>
           <Select value={selectedTopic} onValueChange={setSelectedTopic}>
             <SelectTrigger className="w-[220px] bg-white border-slate-200">
               <SelectValue />
