@@ -359,7 +359,7 @@ const TOPIC_OPTIONS: TopicOption[] = [
   { id: 'energy_infrastructure', path: 'topics/energy_infrastructure.json', label: 'Energie & Infrastructuur' },
   { id: 'economic_financial', path: 'topics/economic_financial.json', label: 'Economie & Financiën' },
   { id: 'digital_innovation', path: 'topics/digital_innovation.json', label: 'Digitaal & Innovatie' },
-  { id: 'strategic_raw_materials_circular_supply_chains', path: 'topics/strategic_raw_materials_circular_supply_chains.json', label: 'Circulaire ketens van kritieke materialen' },
+  { id: 'strategic_raw_materials_circular_supply_chains', path: 'topics/strategic_raw_materials_circular_supply_chains.json', label: 'Circulaire ketens' },
 ];
 
 // Single cluster color as per report specifications (#e62159)
