@@ -590,12 +590,12 @@ export function ClustermapViz({
   }, [squareSize, clusters, columnKeys.length, margins]);
 
   return (
-    <div className="w-full h-full flex flex-col pt-0 md:pt-6">
+    <div className="w-full h-full flex flex-col pt-0">
       {/* Fixed Back Button Overlay - Morphs the underlying DenkWerk logo */}
       {onBack && (
         <button 
           onClick={onBack}
-          className="fixed top-8 left-8 z-[60] w-12 h-12 bg-[#009ea3] rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-500 animate-in zoom-in fade-in group overflow-hidden border border-white/20"
+          className="fixed top-6 left-6 z-[60] w-12 h-12 bg-[#009ea3] rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-500 animate-in zoom-in fade-in group overflow-hidden border border-white/20"
           title="Terug naar overzicht"
         >
           <ArrowUp className="w-6 h-6 text-white group-hover:-translate-y-0.5 transition-transform" />
