@@ -383,7 +383,7 @@ const UNGAMap = () => {
             <div 
               className={cn(
                 "w-full flex flex-col relative z-20 transition-all duration-700 ease-in-out",
-                isAnalyzing ? "md:w-[65%]" : "md:w-[45%] lg:w-[40%]"
+                isAnalyzing ? "md:w-[55%] lg:w-[60%]" : "md:w-[45%] lg:w-[40%]"
               )}
             >
                 {/* Spacer to push content down if needed, or stick to sections */}
@@ -492,13 +492,16 @@ const UNGAMap = () => {
               ) : (
                 // Desktop: Sticky on right
                 isAnalyzing 
-                  ? "md:w-[35%] h-screen sticky top-0 right-0" 
+                  ? "md:w-[45%] lg:w-[40%] h-screen sticky top-0 right-0" 
                   : "md:w-[55%] lg:w-[60%] h-screen sticky top-0 right-0"
               ),
               // Hide map when explorer is open on mobile to give space to Viz
               isMobile && isAnalyzing && "translate-y-full opacity-0 pointer-events-none"
             )}>
-                <div className="absolute inset-0 flex items-center justify-center p-4 md:p-12">
+                <div className={cn(
+                    "absolute inset-0 flex items-center justify-center transition-all duration-500",
+                    isAnalyzing ? "p-0 md:p-2" : "p-4 md:p-12"
+                )}>
                      <div className="relative w-full h-full max-w-[1200px]">
                         <div 
                             ref={containerRef}
