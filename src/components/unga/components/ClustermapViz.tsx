@@ -595,10 +595,10 @@ export function ClustermapViz({
       {onBack && (
         <button 
           onClick={onBack}
-          className="fixed top-8 left-8 z-[60] w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform duration-300 group overflow-hidden border border-slate-100"
+          className="fixed top-8 left-8 z-[60] w-12 h-12 bg-[#009ea3] rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-500 animate-in zoom-in fade-in group overflow-hidden border border-white/20"
           title="Terug naar overzicht"
         >
-          <ArrowUp className="w-6 h-6 text-slate-900 group-hover:-translate-y-0.5 transition-transform" />
+          <ArrowUp className="w-6 h-6 text-white group-hover:-translate-y-0.5 transition-transform" />
         </button>
       )}
 
