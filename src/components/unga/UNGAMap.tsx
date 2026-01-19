@@ -378,7 +378,7 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
       >
         <div className={cn(
             "w-full flex flex-col md:flex-row relative",
-            !isAnalyzing && "min-h-[300vh]"
+            !isAnalyzing && "min-h-[200vh]"
         )}>
             
             {/* Left Column: Narrative Content */}
@@ -416,7 +416,7 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
                 {/* Section 2: Europe Focus */}
                 <div 
                   className={cn(
-                    "min-h-screen flex flex-col justify-center p-8 md:p-16 pointer-events-auto transition-opacity duration-500",
+                    "min-h-[80vh] flex flex-col justify-center p-8 md:p-16 pointer-events-auto transition-opacity duration-500",
                     isAnalyzing && "hidden"
                   )}
                 >
@@ -448,8 +448,8 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
 
                 {/* Section 3: Call to Action OR Analysis View */}
                 <div className={cn(
-                  "min-h-screen flex flex-col justify-center pointer-events-auto",
-                  isAnalyzing ? "pb-0 h-screen" : "pb-32"
+                  "flex flex-col justify-center pointer-events-auto",
+                  isAnalyzing ? "min-h-screen pb-0 h-screen" : "min-h-[60vh] pb-12"
                 )}>
                      {isAnalyzing ? (
                        <div className="w-full h-full p-0 md:p-4 animate-in fade-in slide-in-from-bottom-8 duration-700">
