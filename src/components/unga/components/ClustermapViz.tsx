@@ -395,8 +395,12 @@ const HeatmapTooltip = memo(function HeatmapTooltip({
   );
 });
 
-// Heatmap margins
-const HEATMAP_MARGIN = { top: 90, right: 20, bottom: 20, left: 90 };
+// Heatmap margins - dynamic based on size
+const getMargins = (size: number) => {
+  const isSmall = size < 500;
+  const margin = isSmall ? 70 : 90;
+  return { top: margin, right: 20, bottom: 20, left: margin };
+};
 
 export function ClustermapViz({ 
   onClusterHover,
@@ -415,6 +419,8 @@ export function ClustermapViz({
   // Ref and size for square aspect ratio
   const containerRef = useRef<HTMLDivElement>(null);
   const squareSize = useSquareSize(containerRef);
+  
+  const margins = useMemo(() => getMargins(squareSize), [squareSize]);
 
   // Find current topic option
   const currentTopic = TOPIC_OPTIONS.find((t) => t.id === selectedTopic) ?? TOPIC_OPTIONS[0];
@@ -562,8 +568,8 @@ export function ClustermapViz({
   const clusterOverlays = useMemo(() => {
     if (!squareSize || clusters.length === 0) return [];
     
-    const chartWidth = squareSize - HEATMAP_MARGIN.left - HEATMAP_MARGIN.right;
-    const chartHeight = squareSize - HEATMAP_MARGIN.top - HEATMAP_MARGIN.bottom;
+    const chartWidth = squareSize - margins.left - margins.right;
+    const chartHeight = squareSize - margins.top - margins.bottom;
     const cellWidth = chartWidth / columnKeys.length;
     const cellHeight = chartHeight / columnKeys.length;
 
@@ -573,51 +579,51 @@ export function ClustermapViz({
 
       return {
         id: cluster.id,
-        x: HEATMAP_MARGIN.left + startIdx * cellWidth,
-        y: HEATMAP_MARGIN.top + startIdx * cellHeight,
+        x: margins.left + startIdx * cellWidth,
+        y: margins.top + startIdx * cellHeight,
         width: (endIdx - startIdx + 1) * cellWidth,
         height: (endIdx - startIdx + 1) * cellHeight,
         color: CLUSTER_COLOR, // All clusters use the same #e62159 color
         countries: cluster.countries,
       };
     });
-  }, [squareSize, clusters, columnKeys.length]);
+  }, [squareSize, clusters, columnKeys.length, margins]);
 
   return (
-    <div className="w-full h-full flex flex-col pt-8 md:pt-12">
+    <div className="w-full h-full flex flex-col pt-2 md:pt-12">
       {/* Header with topic selector */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200/50">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between px-3 py-3 md:px-6 md:py-4 border-b border-slate-200/50 gap-3 md:gap-0">
+        <div className="flex items-center gap-3 md:gap-4">
           {onBack && (
             <Button
               variant="ghost"
               size="icon"
               onClick={onBack}
-              className="rounded-full hover:bg-slate-100 text-slate-500 hover:text-slate-900"
+              className="rounded-full hover:bg-slate-100 text-slate-500 hover:text-slate-900 h-8 w-8 md:h-10 md:w-10"
               title="Terug naar overzicht"
             >
-              <ArrowLeft className="w-5 h-5" />
+              <ArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
             </Button>
           )}
           <div>
-            <h2 className="text-xl font-semibold text-slate-800">
+            <h2 className="text-lg md:text-xl font-semibold text-slate-800 leading-tight">
               Analyse Raad van Ministers
             </h2>
-            <p className="text-sm text-slate-500 mt-0.5">
+            <p className="text-xs md:text-sm text-slate-500 mt-0.5 hidden md:block">
               Onderzoek naar stemafstand en coalitievorming binnen de Europese Unie
             </p>
           </div>
         </div>
         
-        <div className="flex items-center gap-3">
-          <span className="text-xs uppercase tracking-wide text-slate-400">Domein</span>
+        <div className="flex items-center gap-2 md:gap-3 w-full md:w-auto">
+          <span className="text-[10px] md:text-xs uppercase tracking-wide text-slate-400 whitespace-nowrap">Domein</span>
           <Select value={selectedTopic} onValueChange={setSelectedTopic}>
-            <SelectTrigger className="w-[220px] bg-white border-slate-200">
+            <SelectTrigger className="flex-1 md:w-[220px] bg-white border-slate-200 h-8 md:h-10 text-xs md:text-sm">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
               {TOPIC_OPTIONS.map((topic) => (
-                <SelectItem key={topic.id} value={topic.id}>
+                <SelectItem key={topic.id} value={topic.id} className="text-xs md:text-sm">
                   {topic.label}
                 </SelectItem>
               ))}
@@ -627,7 +633,7 @@ export function ClustermapViz({
       </div>
 
       {/* Main content: clustermap only */}
-      <div className="flex-1 min-h-0 flex flex-col p-4 overflow-hidden">
+      <div className="flex-1 min-h-0 flex flex-col p-1 md:p-4 overflow-hidden">
         {/* Clustermap Section - full height */}
         <div ref={containerRef} className="w-full h-full relative flex items-center justify-center">
           {loading && (
@@ -657,7 +663,7 @@ export function ClustermapViz({
             >
               <ResponsiveHeatMapCanvas
                 data={heatmapData}
-                margin={HEATMAP_MARGIN}
+                margin={margins}
                 axisTop={{
                   tickSize: 0,
                   tickPadding: 8,

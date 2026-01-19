@@ -445,9 +445,12 @@ const UNGAMap = () => {
                 </div>
 
                 {/* Section 3: Call to Action OR Analysis View */}
-                <div className="min-h-screen flex flex-col justify-center pointer-events-auto pb-32">
+                <div className={cn(
+                  "min-h-screen flex flex-col justify-center pointer-events-auto",
+                  isAnalyzing ? "pb-0 h-screen" : "pb-32"
+                )}>
                      {isAnalyzing ? (
-                       <div className="w-full h-full p-4 animate-in fade-in slide-in-from-bottom-8 duration-700">
+                       <div className="w-full h-full p-0 md:p-4 animate-in fade-in slide-in-from-bottom-8 duration-700">
                          <ClustermapViz 
                             onClusterHover={handleClusterHover} 
                             onBack={stopAnalysis}
