@@ -357,16 +357,9 @@ export const interpolateColor = (t: number): string => {
 
 // Build topic options from manifest
 const TOPIC_OPTIONS: TopicOption[] = [
-  { id: 'overall', path: 'overall.json', label: 'Overkoepelend' },
-  { id: 'climate_environment', path: 'topics/climate_environment.json', label: 'Klimaat & Milieu' },
   { id: 'energy_infrastructure', path: 'topics/energy_infrastructure.json', label: 'Energie & Infrastructuur' },
-  { id: 'trade_industrial_policy', path: 'topics/trade_industrial_policy.json', label: 'Handel & Industriebeleid' },
   { id: 'economic_financial', path: 'topics/economic_financial.json', label: 'Economie & Financiën' },
   { id: 'digital_innovation', path: 'topics/digital_innovation.json', label: 'Digitaal & Innovatie' },
-  { id: 'social_health_employment', path: 'topics/social_health_employment.json', label: 'Sociaal & Volksgezondheid' },
-  { id: 'justice_home_affairs', path: 'topics/justice_home_affairs.json', label: 'Justitie & Veiligheid' },
-  { id: 'agriculture_food_systems', path: 'topics/agriculture_food_systems.json', label: 'Landbouw & Voedselzekerheid' },
-  { id: 'institutional_governance', path: 'topics/institutional_governance.json', label: 'Institutionele Structuur' },
   { id: 'strategic_raw_materials_circular_supply_chains', path: 'topics/strategic_raw_materials_circular_supply_chains.json', label: 'Circulaire ketens van kritieke materialen' },
 ];
 
