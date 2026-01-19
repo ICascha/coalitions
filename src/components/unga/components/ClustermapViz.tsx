@@ -93,6 +93,14 @@ const MANUAL_CLUSTERS: ManualClusterConfig = {
       'Greece', 'Romania', 'Latvia', 'Malta', 'Croatia', 'Cyprus'
     ],
   ],
+  'economic_financial': [
+    ['Hungary', 'Croatia', 'Estonia', 'Slovenia'],
+    [
+      'Slovakia', 'Italy', 'Portugal', 'Bulgaria', 'Latvia', 'Luxembourg',
+      'Lithuania', 'Denmark', 'Greece', 'Cyprus', 'Ireland', 'Malta',
+      'Romania', 'France', 'Spain'
+    ],
+  ],
 };
 
 // Types
