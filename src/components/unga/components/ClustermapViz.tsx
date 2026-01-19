@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback, memo, useRef } from 'react';
 import { ResponsiveHeatMapCanvas, type ComputedCell } from '@nivo/heatmap';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -590,21 +590,21 @@ export function ClustermapViz({
   }, [squareSize, clusters, columnKeys.length, margins]);
 
   return (
-    <div className="w-full h-full flex flex-col pt-2 md:pt-12">
+    <div className="w-full h-full flex flex-col pt-0 md:pt-6">
+      {/* Fixed Back Button Overlay - Morphs the underlying DenkWerk logo */}
+      {onBack && (
+        <button 
+          onClick={onBack}
+          className="fixed top-8 left-8 z-[60] w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform duration-300 group overflow-hidden border border-slate-100"
+          title="Terug naar overzicht"
+        >
+          <ArrowUp className="w-6 h-6 text-slate-900 group-hover:-translate-y-0.5 transition-transform" />
+        </button>
+      )}
+
       {/* Header with topic selector */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between px-3 py-3 md:px-6 md:py-4 border-b border-slate-200/50 gap-3 md:gap-0">
+      <div className="flex flex-col md:flex-row md:items-center justify-between px-3 md:px-6 py-2 md:py-4 border-b border-transparent gap-3 md:gap-0 pl-[80px] md:pl-[96px]">
         <div className="flex items-center gap-3 md:gap-4">
-          {onBack && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onBack}
-              className="rounded-full hover:bg-slate-100 text-slate-500 hover:text-slate-900 h-8 w-8 md:h-10 md:w-10"
-              title="Terug naar overzicht"
-            >
-              <ArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
-            </Button>
-          )}
           <div>
             <h2 className="text-lg md:text-xl font-semibold text-slate-800 leading-tight">
               Analyse Raad van Ministers
