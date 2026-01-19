@@ -144,6 +144,7 @@ type TopicOption = {
   id: string;
   path: string;
   label: string;
+  shortLabel?: string; // For display in selector trigger when full label is too long
 };
 
 type HeatmapCellData = {
@@ -359,7 +360,7 @@ const TOPIC_OPTIONS: TopicOption[] = [
   { id: 'energy_infrastructure', path: 'topics/energy_infrastructure.json', label: 'Energie & Infrastructuur' },
   { id: 'economic_financial', path: 'topics/economic_financial.json', label: 'Economie & Financiën' },
   { id: 'digital_innovation', path: 'topics/digital_innovation.json', label: 'Digitaal & Innovatie' },
-  { id: 'strategic_raw_materials_circular_supply_chains', path: 'topics/strategic_raw_materials_circular_supply_chains.json', label: 'Circulaire ketens' },
+  { id: 'strategic_raw_materials_circular_supply_chains', path: 'topics/strategic_raw_materials_circular_supply_chains.json', label: 'Circulaire ketens van kritieke materialen', shortLabel: 'Circulaire ketens' },
 ];
 
 // Single cluster color as per report specifications (#e62159)
@@ -626,7 +627,7 @@ export function ClustermapViz({
           <span className="text-[10px] md:text-xs uppercase tracking-wide text-slate-400 whitespace-nowrap">Domein</span>
           <Select value={selectedTopic} onValueChange={setSelectedTopic}>
             <SelectTrigger className="flex-1 md:w-[220px] bg-white border-slate-200 h-8 md:h-10 text-xs md:text-sm">
-              <SelectValue />
+              <SelectValue>{currentTopic.shortLabel ?? currentTopic.label}</SelectValue>
             </SelectTrigger>
             <SelectContent>
               {TOPIC_OPTIONS.map((topic) => (
