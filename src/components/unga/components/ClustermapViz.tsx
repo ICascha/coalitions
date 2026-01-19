@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo, useCallback, memo, useRef } from 'react';
 import { ResponsiveHeatMapCanvas, type ComputedCell } from '@nivo/heatmap';
-import { ArrowLeft, ArrowUp } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ArrowUp } from 'lucide-react';
 import {
   Select,
   SelectContent,
@@ -469,7 +468,7 @@ export function ClustermapViz({
   }, [currentTopic.path]);
 
   // Compute hierarchical clustering and derive clusters
-  const { heatmapData, columnKeys, clusters, minDistance, maxDistance } = useMemo(() => {
+  const { heatmapData, columnKeys, clusters } = useMemo(() => {
     if (!data) return { heatmapData: [], columnKeys: [], clusters: [], avgDistance: 0, minDistance: 0, maxDistance: 1 };
     
     const { countries, distance_matrix } = data.data;

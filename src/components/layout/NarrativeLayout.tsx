@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
-import { Monitor, X, Smartphone } from 'lucide-react';
+import { X, Smartphone } from 'lucide-react';
 
 // View Components
 import UNGAMap from '@/components/unga/UNGAMap';

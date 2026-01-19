@@ -120,7 +120,7 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
   const manualCoalitions = useMemo(() => {
     const coalitions = [];
     let idCounter = 0;
-    for (const [topic, clusters] of Object.entries(MANUAL_CLUSTERS)) {
+    for (const [, clusters] of Object.entries(MANUAL_CLUSTERS)) {
       for (const clusterCountries of clusters) {
         // Filter out large coalitions (> 22 members) as requested
         if (clusterCountries.length > 22) continue;
