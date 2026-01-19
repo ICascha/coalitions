@@ -398,8 +398,10 @@ const HeatmapTooltip = memo(function HeatmapTooltip({
 // Heatmap margins - dynamic based on size
 const getMargins = (size: number) => {
   const isSmall = size < 500;
-  const margin = isSmall ? 70 : 90;
-  return { top: margin, right: 20, bottom: 20, left: margin };
+  // Increased top margin for vertical labels (-90deg)
+  const topMargin = isSmall ? 100 : 130;
+  const leftMargin = isSmall ? 80 : 100;
+  return { top: topMargin, right: 20, bottom: 20, left: leftMargin };
 };
 
 export function ClustermapViz({ 
@@ -673,7 +675,7 @@ export function ClustermapViz({
                 axisTop={{
                   tickSize: 0,
                   tickPadding: 8,
-                  tickRotation: -45,
+                  tickRotation: -90,
                   legend: '',
                 }}
                 axisLeft={{
