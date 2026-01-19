@@ -76,6 +76,7 @@ export const svgNameToAlpha3: Record<string, string> = {
   'CUBA': 'CUB',
   'CYPRUS': 'CYP',
   'CZECH': 'CZE',
+  'CZECHIA': 'CZE',
   'DENMARK': 'DNK',
   'DEVON': 'CAN',
   'DISKO': 'GRL',
