@@ -237,9 +237,31 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
 
       const displayName = getCountryDisplayName(key, formatCountryName(countryId));
       const countryTopics = topicsMap?.[key];
+      // If we are switching from one country to another, force a reset first to ensure clean transition
+      // This fixes the "sticky" bug where the old country name remains visible
       if (selectedCountry && selectedCountry !== key) {
         setTooltip(null);
         setSelectedCountry(null);
+        
+        setTimeout(() => {
+            const currentAlignment = alignmentMap[key];
+            if (!currentAlignment) return;
+
+            setTooltip({
+                type: 'alignment',
+                name: displayName,
+                countryCode: key,
+                alignment: currentAlignment,
+                topics: countryTopics ? {
+                disagreements: countryTopics.disagreements,
+                agreements: countryTopics.agreements,
+                } : null,
+                x: mouseEvent.clientX - bounds.left,
+                y: mouseEvent.clientY - bounds.top,
+            });
+            setSelectedCountry(key);
+        }, 50);
+        return;
       }
 
       setTooltip({

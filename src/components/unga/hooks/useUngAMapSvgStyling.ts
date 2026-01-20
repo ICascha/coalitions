@@ -124,6 +124,7 @@ export function useUngAMapSvgStyling(options: {
         const overlay = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         overlay.setAttribute('id', 'selection-highlight-overlay');
         overlay.setAttribute('d', pathData);
+        overlay.setAttribute('pointer-events', 'none');
         overlay.style.fill = 'none';
         overlay.style.stroke = '#0f172a';
         overlay.style.strokeWidth = '1.5';
