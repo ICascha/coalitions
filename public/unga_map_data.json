@@ -1,0 +1,4253 @@
+{
+  "available_blocs": [
+    "EU",
+    "USA",
+    "CHINA",
+    "RUSSIA"
+  ],
+  "total_countries": 202,
+  "countries": [
+    {
+      "country": "AFG",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.71
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.5
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "AGO",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.73
+        }
+      ]
+    },
+    {
+      "country": "ALB",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.2
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.2
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.08
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.0
+        }
+      ]
+    },
+    {
+      "country": "AND",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.24
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.29
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.02
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.99
+        }
+      ]
+    },
+    {
+      "country": "ARE",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.68
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "ARG",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.79
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.56
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.67
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "ARM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.76
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.54
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.61
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.65
+        }
+      ]
+    },
+    {
+      "country": "ATG",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.51
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.79
+        }
+      ]
+    },
+    {
+      "country": "AUS",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.56
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.08
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.2
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.12
+        }
+      ]
+    },
+    {
+      "country": "AUT",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.31
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.32
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.01
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.03
+        }
+      ]
+    },
+    {
+      "country": "AZE",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.91
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.48
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.7
+        }
+      ]
+    },
+    {
+      "country": "BDI",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.02
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.53
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.74
+        }
+      ]
+    },
+    {
+      "country": "BEL",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.16
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.24
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.06
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.98
+        }
+      ]
+    },
+    {
+      "country": "BEN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.68
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.53
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.76
+        }
+      ]
+    },
+    {
+      "country": "BFA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.5
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.76
+        }
+      ]
+    },
+    {
+      "country": "BGD",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.44
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.76
+        }
+      ]
+    },
+    {
+      "country": "BGR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.15
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.24
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.06
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.98
+        }
+      ]
+    },
+    {
+      "country": "BHR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.97
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.68
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.79
+        }
+      ]
+    },
+    {
+      "country": "BHS",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.93
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.64
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.59
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.84
+        }
+      ]
+    },
+    {
+      "country": "BIH",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.26
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.28
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.0
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.96
+        }
+      ]
+    },
+    {
+      "country": "BLR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.68
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.45
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.58
+        }
+      ]
+    },
+    {
+      "country": "BLZ",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.93
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.56
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.83
+        }
+      ]
+    },
+    {
+      "country": "BOL",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.71
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.75
+        }
+      ]
+    },
+    {
+      "country": "BRA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.87
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.62
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.58
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "BRB",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.93
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.66
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.55
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.82
+        }
+      ]
+    },
+    {
+      "country": "BRN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.44
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.77
+        }
+      ]
+    },
+    {
+      "country": "BTN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.97
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.53
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "BWA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.65
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.56
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.83
+        }
+      ]
+    },
+    {
+      "country": "CAF",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.02
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.65
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.57
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "CAN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.65
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.01
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.27
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.2
+        }
+      ]
+    },
+    {
+      "country": "CHE",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.32
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.32
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.0
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.0
+        }
+      ]
+    },
+    {
+      "country": "CHL",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.84
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.62
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.66
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.87
+        }
+      ]
+    },
+    {
+      "country": "CHN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.02
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.0
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.6
+        }
+      ]
+    },
+    {
+      "country": "CIV",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.59
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.61
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.83
+        }
+      ]
+    },
+    {
+      "country": "CMR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.0
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.48
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.65
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.82
+        }
+      ]
+    },
+    {
+      "country": "COD",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.11
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.65
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.52
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "COG",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.97
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.7
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.47
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.75
+        }
+      ]
+    },
+    {
+      "country": "COL",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.89
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.62
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.61
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "COM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.5
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.79
+        }
+      ]
+    },
+    {
+      "country": "CPV",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.93
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.55
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "CRI",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.88
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.62
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.65
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.85
+        }
+      ]
+    },
+    {
+      "country": "CSK",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": null
+        },
+        {
+          "bloc": "USA",
+          "average_distance": null
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": null
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": null
+        }
+      ]
+    },
+    {
+      "country": "CUB",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.07
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.75
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.37
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.69
+        }
+      ]
+    },
+    {
+      "country": "CYP",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.35
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.36
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.99
+        }
+      ]
+    },
+    {
+      "country": "CZE",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.2
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.21
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.09
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.99
+        }
+      ]
+    },
+    {
+      "country": "DDR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": null
+        },
+        {
+          "bloc": "USA",
+          "average_distance": null
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": null
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": null
+        }
+      ]
+    },
+    {
+      "country": "DEU",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.17
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.23
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.08
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.99
+        }
+      ]
+    },
+    {
+      "country": "DJI",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.79
+        }
+      ]
+    },
+    {
+      "country": "DMA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.06
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.65
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.53
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.75
+        }
+      ]
+    },
+    {
+      "country": "DNK",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.14
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.23
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.07
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.98
+        }
+      ]
+    },
+    {
+      "country": "DOM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.91
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.63
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.6
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.82
+        }
+      ]
+    },
+    {
+      "country": "DZA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.0
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.71
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.42
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.72
+        }
+      ]
+    },
+    {
+      "country": "EAT",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": null
+        },
+        {
+          "bloc": "USA",
+          "average_distance": null
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": null
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": null
+        }
+      ]
+    },
+    {
+      "country": "EAZ",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": null
+        },
+        {
+          "bloc": "USA",
+          "average_distance": null
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": null
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": null
+        }
+      ]
+    },
+    {
+      "country": "ECU",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.53
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "EGY",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.02
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.7
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.41
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.74
+        }
+      ]
+    },
+    {
+      "country": "ERI",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.7
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.47
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.73
+        }
+      ]
+    },
+    {
+      "country": "ESP",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.18
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.26
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.04
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.95
+        }
+      ]
+    },
+    {
+      "country": "EST",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.16
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.23
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.06
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.97
+        }
+      ]
+    },
+    {
+      "country": "ETH",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.97
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.48
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.74
+        }
+      ]
+    },
+    {
+      "country": "FIN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.17
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.26
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.03
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.99
+        }
+      ]
+    },
+    {
+      "country": "FJI",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.9
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.59
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.62
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "FRA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.41
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.14
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.13
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.0
+        }
+      ]
+    },
+    {
+      "country": "FSM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.97
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 0.77
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.46
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.38
+        }
+      ]
+    },
+    {
+      "country": "GAB",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.7
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.52
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.76
+        }
+      ]
+    },
+    {
+      "country": "GBR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.51
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.1
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.21
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.09
+        }
+      ]
+    },
+    {
+      "country": "GEO",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.28
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.25
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.96
+        }
+      ]
+    },
+    {
+      "country": "GER",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": null
+        },
+        {
+          "bloc": "USA",
+          "average_distance": null
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": null
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": null
+        }
+      ]
+    },
+    {
+      "country": "GHA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.94
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.65
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.53
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "GIN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.45
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.73
+        }
+      ]
+    },
+    {
+      "country": "GMB",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.01
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.72
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.48
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.75
+        }
+      ]
+    },
+    {
+      "country": "GNB",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.55
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.82
+        }
+      ]
+    },
+    {
+      "country": "GNQ",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.05
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.64
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.52
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.75
+        }
+      ]
+    },
+    {
+      "country": "GRC",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.18
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.27
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.03
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.95
+        }
+      ]
+    },
+    {
+      "country": "GRD",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.65
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.55
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.83
+        }
+      ]
+    },
+    {
+      "country": "GTM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.89
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.56
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.69
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.85
+        }
+      ]
+    },
+    {
+      "country": "GUY",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.93
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.5
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.79
+        }
+      ]
+    },
+    {
+      "country": "HND",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.92
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.56
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.7
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.87
+        }
+      ]
+    },
+    {
+      "country": "HRV",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.16
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.24
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.04
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.97
+        }
+      ]
+    },
+    {
+      "country": "HTI",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.93
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.61
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.61
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.81
+        }
+      ]
+    },
+    {
+      "country": "HUN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.22
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.2
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.09
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.99
+        }
+      ]
+    },
+    {
+      "country": "IDN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.7
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.44
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.76
+        }
+      ]
+    },
+    {
+      "country": "IND",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.01
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.63
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.54
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.71
+        }
+      ]
+    },
+    {
+      "country": "IRL",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.34
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.33
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.02
+        }
+      ]
+    },
+    {
+      "country": "IRN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.1
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.76
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.38
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.71
+        }
+      ]
+    },
+    {
+      "country": "IRQ",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.52
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.83
+        }
+      ]
+    },
+    {
+      "country": "ISL",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.17
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.26
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.03
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.97
+        }
+      ]
+    },
+    {
+      "country": "ISR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.19
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 0.52
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.63
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.52
+        }
+      ]
+    },
+    {
+      "country": "ITA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.17
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.25
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.05
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.97
+        }
+      ]
+    },
+    {
+      "country": "JAM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.93
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.66
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.52
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "JOR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.5
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "JPN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.37
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.3
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.99
+        }
+      ]
+    },
+    {
+      "country": "KAZ",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.9
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.63
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.55
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.7
+        }
+      ]
+    },
+    {
+      "country": "KEN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.77
+        }
+      ]
+    },
+    {
+      "country": "KGZ",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.93
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.66
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.48
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.68
+        }
+      ]
+    },
+    {
+      "country": "KHM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.71
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.43
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.72
+        }
+      ]
+    },
+    {
+      "country": "KIR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.5
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.85
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.12
+        }
+      ]
+    },
+    {
+      "country": "KNA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.08
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.65
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.57
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.88
+        }
+      ]
+    },
+    {
+      "country": "KOR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.34
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.27
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.89
+        }
+      ]
+    },
+    {
+      "country": "KWT",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.47
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "LAO",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.0
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.72
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.42
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.72
+        }
+      ]
+    },
+    {
+      "country": "LBN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.71
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.46
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.76
+        }
+      ]
+    },
+    {
+      "country": "LBR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.89
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.5
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.75
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.97
+        }
+      ]
+    },
+    {
+      "country": "LBY",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.0
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.7
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.46
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "LCA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.68
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.5
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.81
+        }
+      ]
+    },
+    {
+      "country": "LIE",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.29
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.32
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.01
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.0
+        }
+      ]
+    },
+    {
+      "country": "LKA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.97
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.46
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.73
+        }
+      ]
+    },
+    {
+      "country": "LSO",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.97
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.68
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "LTU",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.16
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.22
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.07
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.97
+        }
+      ]
+    },
+    {
+      "country": "LUX",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.14
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.25
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.05
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.97
+        }
+      ]
+    },
+    {
+      "country": "LVA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.17
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.22
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.06
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.97
+        }
+      ]
+    },
+    {
+      "country": "MAR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.68
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.51
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "MCO",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.16
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.23
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.05
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.96
+        }
+      ]
+    },
+    {
+      "country": "MDA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.28
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.29
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.0
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.0
+        }
+      ]
+    },
+    {
+      "country": "MDG",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.97
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.63
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.55
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.79
+        }
+      ]
+    },
+    {
+      "country": "MDV",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.94
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.53
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.82
+        }
+      ]
+    },
+    {
+      "country": "MEX",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.86
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.61
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.63
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.83
+        }
+      ]
+    },
+    {
+      "country": "MHL",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.02
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 0.97
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.4
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.42
+        }
+      ]
+    },
+    {
+      "country": "MKD",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.19
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.25
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.04
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.99
+        }
+      ]
+    },
+    {
+      "country": "MLI",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.7
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.46
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.71
+        }
+      ]
+    },
+    {
+      "country": "MLT",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.37
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.36
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.04
+        }
+      ]
+    },
+    {
+      "country": "MMR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.03
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.68
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.42
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.75
+        }
+      ]
+    },
+    {
+      "country": "MNE",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.17
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.24
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.05
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.03
+        }
+      ]
+    },
+    {
+      "country": "MNG",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.92
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.65
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.51
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.75
+        }
+      ]
+    },
+    {
+      "country": "MOZ",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.7
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.48
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.75
+        }
+      ]
+    },
+    {
+      "country": "MRT",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.71
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.48
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.77
+        }
+      ]
+    },
+    {
+      "country": "MUS",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.93
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.55
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.79
+        }
+      ]
+    },
+    {
+      "country": "MWI",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.61
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.63
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.87
+        }
+      ]
+    },
+    {
+      "country": "MYS",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.46
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.77
+        }
+      ]
+    },
+    {
+      "country": "NAM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.7
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.48
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.75
+        }
+      ]
+    },
+    {
+      "country": "NER",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.0
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.7
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.48
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.77
+        }
+      ]
+    },
+    {
+      "country": "NGA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.48
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.77
+        }
+      ]
+    },
+    {
+      "country": "NIC",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.04
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.71
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.5
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.71
+        }
+      ]
+    },
+    {
+      "country": "NLD",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.17
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.24
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.07
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.99
+        }
+      ]
+    },
+    {
+      "country": "NOR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.19
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.27
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.03
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.96
+        }
+      ]
+    },
+    {
+      "country": "NPL",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.94
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.74
+        }
+      ]
+    },
+    {
+      "country": "NRU",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.19
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.22
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.25
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.27
+        }
+      ]
+    },
+    {
+      "country": "NZL",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.41
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.34
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.03
+        }
+      ]
+    },
+    {
+      "country": "OMN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.0
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.7
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.43
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.76
+        }
+      ]
+    },
+    {
+      "country": "PAK",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.65
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.41
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.67
+        }
+      ]
+    },
+    {
+      "country": "PAN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.89
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.57
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.7
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.87
+        }
+      ]
+    },
+    {
+      "country": "PER",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.85
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.61
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.65
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.82
+        }
+      ]
+    },
+    {
+      "country": "PHL",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.93
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.66
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.5
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.75
+        }
+      ]
+    },
+    {
+      "country": "PLW",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.03
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 0.87
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.4
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.41
+        }
+      ]
+    },
+    {
+      "country": "PNG",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.93
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.5
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.72
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.9
+        }
+      ]
+    },
+    {
+      "country": "POL",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.18
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.22
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.07
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.97
+        }
+      ]
+    },
+    {
+      "country": "PRK",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.14
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.78
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.44
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.66
+        }
+      ]
+    },
+    {
+      "country": "PRT",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.16
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.26
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.03
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.96
+        }
+      ]
+    },
+    {
+      "country": "PRY",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.89
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.58
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.65
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.83
+        }
+      ]
+    },
+    {
+      "country": "QAT",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.68
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.47
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.79
+        }
+      ]
+    },
+    {
+      "country": "ROU",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.16
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.23
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.05
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.96
+        }
+      ]
+    },
+    {
+      "country": "RUS",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.59
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.6
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.0
+        }
+      ]
+    },
+    {
+      "country": "RWA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.06
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.61
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.62
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.81
+        }
+      ]
+    },
+    {
+      "country": "SAU",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.79
+        }
+      ]
+    },
+    {
+      "country": "SCG",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.16
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.4
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.79
+        }
+      ]
+    },
+    {
+      "country": "SDN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.04
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.72
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.43
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.74
+        }
+      ]
+    },
+    {
+      "country": "SEN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.48
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.77
+        }
+      ]
+    },
+    {
+      "country": "SGP",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.91
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.64
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "SLB",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.92
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.6
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.64
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.85
+        }
+      ]
+    },
+    {
+      "country": "SLE",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.97
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.53
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "SLV",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.92
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.64
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.62
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.82
+        }
+      ]
+    },
+    {
+      "country": "SMR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.32
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.32
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.01
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.03
+        }
+      ]
+    },
+    {
+      "country": "SOM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.03
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.75
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.47
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.7
+        }
+      ]
+    },
+    {
+      "country": "SRB",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.39
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.85
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.88
+        }
+      ]
+    },
+    {
+      "country": "SSD",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.0
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.43
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.8
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.88
+        }
+      ]
+    },
+    {
+      "country": "STP",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.0
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.59
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.81
+        }
+      ]
+    },
+    {
+      "country": "SUN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": null
+        },
+        {
+          "bloc": "USA",
+          "average_distance": null
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": null
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": null
+        }
+      ]
+    },
+    {
+      "country": "SUR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.97
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.5
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "SVK",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.14
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.24
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.06
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.97
+        }
+      ]
+    },
+    {
+      "country": "SVN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.15
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.25
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.04
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.96
+        }
+      ]
+    },
+    {
+      "country": "SWE",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.27
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.29
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.02
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.02
+        }
+      ]
+    },
+    {
+      "country": "SWZ",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.48
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "SYC",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.94
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.62
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.63
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.89
+        }
+      ]
+    },
+    {
+      "country": "SYR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.12
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.77
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.41
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.69
+        }
+      ]
+    },
+    {
+      "country": "TCD",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.04
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.7
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.5
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.73
+        }
+      ]
+    },
+    {
+      "country": "TGO",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.61
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.55
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.79
+        }
+      ]
+    },
+    {
+      "country": "THA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.91
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.65
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.52
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.77
+        }
+      ]
+    },
+    {
+      "country": "TJK",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.94
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.68
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.48
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.67
+        }
+      ]
+    },
+    {
+      "country": "TKM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.74
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.43
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.71
+        }
+      ]
+    },
+    {
+      "country": "TLS",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.9
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.66
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.63
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.83
+        }
+      ]
+    },
+    {
+      "country": "TON",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.89
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.44
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.73
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.93
+        }
+      ]
+    },
+    {
+      "country": "TTO",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.66
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.51
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "TUN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.47
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "TUR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.4
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.9
+        }
+      ]
+    },
+    {
+      "country": "TUV",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.52
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.76
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.93
+        }
+      ]
+    },
+    {
+      "country": "TZA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.77
+        }
+      ]
+    },
+    {
+      "country": "UGA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.01
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.66
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.5
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "UKR",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.32
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.28
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.99
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.98
+        }
+      ]
+    },
+    {
+      "country": "URY",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.88
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.61
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.62
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.82
+        }
+      ]
+    },
+    {
+      "country": "USA",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.23
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 0.0
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 1.59
+        }
+      ]
+    },
+    {
+      "country": "UZB",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.94
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.63
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.51
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.65
+        }
+      ]
+    },
+    {
+      "country": "VCT",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.66
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.5
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.8
+        }
+      ]
+    },
+    {
+      "country": "VEN",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.03
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.76
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.43
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.68
+        }
+      ]
+    },
+    {
+      "country": "VNM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.02
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.73
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.41
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.71
+        }
+      ]
+    },
+    {
+      "country": "VUT",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.96
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.49
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.77
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.93
+        }
+      ]
+    },
+    {
+      "country": "WSM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.83
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.52
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.76
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.91
+        }
+      ]
+    },
+    {
+      "country": "YEM",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.98
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.69
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.47
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.79
+        }
+      ]
+    },
+    {
+      "country": "YMD",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": null
+        },
+        {
+          "bloc": "USA",
+          "average_distance": null
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": null
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": null
+        }
+      ]
+    },
+    {
+      "country": "YUG",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.12
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.38
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.84
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.65
+        }
+      ]
+    },
+    {
+      "country": "ZAF",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.93
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.68
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.51
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.74
+        }
+      ]
+    },
+    {
+      "country": "ZMB",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 0.95
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.67
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.49
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.78
+        }
+      ]
+    },
+    {
+      "country": "ZWE",
+      "blocs": [
+        {
+          "bloc": "EU",
+          "average_distance": 1.04
+        },
+        {
+          "bloc": "USA",
+          "average_distance": 1.74
+        },
+        {
+          "bloc": "CHINA",
+          "average_distance": 0.37
+        },
+        {
+          "bloc": "RUSSIA",
+          "average_distance": 0.67
+        }
+      ]
+    }
+  ]
+}

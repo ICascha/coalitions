@@ -1,0 +1,725 @@
+DenkWerk rapport 15
+
+Asymmetrische afhankelijkheden ? Final Draft[ya1][be2] 
+
+
+
+
+Voorwoord.[ya3][ya4][ya5]
+Precies een jaar na de inauguratie van Donald Trump moeten we constateren dat de Verenigde Staten niet langer een vertrouwde ?vriend? of ?ally? zijn, maar zijn veranderd in een harde geopolitieke concurrent. De fa�ade van partnerschap staat nog overeind, maar het fundament is verschoven.�America First�betekent precies dat: het eigen kortetermijnbelang voorop, deals in plaats van bondgenootschappen, transacties in plaats van vertrouwen.�?The European Union was formed to ?screw? the United States?i en ?You don?t pay your bills, you get no protection. It?s very simple.?[ya6]ii 
+Deze conclusie doet pijn. Sinds de Tweede Wereldoorlog hebben Europa en de VS samen gebouwd aan een wereldorde gebaseerd op stabiliteit, voorspelbaarheid en gedeelde waarden.iii,iv Dat was geen abstracte ideologie: het was een strategische ruilverhouding waarin Europa veiligheid en economische ruimte kreeg, in ruil voor politieke steun aan Amerikaans leiderschap. Die tijd is voorbij. En dat betekent dat wij ? Nederland en Europa ? ons opnieuw moeten leren bewegen in een wereld waarin zelfs vrienden de taal van macht spreken. De focus van DenkWerk ligt altijd op Nederland. Maar als het over geopolitiek gaat, moet het meer over Europa gaan dan over Nederland. Nederland is zelf een te kleine speler.
+De Amerikaanse machtspolitiek zal de welvaart in Amerika en in de wereld, zeker op de wat langere termijn, geen goed doen. Europa moet dit beleid dan ook zeker niet kopi�ren, maar er wel voor waken om er niet het geopolitieke slachtoffer van te worden. Tegenspel is nodig om de wereld in balans te houden. Tot nu toe lukt het geopolitieke spel onvoldoende. We staan met de hoed in de hand aan tafel bij partijen die harder, sneller en meedogenlozer opereren. De reflex van ?praten tot we eruit komen? werkt niet in een omgeving waarin anderen denken in termen van macht en hegemonie. En terwijl wij blijven redeneren vanuit de zegeningen van de vrijemarkt- en overlegcultuur, verandert de wereld om ons heen in recordtempo.
+Het is zorgelijk, want de vooruitzichten zijn ronduit somber. Voor cruciale onderdelen van onze productieketens zijn we volledig afhankelijk van China of de VS. In de strijd om hegemonie wordt Europa niet langer als speler, maar als speelveld gezien. Wie speelveld is, wordt gebruikt; wie speler is, bepaalt de kaders. De keuze is eenvoudig maar ongemakkelijk: accepteren we onze rol als toeschouwer, of bouwen we opnieuw aan ons strategisch vermogen? 
+
+Om dit te doen moeten we kijken naar onze huidige uitgangspositie, zowel binnen als buiten Europa. VN-stemgedrag bevestigt de verschuivende verhoudingen: China sluit structureel nauwer aan bij het mondiale zuiden, terwijl de EU vaak dichter bij het wereldgemiddelde staat dan de VS — zeker in het contact met andere hoogwaardige economieën zoals Japan en Canada.
+Als het ene land afhankelijk is van een ander land maar niet andersom, ontstaat asymmetrie. In dit tijdsgewricht van strijd om de economische hegemonie is dat een ongemakkelijke positie. Overal waar asymmetrie bestaat, geldt het recht van de sterkste. Verdragen en multilaterale afspraken zijn dan slechts papieren schilden. De Amerikaanse inval in Venezuela, klaarblijkelijk vanwege de grote oliereserves aldaar, en Trumps openlijke wens om Groenland ?te kopen?v of zijn dreigement om uit de NAVO te stappenvi, laten zien dat bestaande verdragen en afspraken nauwelijks nog waarde hebben. Samenwerken in deze nieuwe geopolitieke setting, met behoud van het Europese rechtsstatelijke denken, is nog niet uitgesloten, maar kan alleen vanuit gelijkwaardigheid. En ja, we moeten deze samenwerking met de hoogst mogelijke urgentie opnieuw inrichten terwijl we ook aan het verdienvermogen werken en binnen de planetaire grenzen blijven. De optelsom is  uitdagend en vangen we dus ook in meerdere rapporten1[FB7]
+In deze DenkWerk-studie analyseren we onze huidige positie vanuit een nuchter realisme. Hoeveel geopolitieke en geo-economische macht hebben wij werkelijk? Hoe hebben we deze kwetsbare positie laten ontstaan? En vooral: wat is er nu nodig om onze speelruimte terug te winnen?
+
+
+1) Van internationale samenwerking naar strategische autonomie[ya8]
+Vier decennia van internationale samenwerking
+De afgelopen veertig jaar werden gekenmerkt door een optimistisch geloof in de kracht van internationale samenwerking. De val van de Berlijnse Muur luidde niet alleen het einde van de Koude Oorlog in, maar werd het symbolisch startpunt van een periode waarin grenzen vervaagdenvii, handel explodeerde en mondiale integratie het leidende economische uitgangspunt werd.
+Globalisering werd gedragen door de gedachte dat onderlinge economische verwevenheid welvaart, maar ook stabiliteit brengt ? landen die met elkaar handelen, zouden elkaar minder snel bevechten.viii Dit denken leidde tot een ongekende expansie van internationale waardeketens. Productie werd opgesplitst, verplaatst en geconcentreerd op de plekken waar deze het meest effici�nt kon plaatsvinden. Ontwerp vond plaats in Europa en de Verenigde Staten, assemblage in Azi�, grondstoffen werden gewonnen uit Afrika, Latijns-Amerika en delen van Azi� - de wereld werd een fijnmazige productienetwerkstructuur.
+Voor veel landen was dit een win-win.ix In opkomende economie�n maakte globalisering het mogelijk dat honderden miljoenen mensen uit armoede werden getild zoals weergegeven in Figuur�1.x In ontwikkelde economie�n zorgden deze ontwikkelingen voor lagere consumentenprijzen en een stabiele economische groei. Kosten daalden niet alleen door schaalvoordelen, maar ook door, specialisatie en het optimaliseren van logistieke processen, waaronder just-in-time productie.2
+In opkomende economie�n maakte globalisering het mogelijk dat honderden miljoenen mensen uit armoede werden getild
+
+Figuur 1: Daling van extreme armoede per wereldregio tussen1990 en 2040
+
+
+Bron: Our World in Data 
+
+Deze effici�ntieslag ging gepaard met het terugdringen van voorraden en strategische buffers, omdat veel bedrijven ervan uitgingen dat internationale handel betrouwbaar en ononderbroken zou blijven. Globalisering werd gezien als een stabiel en vanzelfsprekend onderdeel van de economische orde, waardoor risico?s in waardeketens lange tijd beperkt aandacht kregen.
+De logica van specialisatie en asymmetrie
+De lange periode van internationale samenwerking ging samen met patronen van specialisatie. Landen bouwden voort op bestaande comparatieve voordelen, die verder werden versterkt doordat bedrijven, kennisinstellingen en toeleveranciers zich rond dezelfde locaties concentreerden. Deze clustering maakte productie effici�nter en versterkte schaalvoordelen: grotere volumes, kortere aanvoerlijnen en gespecialiseerde arbeid leidden verder tot hogere productiviteit en lagere kosten. Zo kent Nederland bijvoorbeeld een paar belangrijke clusters rondom Wageningen, ASML, en de Rotterdamse haven. Een ander bekend voorbeeld is 3de elektronicacluster rond Shenzhen in China, waar ontwerpers, componentenleveranciers en grootschalige assemblagebedrijven elkaar versterken en zo een wereldwijd productiecentrum vormen voor consumentenelektronica.4
+Door deze dynamiek ontstonden zogenaamde hubsxi die een cruciale rol gingen spelen in wereldwijde waardeketens. Deze centrale knooppunten in ketens gaven sommige regio?s meer invloed dan andere. Zo groeide een asymmetrische structuur waarin een beperkt aantal hubs bepalend werd voor de doorstroming van goederen, diensten en kennis. Op het gebied van digitale data zien we op dit moment eveneens enkele supergrote bedrijven die een knooppunt functie hebben ontwikkeld.xii 
+Oligopolie- of monopolievorming ligt in een vrije markt altijd op de loer, hetgeen vraagt om een stevig mededingingsbeleid. In een wereldmarkt is dat niet eenvoudig te organiseren, omdat een nationaal monopolie op een wereldmarkt heel goed een nationaal belang kan zijn.  De VS en China zetten tegenwoordig in hun mededingingsbeleid[ya9] de nationale belangen voorop[ya10][ya11], en de VS heeft in het afgelopen decennium de regulering van de internationale handel via de WTO grotendeels ontmanteld.xiii, xiv
+Schokken die de kwetsbaarheid zichtbaar maakten
+Vanaf 2008 veranderde het toneel van de economische globalisering. Schokken zoals de financi�le crisis, de COVID-19-pandemie en de Russische inval in Oekra�ne maakten zichtbaar hoe kwetsbaar de bestaande structuur van afhankelijkheden was. E�n gebeurtenis op ��n plek kon gevolgen hebben voor hele ketens: een bankencrisis in de Verenigde Staten legde mondiale kredietmarkten plat, stilvallende productie in Azi� leidde tot tekorten aan medische hulpmiddelen en microchips, en Europa werd geconfronteerd met de gevolgen van zijn afhankelijkheid van Russisch gas. Deze crises wezen op een dieperliggend patroon: de wereldeconomie was ver doorgeschoten in effici�ntie, terwijl robuustheid en redundantie onvoldoende waren ontwikkeld. Het vertrouwen dat de vrije markt altijd voldoende aanbieders zou opleveren, bleek te optimistisch in domeinen waarin ��n partij of ��n land dominante controle heeft - bijvoorbeeld over energie, semi-conductors of cloud-infrastructuur.
+Veel van deze afhankelijkheden waren overigens al jaren bekend. Rapporten van internationale organisaties en eerdere gascrises hadden duidelijk gemaakt hoe sterk Europa leunde op Russisch gasxvxvi[ya12], hoe geconcentreerd de productie van geavanceerde chips was en hoe beperkt het aantal landen is dat cruciale grondstoffen levert.xvii Maar zolang alles bleef functioneren, overheerste het idee dat het ook zou blijven functioneren. Het was een vorm van gewenning: risico?s werden gezien, maar niet meegenomen in beleid.
+Risico?s werden gezien, maar niet meegenomen in beleid
+Van samenwerking naar strijd om strategische dominantie
+China (maar dit geldt ook voor Afrikaanse of Latijns-Amerikaanse landen) heeft jarenlang aan den lijve ondervonden dat afhankelijkheden ook als machtspolitiek kunnen worden ingezet. De VS waren bijvoorbeeld erg terughoudend in het leveren van hoogwaardige technologie aan China.xviii,xix  Dit besef heeft China tot een langjarige strategie gebracht om cruciale afhankelijkheden van het buitenland af te bouwen. Het groeide niet alleen door de verplaatsing van productie naar lage-kostenregio?s - de globaliseringsgolf zelf - maar ook doordat het vanaf die positie steeds verder opschoof naar waarde-segmenten met hoge toegevoegde waarde. De concentratie van productie cre�erde schaalvoordelen, technologische kennis, toegang tot kapitaal en complete ecosystemen van toeleveranciers. Vanuit die ?workshop-of-the-world?[FB|MB13]xx, werd het een land dat expliciet ambieert om wereldleider te worden in geavanceerde technologie en innovatie. Daarmee is het economische - en geopolitieke - zwaartepunt van de wereld verschoven richting Azi�. Deze verschuiving wordt bevestigd door figuur 2. Azi�?s aandeel in de wereldeconomie groeit al jaren en zal naar verwachting na 2030 uitkomen boven de helft van het mondiale bbp.xxi
+Figuur 2: Mondiale BBP verdeling: Het zwaartepunt van de wereld verschuift richting Azi�
+
+
+
+Bron:  The Economist Intelligence Unit[ya14]
+Met deze verschuiving verandert ook de logica van mondiale verhoudingen. De grote Aziatische landen ruiken kansen, maar ervaren ook dat de VS de hegemonie in de wereldeconomie niet zonder slag of stoot zal willen inleveren. Waar globalisering eerder was gestoeld op wederzijdse afhankelijkheid en samenwerking, zetten staten economische afhankelijkheden nu actief in als machtsmiddel. Exportbeperkingen, investeringsscreening, gecontroleerde toegang tot technologie en druk op grondstoffen- en logistieke ketens zijn daarvan voorbeelden. Farrell en Newman beschrijven dit mechanisme als weaponized interdependence: in asymmetrisch georganiseerde netwerken kunnen staten die de centrale knooppunten beheersen economische verwevenheid inzetten voor geopolitieke invloed.xxii
+Het vroegere geloof dat handel vanzelf de wereldorde stabiliseert maakt plaats voor een ander inzicht: asymmetrische afhankelijkheden kunnen direct worden vertaald in macht. Optimaliseren op effici�ntie is daarmee niet langer voldoende in een wereld waarin strategische competitie, groeiende technologische rivaliteit en een verschuivende wereldmacht de realiteit zijn.
+
+Europa moet mentale omslag maken[ya15][ya16]
+Europa staat in deze nieuwe werkelijkheid voor een noodzakelijke mentale omslag. De Europese Unie ontstond als vredesproject, gebouwd op samenwerking, stabiliteit en het wegnemen van economische barri�res. Dat de nationale economie�n van Europa grote afhankelijkheden opbouwden van andere landen werd niet als een bezwaar gezien. Dat uitgangspunt heeft decennialang gewerkt en is vanuit welvaartsoptiek ook nog steeds legitiem, maar sluit steeds minder aan op een wereld waarin geopolitieke concurrentie om strategische sectoren bepalend is. De landen van Europa zullen zich moeten leren verhouden tot een omgeving waarin machtsdenken, niet vrije-marktdenken, de toon zet.
+De EU is een vredesproject, geen machtsproject. Maar de wereld vraagt dat wij de taal van de macht leren spreken
+Lange tijd vertrouwde Europa op het vrije markt denken: als er tekorten ontstaan, zorgt de prijs wel voor andere aanbieders. Deze logica functioneerde in een periode waarin globalisering relatief stabiel was en geopolitieke spanningen laag bleven. Maar in domeinen waar ��n actor cruciale productie, technologie of infrastructuur beheerst, werkt het prijsmechanisme beperkt. Wie controle heeft over gas, grondstoffen, semi-conductors of cloud-platforms bepaalt de speelruimte van anderen ? ongeacht de prijs die zij bereid zijn te betalen.
+Daar komt bij dat Europa traag en gefragmenteerd reageert in sectoren waar snelle besluiten, gerichte investeringen en geconcentreerde capaciteit essentieel zijn. De traditionele marktlogica biedt daarvoor te weinig houvast. Machtsdenken is in de huidige wereld geen keuze, maar een randvoorwaarde.xxiii
+Conclusie: een zorgwekkend instappunt
+De periode van vrije markt globalisering - waarin effici�ntie boven robuustheid stond - komt ten einde. Afhankelijkheden die ooit logisch leken, kunnen in een wereld van machtsdenken worden omgezet in drukmiddelen. Europa zal zich hierop gaan/moeten aanpassen, maar dat kost tijd, terwijl de andere geopolitieke blokken hierin voor lopen. De komende jaren zijn daarom cruciaal voor de Europese positie in de wereld, waarbij de hele wereld ziet hoe kwetsbaar Europa is.[ya17] Nederland zal zich hiertoe moeten verhouden, zowel als het om de binnenlandse economische sturing gaat, als om de positiebepaling in en ten opzichte van Europa.
+Europa is  kwetsbaar, en dat ziet de hele wereld[ya18][ya19][ya20]
+
+
+2. Cruciale belangen
+Afhankelijkheid als vertrekpunt
+In hoofdstuk 1 is uiteengezet hoe globalisering en specialisatie hebben geleid tot sterk verweven productieketens. Voor open economie�n zoals Europa, en zeker voor Nederland, is deze afhankelijkheid geen bijwerking, maar een bewuste strategie. Internationale handel, grensoverschrijdende investeringen en functionele specialisatie hebben bijgedragen aan een hogere productiviteit, een brede beschikbaarheid van goederen en diensten, en een toegenomen levenskwaliteit. Afhankelijkheden vormen daarmee een structureel kenmerk van het Europese welvaartsmodel.
+Tegelijkertijd is het debat over afhankelijkheid de afgelopen jaren wezenlijk verschoven. Waar verwevenheid lange tijd vooral werd gezien als bron van effici�ntie en welvaart, wordt zij na een aantal crisiservaringen steeds vaker benaderd als potenti�le kwetsbaarheid.  Dit heeft geleid tot een herwaardering van vragen rond veerkracht en weerbaarheid, zowel nationaal als Europees.
+Deze herwaardering vraagt om precisie. Niet elke afhankelijkheid vormt een probleem, en niet elke verstoring is strategisch van belang. Veel afhankelijkheden zijn tijdelijk, hinderlijk, maar goed te spreiden of lokaal op te vangen. Andere afhankelijkheden raken echter functies die zo fundamenteel zijn dat verstoring niet beperkt blijft tot ��n sector of markt, maar doorwerkt in meerdere maatschappelijke domeinen. Het onderscheid tussen deze typen afhankelijkheden is cruciaal om te voorkomen dat beleid wordt gedreven door een algemene terughoudendheid ten aanzien van openheid.
+Het belang van functies en sectoren
+Het voorgaande maakt duidelijk dat afhankelijkheid op zichzelf geen afwijking is, maar een logisch gevolg van een open en gespecialiseerde economie. De beleidsmatige opgave ligt daarom niet in het reduceren van afhankelijkheden als zodanig, maar in het onderscheiden van die afhankelijkheden die een onevenredig grote impact hebben wanneer zij worden verstoord. 
+Het belang van een functie of sector wordt zichtbaar op het moment dat ze wegvallen. Daarbij zijn vier samenhangende criteria richtinggevend.
+Ten eerste is er de�?mate van verwevenheid?�met andere functies. Verwevenheid verwijst hier naar de positie van een functie in het systeem: functies die upstream liggen en waarvan uitval meerdere downstream-functies tegelijk raakt, kennen een hoge verwevenheid. Sommige functies vormen een dragende laag onder grote delen van de economie en de publieke sector. Een verstoring blijft dan niet beperkt tot ��n keten, maar werkt door naar meerdere sectoren en maatschappelijke domeinen. Energievoorziening, digitale infrastructuur en communicatie- netwerken zijn hiervan duidelijke voorbeelden. Ook de beschikbaarheid van kritieke grondstoffen ? waaronder zeldzame aardmetalen en andere strategische materialen ? vervult deze rol, omdat zij een noodzakelijke basis vormen voor defensie, energietransitie, digitale technologie en moderne maakindustrie. Ook defensie vervult deze rol indirect, doordat veiligheid en afschrikking randvoorwaarden vormen voor vrijwel alle maatschappelijke en economische activiteiten.
+Ten tweede is het�?karakter van uitval?�bepalend. Bij veel goederen en diensten leidt verstoring tot een geleidelijke verslechtering: hogere kosten, lagere beschikbaarheid of kwaliteitsverlies. Bij andere functies werkt het systeem binair: het functioneert volledig, of niet. Het wegvallen van elektriciteit of van centrale digitale authenticatiesystemen leidt niet tot ?minder? functioneren, maar tot onmiddellijke stilstand van productie, dienstverlening en bestuurlijke processen.
+Ten derde speelt de�?tijdshorizon tot ontwrichting?�een centrale rol. Hoe korter de periode waarin een samenleving zonder een functie kan functioneren, hoe groter het strategisch gewicht. Bij sectoren als energievoorziening, telecommunicatie en acute zorg leidt uitval binnen uren of dagen tot maatschappelijke ontregeling. Bij kritieke grondstoffen, waaronder zeldzame aardmetalen, ligt de tijdshorizon vaak langer ? weken tot maanden ? maar kan uitval alsnog strategisch ontwrichtend zijn doordat alternatieven schaars zijn en opschaling van vervangende aanvoer structureel tijd vergt. Bij andere sectoren, zoals delen van de maakindustrie, blijft aanpassing over langere perioden mogelijk.
+Ten vierde raakt een beperkt aantal functies direct het�?functioneren van de overheid?. Verstoring ondermijnt niet alleen de economische activiteit, maar ook de veiligheid, handhaving, volksgezondheid en bestuurlijke continu�teit. Defensie is hier het meest uitgesproken voorbeeld: uitval tast direct het vermogen aan om territorium te beschermen, internationale verplichtingen na te komen en de publieke orde te waarborgen. 
+Tabel 1: Belang van sectoren bij afhankelijkheden[ya21]
+[FB|MB22][ya23]
+
+Bron: DenkWerk (2025)[be24][ya25][FB26][ya27][ya28]
+Noot: De in de tabel gebruikte kwalificaties (laag, middel, hoog, zeer hoog) geven een relatieve inschatting weer van de systemische betekenis van sectoren
+
+Wanneer deze vier kenmerken samenkomen, is sprake van een structurele kwetsbaarheid, dus een zogenoemd ?chokepoint?. Hier is afhankelijkheid geen tijdelijk ongemak, maar een risico dat gericht beleid en bewuste sturing vereist. 
+Afhankelijkheden in functies als defensie, energievoorziening, digitale infrastructuur, kritieke grondstoffen en telecommunicatie zijn daarmee van een andere orde dan reguliere markt- of handelsafhankelijkheden. 
+
+
+
+ 
+
+
+
+
+3) Europa's positie in de belangenstrijd
+Belang is niet genoeg: positie als doorslaggevende factor
+Hoofdstuk 2 heeft vastgesteld welke systeemfuncties structureel zwaar wegen voor het functioneren van economie, samenleving en staat. Dat oordeel ging expliciet over�belang: het markeert waar verstoring potentieel brede maatschappelijke doorwerking heeft. Of en in welke mate ingrijpen nodig is, wordt echter niet door belang alleen bepaald. Doorslaggevend is de�positie van Europa in deze functies/ sectoren.
+Wanneer afhankelijkheid asymmetrisch wordt
+Afhankelijkheid wordt problematisch wanneer zij�asymmetrisch�is: wanneer de handelingsruimte van Europa structureel kleiner is dan die van andere actoren. Om deze positie systematisch te beoordelen hanteren we�drie samenhangende criteria, die samen bepalen of wederkerigheid kan omslaan in macht en druk.
+Het eerste criterium is�?controle over infrastructuur en ?rails??. Dit betreft het beheer over fysieke en digitale knooppunten waar processen over lopen: energie- en datanetwerken, cloudplatforms, betalingsinfrastructuur, pijpleidingen, certificeringsregimes en digitale ecosystemen. Wie deze knooppunten beheerst, kan toegang conditioneren, vertragen of be�indigen. In netwerktermen gaat het om centrale schakels waar relatief kleine ingrepen grote doorwerking hebben. In functies met hoog maatschappelijk belang ? zoals energie, telecommunicatie of cloud ? vertaalt deze controle zich direct in brede handelingsmacht.
+Het tweede criterium is�?technische autonomie?. De kernvraag is of Europa kan overstappen, systemen zelfstandig kan beheren en beschikt over essenti�le elementen zoals sleutels, updates en toezicht. Afhankelijkheid wordt asymmetrisch wanneer feitelijke controle ontbreekt, zelfs als infrastructuur fysiek op Europees grondgebied staat. Dit speelt met name bij digitale diensten en software-intensieve functies, waar ?lock-in? kan ontstaan zonder zichtbare fysieke afhankelijkheid.
+Het derde criterium betreft�?redundantie en herstelvermogen bij hoge concentratie?. De positie wordt kwetsbaar wanneer alternatieven ontbreken of wanneer vervanging en opschaling structureel lang duren. Lange doorlooptijden, kapitaalintensiteit en gespecialiseerde kennis maken dat verstoringen niet binnen een korte termijn kunnen worden opgevangen. Dit is zichtbaar bij defensie-industrie, kritieke grondstoffen en farmaceutische ketens, waar tijdelijke schokken langdurige effecten kunnen hebben.
+Wanneer een actor op deze drie criteria een sterke positie heeft, ontstaat feitelijke macht. Een zwakke positie op deze criteria leidt tot onmacht. Macht wordt in de praktijk vaak�uitgeoefend via juridische en politieke kanalen: sancties, exportcontroles, vergunningen, compliance-eisen of toezicht. Deze instrumenten zijn relatief eenvoudige manieren om bestaande machtsposities te benutten. In sectoren met laag maatschappelijk belang ? zoals cacao of delen van de consumptiegoederenketen ? leidt een dergelijke juridische be�nvloeding hooguit tot prijs- of beschikbaarheidseffecten. In hoog-belang functies kan hetzelfde instrumentarium daarentegen directe maatschappelijke en bestuurlijke ontwrichting veroorzaken.
+Deze drie criteria dwingen tot ketendenken. Een sterke positie in ��n schakel is onvoldoende wanneer een andere schakel elders de werking van de gehele keten kan stilleggen. 
+De logica van de omgekeerde U
+Figuur 3: De omgekeerde-U - optimum bij wederkerige afhankelijkheid
+
+Bron: DenkWerk (2025)
+Noot: De figuur is een conceptueel model. De omgekeerde U-relatie sluit aan bij een brede literatuur over handel, afhankelijkheid en samenwerking. Klassieke en moderne studies laten zien dat wederkerigheid samenwerking bevordert, terwijl dominante machtsposities en eenzijdige afhankelijkheid deze ondermijnen (o.a. Montesquieu; Keohane & Nye, 1977; Oneal & Russett, 1999; Martin et al., 2008; Wang et al., 2013; Wang et al., 2021)
+
+De drie criteria bepalen wanneer afhankelijkheid asymmetrisch wordt; de omgekeerde U beschrijft wat dit betekent voor de aard van samenwerking. Aan de linkerzijde van de curve zijn afhankelijkheden beperkt en ontbreekt wederkerigheid; samenwerking is dun en weinig stabiliserend.
+ In het midden van de curve zijn afhankelijkheden wederkerig en blijven asymmetrie-criteria beperkt: geen van de partijen beschikt over doorslaggevende controle. In dit gebied ondersteunt afhankelijkheid samenwerking; het basis idee achter internationale handel en samenwerking.
+De rechterzijde van de curve wordt bereikt wanneer meerdere asymmetrie-criteria samenkomen en elkaar versterken. Afhankelijkheid verschuift dan van een wederkerige relatie naar een asymmetrische afhankelijkheid en potentieel drukmiddel. Samenwerking blijft mogelijk, maar wordt conditioneel en instabiel. De omgekeerde U fungeert daarmee als ordenend gevolgmodel: zij laat zien hoe cumulatie van asymmetrie-criteria de positie verschuift van stabiliteit naar kwetsbaarheid.
+
+De huidige positie van Europa per functie/ sector.
+Uiteindelijk willen we belang en positie met elkaar kruisen. Daarvoor brengen we onderstaand eerst de positie in kaart van de belangrijkste functies/ sectoren zoals die in hoofdstuk 2 zijn geduid.
+ Defensie en wapensystemen�? Europa kent een structureel capaciteitsprobleem op het terrein van defensie. Ondanks een eigen defensie-industrie blijft het continent voor zijn militaire vermogen in hoge mate afhankelijk van de Verenigde Staten. Terwijl de VS in 2023 circa 900 miljard dollar aan defensie besteedde, kwamen de gezamenlijke Europese uitgaven uit op ongeveer 309 miljard dollar, na jaren van onderinvestering onder de NAVO-norm.xxiv Dit verschil vertaalt zich rechtstreeks in schaal, standaardisatie en productiecapaciteit. Waar de VS met beperkte varianten werkt, produceert Europa tientallen systemen parallel.xxv De oorlog in Oekra�ne maakte zichtbaar wat dat betekent: beperkte voorraden, versnipperde productie en nauwelijks opschalingsvermogen. Figuur 4 laat zien dat de Verenigde Staten al decennialang de dominante leverancier zijn van Europees wapentuig.xxvi In de jaren na 2014, met de annexatie van de Krim en de verhoogde dreiging uit Rusland, nam de afhankelijkheid verder toe. Wanneer tijd, interoperabiliteit en schaal belangrijk zijn, valt Europa terug op Amerikaanse systemen.
+Figuur 4: Europese defensie-aankopen naar herkomstland, 1955?heden
+
+Bron: SIPRI
+
+
+Digitale diensten en cloudinfrastructuur�? Europa is in sterke mate afhankelijk van Amerikaanse aanbieders.xxvii Meer dan zeventig procent van de cloudmarkt, vrijwel alle dominante besturingssystemen en een groot deel van de cruciale bedrijfssoftware vallen onder Amerikaanse controle. Onderhoud, beveiliging en continu�teit leunen daarmee op een extern ecosysteem dat Europa nauwelijks kan be�nvloeden. De onderliggende architectuur van sterk verweven microdiensten maakt deze afhankelijkheid operationeel scherp: ��n besluit of storing kan kettingreacties veroorzaken in publieke en private processen. Deze afhankelijkheid is niet theoretisch: Amerikaanse sancties legden eerder via Microsoft-diensten toegang plat bij instellingen en bedrijven.
+
+Figuur 5: Marktaandelen van de grootste cloudleveranciers wereldwijd (2021?2025)
+[FB|MB29][ya30]
+Bron: Canalys
+Telecominfrastructuur (5G en 6G)�? Mobiele netwerken vormen een kritieke ruggengraat voor economie, overheid en veiligheid. 5G is inmiddels onmisbaar voor industri�le automatisering, logistiek, zorg en defensietoepassingen; 6G zal deze afhankelijkheid verder verdiepen door nauwere integratie met cloud, sensornetwerken en kunstmatige intelligentie.
+In tegenstelling tot cloud en besturingssystemen beschikt Europa hier over�eigen mondiale spelers: Nokia en Ericsson behoren tot de technologische wereldtop en vormen samen met Huawei de kern van de mondiale markt voor netwerkapparatuur. De Verenigde Staten hebben in dit domein geen vergelijkbare endtoend leveranciers. Dat geeft Europa in de radio en netwerklaag een relatief sterke uitgangspositie.
+Tegelijkertijd is deze positie niet autonoom. De telecomketen is sterk internationaal verweven, met afhankelijkheden in halfgeleiders, gespecialiseerde componenten, softwarelagen en standaarden. Bovendien verschuift de machtsbalans richting softwaregedefinieerde netwerken, virtualisatie en cloudintegratie, waar Europese controle minder vanzelfsprekend is. De strategische vraag voor 5G en vooral 6G is daarom niet of Europa leveranciers heeft, maar of het zijn huidige industri�le positie kan�verankeren over de volle keten, inclusief kernnetwerken, softwarestacks en toekomstige standaarden. In een functie met zo?n hoog maatschappelijk belang kan verlies van die verankering zich alsnog snel vertalen in asymmetrische afhankelijkheid, ook zonder fysieke uitval van het netwerk.
+Financi�le infrastructuur�[ya31]? Europa opereert in een financieel systeem dat diep in de Amerikaanse invloedssfeer ligt.xxviii De dominantie van de dollar in reserves, handel en grondstoffen maakt dat Europese banken en bedrijven vrijwel altijd via Amerikaanse betaalrails lopen. Omdat dollartransacties via Amerikaanse correspondentbanken en clearinghuizen gaan, vallen ze automatisch onder Amerikaanse jurisdictie ? ook wanneer ze volledig buiten de VS plaatsvinden. [FB|MB32]Sancties van het Amerikaanse Office of Foreign Assets Control (OFAC) tonen hoe krachtig dat instrument is: toegang tot dollars kan in ��n besluit worden afgesloten. 
+Digitale betalingslagen versterken deze asymmetrie. Stablecoins zijn bijna volledig dollar-gebaseerd, en de grote commerci�le netwerken in Europa (Visa, Mastercard, PayPal) zijn Amerikaans. Zonder eigen publieke digitale infrastructuur schuift de digitale economie verder richting het dollarsysteem.
+Zelfs de financi�le reserves zijn geen autonoom anker. Grote delen van het Europese goudxxix liggen fysiek in Amerikaanse kluizen.xxx, xxxi Juridisch van Europa, feitelijk onder Amerikaanse controle. In een periode van politieke volatiliteit in Washington is dat een strategisch risico dat nauwelijks wordt benoemd. De optelsom is een financieel systeem dat Europa intensief gebruikt, maar geen controle over heeft.[ya33]
+Aan de andere kant geeft controle over SWIFT Europa grip op het internationale berichtensysteem, waardoor het in de praktijk een effectief knooppunt vormt in het mondiale betalingsverkeer, inclusief dollartransacties.
+Kritieke technologie�n�? De mondiale technologische voorhoede ligt niet langer in Europa. In vrijwel alle strategische technologie�n (bijv. quantum computing, generative AI, biotech, semi-conductors) wordt de koppositie ingenomen door China of de Verenigde Staten. China domineert inmiddels 57 van de 64 door het Australian Strategic Policy Institute ( ASPI[FB|MB34])5 gemeten frontiertechnologie�n, gedreven door een ge�ntegreerde aanpak van wetenschap, productie en opschaling.xxxii Waar Europa vaak innoveert in het laboratorium, vertaalt China innovatie direct naar industri�le toepassing, waardoor schaal en leereffecten sneller ontstaan.
+Figuur 6: Ontwikkeling van radicale AI-innovaties (2019?2023)
+xxxiii
+Bron: Bruegel
+Goederen en kritieke grondstoffen�? Europa en Nederland zijn voor essenti�le materialen vrijwel volledig afhankelijk van externe leveranciers, vaak geconcentreerd in ��n land.xxxiv China domineert onder meer de winning en verwerking van zeldzame aardmetalen, magnesium en mangaan, zoals tabel 2 laat zien; de Verenigde Staten spelen een vergelijkbare rol bij specifieke andere grondstoffen. Cruciaal is dat niet alleen winning, maar vooral raffinage en verwerking geconcentreerd zijn. Immers, met toegang tot ?rare earth metals? kunnen we nog steeds geen permanente magneten maken. Om de impact aan te geven, in een recente studie van de ECB bleek dat 80% van de Europese industrie drie stappen verwijderd te zijn van een Chinese ?rare earth metals? producent.[FB35]xxxv Toegang tot grondstoffen betekent daarmee niet automatisch toegang tot functionele eindproducten.
+
+
+
+Tabel 2: Import aandelen en concentratie (2024)
+[be36]
+Bron: WITS[ya37]6
+Noot: De tabel toont het aandeel van het grootste herkomstland in de Nederlandse import per productcategorie, inclusief een indicatie van concentratie (HHI) en het aandeel import van buiten de EU27.
+
+Energie�? Ondanks verschuivingen in herkomst blijft Europa structureel nettoimporteur van energie.xxxvi De energietransitie verandert de aard van de afhankelijkheid, maar vermindert haar vooralsnog niet. Nieuwe afhankelijkheden ontstaan rond technologie�n, netten en grondstoffen. Voor Nederland geldt hetzelfde patroon: de binnenlandse opwekking groeit, maar volledige autonomie ligt ver in de toekomst. Tegelijk is er een liquide en wereldwijde markt voor energiedragers, met zelfs productieoverschotten aan de horizon. De energiekwetsbaarheid is dus fundamenteel beperkt; maar kan wel tot hoge kosten leiden.
+
+Waar concentreren de strategische risico?s zich?
+Strategische spanning ontstaat waar�hoog belang�en een�asymmetrische positie�samenvallen. Daar waar Europa binnen een zwaarwegende systeemfunctie structureel beperkte handelingsruimte heeft, ontstaat een risico dat verder gaat dan effici�ntieverlies.
+Deze kruising maakt focus mogelijk. Dit is weergegeven in figuur 7. Systeemfuncties waar het belang hoog is maar de Europese positie wederkerig of robuust, vragen vooral alertheid (groep II) en de vraag of sectoren uit te bouwen zijn tot eigen drukpunten. Functies waar belang en asymmetrie samenvallen vormen daarentegen het kernprobleem waarop verdere analyse en handelingsopties zich moeten richten (groep I). Ten slotte hebben we de functies in groep III, die zeker niet risicoloos zijn, maar zij hebben niet de urgentie van groep I (en II).7
+Figuur 7: Indeling van strategische sectoren op basis van belang en afhankelijkheid
+[YG38]
+Bron: DenkWerk (2025)[ya39][FB|MB40]
+Noot: De figuur ordent systeemfuncties op basis van twee dimensies: het maatschappelijk belang (verticale as) en de mate van afhankelijkheid van Europa (horizontale as). De positionering is indicatief en gebaseerd op de analyse in hoofdstuk 2 en 3. Het is bedoeld als analytisch hulpmiddel om prioriteiten te onderscheiden.
+
+"Waar het belang hoog is maar de positie zwak, is investeren onvermijdelijk; waar beide hoog zijn, ontstaat een eigen drukpunt; waar het belang laag is, volstaat marktlogica."�
+
+
+
+4) Europees denkkader en handelingsvermogen[ya41]
+Europa is groot in waarden, maar klein in middelen.[ya42] Het is krachtig in regels, maar terughoudend in macht. En precies in die spanning ontstaat de vraag: kan een systeem dat gebouwd is om vrede te bewaren, ook tegenmacht organiseren in een wereld die steeds minder vredig wordt?
+Europa is geen federale staat, maar een gemeenschap van landen die hun samenwerking hebben opgebouwd op basis van economische belangen, niet op machtsopbouw. De Europese Gemeenschap voor Kolen en Staal was ontworpen om rivaliteit om te vormen tot wederzijdse afhankelijkheid, en daarmee tot vrede.xxxvii Het leverde een indrukwekkend bouwwerk op van vrij verkeer, een interne markt, gezamenlijke regelgeving en zelfs een gemeenschappelijke munt. Maar ondanks die institutionele diepgang blijft Europa een verzameling nationale politieke economie�n die moeizaam tot gezamenlijke strategische keuzes komen. Deze spanning vormt de rode draad van dit hoofdstuk: een rijk continent dat interne stabiliteit heeft gecre�erd via verdeling en regels, maar extern moeite heeft om macht, snelheid en strategisch vermogen te ontwikkelen.
+De Europese verdelingslogica - interne kracht, externe beperking
+Europa?s economische architectuur is gebouwd op publieke verdeling en marktordening - een model dat stabiliteit levert, maar ook inertie. De verzorgingsstaat geeft burgers zekerheid, maar ook het gevoel dat risico?s collectief moeten worden vermeden. Dat maakt Europa voorspelbaar, maar remt het vermogen om strategische sprongen te maken. Marktordening en sociale bescherming vormen samen de grootste overheidsuitgaven: gemiddeld 27% van het BBP, oplopend tot 30+% in Duitsland, Frankrijk en Scandinavi�.xxxviii Daarmee heeft Europa de grootste publieke welvaartsstaat ter wereld. [ya43]De publieke uitgaven van de VS zijn geopolitiek strategischer. Niet omdat Washington meer begrotingsruimte heeft - integendeel, de VS heffen�aanzienlijk minder belasting�en hebben structureel�minder publieke middelen dan Europa - maar omdat zij bereid zijn strategische capaciteit�op krediet�te financieren. Waar Europa zijn begroting bewaakt, gebruikt de VS de begroting als machtsinstrument[ya44]. De VS cre�ren ruimte via tekorten van ~6% BBPxxxix, via een federale schuld boven 120% BBPxl en via investeringsprogramma?s die niet wachten op fiscale balans.xli Schaal en snelheid gaan v��r kostenbeheersing. China volgt een derde pad: niet via schuld, maar via staatsbanken en planning.xlii
+Het resultaat is scherp en ongemakkelijk:�Europa is intern stabiel, maar extern beperkt; de VS zijn extern krachtig, maar intern financieel gespannen en mogelijk zelfs kwetsbaar; China is extern assertief, en intern autoritair.�
+Deze verdelingslogica kan goed worden beschreven met behulp van het geopolitieke trilemma. De positie die Europa daarin gekozen heeft be�nvloedt zowel het Europese handelingsvermogen als de manier waarop de EU instrumenten inzet.
+Het geo-economische trilemma - drie doelen, twee keuzes
+Het geo-economisch trilemma gaat uit van de hypothese dat drie doelen niet gelijktijdig maximaal haalbaar zijn: strategische autonomie, maximale economische openheid en integratie, en onafhankelijke democratische instituties. De spanning in dit trilemma ontstaat uit de onderlinge frictie tussen deze drie doelen. Maximalisatie van economische openheid en integratie vergroot effici�ntie en welvaart, maar cre�ert tegelijkertijd afhankelijkheden van externe leveranciers, technologie�n en markten. Strategische autonomie vraagt juist om het beperken van zulke afhankelijkheden, via spreiding van ketens, buffers en eigen capaciteitsopbouw. Onafhankelijke democratische instituties bepalen daarbij de wijze waarop strategische autonomie kan worden georganiseerd: zij begrenzen concentratie van macht, stellen eisen aan legitimiteit en rechtsstatelijkheid en verankeren besluitvorming in publieke verantwoording. Juist die waarborgen maken duidelijk waar de spanning ligt: autonomie kan niet worden opgebouwd via onbeperkte centrale sturing, maar moet passen binnen democratisch gecontroleerde processen.
+Figuur 8: Het geo-economische trilemma
+
+
+Bron: DenkWerk analyse[ya45][ya46]
+
+De Europese Unie, de Verenigde Staten en China maken elk een andere afweging binnen het trilemma. Die keuzes verklaren hun uiteenlopende machtsposities.
+De Europese Unie combineert sterke onafhankelijke democratische instituties met een hoge mate van economische openheid en integratie. De interne markt, mededinging, rechtsbescherming en transparantie vormen de kern van het Europese model. Deze combinatie heeft geleid tot welvaart en interne stabiliteit, maar ook tot structurele afhankelijkheden. Strategische autonomie is lange tijd impliciet ondergeschikt geweest aan effici�ntie en marktintegratie.
+De Verenigde Staten positioneren zich primair langs strategische autonomie, en zijn bereid economische openheid daaraan ondergeschikt te maken. Open markten blijven belangrijk, maar worden beperkt zodra nationale veiligheid, technologische dominantie of geopolitieke invloed in het geding zijn. Dit vertaalt zich in grootschalige subsidies, exportrestricties, sancties en gerichte industri�le programma?s. Democratische instituties blijven formeel intact, maar staan onder druk door de schaal, snelheid en centralisatie van strategisch-economische besluitvorming.
+China positioneert zich binnen het geo-economisch trilemma langs strategische autonomie en selectieve economische openheid, waarbij democratische instituties ondergeschikt zijn aan staatsdoelen. Economische openheid wordt functioneel ingezet: zij wordt toegestaan zolang zij bijdraagt aan industri�le opbouw, technologische ontwikkeling en ketendominantie, en wordt beperkt zodra zij die doelen bedreigt. Strategische sectoren worden beschermd via staatsplanning, staatsbanken, gerichte subsidies en directe sturing. Institutionele checks en balances vormen daarbij geen autonome begrenzing van staatsmacht, maar opereren binnen een systeem waarin rechtspraak, media en politiek onder directe partijaansturing staan. Dit maakt snelle besluitvorming, schaal en co�rdinatie mogelijk, maar ten koste van institutionele onafhankelijkheid en rechtsstatelijke waarborgen.
+Gezamenlijk maakt deze vergelijking zichtbaar dat Europa structureel anders in het geo-economisch trilemma staat dan de Verenigde Staten en China. Voor Europa is ��n element niet onderhandelbaar: onafhankelijke democratische instituties. Beweging richting strategische autonomie kan daarom alleen plaatsvinden via keuzes over de mate en vorm van economische openheid om strategische autonomie op te bouwen binnen democratische randvoorwaarden.
+Vraag- versus aanbodsturing - een systeem gebouwd op regulering
+De positiekeuze in het geopolitieke trilemma bepaalt ook de keuze van een bijbehorend beleidsinstrumentarium. Europa be�nvloedt de economische dynamiek vooral met behulp van vraagsturing en stuurt primair via regels. CO?-beprijzing, productnormen, consumentenrechten, privacykaders en mededinging moeten gedrag bottom-up veranderen. Dat werkt, maar langzaam. Het is beleid dat vooral disciplineert, minder beleid dat bouwt.
+Daartegenover staat de Amerikaanse logica van�aanbodsturing: fiscale prikkels, subsidies, garanties en strategische overheidsopdrachten. Het is beleid dat direct capaciteit cre�ert. China volgt een derde koers: centrale planning, lokale uitvoering, ketencontrole en het bewust accepteren van tijdelijk ineffici�nte overcapaciteit om strategische voorsprong te ontwikkelen. 
+Europa beschikt wel over aanbodinstrumenten, bijvoorbeeld in het landbouwbeleid, maar de inzet op het totaal van de economie blijft uitzonderlijk en versnipperd. Daardoor ontstaat een scherpe asymmetrie:�Europa maakt regels; anderen cre�ren capaciteit.�Regels ordenen gedrag, capaciteit bepaalt geschiedenis. Het is precies die spanning die Europa geopolitiek kwetsbaar maakt.
+Deze asymmetrie wordt nog pregnanter wanneer we kijken naar de�tijdsdynamiek�van beleid. Vraagsturing werkt over jaren: bedrijven moeten investeren, consumenten moeten gedrag aanpassen, leveranciers moeten nieuwe standaarden implementeren. Zowel de VS als China zetten vooral in op innovatie om hun geopolitieke positie te versterken. Hun aanbodsturing werkt binnen maanden: zodra subsidies, belastingvoordelen en gegarandeerde afnamecontracten worden vrijgegeven, verschuiven investeringen onmiddellijk. Dit verklaart waarom de VS binnen twee jaar een ongekende her-industrialisatie doormaakten rond batterijen, chips en schone technologie - waar Europa nog bezig was met consultatie, staatssteunbeoordeling en normontwikkeling.
+Daarnaast leggen vraaginstrumenten de verantwoordelijkheid voor transitie bij individuele actoren, terwijl aanbodinstrumenten verantwoordelijkheid bij de staat leggen. Dat is een principieel verschil: Europa verwacht beweging van miljoenen bedrijven en huishoudens; de VS en China mobiliseren eerst de staat en vervolgens de markt. Daardoor kunnen zij paden cre�ren die bedrijven aantrekkelijk vinden om te volgen, terwijl Europa vooral paden markeert waarop bedrijven behoren te lopen.
+Ten slotte speelt schaal een beslissende rol. In een wereld waarin kritieke sectoren - van halfgeleiders tot AI-modellen - kapitaalintensief zijn en netwerkeffecten versterken, wint degene die�massa�kan organiseren. Aanbodsturing is een schaalinstrument; vraagsturing is een ordeningsinstrument. En wie alleen ordent, maar niet bouwt, blijft afhankelijk van wie w�l bouwt.
+Als Europa niet een wingewest wil worden van de VS en China zal het de positie in het trilemma en de bijbehorende beleidsinzet moeten aanpassen. Strategische autonomie kan niet worden opgebouwd binnen het bestaande keurslijf van proceslogica en begrotingsorthodoxie. Het vereist een institutionele verschuiving, waarbij wij graag uitsluiten dat de democratische ruimte serieus ingeperkt wordt en er dus beweging zal moeten komen langs de kant van financi�le discipline. 
+Dat kan bijvoorbeeld betekenen meer industriepolitiek op kerngebieden, een Europees fonds ter ondersteuning van geopolitieke doelen, en Eurobonds voor defensie. Deze zaken worden verderop uitgewerkt. Zolang die verschuiving uitblijft, blijft Europa afhankelijk in domeinen waar afhankelijkheid direct doorwerkt in veiligheid, welvaart en politieke handelingsvrijheid.
+Europese besluitvorming - het politieke sluitstuk dat de eerdere patronen bevestigt[ya47][ya48]
+De Europese besluitvorming past logisch in het patroon dat aan het begin van dit hoofdstuk is geschetst: Europa is geen federale staat, maar een�verband van staten�die stabiliteit organiseren via regels, niet via gecentraliseerde macht. Dat werkte zolang Europa vooral intern gericht was; het schuurt zodra geopolitiek snelheid en concentratie van middelen vraagt. Waar marktbesluiten vaak via gekwalificeerde meerderheid kunnen worden genomen, geldt op strategische domeinen - buitenlands beleid, veiligheid, sancties, belastingen - nog steeds vaak�unanimiteit. Dat betekent dat elk land, klein of groot, een veto kan uitspreken over beslissingen die de collectieve veiligheid raken.
+Die unanimiteit was ooit bedoeld als waarborg voor gelijkwaardigheid binnen een vredesproject, maar is in een geopolitieke omgeving veranderd in een�snelheidsremxliii�- precies het soort rem dat we eerder zagen bij het trilemma en de vraagsturing. De landenpositie in het trilemma is ook niet identiek, waarbij autonomiebehoefte eerder nationaal dan Europees is gericht. Noordelijke landen hechten aan begrotingsdiscipline en rechtsstatelijkheid; Zuidelijke landen vragen om solidariteit en investeringen; Oostelijke landen ervaren Rusland niet als abstract gevaar, maar als directe dreiging; en enkele lidstaten - Hongarije voorop - gebruiken hun vetorecht actief om nationale of zelfs persoonlijke politieke doelstellingen te realiseren.
+Het gevolg is dat Europa juist op de terreinen waar snelheid en eensgezindheid het meest nodig zijn, het[ya49] minst slagvaardig is[ya50].xliv Elk compromis moet niet alleen economisch en juridisch houdbaar zijn, maar ook�politiek verteerbaar voor 27 verschillende electoraten.  Besluitvorming wordt zo niet alleen een institutioneel [ya51]probleem, maar ook een�machtsprobleem. Een Unie die niet snel kan handelen, kan moeilijk macht projecteren. En een Unie waarin een of twee landen het strategische beeld kunnen blokkeren, kan geen coherente positie innemen in een wereld waarin tegenpolen w�l centraal worden aangestuurd.
+Conclusie ? het kantelpunt
+Europa staat op een moment waarop het trilemma niet langer vrijblijvend is. De drie patronen die dit hoofdstuk heeft uitgewerkt -�de vrije markt logica die economische openheid boven strategische slagkracht stelt, de voorkeur voor vraagsturing die regels boven bouwkracht plaatst, en de besluitvormingsarchitectuur die unanimiteit boven snelheid zet�- versterken elkaar. Samen verklaren zij waarom Europa normatief sterk is, maar geopolitiek kwetsbaar.
+Toch laat dit hoofdstuk niet alleen zien wat Europa belemmert, maar ook waarom het kantelpunt een kans is. Want juist doordat de beperkingen samenhangen, kunnen de oplossingen dat ook. Wanneer Europa bereid is:
+* strategische investeringen niet langer te zien als ?Europese kosten? maar als noodzakelijke publieke functie,
+* aanbodsturing selectief in te zetten op domeinen waar capaciteit telt,
+* besluitvorming te organiseren via coalities die bewegen wanneer unanimiteit blokkeert,
+ontstaat ruimte om het patroon te doorbreken. En die ruimte is groter dan soms wordt gedacht.
+Dat vormt de natuurlijke brug naar het volgende hoofdstuk,�De sterktes van Europa: een verkenning van de middelen, waarden, marktgrootte, instituties en maatschappelijke kracht die Europa w�l bezit - en die, mits strategisch ingezet, de basis kunnen vormen voor hernieuwde autonomie en invloed.
+
+
+
+
+5) Sterktes van Europa[ya52][ya53]
+Europa wordt door de andere geopolitieke blokken gemakkelijk weggezet als Avondland dat kan worden afgeschreven, maar dat is geenszins terecht. Europa heeft niet meer de dominantie van v��r de Wereldoorlogen, maar het is geen kleine speler op het wereldtoneel. Europa (de EU, de EER en het VK) is economisch een zwaargewicht. De interne markt is met 450 miljoen consumenten ��n van de grootste ge�ntegreerde economische zones ter wereld en vormt een stabiele basis voor economische macht. De Europese beroepsbevolking behoort tot de best opgeleide ter wereld, wat zich vertaalt in een sterke kennisintensieve economie.
+De Europese verzorgingsstaat brengt een grote consumentenmacht met zich mee. De Europese regulering is hier ook sterk op consumentenmacht gericht en is in staat om ook bij derde landen gedrag af te dwingen. Dat blijkt bijvoorbeeld uit de wetgeving op het terrein van digitale diensten, waar Europa voorloper is op het gebied van privacy en consumentenbescherming. Europa heeft zich aan de productiekant in machtstermen verzwakt door een te grote ketenafhankelijkheid te laten ontstaan, maar heeft in de productieketens nog wel een positie die een hoog verdienpotentieel kan borgen. Dit laat zich illustreren met de smile curve van figuur 9.
+Figuur  ? 9: De ?Smile Curve?: verdeling van verdienvermogen en afhankelijkheden langs de productieketens
+Bron: DenkWerk 2025
+Europa is nog steeds sterk aan de beide uiteinden van de curve. Daar is het verdienpotentieel ook het grootst. De globalisering heeft het de afgelopen decennia mogelijk gemaakt om productieketens een wereldwijde spreiding te geven, waarbij de ketenonderdelen met een laag verdienvermogen logischerwijs zijn uitbesteed aan landen met een lager loonniveau. Deze ?smile-curve-logica? heeft veronachtzaamd dat in lagere toegevoegde waarde activiteiten grote afhankelijkheden kunnen ontstaan.
+De kracht van de linkerkant van de smile-curve is gelegen in het hoge opleidingsniveau van de Europese bevolking, de goede kwaliteit van wetenschappelijk onderzoek en een cultuur waarin creativiteit wordt gestimuleerd en beloond. Europa heeft geen gebrek aan nieuwe idee�n en vindingen, maar wel een probleem met het cre�ren van schaal om de vindingen te patenteren en in de markt te zetten. Dat is op zich opmerkelijk, omdat er voldoende kapitaal in Europa is verzameld om juist die schaalsprong financieel mogelijk te kunnen maken. Het kapitaal is er, maar wordt niet op een innovatie-ondersteunende manier ingezet. Kapitaal is daarmee nog een sluimerende kracht in Europa. De historie laat zien hoe belangrijk die kracht kan zijn.
+De kracht aan de rechterkant van de smile-curve wordt bepaald door inzicht in consumentenwensen en consumptiepatronen. De Europese diensteneconomie sluit hier goed op aan en bij een toenemende welvaart in de wereld is dit ook een echte groeimarkt. Het Europese beleidsinstrumentarium dat gericht is op vraagsturing kent de zwaktes die in het vorige hoofdstuk zijn beschreven, maar heeft zijn kracht in dit deel van de curve. De diensteneconomie op het terrein van marketing en service is traditioneel niet erg kapitaalintensief, maar wel regelafhankelijk.
+Daarnaast beschikt Europa over een aantal kennisclusters die wereldwijd bepalend zijn: ASML en zijn ecosysteem domineren de mondiale lithografieketen, Europese medtechbedrijven behoren tot de wereldtop, en in klimaattechnologie loopt Europa voorop in offshore wind, elektrolysers en groene-waterstofstandaarden.
+Tot slot heeft Europa iets wat geen andere actor in gelijke mate bezit: regulatoir gezag. Via het ?Brussels Effect? exporteert de EU wereldwijd normen op het gebied van data, mededinging, productveiligheid en klimaat. Meer dan 140 landen hebben inmiddels privacywetgeving die op GDPR leunt. 
+Verdienvermogen en weerbaarheid vergroten door verdieping van de interne markt
+E�n van de belangrijkste manieren om sterker te staan in de wereldorde is om de interne kracht zoveel mogelijk te benutten. Rapporten van Letta en Draghi, maar ook een studie van het IMF maken duidelijk dat de EU zichzelf hindert door veel interne regels die vaak per lidstaat verschillen, en andere grensoverschrijdenden hindernissen.  Volgens het IMF zijn de interne drempels gelijk aan een equivalent van 40% aan handelsheffingen voor goederen en meer dan 100% voor grensoverschrijdende diensten. Meer ruimte voor Europese bedrijven om de gehele EU-markt te kunnen benutten geeft ook opschalingsmogelijkheden die nu te vaak ontbreken. Het gebrek hieraan doet ook veel start-ups naar de VS verhuizen omdat schaal daar veel gemakkelijker te bereiken valt. Schaalgrootte bepaalt ook vaak concurrentiekracht. De EU doet zichzelf dus tekort als concurrent op de wereldmarkt door de schaalmogelijkheden niet te benutten, en het ruim aanwezige kapitaal ook niet de mogelijkheid te bieden in de eigen regio met een hoog rendement te investeren. 
+
+Van sterktes naar drukpunten[ya54]
+We hebben beschreven dat Europa op een aantal terreinen asymmetrische afhankelijkheden heeft die in een geopolitieke machtsstrijd tegen ons ingezet kunnen worden. De vraag is of Europa de eigen sterktes ook in kan zetten als drukpunten om tegenmacht te bieden. De harde drukpunten [FB|MB55][ya56]
+Halfgeleiders: ASML en het EUV-ecosysteem
+Europa beschikt over de enige machines ter wereld die moderne geavanceerde[ya57] chips mogelijk maken: ASML?s EUV-systemenxlv, met de unieke optica van Zeiss en aanverwante depositiesystemen van onder meer ASM en BESI. Deze keten is niet alleen schaars; zij is onvervangbaar.xlvi De technische drempels zijn zo hoog dat zelfs China?s staatsgeleide investeringen hier geen materi�le alternatieven hebben opgeleverd. De kracht van dit drukpunt zit in de continu�teit: chipfabrieken hebben permanente toevoer van service, onderdelen, kalibraties en software nodig. Als Europa stopt, dalen yields binnen weken[ya58]. 
+Luchtvaart: Airbus en de Europese subsystemen
+De civiele luchtvaart van China,[ya59] en grote delen van Azi�, is structureel afhankelijk van Europese vliegtuigen en componenten.xlvii Niet enkel de romp, maar juist de subsystemen (motoronderdelen (Safran/MTU/Rolls-Royce[ya60]), avionica (Thales), air management (Liebherr Aerospace)) vormen een gecertificeerd ecosysteem dat niet reproduceerbaar is zonder Europese betrokkenheid. Omdat onderhoudscycli juridisch strak zijn vastgelegdxlviii, worden vliegtuigen binnen weken uit dienst genomen als onderdelen of certificeringsupdates uitblijven. Dit cre�ert een zeldzaam directe afhankelijkheid: het wegvallen van Europese service betekent het aan de grond zetten van een luchtvloot. 
+Het middelharde drukpunt 
+Markttoegang en regulatoir gezag als middelharde drukpunt
+De interne markt geeft Europa een structureel drukpunt doordat toegang ertoe altijd gepaard gaat met naleving van Europese regels. Via het Brusselse effectxlix kan Europa van externe producenten verlangen dat hun producten bijvoorbeeld voldoen aan Europese veiligheids-, milieu- en circulariteitsnormen. Daarmee kan Europa bijvoorbeeld ontwerpkeuzes sturen in de richting van Europese technologie�n, waaronder de geavanceerde recyclingprocessen waarin Europa een voorsprong heeft.
+Daarnaast cre�ert de structuur van de interne markt een directe machtsoptie: Europa importeert grote volumes laagwaardige goederen uit China die niet kritiek zijn voor Europa maar essentieel voor [ya61]de Chinese verdiencapaciteit.l Het tijdelijk beperken of stopzetten van deze niet-kritieke stromen schaadt Europa [YG62]relatief mild, maar heeft onmiddellijke grote  economische gevolgen voor China.
+Overige sterktes zonder strategische uitwerking
+Naast de drie genoemde drukpunten zijn er nog vele gebieden waar Europa concurrerend is; zie ook groep III in hoofdstuk 3. Onze welvaart komt niet uit de lucht vallen. Dit zijn echter sterktes die niet of veel minder voldoen aan de criteria verwevenheid, aan-/uit- karakter, tijd tot schade en impact op de overheid. Hier is dus veel meer sprake van de vrije-markteconomie waar goede aanbieders een groot deel van de vraag bedienen zonder daarmee een machtspositie te verwerven.
+Concluderend kan worden gesteld dat Europa enkele drukpunten heeft, maar die nauwelijks inzet. De al [ya63]eerder geobserveerde overlegcultuur en verdeeldheid in Europa is daar voor een groot deel debet aan. 
+
+
+6) Mogelijkheden om asymmetrische afhankelijkheden te verminderen
+In hoofdstuk 2 en 3 hebben wij een aantal cruciale asymmetrische afhankelijkheden ge�dentificeerd die Europa op de U-curve te ver naar rechts hebben gepositioneerd. Europa is daardoor te kwetsbaar geworden voor de machtspolitiek van de andere geopolitieke blokken. De Europese landen zullen daarom in gezamenlijkheid moeten zoeken naar een strategie om deze afhankelijkheden te verminderen. Dat zal geen eenvoudige exercitie worden, zie ook de in hoofdstuk 4 al beschreven specifieke karakteristieken van het Europese denkkader en de besluitvorming binnen Europa. 
+Bij het afbouwen van asymmetrische afhankelijkheden zijn er twee strategische denkrichtingen8:
+Strategische autonomie
+De richting van strategische autonomie; die zoveel�betekent dat Europa probeert een zo groot mogelijk deel van de afhankelijkheid en waardeketen binnen de eigen ? of die van daadwerkelijk bevriende naties ? grenzen te organiseren. Dit zou de afhankelijkheid van externe leveranciers verminderen en de kwetsbaarheid bij geopolitieke schokken beperken. Dit is een richting die zowel economisch als technologisch bijzonder uitdagend is, en daarmee voorbehouden blijft aan slechts de allerbelangrijkste afhankelijkheden, zoals Defensie en Digitale Infrastructuur.�
+Op het gebied van defensie hebben de Europese NAVO-landen zich gecommitteerd om hun�defensie-inspanningen structureel op te schalen richting circa 3,5% van het bbp. Het gaat daarbij niet alleen om hogere uitgaven, maar vooral om het�herstellen van de Europese militaire geloofwaardigheid: meer munitievoorraden, opschaling van de defensie-industrie, hogere inzetbaarheid en minder afhankelijkheid van de VS. Zeker als daar de extra 1,5% van het bbp als gecommitteerde uitgaven aan ?aanpalende en ondersteunende sectoren? wordt opgeteld, is duidelijk dat dit om een serieuze budgettaire uitdaging gaat.
+Het bouwen van een eigen en onafhankelijke digitale infrastructuur is een opgave van vergelijkbare omvang. Ook hier hebben we lang gratis meegelift op de ontwikkelingen en de uitbouw van die infrastructuur, vooral in de Verenigde Staten. Al in onze rapporten ?De online wereld? en ?De data-gedreven toekomst? wordt nadrukkelijk gewezen op de macht die de bezitters van de fysieke en digitale infrastructuur bezitten.
+?Dataconglomeraten uit de VS en China zijn hard op weg om een onoverbrugbare voorsprong op te bouwen. Net zoals zij op dit moment poortwachters zijn van internetmarkten, kunnen zij dat in de datagedreven wereld ook worden van bijvoorbeeld de auto-industrie, gezondheidszorg en energiesector.?9
+Hier zal dus net als voor onze Defensie positie een grote gezamenlijke effort moeten worden gestoken in het afbouwen van de afhankelijkheid en het autonoom worden van Europa.
+Strategische onmisbaarheid
+De alternatieve richting van strategische onmisbaarheid�vertrekt vanuit een andere logica. In plaats van alles zelf te willen doen, richt Europa zich op�kritieke niches en zogenaamde chokepoints�of drukpunten, waarin het wereldwijd leidend of onvervangbaar kan zijn. In hoofdstuk 5 hebben we de sterktes en mogelijke drukpunten van Europa doorgenomen, en het lijkt logisch om binnen en rondom deze sterktes ook de chokepoints te zoeken.
+Om drukpunten geloofwaardig in te zetten, zal Europa (of de ?coalition of the willing?, daarover later meer) de bestaande drukpunten moeten beschermen en waar mogelijk uitbouwen; 
+Tabel 3: Europese drukpunten ten opzichte van China en de VS
+Drukpunt
+Vs China
+Vs USA
+- Geavanceerde Lithografie (ASML)
+V
+V
+- Digitale infrastructuur (6G-infrastructuur kampioen)
+
+V
+- Vliegtuig technologie
+V
+
+- Toegang tot EU-markt
+V
+V
+Bron: DenkWerk[ya64] 2025[ya65]
+
+ Immers, de andere machtsblokken spelen het spel allang via de as van macht en zijn dus bezig om de asymmetrische afhankelijkheden die ze zelf kennen af te bouwen. China is in haar ?Made in China? strategie voor 2025 expliciet10 over haar ultieme ambitie om zelfvoorzienend te worden. En, alhoewel de legitimatie van de Verenigde Staten er ��n is van veiligheid en leiderschap in plaats van soevereiniteit, is de beweging naar autonomie en het afbouwen van afhankelijkheden even sterk.
+In beide gevallen zijn de doelen 
+- minder afhankelijk zijn van anderen in kritieke sectoren
+- controle over strategische chokepoints
+
+
+
+Het beschermen en uitbouwen van drukpunten (afhankelijkheden voor de anderen) zal dus een dynamisch traject zijn. Net zoals wij de afhankelijkheden proberen af te bouwen, en drukpunten proberen te versterken en uit te bouwen, doen anderen dat ook. Dat is economisch gezien niet altijd  effici�nt, maar het is noodzakelijk als we het stuur op onze samenleving zelf in handen willen houden.
+Wat komt er terecht van de Europese autonomie-agenda?
+De Europese Commissie heeft de afgelopen jaren een duidelijke koerswijziging ingezet. Waar strategische afhankelijkheden lange tijd als bijzaak werden gezien, staan ze nu centraal in het Europese beleidsdenken. Begrippen als�strategische autonomie,�economic security�en�weaponised interdependence�zijn gemeengoed geworden. Afhankelijkheden in chips, energie, grondstoffen, cloud en defensie zijn niet langer louter economisch, maar expliciet geopolitiek geduid. Die mentale en politieke omslag is op zichzelf betekenisvol: zij maakt beleid mogelijk dat enkele jaren geleden nog ondenkbaar was.
+
+Deze herori�ntatie heeft geleid tot een reeks concrete kaders en wetten. De Chips Act, de Critical Raw Materials Act, de Net-Zero Industry Act en aangescherpte regels rond buitenlandse subsidies, investeringsscreening en exportcontrole zijn daadwerkelijk ingevoerd. Daarmee laat de EU zien dat zij, als beleids-co�rdinator, wel degelijk kan acteren. Ook zijn er tastbare resultaten: opschaling van delen van het halfgeleider-ecosysteem, investeringen in batterijen, versnelling in defensieproductie en grootschalige energie-infrastructuurprojecten. Autonomie ontstaat hier niet als systeem, maar wel fragmentarisch, per sector en per dossier. Het is blijkbaar al wel voldoende dreigend voor de VS dat in de nieuwe Amerikaanse veiligheidsstrategie de wens voor de ontmanteling van de EU li.lii 
+
+Tegelijkertijd blijft het verschil tussen ambitie en uitvoering groot.liii De Europese Unie beschikt nauwelijks over eigen uitvoeringsmacht. Zij kan normeren en co�rdineren, maar niet bouwen, bezitten of langdurig investeren op schaal, dat moeten de lidstaten doen en daar is er nauwelijks aandacht voor de gehele thematiek. Ook in Nederland niet.
+Er is geen structureel Europees investeringsvehikel voor strategische capaciteit, geen permanente begroting en geen executieve tegenhanger van bijvoorbeeld een Amerikaans Department of Energy of Defense (tegenwoordig War genoemd). 
+
+Bovendien blijft de EU sterk sturen op kaders en prikkels, in de veronderstelling dat de markt het vervolgens oplost ? terwijl juist in strategische sectoren marktrisico?s te groot zijn en het first-mover-nadeel verlammend werkt.
+De kern van het probleem is daarmee structureel: Europa heeft de diagnose scherp, maar niet het instrumentarium. Het wil geopolitieke autonomie realiseren zonder geopolitiek gedrag te vertonen. Zolang macht, kapitaal en besluitvorming niet structureel worden geconcentreerd, blijft strategische autonomie vooral een beleidsambitie ? en geen geopolitieke realiteit.[ya66]
+In de drie volgende hoofdstukken zullen we analyseren wat op kortere termijn (risico's beheersen) en middellange termijn (capaciteit opbouwen) mogelijk is en vervolgens hoe, en met wie de stappen naar meer autonomie gezet kunnen worden.
+
+
+H7 ? Wat is het handelingsperspectief?[ya67]
+Om als Nederland en Europa te handelen met het oog op het afbouwen van asymmetrische afhankelijkheden, begint dit met een andere ori�ntatie. De primaire afweging bij deze afhankelijkheden is niet meer die van prijs-kwaliteit, maar moet gericht zijn op het verminderen van afhankelijkheid. Dat kan in sommige gevallen betekenen dat we meer betalen of genoegen nemen met iets minder kwaliteit. ?Strategische autonomie vergt een andere optimalisatie: niet op de laagste prijs of de hoogste prestaties, maar op betrouwbaarheid onder stress.?
+Deze herori�ntatie geldt zowel op korte als op middellange termijn. Keuzes worden gemaakt op basis van een breder afwegingskader dan alleen prijs en kwaliteit.
+Korte termijn: [ya68] risico's beheersen 
+Eerst onderzoeken we twee korte-termijnacties die helpen om de afhankelijkheden beheersbaarder te maken:
+- handelsstromen herori�nteren
+- voorraadvorming �n het vasthouden van secundaire stromen
+Handelsstromen herori�nteren (friendshoring)[FB|MB69]
+De vraag of de EU op korte termijn kritieke afhankelijkheden kan afwenden zonder nieuwe productie op te bouwen, vereist een analyse van de mate waarin importstromen van risicolanden (China, de Verenigde Staten en Rusland) kunnen worden verlegd naar andere exporteurs. Om hier een ?gevoel? voor te krijgen11 is modelmatig gekeken in hoeverre een goederenlijst kritieke materialen, apparatuur en componenten in de sectoren gezondheidszorg, ICT, energie en kritieke mineralen kan worden ?verschoven? door meer te gaan betalen.12 Het gaat nadrukkelijk om een indicatie, specifieke productkenmerken zijn buiten beschouwing gelaten, ook zijn diensten niet meegenomen. Het model herverdeelt handel op basis van bestaande capaciteit, zonder veronderstelde productietoename. 
+De belangrijkste conclusies van deze simulatie zijn bemoedigend:
+* Blootstelling aan handelstromen uit China en de VS daalt zichtbaar: EU-afhankelijkheid van China daalt van 11,32% naar 8,23%, en van de VS zelfs van 8,14% naar 1,85%. Dat is substantieel, gezien de korte tijdshorizon waarbinnen handel zich in de praktijk kan aanpassen. Aan de hand van de subsectoranalyse is te zien dat export uit de technische sector lastig af te wenden is.
+* 
+Figuur 10: Import aandeel per subsector voor en na optimalisatie
+
+Bron: DenkWerk & Kickstart AI (2025)[FB|MB70][ya71]
+
+* 
+De herverdeling wijst consistent in dezelfde richting: Canada, Japan, Zuid-Korea en Australi� winnen, maar ook Mexico, Maleisi�, Vietnam en andere Zuidoost-Aziatische economie�n als potenti�le partners. Deze landen exporteren al op schaal in de betrokken productgroepen en kunnen op korte termijn additionele leveringen absorberen (zie tabel YY). Een belangrijke kanttekening is dat hoewel de blootstelling aan risicolanden afneemt, de concentratie van handel (gemeten met de Herfindahl-Hirschman Index13) nauwelijks daalt. In sommige sectoren stijgt hij zelfs. Dit komt doordat veel productgroepen slechts ��n realistische alternatieve leverancier hebben. Substitutie leidt dan automatisch tot nieuwe concentratie elders.
+[FB|MB72]
+* Het risicovol importaandeel daalt bij inputs, productiemiddelen en halffabrikaten: dit zijn de schakels waar andere exporteurs, zoals Canada, Australi�, Japan, Korea, Maleisi�, snel extra capaciteit kunnen vrijmaken. Bij eindproducten daarentegen blijft het risico hoog, ook na optimalisatie. Eindproducten zijn geconcentreerd in Chinese productie-ecosystemen die niet eenvoudig te repliceren zijn. Zolang Europa de midstream en eindassemblage niet herwint blijft strategische afhankelijkheid bestaan (zie figuur XX).
+* 
+
+Figuur 11: Import aandeel per productiefase voor en na optimalisatie Bron: DenkWerk & Kickstart AI (2025)[FB73]
+* Ten slotte, in het model wordt voor ?150 mrd aan importen verschoven.  We hebben voor alle kritieke goederen de handel op korte termijn verlegd door meer te betalen (zoals we met LNG deden toen Rusland de gaskraan dichtdraaide). Het model geeft hiervan niet de kosten weer, maar die zullen zeker in de tientallen miljarden liggen [ya74][ya75]Daarbij moeten we nog bedenken dat de VS en China ook beide op strooptocht zijn naar kritieke grondstoffen. De EU heeft bij gelegenheid al achter het net gevist bij pogingen om in Brazili� contracten te sluiten over zeldzame-aardmetalen.
+
+Voorraadvorming �n het vasthouden van secundaire stromen (pre-recycling infrastructuur)
+Voorraad van kritieke materialen[ya76]
+Voorraadvorming van kritieke materialen verhoogt in de eerste plaats de weerbaarheid van de EU omdat strategische reserves fungeren als schokdemper. Een fysieke buffer maakt het mogelijk om tijdelijke verstoringen in de aanvoer ? door oorlog, exportrestricties of logistieke incidenten ? op te vangen zonder dat de productie onmiddellijk stilvalt of dat de volledige schok doorwerkt in prijzen en beschikbaarheid. Voorraden fungeren ook als geopolitiek signaal. Wanneer de EU voorraden opbouwt, stuurt zij impliciet de boodschap: wij kunnen een periode van verstoring overbruggen en zijn minder vatbaar voor economische dwang. Dat vergroot de geloofwaardigheid van andere instrumenten, waaronder sancties, exportrestricties en conditionele handel, omdat de eigen kwetsbaarheid kleiner is.
+Alleen materialen die stabiel en effici�nt op te slaan zijn, lenen zich voor snelle voorraadvorming.liv Metalen, edelmetalen en veel oxiden blijven jarenlang intact en nemen weinig ruimte in, terwijl reactieve verbindingen zoals lithiumhydroxide snel degraderen en lage-gehalte ertsen te volumineus zijn voor kosteneffici�nte opslag. Een doorslaggevende voorwaarde is verder bruikbaarheid. Een voorraad heeft pas strategische waarde wanneer Europa het materiaal zelf kan verwerken tot functionele halffabricaten of eindproducten. Zonder binnenlandse raffinage- of scheidingscapaciteit blijft een voorraad een passief bezit. Voorraadvorming van materialen die hier niet aan voldoen, moet hand in hand gaan met het opbouwen van Europese productie- en raffinagecapaciteit.
+Vasthouden van secundaire grondstoffen 
+De EU laat jaarlijks enorme volumes strategische secundaire grondstoffen uit de economie wegstromen. Batterij-black mass, koper- en aluminiumschroot, zeldzame-aardemetaalhoudende magneten: vrijwel al deze stromen worden verzameld, versnipperd en vervolgens naar verre pre-processinghubs ge�xporteerd. Daar worden ze opgewaardeerd en uiteindelijk in Aziatische, vaak door Chinese bedrijven gedomineerde, raffinageketens verwerkt.
+Op korte termijn hoeft Europa die materialen nog niet zelf te recyclen. Maar het vasthouden van deze stromen is wel noodzakelijk: sorteren, bufferen, demonteren, voorbewerken. Dat vormt de grondstofbasis (infrastructuur) voor toekomstige Europese recyclingcapaciteit en voorkomt dat waarde en strategische controle uit de EU verdwijnen.lv
+Dit is precies de reden waarom in ReSourceEU expliciet wordt gepleit voor het terugdringen van scrap-export van kritieke materialen, en voor het behoud van strategische afvalstromen binnen de interne markt. ReSourceEU stelt dat secundaire grondstoffen in Europa schaars genoeg zijn om als strategische asset te worden behandeld en dat het weglekken ervan de opbouw van een Europese circulaire waardeketen ondermijnt. Door secundaire stromen binnen de EU te houden, doorbreekt Europa een structurele afhankelijkheid die anders alleen maar groeit. En aan de andere kant geldt dat wanneer deze stromen worden vastgehouden of geconditioneerd via exportvoorwaarden, de inputkosten van buitenlandse raffinadeurs direct stijgen. Voor landen die hun midstream-capaciteit hierop hebben ingericht, is Europees schroot geen substitueerbare grondstof. Korte termijn-succes betekent controle terugwinnen over de grondstoffen die we al bezitten. 
+Ten slotte, voorraadvorming en exportrestricties op scrap worden door handelspartners ge�nterpreteerd als een beperking van hun toegang tot grondstoffen. China heeft in soortgelijke situaties exportrestricties ingesteld op zeldzame aardmetalen[FB|MB77] gallium en germanium wanneer andere landen hun eigen voorraden versterkten. Korte termijn-voorraadbeleid moet dus rekening houden met mogelijke retaliatie en escalatie in grondstoffenmarkten.[YG78][YG79][FB|MB80]
+
+
+
+H8 - Middellange termijn maatregelen: capaciteit opbouwen
+Zoals in hoofdstuk 6 is uiteengezet, is de route van ?strategische autonomie? economisch en technologisch veeleisend. Deze route moet daarom worden voorbehouden aan functies en sectoren met het hoogste systeembelang, met name defensie en cloud (of beter: data-autonomie). Voor andere hoog-belangsectoren volstaat het verkleinen van afhankelijkheden zolang voldoende alternatieven beschikbaar zijn. Het behoud en de uitbouw van eigen strategische drukpunten is daarbij cruciaal om op basis van gelijkwaardigheid te kunnen opereren.
+
+Defensie[FB81]
+De Europese defensieopgave vraagt om een snelle en grootschalige opschaling. Het verslechterende dreigingsbeeld maakt duidelijk dat bestaande capaciteiten onvoldoende zijn, zowel kwantitatief als kwalitatief. Tegelijk is goed zichtbaar waar de grootste tekorten zitten: gelaagde lucht- en raketverdediging (met name interceptorraketten), langeafstandswapens en deepstrike capaciteiten, command & control en een robuuste digitale datalaag, munitieproductie, counterdrone systemen, militaire mobiliteit en maritieme luchtverdediging en satellietcapaciteiten voor communicatie, observatie en positionering.lvi
+Deze opgave vraagt niet alleen hogere defensiebudgetten, maar vooral een forse opschaling van de Europese productiecapaciteit. De industri�le basis is gefragmenteerd, kent te veel varianten en mist schaal.lvii Standaardisatie en interoperabiliteit zijn noodzakelijk om snelheid en massaproductie mogelijk te maken. Hoewel grotendeels duidelijk is wat nodig is, blijft de uitvoering weerbarstig door nationale besluitvorming, uiteenlopende belangen en sterk verschillende begrotingsposities. Voor een aanzienlijk deel van de EU-NAVOlanden ontbreekt de financi�le ruimte om deze investeringen nationaal te dragen, wat gezamenlijke financiering ? waarschijnlijk via Eurobonds ? tot een praktische randvoorwaarde maakt.
+
+
+Cloud[FB82]
+Europa beschikt niet over een cloud-infrastructuur op hyperscaler-schaal en is daardoor structureel afhankelijk van Amerikaanse aanbieders van IaaS en PaaS.lviii Initiatieven als GAIA-X hebben dit niet fundamenteel veranderd: zij versterkten governance en standaarden, maar bouwden geen industri�le capaciteit, schaal of investeringslogica.lix Strategische technologie ontstaat niet via afspraken alleen, maar via uitvoering, kapitaal en actieve marktvorming.
+Een alternatieve route ligt in een joint venture van grote Europese telecombedrijven zoals�Deutsche Telekom, Telefonica, Vodafone,�Orange en KPN[ya83]. Deze ondernemingen beschikken reeds over kritieke assets binnen Europese jurisdictie: vaste en mobiele netwerken, datacenters, operationele beveiliging, identity-management en langdurige relaties met overheden en vitale sectoren. Door deze infrastructuren te bundelen en te standaardiseren kan een Europese cloud-laag ontstaan die juridisch, operationeel en technisch Europees is. Tegelijk moet worden onderkend dat dit op zichzelf onvoldoende is: hyperscaler-schaal vraagt ook om een volwassen software- en dienstenlaag, een ontwikkelaarsecosysteem,�High-Performance Computing (HPC)�en�Artificial Intelligence (AI)-capaciteit, en het vermogen om meerdere ontwikkel- en opschalingscycli vol te houden. Deze inzet past binnen het bredere Europese denken over de zogeheten EuroStacklx: het systematisch opbouwen van een Europese digitale keten, van connectiviteit en datacenters tot cloud, software en data-governance.
+ Een autonome cloud is daarin geen op zichzelf staand doel, maar een functionele bouwsteen om kritieke publieke en economische processen te verankeren binnen een Europees technologisch ecosysteem en zo asymmetrische afhankelijkheden te verkleinen.
+Daarom is een tweede pijler essentieel: overheden treden op als vooraf vastgelegde launching customers. Meerjarige inkoopcommitments[ya84][ya85][ya86] voor soevereine workloads cre�ren gegarandeerde vraag en doorbreken het kip-eiprobleem van de cloudmarkt. Governance speelt hierbij een ondersteunende rol via certificering, dataportabiliteit en exitvoorwaarden, maar kan capaciteit niet vervangen.
+Strategisch gezien hoeft Europa Amerikaanse hyperscalers niet te kopi�ren. Het doel is niet mondiale dominantie, maar het realiseren van voldoende schaal binnen de Europese markt om controle te herwinnen over data, standaarden en operationele continu�teit. In dat licht is een Europese cloud joint venture geen IT-project en geen marktinterventie uit effici�ntie-overwegingen, maar een bewuste keuze voor strategische autonomie in een domein waar afhankelijkheid direct kan worden vertaald in politieke en economische druk.
+
+Hoe kan Nederland en Europa eigen strategische drukpunten inzetten - en nieuwe opbouwen?
+In een wereld waarin economische afhankelijkheid steeds vaker wordt ingezet als machtsmiddel, is de kernvraag niet langer alleen hoe Nederland en Europa hun kwetsbaarheden kunnen verkleinen, maar ook hoe zij hun bestaande en potenti�le drukpunten doelbewust kunnen inzetten. Vanuit die logica verschuift het perspectief: van defensief beschermen naar actief positioneren. Europa beschikt vandaag al over een paar strategische drukpunten die zonder nieuwe industriepolitiek inzetbaar zijn. In een eerder hoofdstuk noemden we al ASML en Airbus.  Daarnaast beschikt Europa over een krachtig maar politiek lastig te co�rdineren drukpunt: toegang tot de interne markt. Het beperken van markttoegang via heffingen, normering of verboden kan voor derde landen directe economische kosten veroorzaken. Het inzetten van dit drukpunt vergt echter een expliciete politieke afweging over hoeveel economische pijn Europa bereid is te accepteren om geopolitieke ruimte te cre�ren. 
+Het benutten van bestaande drukpunten is onvoldoende om Europa structureel in positie te brengen. Europa zal ook zelf capaciteiten moeten opbouwen die voor anderen relevant en onmisbaar zijn. Toekomstige drukpunten ontstaan waar een hoog strategisch belang samenvalt met een sterke of versterkbare Europese positie, en worden duurzaam wanneer zij leiden tot lock-in via diensten, onderhoud, updates of ecosystemen die niet zonder hoge kosten te vervangen zijn.
+Een eerste domein is de circulaire economie. Europa kan afhankelijkheden verminderen door secundaire stromen van kritieke materialen binnen de eigen markt te verwerken. Recycling wordt daarmee een strategische bron. Het potentieel is aanzienlijk (Permanente magneten vormen de belangrijkste secundaire bron van zeldzame aardmetalen, en sectoranalyses schatten dat recycling op termijn circa 20%lxi van de huidige Europese vraag kan dekken), maar kan alleen worden benut wanneer Europa ook demontage-, verwerkings- en raffinagecapaciteit opbouwt. Zonder deze schakels blijft recycling marginaal; met Europese verwerking wordt zij een structureel drukpunt.
+Het goede nieuws is dat recycling, zelfs op basis van louter cash kosten, in toenemende mate kan concurreren met extractie van ?virgin materials? in Europa. De businesscase verschilt sterk per materiaal, schaal en verwerkingsstap, maar verbetert naarmate volumes toenemen en technologie zich ontwikkelt. Opschaling vraagt daarom actieve ondersteuning, onder meer via vergunningverlening, langjarige afnamezekerheid en investeringen in verwerkingscapaciteit. Ook wanneer de financi�le opbrengst beperkt is, kan het strategische belang van een volwaardige Europese recyclingwaardeketen ? een ?urban mine?lxii ? voldoende rechtvaardiging vormen.[FB87] 
+
+Tabel 4: Kostprijsvergelijking zeldzame aardmetalen - virgin vs recycling 
+
+[ya88]
+Een tweede domein is telecommunicatie. 6G vormt een illustratief voorbeeld van een toekomstig drukpunt met hoog belang en een nog maakbare positie. De VS wil hierin een positie gaan opbouwen. Europa heeft hier echter een relatief sterke uitgangspositie in kernnetwerken, radiotechnologie en standaardzetting. Door deze positie te consolideren via gezamenlijke roadmaps, publieke launching customers en gebundelde R&D kan worden voorkomen dat ook 6G tot een nieuwe afhankelijkheid leidt.
+Al deze drukpunten veronderstellen beschikbaar menselijk kapitaal. Het tekort aan ingenieurs en technici remt nu al de opschaling van strategische capaciteit. Investeren in technische opleidingen en gerichte instroom van talent is daarom geen randvoorwaarde, maar een kernonderdeel van het uitbouwen van Europese drukpunten. Zonder mensen verdampt elke strategische positie, hoe sterk zij op papier ook lijkt. De laatste voorwaarde is geloofwaardigheid. Capaciteit wordt pas een drukpunt wanneer zij onder Europese jurisdictie staat en wanneer Europese besluitvorming voldoende voorspelbaar is om door anderen als re�el machtsmiddel te worden meegewogen.[FB89]
+
+
+
+H9 ? Hoe ontwikkelt Europa daadkracht[ya90]
+Coalitions of the willing binnen en buiten Europa
+De interne schaal van de EU is groot genoeg om industri�le ketens te dragen, maar besluitvorming met 27 lidstaten is voor strategische dossiers te traag. Hier wreekt zich de grote verscheidenheid aan belangen en vooral het gebrek aan uitvoeringsmacht op Europees niveau. Data over het stemgedrag binnen de Raden van Europa14 laten zien dat samenwerking buiten de politiek gevoeligste dossiers goed mogelijk is, maar ook dat er voor meer beladen onderwerpen (landbouw, klimaat, financi�n) een grote afstand is tussen de posities. Tegelijk zijn er wel ?blokken? van landen die elkaar beter weten te vinden (zie figuren yyy en xxx). Op het terrein van Klimaat en Milieu zien we een sterk polariserend beeld. Een duidelijk oostelijk cluster, waarin onder andere Griekenland en Itali� zich bevinden, vormt een uitgesproken anti-blok. Bij Economie en Financi�n komt het frugale landencluster duidelijk naar voren. Voor Energie, Infrastructuur en Digitaal is het beeld anders: hier is nauwelijks sprake van polarisatie, met uitzondering van Hongarije bij Energie. Dit duidt op een brede consensus en biedt kansen voor samenwerking op Europees niveau.
+
+[FB91][ya92]
+Figuur 12: Afstand tussen Europese landen per onderwerp
+
+Bron: Denkwerk & Kickstart AI (2025)
+
+Note: Een lichtere kleur representeert een hogere afstand aan tussen landen
+Daarnaast is er  de mogelijkheid van een tweede uitvoeringslaag: plurilaterale coalities binnen het EU-kader die sneller kunnen investeren en co�rdineren zonder de interne markt te ondermijnen. Deze zogenaamde ?coalitions-of-the-willing? kunnen een start maken zonder unanimiteit, en vervolgens kunnen (niet moeten!) anderen later aanhaken. Het voorbeeld van de MRTT (multi role tanker transport) (zie box) toont dit mooi aan.
+Figuur 13: Staatsschuld vs Begrotingsschuld vs BBP
+Bron: OECD Economic Outlook (2025)
+Niet alleen het stemgedrag binnen Europa is weinig uniform, ook de financi�le mogelijkheden van de lidstaten zijn nogal ongelijk [be93][ya94](zie figuur xx). Dat maakt het onderscheid tussen gezamenlijke Europese acties en koploperacties legitiem. In die gevallen waarin gezamenlijkheid essentieel wordt geacht, bijvoorbeeld op het gebied van defensie en veiligheid, zouden de benodigde financi�n ook samen moeten worden gevonden. Projectgebonden Eurobonds kunnen daarbij een goede, en waarschijnlijk enige, optie zijn.  Voor onderwerpen waar een subgroep van  koplopers samen een nieuwe koers inslaan, zullen zij ook vanuit een gedeelde fondsfinanciering moeten kunnen opereren. 
+Figuur 14: Stemgedrag General Assembly sinds 2000 t.o.v. de vier machtsblokken
+
+
+Bron: DenkWerk & Kickstart AI (2025) 
+Note: De kleur geeft het meest overeenkomstige machtsblok aan, de diepte van de kleur geeft aan hoe groot die overeenkomst is. Rood = China, Oranje = Rusland, Blauw = EU, groen = VS
+Maar ook buiten de EU zijn coalities mogelijk. De positie tussen de Verenigde Staten en China in, is er ��n die wordt gedeeld met de andere landen binnen Europa, maar ook met vele anderen als Japan, Canada, Australie, Turkije en Zuid-Korea. Japan is bij uitstek een interessante partner (en misschien zelfs een voorbeeld), omdat dit land zich op veel innovatieve technieken al een vooraanstaande positie heeft verworven, onder meer in optische systemen en kunstmatige intelligentie.lxiii [ya95] Daarnaast is ook Zuid-Korea een interessante partner met sterke posities in halfgeleidertechnologie en cyberveiligheidstechnologie. Het is dus van groot belang om in het streven naar meer autonomie ook goed te kijken met wie dat buiten Europa kan. Een analyse op basis van VN-stemgedrag laat zien dat het Mondiale Zuiden recent structureel dichter bij China stemt dan bij het Westen, maar ook dat de EU dichter bij Afrika staat dan de VS. De grootste afstand ontstaat bij vraagstukken op het gebied van mensenrechten en economie & ontwikkeling, waar de Europese toon als technocratisch moraliserend wordt ervaren door het Mondiale Zuiden. Wanneer de EU op deze gebieden matigt, verkleint het afstand tot partners in Azie, Zuid-Amerika en Afrika. 
+Tegelijkertijd laat Figuur 15 zien dat Japan en Zuid-Korea in hun VN-stemgedrag structureel dicht bij de EU liggen, ook op relatief gevoelige dossiers als mensenrechten en ontwikkelings- en economische vraagstukken. Dit maakt deze landen bij uitstek geschikte partners voor samenwerking buiten Europa.
+
+Figuur 15: Stemgedrag-afstand tot de EU per onderwerp
+[FB96]
+Bron: DenkWerk & Kickstart AI (2025)
+Note: Een hogere score geeft een hogere afstand aan tot de EU op het onderwerp
+In al deze mogelijke samenwerkingen is doortastendheid wel van het grootste belang. Immers, landen als de VS en China zijn bezig�lange termijn of strategische off-take overeenkomsten te sluiten met producenten in meerdere landen voor kritische mineralen�? soms met export- en leveringsrechten die tot ver in het decennium doorlopen.lxiv [FB97]Dat beperkt wat er voor de rest van de wereld, waaronder Europa, beschikbaar blijft.
+
+[FB98]De overheidsgreep op kennis en/of productie organiseren. 
+Economische autonomie vraagt dat overnames, kapitaalinjecties en datatoegang door niet-EU-partijen niet langer als louter commerci�le transacties worden beoordeeld, maar als strategische posities in waardeketens.Een middel dat de overheden daarbij in kunnen zetten is het nemen van een deel van de (of alle) aandelen van een bedrijf dat zich in het domein van de asymmetrische afhankelijkheden begeeft. In het verleden hadden overheden niet zelden een ?golden share? in een strategisch bedrijf.
+Staatsdeelnemingen zijn een instrument om publiek belang te borgen waar de markt dat niet vanzelf doet, of waar geen markt bestaat. Tot nu toe worden ze vooral ingezet bij klassiek marktfalen in monopolies zoals netwerken of bij noodsituaties (bankencrisis), en ligt de nadruk in de praktijk sterk op financi�le prestaties.lxv In een context van strategische autonomie zouden deelnemingen ook kunnen worden gebruikt om asymmetrische afhankelijkheden af te bouwen of drukpunten op te bouwen. Dan gaat het minder om rendement en meer om de garantie dat een bedrijf of infrastructuur in Europees beheer blijft.
+[ya99][ya100][ya101][ya102]Dergelijke staatsdeelnemingen moeten geen politiek speelgoed worden. Belangrijk is dat de dagelijkse bedrijfsvoering en governance worden afgeschermd van ad-hoc politieke interventies. 
+
+
+
+
+
+H10 ? Van denken naar doen: momentum organiseren[ya103][ya104]
+Europa, en dat geldt zeker ook voor Nederland, heeft al een stevige lange-termijn beleidsopgave. De uitputting van de planeet vraagt om verduurzaming, en de vergrijzing vereist meer aandacht voor het verdienvermogen. Dit rapport laat zien dat er een heel urgente en grote extra opgaven bij komt.  
+ Wij hebben gezien dat de VS en China een strijd om de economische hegemonie zijn aangegaan en dat beide gebruik maken   van de afhankelijke positie van Europa om de eigen positie te versterken. De VS van Trump wil zelfs de EU ontmantelen.[ya105] Europa is als democratische rechtsstaat met een brede maatschappelijke welstand een baken in de wereld en zal deze identiteit niet kwijt willen raken. Daartoe zal Europavoldoende tegenmacht moeten opbouwen en de asymmetrische afhankelijkheden moeten verkleinen of helemaal wegnemen. Veel tijd is er niet om deze koers in te zetten, want de hegemoniestrijd is al gaande. De inzet is daarbij vooral gericht op nieuwe technologie�n. Dat betekent niet dat in Europa het denken omtrent de vrije markt voor de wereldhandel helemaal overboord moet worden gezet, maar wel dat op cruciale strategische goederen en diensten een eigen positie wordt opgebouwd. We hebben als cruciaal aangewezen de veiligheid, de digitale infrastructuur, en de zeldzame aardmetalen. De private sector gaat dit proces van grotere autonomie niet leiden. De overheid moet hier richting aan geven. Dat gaat ook op de korte termijn geld en misschien een stukje welvaart kosten. Dat zijn de kosten voor het vermijden van een horige positie op de langere termijn. In Brussel wordt al strategischer over deze zaken nagedacht dan in veel lidstaten. De Europese Commissie verdient meer ruimte voor concrete actie en de daarbij behorende budgetten. Ook de rapporten van Draghi en Letta verdienen uitvoering om de kracht van de interne markt te vergroten.lxvi, lxvii Omdat snelheid essentieel is zullen sommige Europese landen een stap vooruit moeten zetten en een kopgroep vormen. Nederland moet hierbij willen horen, omdat voor de langere termijn nieuwe technologie�n ook het verdienvermogen omhoog kunnen stuwen. Ook buiten Europa liggen mogelijkheden voor het vormen van allianties, bijvoorbeeld in Japan, Canada, Australi� en Zuid- Korea, maar ook in Afrika  en Zuid-Amerika, die moeten worden benut. [ya106] Dat is in hoofdlijnen de analyse.  In hoofdstuk 7 en 8 zijn de korte en middellange termijn-richtingen uitgewerkt waarmee Europa asymmetrische afhankelijkheden kan beheersen en verminderen. Dit betreft het verleggen van handelsstromen voor kritieke materialen, het opbouwen van voorraden, ook van restproducten, en het opbouwen van eigen productiecapaciteiten op het gebied van defensie en cloud. Zij volgen logisch uit de analyse van het speelveld en impliceren bestuurlijke en politieke consequenties. Hoofdstuk 9 maakt die consequenties expliciet om duidelijk te maken wat handelen in deze context daadwerkelijk vraagt. Daarbij ligt de nadruk op bestuurlijke regie, deels nationaal maar vooral in internationale verbanden binnen en buiten de EU.  
+Dit hoofdstuk markeert de overgang van analyse naar handelen. Handelen vraagt een helder gedefinieerd doel en bijbehorende tijdhorizon, een keuze van deelnemende partijen en voldoende middelen om dat doel te bereiken. De methode van een langetermijnstrategie zoals die in China wordt toegepast kan hierbij, specifiek toegepast op de asymmetrische afhankelijkheden, als voorbeeld strekken. Voor de Europese lidstaten met een korte politieke tijdhorizon is dat niet eenvoudig. Een minder politiek opererend lichaam als de Europese Commissie verdient daarom een stevige rol. We hebben al geconstateerd dat het denken over geopolitieke tegenmacht bij de Europese Commissie verder is dan in veel lidstaten. Overigens ziet ook de industrie binnen Europa de noodzaak tot grotere (digitale) autonomie en meer onderlinge samenwerking, zie bijvoorbeeld het EuroStack initiatief. 
+Beginnen onder onzekerheid
+Strategisch handelen kan niet wachten op volledige zekerheid, unanimiteit of sluitende businesscases, zeker niet in de hoog-innovatieve technologie�n. In een context van geopolitieke concurrentie ontstaat richting door te handelen. Uitstel ondergraaft geloofwaardigheid en verkleint de ruimte om later alsnog op te schalen. Beginnen onder onzekerheid is een noodzakelijke eigenschap van strategisch beleid.
+Tegelijkertijd is snel beginnen de eerste symbolische winst en essentieel om de slag van denken naar doen geloofwaardig te maken. Dat vraagt om startmaatregelen die bestuurlijk eenvoudig zijn en binnen korte tijd zichtbaar effect hebben. Deze eerste stappen zijn een signaal dat de koerswijziging serieus is. Zichtbare resultaten maken strategische autonomie concreet en begrijpelijk en cre�ren politieke en maatschappelijke ruimte voor vervolgstappen die meer kosten en meer frictie veroorzaken.
+De overheid zet weliswaar de koers, maar de uitvoering zal in veel gevallen privaat moeten zijn. Strategische autonomie wordt alleen gerealiseerd wanneer bedrijven rationeel kunnen investeren, ook als dat duurder is dan mondiale optimalisatie. Dat vereist aanbodsturing: zekerheid over afname, schaal en continu�teit, en een verdeling van risico?s die investeringen mogelijk maakt. Beleidszekerheid ontstaat door uniforme en langjarige kaders die duidelijk maken welke capaciteit nodig is en waar investeringen zich kunnen terugverdienen. Zo worden bedrijven mede-dragers van strategische autonomie.
+Een voorbeeld
+In het licht van het bovenstaande hebben wij een aantal mogelijke acties onderzocht. Een aantal zijn als voorbeelden in het document opgenomen. Hier werken we ��n voorbeeld een slag verder uit. Deze ?use case? biedt geen volledig antwoord op alle afhankelijkheden, maar voldoet aan duidelijke criteria: snel startbaar, zichtbaar effect en uitvoerbaar binnen bestaande structuren. Zijn functie is momentum cre�ren. Als eerste stappen slagen, ontstaat ruimte om verdergaande en kostbaardere keuzes te maken.
+Een Europese speler bouwen die systeemkracht heeft ? Nokia, Ericsson vs Huawei[ya107][ya108]
+Wat doen we?
+De markt voor mobiele infrastructuur is niet Europees maar mondiaal. 5G en 6G worden ontworpen in internationale standaardisatie-organen zoals 3GPP en ITU, waar bedrijven (niet overheden) de technische architectuur voor wereldwijde netwerken vormgeven.lxviii In deze markt concurreren twee middelgrote Europese spelers: Nokia (~?19, mld omzet) en Ericsson (~?22 mld omzet) met Huawei (?86 mld omzet). China investeert onder andere via Huawei op grote schaal in deze 6G-platforms, waardoor het grote invloed heeft op het ontwerp van de toekomstige standaarden. Alhoewel Europa Huawei uit zijn fysieke netwerken kan weren, zal Europa niet de toekomstige globale standaard kunnen ontwijken waarop onze infrastructuur uiteindelijk moet aansluiten.15 Figuur X laat zien dat Europa?s vertegenwoordiging in de kernorganen van 3GPP structureel afneemt, terwijl Aziatische spelers hun invloed op de standaardisatie vergroten.
+Figuur X: 3GPP vertegenwoordiging per regio over tijd
+Bron: Swennenhuis (2025)[ya109]
+Zolang Nokia en Ericsson als twee afzonderlijke spelers opereren, verdelen zij hun ontwikkelcapaciteit over parallelle systemen en concurrerende ontwerpen. In een mondiale technologierace, waarin tempo en massa bepalen wie invloed houdt op de volgende netwerkarchitectuur, werkt deze verdeling remmend: Europa investeert twee keer in bijna dezelfde bouwstenen, terwijl landen als China dat in ��n geconcentreerde lijn kunnen doen. Als Europa zijn technologische autonomie op dit terrein niet versterkt, ontstaat een situatie waarin we afhankelijk worden van standaarden die elders worden ontworpen. De data in Figuur X laat zien dat China en de VS een sterke positie opbouwen door veel verschillende technologische competenties te combineren die wereldwijd door weinig andere landen worden beheerst. Europa beschikt collectief over vergelijkbare kennis, maar verliest invloed doordat deze competenties versnipperd zijn over afzonderlijke landen en bedrijven.
+Figuur X: Ubiquity versus Diversity voor 5G patenten per land en regio
+
+Bron: Parcu et al. (2022)
+Note: in grafiekDaarom is consolidatie noodzakelijklxix: ��n Europese speler met voldoende schaal om 6G-innovatie te dragen en systeemmacht op te bouwen. In 2025 richtte een groep grote Europese telecomoperators zich gezamenlijk aan de voorzitter van de Commissie met het verzoek het fusie-/concentratiekader te herzien, zodat Europese infrastructuurleveranciers internationale concurrentie kunnen bijbenen.lxx Echter, het huidige EU-mededingingskader biedt structureel weinig ruimte voor zulke strategische fusies.lxxi 
+: fusie- of consolidatiepogingen tussen grote spelers worden zelden toegestaan, of alleen onder strenge voorwaarden zoals desinvestering. In veel gevallen leidt dit tot lange procedures, vertragingen, en uiteindelijk tot schaalverkleining in plaats van schaalversterking.
+Onze inzet: in strategische sectoren moet Europa niet langer automatisch concurrentie maximaliseren, maar autonomie borgen. Dat betekent: ruimte cre�ren voor gecontroleerde consolidatie tussen Nokia en Ericsson om Europa een plek te geven aan de ontwerptafel van kritieke mobiele infrastructuur.
+ Een stap verder zou kunnen zijn dat Europa ? of een coalitie van bereidwillige lidstaten ? een substantieel belang neemt in Nokia en Ericsson, of zelfs volledige overname overweegt. Niet hoofdzakelijk om een monopolie te beheren, maar om schaal en systeemkracht te cre�ren en zo geopolitieke invloed te behouden tegenover spelers als Huawei. Telecominfrastructuur is een strategische laag, waardoor publieke betrokkenheid logisch is om technologische autonomie te waarborgen. [YG110]
+Met wie doe je dit?
+Binnen Europa: De logische kern bestaat uit Finland en Zweden, waar Nokia en Ericsson zijn verankerd, aangevuld met Duitsland, Frankrijk en Nederland, de landen met de grootste Telco-operators (zoals Deutsche Telekom, Orange, KPN) en met een beleidsmatige traditie in strategische technologieprogramma?s (zoals de Chips Act, Battery Alliance en Europese defensie-initiatieven). Deze landen beschikken over de industri�le basis, de politieke bereidheid en de marktomvang om een Europese netwerkspeler te dragen en 6G-standaardisatie te be�nvloeden.
+Buiten Europa: Voor 6G-ontwikkeling is samenwerking met Japan en Zuid-Korea strategisch logisch. Beide hebben geavanceerde telecomsectoren, sterke R&D-capaciteit en een gedeeld belang in een open, niet-Chinees 6G-ecosysteem. Bedrijven als NEC (Japan) en Samsung (Korea) werken al in internationale consortia mee aan 6G-architectuur en zijn natuurlijke partners in interoperabiliteit, testen en standaardisatie. Daarnaast zijn ze politiek betrouwbare technologiepartners met vergelijkbare veiligheidskaders en strategische zorgen over Chinese dominantie.
+Europa heeft schaal nodig, Azi� heeft complementaire technologie en gedeelde belangen. Bij samenwerking vergroot de kans om invloed te houden op de wereldstandaard, iets wat geen beide regio?s momenteel alleen kan.
+
+[be111]
+
+Appendices
+Tabel A.1: Geoptimaliseerde handelsstromen buiten de EU
+
+Bron: DenkWerk & Kickstart AI (2025)
+1 Zie ook Denkwerk: Kiezen �n Delen, januari 2025 en Denkwerk: voorbij netto-nul naar planet-positief
+2 Zie bijvoorbeeld OECD (2021), Global Value Chains and Resilience, over de afbouw van voorraden en buffers in internationale ketens.
+
+
+4 Zie bijvoorbeeld OECD (2019), Global Value Chains and Economic Clusters.
+5 Het Australian Strategic Policy Institute (ASPI) is denktank in Canberra die zich richt op defensie, veiligheid en strategische vraagstukken.  De Critical Technology Tracker van ASPI brengt de mondiale competitie in kaart over strategische technologie�n, waaronder AI, kwantumtechnologie en hernieuwbare energie. De tracker werkt op basis van een bibliometrische methode.
+
+6 Herfindahl-Hirschman Index (HHI): maatstaf voor marktconcentratie, berekend als de som van de gekwadrateerde marktaandelen van alle aanbieders in een markt. Een hogere HHI duidt op een sterker geconcentreerde markt en daarmee op grotere potenti�le marktmacht en kwetsbaarheid voor afhankelijkheden.
+7 Voor de sectoren in groep III is de analyse minder diepgaand uitgewerkt dan voor groep I en II. De indeling is gebaseerd op een eerste orde beoordeling van afhankelijkheid en publieke impact, en dient primair ter afbakening en prioritering.
+8 Zie ook https://institutmontaigne.org/ressources/pdfs/publications/note-autonomy-or-indispensability-identifying-the-eus-semiconductor-lodestar.pdf
+9 Denkwerk: De datagedreven toekomst, Februari 2021
+10 Garc�a-Herrero, Alicia. (2023). China?s concept of strategic autonomy is about dual circulation. ICE, Revista de Econom�a. 10.32796/ice.2023.930.7566.
+
+11 Een precieze analyse gaat voorbij aan de reikwijdte van deze studie, de resultaten van onze simulatie zijn indicatief
+12 In Appendix A geven wij in een tabel een overzicht van naar welke landen buiten de EU handel is verschoven na optimalisatie. Enerzijds zijn we in staat een deel van de export te verleggen naar reeds bevriende landen zoals Japan, Korea en Canada. Anderzijds moeten we nieuwe mogelijkheden zoeken in Zuidoost-Azi?e, waar China sterke banden heeft opgebouwd.
+13 Herfindahl-Hirschman Index (HHI): maatstaf voor marktconcentratie, berekend als de som van de gekwadrateerde marktaandelen van alle aanbieders in een markt. Een hogere HHI duidt op een sterker geconcentreerde markt en daarmee op grotere potenti�le marktmacht en kwetsbaarheid voor afhankelijkheden.
+14 Verwijzing / uitleg naar de analyse die is gedaan
+15Een Europese 6G-standaard naast een door China gedomineerde wereldstandaard is geen optie, omdat het onze infrastructuur zou loskoppelen van de internationale markt.
+i The Guardian (2025) - Trump vows to slap 25% tariffs on EU and claims bloc was ?formed to screw US?
+ii Yale Insights (2024) - What the U.S. Has to Gain from Supporting Ukraine
+iii RAND (2019) - The United States and Europe Since World War II A Mutually Beneficial Partnership  
+iv Ikenberry G.J. (2005) - Power and liberal order: America?s postwar world order in transition
+v 119th Congress (2025) - Make Greenland Great Again Act
+vi Yale Insights (2024) - What the U.S. Has to Gain from Supporting Ukraine  
+vii CBS (2025) - 1989 Globalisering en Europese integratie na de val van de Muur
+viii Friedman (2005) - The World Is Flat: A Brief History of the Twenty-First Century
+ix Kremer M., Willis J., You Y. (2022) - Converging to Convergence
+
+x Our World in Data (2025) - The end of progress against extreme poverty?
+xi Barab�si A., Albert R. (1999) - Emergence of scaling in random networks
+xii Rathenau Instituut (2025) - Achter de macht van big tech  
+xiii FT (2025) - WTO chief warns US bilateral tariff deals could put trade principle at risk
+xiv EEAS (2024) - EU Statement at the 9th Trade Policy Review of the People's Republic of China
+xv IEA (2006) - Natural Gas Market Review 2006
+xvi AIV (2014) - De EU-gasafhankelijkheid van Rusland. Hoe een ge�ntegreerd EU-beleid dit kan verminderen
+xvii European Commission (2010) - Report on Critical Raw Materials 2010
+xviii BBC (2015) - US nuclear fears block Intel China supercomputer
+xix Bloomberg (2025) - Dutch Align with US Export Controls on Some ASML Chip Tools
+xx Deutsche Gesellschaft f�r Internationale Zusammenarbeit (2018) - Made in China 2025 factsheet
+
+
+
+xxii Farrel H., Newman A. (2019) - Weaponized Interdependence: How Global Economic Networks Shape State Coercion
+
+xxiii Draghi (2024) - A competitiveness strategy for Europe
+xxiv SIPRI (2024) - EU Member States' defence expenditure
+xxv BCG (2024) - Building European  Defence Capabilities for a More Uncertain World
+xxvi The Guardian (2025) - Armed by America: how Europe?s militaries depend on the US
+xxvii Omdia (2025) - Global cloud infrastructure spending rose 21% in Q1 2025
+
+xxviii Blot C., Creel J., Geerolf F., Ricco G. (2025) - Dominance in Transition? The Future of the Dollar and the Euro
+xxix World Gold Council (2025) - Gold Reserves by Country
+xxx Holland gold (2025) - Duidelijkheid over Nederlands goud in New York nodig
+xxxi Feng J., Cole B. (2025) - Map Shows How Much Gold Countries Store in US as Germany Mulls Exit
+xxxii ITIF (2025) - How China Is Outperforming the United States in Critical Technologies
+xxxiii Garcia-Herrero A., Krystyanczuk M., Schindowski R. (2025) - Radical novelties in critical technologies and spillovers
+
+xxxiv WITS (2025) - Trade Statistics by Product
+xxxv ECB (2025) - How vulnerable is the euro area to restrictions on Chinese rare earth exports?
+xxxvi Eurostat (2025) - Energy statistics - an overview
+
+xxxvii De Schumanverklaring (1950) - De geboorte van de EU
+xxxviii Eurostat (2025) - Social protection statistics - early estimates
+xxxix Congressional Budget Office (2025) - Monthly Budget Review: Summary for Fiscal Year 2025
+xl Bruegel (2025) - How much of a threat to US debt sustainability is Trump?s One Big Beautiful Bill Act?
+xli Atlantic Council (2024) - The IRA and CHIPS Act are supercharging US manufacturing construction
+xlii European Union Chamber of Commerce (2017) - China Manufacturing 2025
+xliii Centre for European Reform (2025) - Does EU enlargement require voting reform?
+
+xliv The Franco-German Reflection Group (2023) - Sailing on High Seas: Reforming and Enlarging the EU for the 21st Century
+
+xlv NOS (2020) - Hoe ASML een grote gok waagde en daarmee monopolist werd
+
+xlvi Medium (2025) - ASML: The Dutch Company That Dominates Tech
+xlvii AP (2025) - China?s C919 jet faces turbulent skies as US-China trade tensions add to delays
+xlviii EASA (2025) - Easy Access Rules for Continuing Airworthiness
+xlix Bradford A. (2019) - The Brussels Effect: How the European Union Rules the World
+l The Economy (2025) - China?s Overproduction Paradox: A Crisis Driven by Weak Domestic Demand, Not Tariffs
+
+
+lii CSIS (2025) - The National Security Strategy: The Good, the Not So Great, and the Alarm Bells
+liii European Policy Innovation Council (2025) - Draghi Observatory & Implementation Index: Only 1 in 10 Measures Implemented
+liv Number three (2024) - Een studie naar de haalbaarheid van een nationaal programma voor de opslag van kritieke grondstoffen ter versterking van Europese waardeketens
+lv Reuters (2025) - EU to introduce export restrictions on rare earth magnet waste in early 2026
+lvi European Commission (2025) - White Paper for European defence - Readiness 2030
+lvii Breugel (2024) - A European defence industrial strategy in a hostile world
+lviii Gineikyte-Kanclere V., Eggert M., Skyiotyte G. (2025) - European Software and Cyber Dependencies
+lix GAIA-X (2025) - What is GAIA-X?
+lx Eurostack (2025) - Deploying the Eurostack: What's needed now.
+lxi European Commission (2025) - RESourceEU Action Plan
+lxii TNO (2024) - Maximising value from the urban mine: recycling critical raw materials
+lxiii TNO Vector (2025) - Een blik onder de motorkap:  sleutelen aan de technologiepositie van Nederland
+lxiv NRC (2025) ? We willen onze risico?s beperken als het tot een groot conflict komt tussen China en de VS
+lxv RLI (2025) - Deelnemen zonder dogma's
+lxvi Letta E. (2024) - Much more than a market
+lxvii Draghi M. (2024) - A competitiveness strategy for Europe & In-depth analysis and recommendations
+lxviii Ten Oever N., Milan S. (2022) - The Making of International Communication Standards: Towards a Theory of Power in Standardization
+lxix Nokia (2025) - Nokia and Ericsson host European industry and policymakers for urgent call to secure Europe?s tech future
+lxx Reuters (2025) - Major telcos urge EUs Von der Leyen to ease merger rules to boost investments
+lxxi Reuters (2024) - Vestager defends EU merger rules
+[ya1]Hans titel suggestie: 
+-Speler of alleen nog speelveld?
+Hoe Nederland zijn autonomie moet verdedigen
+ 
+Barbara titel suggesties: 
+Van speelveld naar speler
+De routekaart voor Nederlandse en Europese strategische slagkracht
+�
+Macht in de maak
+Waarom Nederland (en Europa) moeten verschuiven van proces naar productie
+�
+Van speelveld naar speler
+Hoe Nederland zijn autonomie herwint in een tijd van asymmetrische afhankelijkheden
+
+Haroon titel suggesties: 
+- Europa als machtsblok
+- Grootmacht Europa
+- Europa: van marktmacht naar machtsblok
+-Europa: van markt naar macht
+- Europa op het spel
+
+Marion: 
+Wat betreft de titel even iets anders en toch niet
+MEGA, make Europe great again. 
+Ik zie de petjes en T-shirts al :-)
+[be2R1]Ontsnappen tussen hamer en aambeeld
+[ya3]Geen probleem in isolatie. Dit moeten we verbinden met de andere problemen: verdienvermogen (Wennink), klimaat etc.
+[ya4]Barbara: De VS wordt verheerlijkt in het stuk, terwijl ik heel kritisch ben over de economische keuzes die de VS maakt. Het gevaar van autocratisering en monopolisering moet wat mij betreft echt veel manifester in de tekst. (Frans: Fair ? kunnen we meer tekst aan besteden.) Nu is de tekst vooral heel kritisch over de EU en nauwelijks over de VS (over China is dat minder nodig omdat de lezer zelf wel weet dat dat land autocratisch is en de mensenrechten daar niet zo hoog in het vaandel staan).�
+[ya5]Marion: Het voorwoord is nog wel somber. En geeft minder de kracht van Europa aan terwijl deze verderop in het rapport wel staat. Wat mij betreft kunnen we in het voorwoord beginnen met waar Europa voorstaat. Zodat je als lezer positief start en je vanuit de kracht van Europa leest en daarmee denkt kom maar op met de uitdagingen, we kunnen het aan.
+[ya6]Bron
+[FB7]Waar is deze voetnoot??
+[ya8]Barbara: De negatieve insteek bij marktwerking- en mededingingsbeleid
+EU/NL zit klem tussen China en de VS. Het stuk lijkt te suggereren dat we wat naar de VS moeten opschuiven om uit de squeeze te komen.
+
+Frans: Het lijkt er een beetje op dat de schrijvers de situatie veel urgenter zien dan de meelezers. Er is echt een probleem en het gaat niet alleen over verschillende visies of ?willen opschuiven naar de VS?. Dat de VS een route op gaat die schadelijk is, is evident. We stellen dan ook niet dat het een goed voorbeeld is dat we moeten volgen ? we stellen wel dat we ons moeten wapenen tegen de kwalijke invloed die zowel de VS als China (in hun zucht naar wereld hegemonie) uitoefenen. En dat betekent inderdaad dat we opties moeten overwegen die niet economisch logisch zijn,�maar wel onafhankelijkheid op langere termijn mogelijk maken.
+
+Yashvir: Reactie op "opties moeten overwegen die niet economisch logisch zijn". Zouden we het kunnen opschrijven als wel economisch logisch wanneer we negatieve externaliteiten inprijzen? 
+[ya9]Barbara: In de VS wordt het mededingingsbeleid bij het grofvuil gezet. Het gevolg is dat misbruik van economische machtsposities en kartelvorming nog meer vrij spel krijgt ten koste van consumentenwelvaart. In plaats van zo enorm negatief over mededingings- en marktwerkingbeleid te schrijven, ben en blijf ik groot voorstander van dergelijk beleid BINNEN de EU. Het is niet na�ef om in te zetten op effectieve marktwerking en het tegengaan van monopoliemacht. Wel moet gekeken worden hoe vaker dan nu als basis van het beleid de EU als relevante geografische markt wordt genomen, zodat Europese fusies vaker wel mogen (tussen telecombedrijven bijvoorbeeld, zodat de schaal van de EU kan worden benut). In navolging van Draghi kunnen we pleiten voor (1) EU als default relevante geografische markt bij grensoverschrijdende fusies, (2) meer Europese co�rdinatie bij mededingingsbeleid (het huidige systeem te veel nationale interpretaties kent en te weinig gezamenlijke instrumenten), maar zet concurrentiebeleid niet weg als dom beleid in de huidige geopolitieke context. Ook hier verwijs ik naar een Nobelprijswinnaar: Philippe Aghion. Zie bijgevoegd paper. Concentratie en marktmacht kan eerst effici�ntie opleveren, maar vernauwt op termijn de prikkel tot innovatie, wat leidt tot lagere groei, hogere markups, hoge rents, en lagere welvaart.�Hier koerst de VS op af. De EU moet die weg niet op gaan. Aghion?s theorie impliceert dat Draghi?s strategie risico draagt: schaalvergroting kan wel effici�ntie opleveren, maar remt lonende innovatie-incentives op termijn. Nieuwe bedrijven zijn veel belangrijker voor R&D en innovatie dan grote machtige incumbents ? blijkt uit een hoge stapel economisch onderzoek. 
+
+Frans: We voelen meer voor het Chinese model, waarbij er wel degelijk concurrentie is binnen sectoren (cut throat zelfs), maar wel met het duidelijke doel om daarmee spelers te cre�ren die op het wereld toneel kunnen winnen. Dus investeren (subsidies) in sectoren ? maar wel met echte concurrentie. Ben overigens een groot fan van Aghion ?
+[ya10]Barbara: ?De VS en China zetten in hun mededingingsbeleid de nationale belangen voorop, en hebben de regulering van de internationale handel via de WTO grotendeels ontmanteld.? De bron die daarbij staat gaat wel in op VS maar niet op China. China probeert (althans meer dan de VS) wel conform WTO te handelen. Ik zou die landen hier dus niet op 1 hoop gooien. Bovendien heeft de VS het handhavingsmechanisme van de WTO uitgeschakeld, waardoor de organisatie haar kerntaak, het afdwingen van internationale handelsregels, vrijwel niet meer kan uitvoeren. China ondermijnt het systeem functioneel door geschillen te parkeren in het vacu�m dat de VS hebben gecre�erd, maar het heeft de infrastructuur van de WTO niet gesaboteerd zoals de VS door benoemingen te blokkeren.
+[ya11R10]Op mijn lijst stond inderdaad dat hier nog een bron moest worden toegevoegd voor China (door mijzelf). Ik heb het volgende gevonden over China. Terwijl de VS het handhavingssysteem verlammen door benoemingen te blokkeren, profileert China zich als "bewaker" van de regels terwijl het tegelijkertijd eigen staatsgestuurde belangen nastreeft.
+
+China:
+Niet-marktgebonden praktijken:�De EU stelt dat China's staatsgeleide model leidt tot enorme overcapaciteit die de wereldmarkt verstoort.
+Gebrek aan transparantie:�De EU spreekt van "verontrustende gaten" in de informatie die China verstrekt over industri�le subsidies, wat een directe schending is van de�notificatieplichten�van de WTO.
+
+Geest van de WTO:�De EU roept China op om zijn beleid meer in lijn te brengen met de "letter en de geest" van de WTO-overeenkomsten. 
+
+https://www.eeas.europa.eu/delegations/world-trade-organization-wto/eu-statement-9th-trade-policy-review-peoples-republic-china-17-july-2024_en#:~:text=Also%2C%20it%20has%20become%20increasingly,9th%20Trade%20Policy%20Review.
+
+https://www.barnesrichardson.com/ustr-report-criticizes-wto-compliance-by-china#:~:text=In%20January%202025%2C%20the%20U.S.,security%20interests%20of%20the%20U.S.
+
+https://www.globaltimes.cn/page/202502/1328132.shtml#:~:text=It%20is%20no%20secret%20that,in%20the%20global%20trading%20system. 
+
+
+[ya12]Haroon: In NL heeft de AIV hier een paar jaar geleden ook een rapport over gepubliceerd
+[FB|MB13]Bron
+[ya14]Marion: PAG 7 Kan deze grafiek ook in absolute waarden. Want het is zeer interessant om te weten wat groei is in absolute bedragen en daarna in perscentages. Dit geeft meer inzicht�
+[ya15]Barbara: Wat staat onder het kopje ?Europa moet mentale omslag maken? en later in het rapport vind ik kortom te kort door de bocht. De tegenstelling vrijmarktdenken versus machtsdenken is een vreemde, want kans deels best samengaan (zie Letta:) sterke vrije interne markt en (zie Draghi:) strategische autonomie externe markt (dus EU met rest van de wereld).�
+Frans: Oneens ? we zien dat we op een aantal gebieden volledig van het veld worden gespeeld. Niet erg als dat een gewone sector is, wel erg als dat een sector is die hoog scoort op de y-as (belang).
+[ya16R15]Yashvir: Zou 'efficiency denken' in plaats van 'vrije markt denken' hier beter passen? Dus de vergelijking tussen machtsdenken en efficiencydenken. Het voorbeeld over terkorten, zouden we dan kunnen vervangen/aanvullen met een voorbeeld van efficiencydenken: 'goederen en diensten halen waar ze het goedkoopst zijn'
+[ya17]Barbara: Ik vind dat hier onvoldoende is onderbouwd dat Europa nu op z?n kwetsbaarst is. In de jaren dertig, toen Duitsland zijn democratie aan de wilgen hing: dat was kwetsbaar. Wees dus gewaarschuwd VS!!
+
+Frans: Kwestie van ruimte om het toe te lichten. Zelfs als we vol aan de bak gaan, hebben we de komende 5 jaar geen alternatief voor Defensie, eigen cloud etc. Is zowel een reden om vandaag te beginnen (dan zijn we terug bij de HOE vraag) als ook om de drukpunten die we wel hebben goed in te zetten en te behouden / eventueel extra drukpunten zelf uitbouwen = 6G voorbeeld)
+[ya18]Hans Weijers: Ik denk dat we bedoelen, dat als we de komende 5 jaar geen belangrijke stappen nemen, we alleen nog een speelveld zijn, geen speler meer. maar deze tekst suggereert dat het na 5 jaar wel weer mee zou kunnen vallen.�
+[ya19R18]Frans: We bedoelen dat zelfs met actie vandaag - de komende vijf jaar extreem kwetsbaar zijn omdat we de benodigde resultaten van actie nog niet hebben. Als we goed acteren, neemt de kwetsbaarheid af, maar is niet weg. ?> moeten we dus kwalificeren als het niet zo wordt gelezen.
+[ya20]Frans: Even als tussenopmerking ? het lijkt er een beetje op dat de schrijvers de situatie veel urgenter zien dan de meelezers. Er is echt een probleem en het gaat niet alleen over verschillende visies of ?willen opschuiven naar de VS?. Dat de VS een route op gaat die schadelijk is, is evident. We stellen dan ook niet dat het een goed voorbeeld is dat we moeten volgen ? we stellen wel dat we ons moeten wapenen tegen de kwalijke invloed die zowel de VS als China (in hun zucht naar wereld hegemonie) uitoefenen. En dat betekent inderdaad dat we opties moeten overwegen die niet economisch logisch zijn,�maar wel onafhankelijkheid op langere termijn mogelijk maken.
+[ya21]Barbara: In tabel 1 ontbreken: betalingsverkeer (incl dollar als reserve currency), voedingsmiddelen (en dan niet alleen cacao). 
+Legenda bij de tabel ontbreekt (wat bekent middel-hoog, zeer hoog etc.?)
+[FB|MB22]Kunnen we inderderdaad betalingsverkeer toevoegen?
+[ya23R22]Toegevoegd.
+[be24]Staatsgezag is vreemde term; vervangen door publieke impact? Ook Choke point even uitleggen.
+[ya25R24]@Frans als jij mij de onderliggende tabel geeft, dan pas ik dit aan en verwerk ik kwantitatieve onderbouw waar mogelijk en anders kwalitatieve bronnen.
+[FB26R24]Er is geen andere tabel dan wat hier staat - is een screen shot. Dus snelste is even opnieuw maken
+[ya27]Marion: Wat doet Cacao in dit overzicht?
+[ya28R27]Moet ik cacao verwijderen? Ik heb nu voedsel toegevoegd.
+[FB|MB29]maken we hier een cummulatief overzicht van?
+[ya30R29]Ik zoek uit hoe we de data uit dit plaatje kunnen halen. De achterliggende data was namelijk niet te downloaden.
+[ya31]Haroon: Ik zou dit cijfermatig onderbouwen met % dollar in: wereldhandel, reserves en forextransacties
+[FB|MB32]uitschrijven
+[ya33]Dit misschien weg?
+[FB|MB34]uitschrijven
+[FB35]@Yashvir - aub checken en aanvullen / bron vermelden
+[be36]HHI even uitleggen
+[ya37]Marion: Moeten we in deze tabel arceren welke sectoren van belang zijn in het kader van dit rapport
+[YG38]Het lijkt erop dat Wennink zich alleen richt op technologische sectoren. Ik heb daarom niet gerefereerd aan zijn klassificatie.
+[ya39]Marion: Is deze tabel al af? Is nu niet eenvoudig te begrijpen. Je kunt zelf dingen interpreteren
+[FB|MB40R39]wel eens - hier kan wat meer duiding bij
+[ya41]Barbara: Hier en daar wordt gesuggereerd dat meer staatssteun in Europa een goed idee zou zijn. Draghi suggereert dat ook, maar het is denk ik niet wijs op de langere termijn. Gebruik staatssteun alleen functioneel (open standaarden, interoperabiliteit, innovatie), maar niet structureel om Europese kampioenen te subsidi�ren, dus hooguit gericht en met sterke EU?co�rdinatie. De marktwerking en toetreding van nieuwkomers moeten centraal blijven staan.�
+
+Frans: Hier zijn we het denk ik echt oneens met elkaar. Er zijn sectoren (de 4 genoemde) waar we echt een eigen alternatief moeten bouwen, ongeacht de kosten. Dat betekent Europese kampioenen / alternatieven bouwen en in leven houden.
+[ya42]Barbara: Lijkt te worden gesuggereerd dat hoge staatschulden/lage begrotingsdiscipline zoals in de VS niet zo erg zijn . Daar ben ik het mee oneens. De EU-landen�moeten niet het Amerikaanse pad op . Je ziet nu al dat financi�le markten een risico opslag op de Dollar willen en bij de Euro (wat niet de status van reserve currency heeft) zal dat alleen maar sterker zijn als we de teugels laten vieren. Ik vind het advies dat hier tussen de regels lijkt te staan (let?s spend), niet verstandig.
+Frans: Eens ? zou uiterst stom zijn, betekent dus een verschuiving in de allocatie van de huidige middelen. Meer aan defensie, cloud, etc moet dus elders vandaan komen ? zorg, sociale zekerheid, etc. Of beter ? zoals we in Kiezen en Delen schreven ? uit een sterkere economische groei. We beperken vandaag wel onze slagkracht door zelfs zonder de benodigde extra uitgaven tekorten te draaien ? vandaar ook de afbeelding met mogelijkheden om te draaien ? die zijn er eigenlijk alleen in NW Europa.�
+
+Barbara: Net als het niet verstandig is het Chinese pad van staatsbanken te volgen. 
+In het hoofdstuk staat ook dat Europa zo veel publiek geld besteedt aan ?marktordening en sociale bescherming?. Ik herken totaal niet dat Europese landen of de EU veel geld aan marktordening besteedt. Waar komt dit vandaan ?
+Frans: Herken ik ook niet ? gaan we opzoeken.
+[ya43]Marion: Hier zie ik een kans om duidelijker te maken wat de kans van Europa is. Ik zal dit in de mail verder uitleggen.�
+[ya44]Haroon: Wart scherp geformuleerd? Beter: machtsinstrument
+[ya45]Klopt dit?
+[ya46]Marion: Nog een kleine uitwerking van een grafiek op pagina 24.�
+Zou je Publieke zaak en begrotings discipline in een kwadrant kunnen zetten met EU en VS. Zo geef je aan dat EU vooral op begrotings discipline moet opschuiven.
+[ya47]Cascha: "De EU is structureel gefragmenteerd" wordt data gebruikt die wij niet zelf hebben gescrapet. Ik zou hier verwijzen naar de bron van de dataset:�Arregui & Perarnaud (2021). De bijbehorende figuur is wel door ons opgesteld (de categorie-specifieke figuren zijn wel o.b.v. van onze transcript-data).
+[ya48R47]Ik kom nu even niet in de tekstbox online: de bron voor onder de correlatiematrix is 
+
+
+Arregui J., Perarnaud C. (2021) - A new dataset on legislative decision-making in the European Union: the DEU III dataset
+[ya49]Marion: Plaatje op 29 is niet eenvoudig. De gegevens dichtheid is zo hoog dat het moeilijk te lezen is.
+[ya50]Deze bron hoort bij gefragmenteerdheid in de box.
+[ya51]Marion: Dit is wollig omschreven. Simpel gezegd is het dat VS en China alles vanuit politieke macht doen en in Europa kan zelfs het kleinste land een groot en urgent besluit tegen houden.�
+[ya52]Barbara: Het hoofdstuk met de potentie/sterke uitgangspositie van de EU is bescheiden en veel minder uitgebreid dan de negatieve aspecten
+Het feit dat de marktomvang veel groter is dan van de VS (Frans: dat is ook niet zo (VS is 30 biljoen en EU is 22 biljoen), wel is onze markt absoluut zo belangrijk dat het een drukpunt kan zijn ? hier wreekt zich de versplintering in Europa) krijgt weinig aandacht en daardoor ook het beleidsadvies om Letta?s aanbevelingen voor verdere integratie van onze interne markt. Die knop wordt nu niet genoemd, laat staan uitgebwerkt.
+Frans: Noemen we wel als (middel sterk) drukpunt, maar kunnen we meer nadruk geven ? probleem is wel dat we ook aan max aantal woorden zitten.
+
+Barbara: Het feit dat we in de EU enorm veel kapitaal hebben, op spaarrekeningen en pensioenen, komt nauwelijks aan bod. Beleid om dat slapende kapitaal productief aan het werk te zetten, komt ook niet aan bod .
+Frans: Klopt, waar zie je dat als machtswapen / drukpunt?? Of als argument dat we dus inderdaad best meer kunnen investeren (ruimte in rechter onder punt trilemma)?
+Yashvir: We kunnen hier mogelijk een link maken naar Wennink
+
+Barbara: EU heeft goud in handen: een grote en koopkrachtige afzetmarkt voor China en ook de VS. Waarom gebruiken we niet vaker instrumenten als ETS plus CBAM?�Dus ons eigen beleid in de EU en reguleringsgrenzen aan de buitenkant zodat iedereen die onze profijtelijke markt op wil zich moet aanpassen. 
+Frans: Omdat we in Europa dit soort besluiten niet kunnen nemen ? dat is precies ��n van onze hoofdpunten. ?we weten wel wat we moeten doen ? maar krijgen het niet ge-executeert doordat de executie op niveau staten ligt?
+Dus absoluut mee eens dat dat wel zou moeten; vraag hier is HOE
+[ya53]Marion: 
+Dit is een sterk stuk. Kan nog wel wat meer structuur hebben. Samenvatten in 4 bullets:
+1 Koopkracht van 450 mio consumenten (absolute BBP per capita ligt hoog)
+2. Best opgeleide mensen ter wereld
+3. Regulerende kracht
+4. Verdienvermogen :R&D, ontwerp en services
+En waar zit AGRO, deze sector komt nergens terug.�
+[ya54]Barbara: Drukpunten denken is interessant maar staat verspreid over hst 5 en andere hoofdstukken en voelt daarom als te veel herhaling. (zo komt Halfgeleiders: ASML en het EUV-ecosysteem vaak terug).
+[FB|MB55]Voor de drie drukpunten ASML, airbus en interne markt moeten we bronnen toevoegen
+[ya56]Marion: Harde drukpunten: Macht!!
+[ya57]Suggestie Haroon
+[ya58]Vraagteken Haroon
+[ya59]Rusland ook https://yle.fi/a/74-20168673
+[ya60]Haroon: Dit voorbeeld gaat over Europa als continent, niet als EU (VK)
+[ya61]Marion: Is dit een kans om macht op China uit te oefenen. Door bijv 100 belasting tarieven te heffen op alle troep artikelen vanuit china�
+[YG62]Zonder rekening te houden met vergeldingsacties die volgen op kritieke stromen. Maar zo interpreteren we voor nu alle sterktes apart.
+[ya63]Marion: Europa heeft een overleg cultuur. Daarom snappen we Trump/XI niet. Het is niet perse de verdeeldheid maar dat wij een andere cultuur hebben die op overleg en gemeenschappelijke besluit is gebasseerd. Waar US en China het gewoon politiek vanuit 1 machtcentrum besluiten
+[ya64]Marion: Hier zou Agro tussen kunnen staan
+[ya65]Klopt dit? Of verwijzing naar het Chip rapport?
+[ya66]Gekleurd door Marion zonder comment
+[ya67]Barbara: De analyse van Kickstart AI in hoofdstuk 7 is razend interessant, maar ik mis de informatie om de inzichten op waarde te kunnen schatten. Neem aan dat er in de bijlage meer informatie komt. Idem over analyse van coalition of the willing in hoofdstuk 9 (verwarrend is dat die analyse ook deels in hfst 4 staat ? beter op 1 plek in het rapport).
+[ya68]Haroon: Ik zie niet waarom dit slechts tijd kopen is en niet een structurele oplossing
+[FB|MB69]Cascha laten meelezen op dit stuk om zeker te weten dat we het goed opschrijven
+[FB|MB70]verwiijder semicons
+[ya71]Cascha: Carbon Capture als subsector kunnen we wellicht hernoemen t.o.v.�de oorspronkelijke dataset.�De dataset bevat onder deze noemer namelijk ook veel generieke industri�le goederen (zoals cement) en zelfs olie. Een term als 'Carbon Capture & Industrial Base' lijkt me accurater.�
+[FB|MB72]Bekijk inderdaad even of deze tabel naar de appendix kan - hij is behoorlijk lastig te lezen. Dan een verwijzing in de tekst naar die appendix
+[FB73]verwiijder semicons
+[ya74]Cascha: Kostenanalyse vs. Handelsverschuiving De grote lijnen van de analyse kloppen, maar het stuk over de kosten moet worden aangepast. Er staat nu een kostenpost van 300 miljard. De totale waarde van de handelsverschuiving komt in ons model neer op ~$150 miljard dollar (zie Tabel 2 van denkwerk_optimization_uitgewerkt.pdf, reeds bijgevoegd).
+
+De analyse geeft geen direct inzicht in de kosten. Als we theoretisch tegen dezelfde prijs importeren, zijn de nettokosten nul. Dat is natuurlijk ook niet realistisch.
+
+Ik zie twee opties:
+
+Optie A: We gebruiken alleen de term "totale waardeverschuiving" (~$150 mld) en laten de aanname over kosten over aan de lezer.
+
+Optie B: We maken een expliciete 'Order of Magnitude' schatting. In het model nemen we aan dat we tot 5% van de totale export van een land overnemen (we verdringen dus andere afnemers). Om dit volume weg te kapen uit de bestaande markt, zullen we flink moeten overbieden. Zeker gezien het om producten gaat met zeer hoge marktconcentratie. Ook komen hier andere problemen bij zoals de imperfecte vervangbaarheid van procucten. Het lijkt mij aannemelijk dat de totale kostenpost (de meerprijs om deze handel te claimen) in dezelfde orde van grootte ligt als de handelswaarde zelf (~150 miljard). Als we dit getal noemen, moeten we er wel bij zetten dat dit een ruwe inschatting is.
+[ya75]Marion: Gekke gedachte zou ik vervangen voor is een goede inschatting
+[ya76]Marion: Dit is een zeer goed stuk!!!
+[FB|MB77]uitschrijven of een voetnoot
+[YG78]Wat zouden we hiertegen kunnen doen?
+[YG79R78]China ziet het snel als wij geen afval meer naar Azie laten stromen.
+[FB|MB80R78]Zeker - maar dat moeten we dus wel doordrukken
+[FB81]bronnen toevoegen
+[FB82]bronnen toevoegen
+[ya83]Haroon: Jazeker!
+[ya84]https://berthub.eu/articles/posts/taking-the-airbus-to-the-ikea-cloud/
+
+"For example, as part of a tender, a government could very reasonably require that the chosen vendor can not be forced by any non-EU government to�provide access to your data. This automatically rules out everyone hosting on�Google, Microsoft or Amazon�or any Chinese owned cloud."
+[ya85R84]https://berthub.eu/articles/posts/the-european-cloud-2025/
+[ya86R84]https://berthub.eu/articles/posts/gaia-x-is-an-expensive-distraction/
+[FB87]Als dit niet blijkt te kloppen - dan aub de logica omschrijven naar "het is duurder, maar dat is de prijs van autonomie".
+[ya88]Ik kon de bronnen van de vorige tabel niet goed achterhalen. Deze tabel is gevormd door een GPT deep research. De bronnen zijn aanwezig, maar deze moeten nog wel kritisch worden bekeken om er zeker van te zijn dat de juiste waardes in de tabel staan. 
+[FB89]Hier kunnen we een net tabelletje van maken
+[ya90]Barbara: De analyse van Kickstart AI in hoofdstuk 7 is razend interessant, maar ik mis de informatie om de inzichten op waarde te kunnen schatten. Neem aan dat er in de bijlage meer informatie komt. Idem over analyse van coalition of the willing in hoofdstuk 9 (verwarrend is dat die analyse ook deels in hfst 4 staat ? beter op 1 plek in het rapport).
+[FB91]Cascha vragen om deze afbeelding duidelijker te maken en te splitsen in twee delen - wel EU samenwerken en niet EU samen werken
+[ya92R91]Zie hieronder 4 plaatjes die mooi laten zien waar we niet samenwerken en waar we wel samenwerken. Ik denk dat deze samen een mooi 'totaalbeeld' geven
+[be93]keuze maken, figuur hier of eerder bij Defensie
+[ya94R93]Het wordt hier
+[ya95]Haroon: Ik zou hierin een duidelijke knip maken tussen twee categorieen: landen die al heel gelijkgezind zijn (Canada, Aus, Japan, ZK, Turkije) en landen in mondiale Zuiden die meer partner kunnen worden als wij wat naar ze toe bewegen
+[FB96]In afbeelding duidelijk maken mensenrechten een struikelblok zijn
+[FB97]Bron erbij - zie mail van Bernard
+[FB98]evt verwijderen??
+[ya99]Daarvoor is een model zoals bijvoorbeeld bij NLFI relevant (zachter)
+[ya100]Hans: Mijn derde opmerking betreft het pleidooi voor meer overheidsparticipaties volgens het NLFI model. Ik zie niet in waarom we schaars overheidskapitaal op deze wijze zouden moeten vastzetten als we het ook via een goedkeurings regulering voor fusies en overnames door niet-EU bedrijven in strategische sectoren kunnen doen. Dat overheidskapitaal hebben we hard nodig om in nieuwe technologiebedrijven en infra te investeren.
+[ya101R100]Frans: Eens dat methode hier secundair is, kan ook een ?golden share? zijn oud. Wilden benadrukken dat een dergelijk bezit altijd op afstand van de politiek moet komen te staan.
+[ya102]Barbara: p. 54: ?Daarvoor is een model zoals bijvoorbeeld bij NLFI�relevant: de stichting die namens de Staat de aandelen van ABNAMRO en de ASN Bank beheert.? Ik ben niet voor staatsbanken. Denkwerk wel? Zo ja op grond van welke welvaartsanalyse?
+[ya103]Hans: Laatste opmerking. In het laatste hoofdstuk zou een samenvatting van het voorgaande zeker helpen om de complexe strategische agenda voor ons land goed over het voetlicht te brengen.�
+[ya104R103]Frans: Ook eens - is best complex
+[ya105]Haroon: Iets te sterk geformuleerd
+[ya106]We kijken hier nog naar de woorden onmisbaarheid en autonomie.
+[ya107]Hans: Vierde opmerking betreft het op zich zeer aansprekende voorbeeld van een fusie tussen Nokia en Ericson. Hebben we enig idee of die bedrijven dat zelf wel willen?�Anders zal het zeker niet snel gaan. Hebben we niet ook een goed voorbeeld uit de defensie industrie, daar zou het momentum toch echt groot moeten zijn.
+[ya108R107]Frans: Nee, weten we niet.�Maar we kunnen prima 2x 30-40% aandelen kopen, kosten ca 25-30 mrd in totaal - zou NL zelfs alleen kunnen doen. Helaas nauwelijks voorbeelden uit de defensie industrie.
+[ya109]Check met Cascha, de bron lijkt de data niet te bevatten.
+[YG110]Is dit goed zo?
+[be111]het lijkt me goed om Solvinity als box toe te voegen aan de tekst over staatsdeelnemingen.
+---------------
+
+------------------------------------------------------------
+
+---------------
+
+------------------------------------------------------------
+
+
+
+
+1
+
+

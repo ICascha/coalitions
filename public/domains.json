@@ -1,0 +1,6127 @@
+[
+  {
+    "country1": "al",
+    "country2": "ad",
+    "metric": 63
+  },
+  {
+    "country1": "al",
+    "country2": "at",
+    "metric": 69
+  },
+  {
+    "country1": "al",
+    "country2": "be",
+    "metric": 67
+  },
+  {
+    "country1": "al",
+    "country2": "ba",
+    "metric": 72
+  },
+  {
+    "country1": "al",
+    "country2": "bg",
+    "metric": 70
+  },
+  {
+    "country1": "al",
+    "country2": "hr",
+    "metric": 62
+  },
+  {
+    "country1": "al",
+    "country2": "cy",
+    "metric": 71
+  },
+  {
+    "country1": "al",
+    "country2": "cz",
+    "metric": 68
+  },
+  {
+    "country1": "al",
+    "country2": "dk",
+    "metric": 68
+  },
+  {
+    "country1": "al",
+    "country2": "ee",
+    "metric": 67
+  },
+  {
+    "country1": "al",
+    "country2": "fo",
+    "metric": 67
+  },
+  {
+    "country1": "al",
+    "country2": "fi",
+    "metric": 70
+  },
+  {
+    "country1": "al",
+    "country2": "fr",
+    "metric": 66
+  },
+  {
+    "country1": "al",
+    "country2": "de",
+    "metric": 70
+  },
+  {
+    "country1": "al",
+    "country2": "gi",
+    "metric": 67
+  },
+  {
+    "country1": "al",
+    "country2": "gr",
+    "metric": 70
+  },
+  {
+    "country1": "al",
+    "country2": "gg",
+    "metric": 59
+  },
+  {
+    "country1": "al",
+    "country2": "hu",
+    "metric": 70
+  },
+  {
+    "country1": "al",
+    "country2": "is",
+    "metric": 69
+  },
+  {
+    "country1": "al",
+    "country2": "ie",
+    "metric": 65
+  },
+  {
+    "country1": "al",
+    "country2": "im",
+    "metric": 65
+  },
+  {
+    "country1": "al",
+    "country2": "it",
+    "metric": 65
+  },
+  {
+    "country1": "al",
+    "country2": "je",
+    "metric": 58
+  },
+  {
+    "country1": "al",
+    "country2": "lv",
+    "metric": 68
+  },
+  {
+    "country1": "al",
+    "country2": "li",
+    "metric": 66
+  },
+  {
+    "country1": "al",
+    "country2": "lt",
+    "metric": 67
+  },
+  {
+    "country1": "al",
+    "country2": "lu",
+    "metric": 67
+  },
+  {
+    "country1": "al",
+    "country2": "mt",
+    "metric": 66
+  },
+  {
+    "country1": "al",
+    "country2": "md",
+    "metric": 79
+  },
+  {
+    "country1": "al",
+    "country2": "mc",
+    "metric": 61
+  },
+  {
+    "country1": "al",
+    "country2": "me",
+    "metric": 72
+  },
+  {
+    "country1": "al",
+    "country2": "nl",
+    "metric": 70
+  },
+  {
+    "country1": "al",
+    "country2": "mk",
+    "metric": 82
+  },
+  {
+    "country1": "al",
+    "country2": "no",
+    "metric": 65
+  },
+  {
+    "country1": "al",
+    "country2": "pl",
+    "metric": 66
+  },
+  {
+    "country1": "al",
+    "country2": "pt",
+    "metric": 64
+  },
+  {
+    "country1": "al",
+    "country2": "ro",
+    "metric": 70
+  },
+  {
+    "country1": "al",
+    "country2": "ru",
+    "metric": 49
+  },
+  {
+    "country1": "al",
+    "country2": "sm",
+    "metric": 58
+  },
+  {
+    "country1": "al",
+    "country2": "rs",
+    "metric": 62
+  },
+  {
+    "country1": "al",
+    "country2": "sk",
+    "metric": 70
+  },
+  {
+    "country1": "al",
+    "country2": "si",
+    "metric": 61
+  },
+  {
+    "country1": "al",
+    "country2": "es",
+    "metric": 68
+  },
+  {
+    "country1": "al",
+    "country2": "se",
+    "metric": 70
+  },
+  {
+    "country1": "al",
+    "country2": "ch",
+    "metric": 65
+  },
+  {
+    "country1": "al",
+    "country2": "tr",
+    "metric": 69
+  },
+  {
+    "country1": "al",
+    "country2": "ua",
+    "metric": 73
+  },
+  {
+    "country1": "al",
+    "country2": "gb",
+    "metric": 65
+  },
+  {
+    "country1": "al",
+    "country2": "ax",
+    "metric": 66
+  },
+  {
+    "country1": "ad",
+    "country2": "at",
+    "metric": 77
+  },
+  {
+    "country1": "ad",
+    "country2": "be",
+    "metric": 75
+  },
+  {
+    "country1": "ad",
+    "country2": "ba",
+    "metric": 70
+  },
+  {
+    "country1": "ad",
+    "country2": "bg",
+    "metric": 76
+  },
+  {
+    "country1": "ad",
+    "country2": "hr",
+    "metric": 70
+  },
+  {
+    "country1": "ad",
+    "country2": "cy",
+    "metric": 74
+  },
+  {
+    "country1": "ad",
+    "country2": "cz",
+    "metric": 75
+  },
+  {
+    "country1": "ad",
+    "country2": "dk",
+    "metric": 74
+  },
+  {
+    "country1": "ad",
+    "country2": "ee",
+    "metric": 69
+  },
+  {
+    "country1": "ad",
+    "country2": "fo",
+    "metric": 66
+  },
+  {
+    "country1": "ad",
+    "country2": "fi",
+    "metric": 70
+  },
+  {
+    "country1": "ad",
+    "country2": "fr",
+    "metric": 76
+  },
+  {
+    "country1": "ad",
+    "country2": "de",
+    "metric": 74
+  },
+  {
+    "country1": "ad",
+    "country2": "gi",
+    "metric": 71
+  },
+  {
+    "country1": "ad",
+    "country2": "gr",
+    "metric": 76
+  },
+  {
+    "country1": "ad",
+    "country2": "gg",
+    "metric": 72
+  },
+  {
+    "country1": "ad",
+    "country2": "hu",
+    "metric": 78
+  },
+  {
+    "country1": "ad",
+    "country2": "is",
+    "metric": 73
+  },
+  {
+    "country1": "ad",
+    "country2": "ie",
+    "metric": 73
+  },
+  {
+    "country1": "ad",
+    "country2": "im",
+    "metric": 73
+  },
+  {
+    "country1": "ad",
+    "country2": "it",
+    "metric": 77
+  },
+  {
+    "country1": "ad",
+    "country2": "je",
+    "metric": 68
+  },
+  {
+    "country1": "ad",
+    "country2": "lv",
+    "metric": 65
+  },
+  {
+    "country1": "ad",
+    "country2": "li",
+    "metric": 72
+  },
+  {
+    "country1": "ad",
+    "country2": "lt",
+    "metric": 74
+  },
+  {
+    "country1": "ad",
+    "country2": "lu",
+    "metric": 73
+  },
+  {
+    "country1": "ad",
+    "country2": "mt",
+    "metric": 76
+  },
+  {
+    "country1": "ad",
+    "country2": "md",
+    "metric": 65
+  },
+  {
+    "country1": "ad",
+    "country2": "mc",
+    "metric": 60
+  },
+  {
+    "country1": "ad",
+    "country2": "me",
+    "metric": 71
+  },
+  {
+    "country1": "ad",
+    "country2": "nl",
+    "metric": 72
+  },
+  {
+    "country1": "ad",
+    "country2": "mk",
+    "metric": 69
+  },
+  {
+    "country1": "ad",
+    "country2": "no",
+    "metric": 71
+  },
+  {
+    "country1": "ad",
+    "country2": "pl",
+    "metric": 76
+  },
+  {
+    "country1": "ad",
+    "country2": "pt",
+    "metric": 74
+  },
+  {
+    "country1": "ad",
+    "country2": "ro",
+    "metric": 79
+  },
+  {
+    "country1": "ad",
+    "country2": "ru",
+    "metric": 47
+  },
+  {
+    "country1": "ad",
+    "country2": "sm",
+    "metric": 73
+  },
+  {
+    "country1": "ad",
+    "country2": "rs",
+    "metric": 74
+  },
+  {
+    "country1": "ad",
+    "country2": "sk",
+    "metric": 76
+  },
+  {
+    "country1": "ad",
+    "country2": "si",
+    "metric": 74
+  },
+  {
+    "country1": "ad",
+    "country2": "es",
+    "metric": 77
+  },
+  {
+    "country1": "ad",
+    "country2": "se",
+    "metric": 73
+  },
+  {
+    "country1": "ad",
+    "country2": "ch",
+    "metric": 76
+  },
+  {
+    "country1": "ad",
+    "country2": "tr",
+    "metric": 75
+  },
+  {
+    "country1": "ad",
+    "country2": "ua",
+    "metric": 66
+  },
+  {
+    "country1": "ad",
+    "country2": "gb",
+    "metric": 73
+  },
+  {
+    "country1": "ad",
+    "country2": "ax",
+    "metric": 71
+  },
+  {
+    "country1": "at",
+    "country2": "be",
+    "metric": 91
+  },
+  {
+    "country1": "at",
+    "country2": "ba",
+    "metric": 77
+  },
+  {
+    "country1": "at",
+    "country2": "bg",
+    "metric": 87
+  },
+  {
+    "country1": "at",
+    "country2": "hr",
+    "metric": 79
+  },
+  {
+    "country1": "at",
+    "country2": "cy",
+    "metric": 85
+  },
+  {
+    "country1": "at",
+    "country2": "cz",
+    "metric": 86
+  },
+  {
+    "country1": "at",
+    "country2": "dk",
+    "metric": 86
+  },
+  {
+    "country1": "at",
+    "country2": "ee",
+    "metric": 80
+  },
+  {
+    "country1": "at",
+    "country2": "fo",
+    "metric": 76
+  },
+  {
+    "country1": "at",
+    "country2": "fi",
+    "metric": 80
+  },
+  {
+    "country1": "at",
+    "country2": "fr",
+    "metric": 92
+  },
+  {
+    "country1": "at",
+    "country2": "de",
+    "metric": 91
+  },
+  {
+    "country1": "at",
+    "country2": "gi",
+    "metric": 82
+  },
+  {
+    "country1": "at",
+    "country2": "gr",
+    "metric": 89
+  },
+  {
+    "country1": "at",
+    "country2": "gg",
+    "metric": 82
+  },
+  {
+    "country1": "at",
+    "country2": "hu",
+    "metric": 91
+  },
+  {
+    "country1": "at",
+    "country2": "is",
+    "metric": 82
+  },
+  {
+    "country1": "at",
+    "country2": "ie",
+    "metric": 84
+  },
+  {
+    "country1": "at",
+    "country2": "im",
+    "metric": 81
+  },
+  {
+    "country1": "at",
+    "country2": "it",
+    "metric": 86
+  },
+  {
+    "country1": "at",
+    "country2": "je",
+    "metric": 75
+  },
+  {
+    "country1": "at",
+    "country2": "lv",
+    "metric": 75
+  },
+  {
+    "country1": "at",
+    "country2": "li",
+    "metric": 85
+  },
+  {
+    "country1": "at",
+    "country2": "lt",
+    "metric": 85
+  },
+  {
+    "country1": "at",
+    "country2": "lu",
+    "metric": 88
+  },
+  {
+    "country1": "at",
+    "country2": "mt",
+    "metric": 87
+  },
+  {
+    "country1": "at",
+    "country2": "md",
+    "metric": 75
+  },
+  {
+    "country1": "at",
+    "country2": "mc",
+    "metric": 74
+  },
+  {
+    "country1": "at",
+    "country2": "me",
+    "metric": 78
+  },
+  {
+    "country1": "at",
+    "country2": "nl",
+    "metric": 86
+  },
+  {
+    "country1": "at",
+    "country2": "mk",
+    "metric": 77
+  },
+  {
+    "country1": "at",
+    "country2": "no",
+    "metric": 86
+  },
+  {
+    "country1": "at",
+    "country2": "pl",
+    "metric": 85
+  },
+  {
+    "country1": "at",
+    "country2": "pt",
+    "metric": 83
+  },
+  {
+    "country1": "at",
+    "country2": "ro",
+    "metric": 90
+  },
+  {
+    "country1": "at",
+    "country2": "ru",
+    "metric": 50
+  },
+  {
+    "country1": "at",
+    "country2": "sm",
+    "metric": 77
+  },
+  {
+    "country1": "at",
+    "country2": "rs",
+    "metric": 82
+  },
+  {
+    "country1": "at",
+    "country2": "sk",
+    "metric": 87
+  },
+  {
+    "country1": "at",
+    "country2": "si",
+    "metric": 87
+  },
+  {
+    "country1": "at",
+    "country2": "es",
+    "metric": 89
+  },
+  {
+    "country1": "at",
+    "country2": "se",
+    "metric": 90
+  },
+  {
+    "country1": "at",
+    "country2": "ch",
+    "metric": 89
+  },
+  {
+    "country1": "at",
+    "country2": "tr",
+    "metric": 81
+  },
+  {
+    "country1": "at",
+    "country2": "ua",
+    "metric": 74
+  },
+  {
+    "country1": "at",
+    "country2": "gb",
+    "metric": 86
+  },
+  {
+    "country1": "at",
+    "country2": "ax",
+    "metric": 79
+  },
+  {
+    "country1": "be",
+    "country2": "ba",
+    "metric": 76
+  },
+  {
+    "country1": "be",
+    "country2": "bg",
+    "metric": 85
+  },
+  {
+    "country1": "be",
+    "country2": "hr",
+    "metric": 79
+  },
+  {
+    "country1": "be",
+    "country2": "cy",
+    "metric": 87
+  },
+  {
+    "country1": "be",
+    "country2": "cz",
+    "metric": 85
+  },
+  {
+    "country1": "be",
+    "country2": "dk",
+    "metric": 91
+  },
+  {
+    "country1": "be",
+    "country2": "ee",
+    "metric": 83
+  },
+  {
+    "country1": "be",
+    "country2": "fo",
+    "metric": 79
+  },
+  {
+    "country1": "be",
+    "country2": "fi",
+    "metric": 82
+  },
+  {
+    "country1": "be",
+    "country2": "fr",
+    "metric": 95
+  },
+  {
+    "country1": "be",
+    "country2": "de",
+    "metric": 91
+  },
+  {
+    "country1": "be",
+    "country2": "gi",
+    "metric": 84
+  },
+  {
+    "country1": "be",
+    "country2": "gr",
+    "metric": 89
+  },
+  {
+    "country1": "be",
+    "country2": "gg",
+    "metric": 85
+  },
+  {
+    "country1": "be",
+    "country2": "hu",
+    "metric": 88
+  },
+  {
+    "country1": "be",
+    "country2": "is",
+    "metric": 82
+  },
+  {
+    "country1": "be",
+    "country2": "ie",
+    "metric": 87
+  },
+  {
+    "country1": "be",
+    "country2": "im",
+    "metric": 87
+  },
+  {
+    "country1": "be",
+    "country2": "it",
+    "metric": 85
+  },
+  {
+    "country1": "be",
+    "country2": "je",
+    "metric": 79
+  },
+  {
+    "country1": "be",
+    "country2": "lv",
+    "metric": 74
+  },
+  {
+    "country1": "be",
+    "country2": "li",
+    "metric": 87
+  },
+  {
+    "country1": "be",
+    "country2": "lt",
+    "metric": 84
+  },
+  {
+    "country1": "be",
+    "country2": "lu",
+    "metric": 92
+  },
+  {
+    "country1": "be",
+    "country2": "mt",
+    "metric": 92
+  },
+  {
+    "country1": "be",
+    "country2": "md",
+    "metric": 74
+  },
+  {
+    "country1": "be",
+    "country2": "mc",
+    "metric": 74
+  },
+  {
+    "country1": "be",
+    "country2": "me",
+    "metric": 79
+  },
+  {
+    "country1": "be",
+    "country2": "nl",
+    "metric": 87
+  },
+  {
+    "country1": "be",
+    "country2": "mk",
+    "metric": 75
+  },
+  {
+    "country1": "be",
+    "country2": "no",
+    "metric": 91
+  },
+  {
+    "country1": "be",
+    "country2": "pl",
+    "metric": 83
+  },
+  {
+    "country1": "be",
+    "country2": "pt",
+    "metric": 88
+  },
+  {
+    "country1": "be",
+    "country2": "ro",
+    "metric": 90
+  },
+  {
+    "country1": "be",
+    "country2": "ru",
+    "metric": 49
+  },
+  {
+    "country1": "be",
+    "country2": "sm",
+    "metric": 76
+  },
+  {
+    "country1": "be",
+    "country2": "rs",
+    "metric": 84
+  },
+  {
+    "country1": "be",
+    "country2": "sk",
+    "metric": 85
+  },
+  {
+    "country1": "be",
+    "country2": "si",
+    "metric": 87
+  },
+  {
+    "country1": "be",
+    "country2": "es",
+    "metric": 88
+  },
+  {
+    "country1": "be",
+    "country2": "se",
+    "metric": 92
+  },
+  {
+    "country1": "be",
+    "country2": "ch",
+    "metric": 93
+  },
+  {
+    "country1": "be",
+    "country2": "tr",
+    "metric": 80
+  },
+  {
+    "country1": "be",
+    "country2": "ua",
+    "metric": 73
+  },
+  {
+    "country1": "be",
+    "country2": "gb",
+    "metric": 91
+  },
+  {
+    "country1": "be",
+    "country2": "ax",
+    "metric": 80
+  },
+  {
+    "country1": "ba",
+    "country2": "bg",
+    "metric": 83
+  },
+  {
+    "country1": "ba",
+    "country2": "hr",
+    "metric": 76
+  },
+  {
+    "country1": "ba",
+    "country2": "cy",
+    "metric": 74
+  },
+  {
+    "country1": "ba",
+    "country2": "cz",
+    "metric": 79
+  },
+  {
+    "country1": "ba",
+    "country2": "dk",
+    "metric": 79
+  },
+  {
+    "country1": "ba",
+    "country2": "ee",
+    "metric": 70
+  },
+  {
+    "country1": "ba",
+    "country2": "fo",
+    "metric": 68
+  },
+  {
+    "country1": "ba",
+    "country2": "fi",
+    "metric": 75
+  },
+  {
+    "country1": "ba",
+    "country2": "fr",
+    "metric": 75
+  },
+  {
+    "country1": "ba",
+    "country2": "de",
+    "metric": 76
+  },
+  {
+    "country1": "ba",
+    "country2": "gi",
+    "metric": 71
+  },
+  {
+    "country1": "ba",
+    "country2": "gr",
+    "metric": 78
+  },
+  {
+    "country1": "ba",
+    "country2": "gg",
+    "metric": 66
+  },
+  {
+    "country1": "ba",
+    "country2": "hu",
+    "metric": 79
+  },
+  {
+    "country1": "ba",
+    "country2": "is",
+    "metric": 72
+  },
+  {
+    "country1": "ba",
+    "country2": "ie",
+    "metric": 73
+  },
+  {
+    "country1": "ba",
+    "country2": "im",
+    "metric": 68
+  },
+  {
+    "country1": "ba",
+    "country2": "it",
+    "metric": 73
+  },
+  {
+    "country1": "ba",
+    "country2": "je",
+    "metric": 63
+  },
+  {
+    "country1": "ba",
+    "country2": "lv",
+    "metric": 69
+  },
+  {
+    "country1": "ba",
+    "country2": "li",
+    "metric": 71
+  },
+  {
+    "country1": "ba",
+    "country2": "lt",
+    "metric": 75
+  },
+  {
+    "country1": "ba",
+    "country2": "lu",
+    "metric": 76
+  },
+  {
+    "country1": "ba",
+    "country2": "mt",
+    "metric": 72
+  },
+  {
+    "country1": "ba",
+    "country2": "md",
+    "metric": 77
+  },
+  {
+    "country1": "ba",
+    "country2": "mc",
+    "metric": 64
+  },
+  {
+    "country1": "ba",
+    "country2": "me",
+    "metric": 86
+  },
+  {
+    "country1": "ba",
+    "country2": "nl",
+    "metric": 73
+  },
+  {
+    "country1": "ba",
+    "country2": "mk",
+    "metric": 79
+  },
+  {
+    "country1": "ba",
+    "country2": "no",
+    "metric": 73
+  },
+  {
+    "country1": "ba",
+    "country2": "pl",
+    "metric": 79
+  },
+  {
+    "country1": "ba",
+    "country2": "pt",
+    "metric": 73
+  },
+  {
+    "country1": "ba",
+    "country2": "ro",
+    "metric": 79
+  },
+  {
+    "country1": "ba",
+    "country2": "ru",
+    "metric": 48
+  },
+  {
+    "country1": "ba",
+    "country2": "sm",
+    "metric": 63
+  },
+  {
+    "country1": "ba",
+    "country2": "rs",
+    "metric": 78
+  },
+  {
+    "country1": "ba",
+    "country2": "sk",
+    "metric": 76
+  },
+  {
+    "country1": "ba",
+    "country2": "si",
+    "metric": 75
+  },
+  {
+    "country1": "ba",
+    "country2": "es",
+    "metric": 77
+  },
+  {
+    "country1": "ba",
+    "country2": "se",
+    "metric": 76
+  },
+  {
+    "country1": "ba",
+    "country2": "ch",
+    "metric": 74
+  },
+  {
+    "country1": "ba",
+    "country2": "tr",
+    "metric": 76
+  },
+  {
+    "country1": "ba",
+    "country2": "ua",
+    "metric": 76
+  },
+  {
+    "country1": "ba",
+    "country2": "gb",
+    "metric": 72
+  },
+  {
+    "country1": "ba",
+    "country2": "ax",
+    "metric": 69
+  },
+  {
+    "country1": "bg",
+    "country2": "hr",
+    "metric": 78
+  },
+  {
+    "country1": "bg",
+    "country2": "cy",
+    "metric": 83
+  },
+  {
+    "country1": "bg",
+    "country2": "cz",
+    "metric": 88
+  },
+  {
+    "country1": "bg",
+    "country2": "dk",
+    "metric": 84
+  },
+  {
+    "country1": "bg",
+    "country2": "ee",
+    "metric": 78
+  },
+  {
+    "country1": "bg",
+    "country2": "fo",
+    "metric": 70
+  },
+  {
+    "country1": "bg",
+    "country2": "fi",
+    "metric": 79
+  },
+  {
+    "country1": "bg",
+    "country2": "fr",
+    "metric": 85
+  },
+  {
+    "country1": "bg",
+    "country2": "de",
+    "metric": 85
+  },
+  {
+    "country1": "bg",
+    "country2": "gi",
+    "metric": 78
+  },
+  {
+    "country1": "bg",
+    "country2": "gr",
+    "metric": 85
+  },
+  {
+    "country1": "bg",
+    "country2": "gg",
+    "metric": 76
+  },
+  {
+    "country1": "bg",
+    "country2": "hu",
+    "metric": 90
+  },
+  {
+    "country1": "bg",
+    "country2": "is",
+    "metric": 80
+  },
+  {
+    "country1": "bg",
+    "country2": "ie",
+    "metric": 81
+  },
+  {
+    "country1": "bg",
+    "country2": "im",
+    "metric": 77
+  },
+  {
+    "country1": "bg",
+    "country2": "it",
+    "metric": 83
+  },
+  {
+    "country1": "bg",
+    "country2": "je",
+    "metric": 70
+  },
+  {
+    "country1": "bg",
+    "country2": "lv",
+    "metric": 74
+  },
+  {
+    "country1": "bg",
+    "country2": "li",
+    "metric": 81
+  },
+  {
+    "country1": "bg",
+    "country2": "lt",
+    "metric": 84
+  },
+  {
+    "country1": "bg",
+    "country2": "lu",
+    "metric": 85
+  },
+  {
+    "country1": "bg",
+    "country2": "mt",
+    "metric": 83
+  },
+  {
+    "country1": "bg",
+    "country2": "md",
+    "metric": 77
+  },
+  {
+    "country1": "bg",
+    "country2": "mc",
+    "metric": 68
+  },
+  {
+    "country1": "bg",
+    "country2": "me",
+    "metric": 81
+  },
+  {
+    "country1": "bg",
+    "country2": "nl",
+    "metric": 82
+  },
+  {
+    "country1": "bg",
+    "country2": "mk",
+    "metric": 80
+  },
+  {
+    "country1": "bg",
+    "country2": "no",
+    "metric": 81
+  },
+  {
+    "country1": "bg",
+    "country2": "pl",
+    "metric": 86
+  },
+  {
+    "country1": "bg",
+    "country2": "pt",
+    "metric": 83
+  },
+  {
+    "country1": "bg",
+    "country2": "ro",
+    "metric": 90
+  },
+  {
+    "country1": "bg",
+    "country2": "ru",
+    "metric": 51
+  },
+  {
+    "country1": "bg",
+    "country2": "sm",
+    "metric": 73
+  },
+  {
+    "country1": "bg",
+    "country2": "rs",
+    "metric": 85
+  },
+  {
+    "country1": "bg",
+    "country2": "sk",
+    "metric": 86
+  },
+  {
+    "country1": "bg",
+    "country2": "si",
+    "metric": 85
+  },
+  {
+    "country1": "bg",
+    "country2": "es",
+    "metric": 86
+  },
+  {
+    "country1": "bg",
+    "country2": "se",
+    "metric": 84
+  },
+  {
+    "country1": "bg",
+    "country2": "ch",
+    "metric": 84
+  },
+  {
+    "country1": "bg",
+    "country2": "tr",
+    "metric": 82
+  },
+  {
+    "country1": "bg",
+    "country2": "ua",
+    "metric": 79
+  },
+  {
+    "country1": "bg",
+    "country2": "gb",
+    "metric": 80
+  },
+  {
+    "country1": "bg",
+    "country2": "ax",
+    "metric": 75
+  },
+  {
+    "country1": "hr",
+    "country2": "cy",
+    "metric": 76
+  },
+  {
+    "country1": "hr",
+    "country2": "cz",
+    "metric": 79
+  },
+  {
+    "country1": "hr",
+    "country2": "dk",
+    "metric": 79
+  },
+  {
+    "country1": "hr",
+    "country2": "ee",
+    "metric": 71
+  },
+  {
+    "country1": "hr",
+    "country2": "fo",
+    "metric": 64
+  },
+  {
+    "country1": "hr",
+    "country2": "fi",
+    "metric": 72
+  },
+  {
+    "country1": "hr",
+    "country2": "fr",
+    "metric": 78
+  },
+  {
+    "country1": "hr",
+    "country2": "de",
+    "metric": 77
+  },
+  {
+    "country1": "hr",
+    "country2": "gi",
+    "metric": 72
+  },
+  {
+    "country1": "hr",
+    "country2": "gr",
+    "metric": 78
+  },
+  {
+    "country1": "hr",
+    "country2": "gg",
+    "metric": 72
+  },
+  {
+    "country1": "hr",
+    "country2": "hu",
+    "metric": 79
+  },
+  {
+    "country1": "hr",
+    "country2": "is",
+    "metric": 70
+  },
+  {
+    "country1": "hr",
+    "country2": "ie",
+    "metric": 77
+  },
+  {
+    "country1": "hr",
+    "country2": "im",
+    "metric": 71
+  },
+  {
+    "country1": "hr",
+    "country2": "it",
+    "metric": 76
+  },
+  {
+    "country1": "hr",
+    "country2": "je",
+    "metric": 70
+  },
+  {
+    "country1": "hr",
+    "country2": "lv",
+    "metric": 67
+  },
+  {
+    "country1": "hr",
+    "country2": "li",
+    "metric": 75
+  },
+  {
+    "country1": "hr",
+    "country2": "lt",
+    "metric": 78
+  },
+  {
+    "country1": "hr",
+    "country2": "lu",
+    "metric": 77
+  },
+  {
+    "country1": "hr",
+    "country2": "mt",
+    "metric": 79
+  },
+  {
+    "country1": "hr",
+    "country2": "md",
+    "metric": 68
+  },
+  {
+    "country1": "hr",
+    "country2": "mc",
+    "metric": 66
+  },
+  {
+    "country1": "hr",
+    "country2": "me",
+    "metric": 77
+  },
+  {
+    "country1": "hr",
+    "country2": "nl",
+    "metric": 73
+  },
+  {
+    "country1": "hr",
+    "country2": "mk",
+    "metric": 68
+  },
+  {
+    "country1": "hr",
+    "country2": "no",
+    "metric": 77
+  },
+  {
+    "country1": "hr",
+    "country2": "pl",
+    "metric": 78
+  },
+  {
+    "country1": "hr",
+    "country2": "pt",
+    "metric": 77
+  },
+  {
+    "country1": "hr",
+    "country2": "ro",
+    "metric": 79
+  },
+  {
+    "country1": "hr",
+    "country2": "ru",
+    "metric": 44
+  },
+  {
+    "country1": "hr",
+    "country2": "sm",
+    "metric": 68
+  },
+  {
+    "country1": "hr",
+    "country2": "rs",
+    "metric": 81
+  },
+  {
+    "country1": "hr",
+    "country2": "sk",
+    "metric": 79
+  },
+  {
+    "country1": "hr",
+    "country2": "si",
+    "metric": 85
+  },
+  {
+    "country1": "hr",
+    "country2": "es",
+    "metric": 81
+  },
+  {
+    "country1": "hr",
+    "country2": "se",
+    "metric": 77
+  },
+  {
+    "country1": "hr",
+    "country2": "ch",
+    "metric": 79
+  },
+  {
+    "country1": "hr",
+    "country2": "tr",
+    "metric": 71
+  },
+  {
+    "country1": "hr",
+    "country2": "ua",
+    "metric": 67
+  },
+  {
+    "country1": "hr",
+    "country2": "gb",
+    "metric": 75
+  },
+  {
+    "country1": "hr",
+    "country2": "ax",
+    "metric": 70
+  },
+  {
+    "country1": "cy",
+    "country2": "cz",
+    "metric": 82
+  },
+  {
+    "country1": "cy",
+    "country2": "dk",
+    "metric": 84
+  },
+  {
+    "country1": "cy",
+    "country2": "ee",
+    "metric": 85
+  },
+  {
+    "country1": "cy",
+    "country2": "fo",
+    "metric": 74
+  },
+  {
+    "country1": "cy",
+    "country2": "fi",
+    "metric": 83
+  },
+  {
+    "country1": "cy",
+    "country2": "fr",
+    "metric": 85
+  },
+  {
+    "country1": "cy",
+    "country2": "de",
+    "metric": 86
+  },
+  {
+    "country1": "cy",
+    "country2": "gi",
+    "metric": 85
+  },
+  {
+    "country1": "cy",
+    "country2": "gr",
+    "metric": 84
+  },
+  {
+    "country1": "cy",
+    "country2": "gg",
+    "metric": 78
+  },
+  {
+    "country1": "cy",
+    "country2": "hu",
+    "metric": 86
+  },
+  {
+    "country1": "cy",
+    "country2": "is",
+    "metric": 83
+  },
+  {
+    "country1": "cy",
+    "country2": "ie",
+    "metric": 83
+  },
+  {
+    "country1": "cy",
+    "country2": "im",
+    "metric": 83
+  },
+  {
+    "country1": "cy",
+    "country2": "it",
+    "metric": 80
+  },
+  {
+    "country1": "cy",
+    "country2": "je",
+    "metric": 79
+  },
+  {
+    "country1": "cy",
+    "country2": "lv",
+    "metric": 75
+  },
+  {
+    "country1": "cy",
+    "country2": "li",
+    "metric": 79
+  },
+  {
+    "country1": "cy",
+    "country2": "lt",
+    "metric": 84
+  },
+  {
+    "country1": "cy",
+    "country2": "lu",
+    "metric": 87
+  },
+  {
+    "country1": "cy",
+    "country2": "mt",
+    "metric": 87
+  },
+  {
+    "country1": "cy",
+    "country2": "md",
+    "metric": 77
+  },
+  {
+    "country1": "cy",
+    "country2": "mc",
+    "metric": 71
+  },
+  {
+    "country1": "cy",
+    "country2": "me",
+    "metric": 81
+  },
+  {
+    "country1": "cy",
+    "country2": "nl",
+    "metric": 85
+  },
+  {
+    "country1": "cy",
+    "country2": "mk",
+    "metric": 78
+  },
+  {
+    "country1": "cy",
+    "country2": "no",
+    "metric": 81
+  },
+  {
+    "country1": "cy",
+    "country2": "pl",
+    "metric": 81
+  },
+  {
+    "country1": "cy",
+    "country2": "pt",
+    "metric": 80
+  },
+  {
+    "country1": "cy",
+    "country2": "ro",
+    "metric": 86
+  },
+  {
+    "country1": "cy",
+    "country2": "ru",
+    "metric": 54
+  },
+  {
+    "country1": "cy",
+    "country2": "sm",
+    "metric": 70
+  },
+  {
+    "country1": "cy",
+    "country2": "rs",
+    "metric": 82
+  },
+  {
+    "country1": "cy",
+    "country2": "sk",
+    "metric": 83
+  },
+  {
+    "country1": "cy",
+    "country2": "si",
+    "metric": 80
+  },
+  {
+    "country1": "cy",
+    "country2": "es",
+    "metric": 83
+  },
+  {
+    "country1": "cy",
+    "country2": "se",
+    "metric": 87
+  },
+  {
+    "country1": "cy",
+    "country2": "ch",
+    "metric": 83
+  },
+  {
+    "country1": "cy",
+    "country2": "tr",
+    "metric": 81
+  },
+  {
+    "country1": "cy",
+    "country2": "ua",
+    "metric": 77
+  },
+  {
+    "country1": "cy",
+    "country2": "gb",
+    "metric": 86
+  },
+  {
+    "country1": "cy",
+    "country2": "ax",
+    "metric": 77
+  },
+  {
+    "country1": "cz",
+    "country2": "dk",
+    "metric": 83
+  },
+  {
+    "country1": "cz",
+    "country2": "ee",
+    "metric": 79
+  },
+  {
+    "country1": "cz",
+    "country2": "fo",
+    "metric": 72
+  },
+  {
+    "country1": "cz",
+    "country2": "fi",
+    "metric": 79
+  },
+  {
+    "country1": "cz",
+    "country2": "fr",
+    "metric": 83
+  },
+  {
+    "country1": "cz",
+    "country2": "de",
+    "metric": 85
+  },
+  {
+    "country1": "cz",
+    "country2": "gi",
+    "metric": 77
+  },
+  {
+    "country1": "cz",
+    "country2": "gr",
+    "metric": 82
+  },
+  {
+    "country1": "cz",
+    "country2": "gg",
+    "metric": 74
+  },
+  {
+    "country1": "cz",
+    "country2": "hu",
+    "metric": 87
+  },
+  {
+    "country1": "cz",
+    "country2": "is",
+    "metric": 80
+  },
+  {
+    "country1": "cz",
+    "country2": "ie",
+    "metric": 80
+  },
+  {
+    "country1": "cz",
+    "country2": "im",
+    "metric": 77
+  },
+  {
+    "country1": "cz",
+    "country2": "it",
+    "metric": 81
+  },
+  {
+    "country1": "cz",
+    "country2": "je",
+    "metric": 72
+  },
+  {
+    "country1": "cz",
+    "country2": "lv",
+    "metric": 73
+  },
+  {
+    "country1": "cz",
+    "country2": "li",
+    "metric": 81
+  },
+  {
+    "country1": "cz",
+    "country2": "lt",
+    "metric": 83
+  },
+  {
+    "country1": "cz",
+    "country2": "lu",
+    "metric": 85
+  },
+  {
+    "country1": "cz",
+    "country2": "mt",
+    "metric": 82
+  },
+  {
+    "country1": "cz",
+    "country2": "md",
+    "metric": 75
+  },
+  {
+    "country1": "cz",
+    "country2": "mc",
+    "metric": 67
+  },
+  {
+    "country1": "cz",
+    "country2": "me",
+    "metric": 80
+  },
+  {
+    "country1": "cz",
+    "country2": "nl",
+    "metric": 82
+  },
+  {
+    "country1": "cz",
+    "country2": "mk",
+    "metric": 78
+  },
+  {
+    "country1": "cz",
+    "country2": "no",
+    "metric": 80
+  },
+  {
+    "country1": "cz",
+    "country2": "pl",
+    "metric": 83
+  },
+  {
+    "country1": "cz",
+    "country2": "pt",
+    "metric": 78
+  },
+  {
+    "country1": "cz",
+    "country2": "ro",
+    "metric": 87
+  },
+  {
+    "country1": "cz",
+    "country2": "ru",
+    "metric": 51
+  },
+  {
+    "country1": "cz",
+    "country2": "sm",
+    "metric": 71
+  },
+  {
+    "country1": "cz",
+    "country2": "rs",
+    "metric": 82
+  },
+  {
+    "country1": "cz",
+    "country2": "sk",
+    "metric": 88
+  },
+  {
+    "country1": "cz",
+    "country2": "si",
+    "metric": 83
+  },
+  {
+    "country1": "cz",
+    "country2": "es",
+    "metric": 84
+  },
+  {
+    "country1": "cz",
+    "country2": "se",
+    "metric": 84
+  },
+  {
+    "country1": "cz",
+    "country2": "ch",
+    "metric": 83
+  },
+  {
+    "country1": "cz",
+    "country2": "tr",
+    "metric": 79
+  },
+  {
+    "country1": "cz",
+    "country2": "ua",
+    "metric": 75
+  },
+  {
+    "country1": "cz",
+    "country2": "gb",
+    "metric": 80
+  },
+  {
+    "country1": "cz",
+    "country2": "ax",
+    "metric": 76
+  },
+  {
+    "country1": "dk",
+    "country2": "ee",
+    "metric": 80
+  },
+  {
+    "country1": "dk",
+    "country2": "fo",
+    "metric": 77
+  },
+  {
+    "country1": "dk",
+    "country2": "fi",
+    "metric": 82
+  },
+  {
+    "country1": "dk",
+    "country2": "fr",
+    "metric": 87
+  },
+  {
+    "country1": "dk",
+    "country2": "de",
+    "metric": 84
+  },
+  {
+    "country1": "dk",
+    "country2": "gi",
+    "metric": 81
+  },
+  {
+    "country1": "dk",
+    "country2": "gr",
+    "metric": 84
+  },
+  {
+    "country1": "dk",
+    "country2": "gg",
+    "metric": 81
+  },
+  {
+    "country1": "dk",
+    "country2": "hu",
+    "metric": 85
+  },
+  {
+    "country1": "dk",
+    "country2": "is",
+    "metric": 80
+  },
+  {
+    "country1": "dk",
+    "country2": "ie",
+    "metric": 87
+  },
+  {
+    "country1": "dk",
+    "country2": "im",
+    "metric": 84
+  },
+  {
+    "country1": "dk",
+    "country2": "it",
+    "metric": 82
+  },
+  {
+    "country1": "dk",
+    "country2": "je",
+    "metric": 75
+  },
+  {
+    "country1": "dk",
+    "country2": "lv",
+    "metric": 70
+  },
+  {
+    "country1": "dk",
+    "country2": "li",
+    "metric": 84
+  },
+  {
+    "country1": "dk",
+    "country2": "lt",
+    "metric": 80
+  },
+  {
+    "country1": "dk",
+    "country2": "lu",
+    "metric": 86
+  },
+  {
+    "country1": "dk",
+    "country2": "mt",
+    "metric": 88
+  },
+  {
+    "country1": "dk",
+    "country2": "md",
+    "metric": 72
+  },
+  {
+    "country1": "dk",
+    "country2": "mc",
+    "metric": 73
+  },
+  {
+    "country1": "dk",
+    "country2": "me",
+    "metric": 81
+  },
+  {
+    "country1": "dk",
+    "country2": "nl",
+    "metric": 82
+  },
+  {
+    "country1": "dk",
+    "country2": "mk",
+    "metric": 77
+  },
+  {
+    "country1": "dk",
+    "country2": "no",
+    "metric": 89
+  },
+  {
+    "country1": "dk",
+    "country2": "pl",
+    "metric": 82
+  },
+  {
+    "country1": "dk",
+    "country2": "pt",
+    "metric": 84
+  },
+  {
+    "country1": "dk",
+    "country2": "ro",
+    "metric": 85
+  },
+  {
+    "country1": "dk",
+    "country2": "ru",
+    "metric": 47
+  },
+  {
+    "country1": "dk",
+    "country2": "sm",
+    "metric": 72
+  },
+  {
+    "country1": "dk",
+    "country2": "rs",
+    "metric": 82
+  },
+  {
+    "country1": "dk",
+    "country2": "sk",
+    "metric": 82
+  },
+  {
+    "country1": "dk",
+    "country2": "si",
+    "metric": 83
+  },
+  {
+    "country1": "dk",
+    "country2": "es",
+    "metric": 85
+  },
+  {
+    "country1": "dk",
+    "country2": "se",
+    "metric": 89
+  },
+  {
+    "country1": "dk",
+    "country2": "ch",
+    "metric": 89
+  },
+  {
+    "country1": "dk",
+    "country2": "tr",
+    "metric": 76
+  },
+  {
+    "country1": "dk",
+    "country2": "ua",
+    "metric": 71
+  },
+  {
+    "country1": "dk",
+    "country2": "gb",
+    "metric": 87
+  },
+  {
+    "country1": "dk",
+    "country2": "ax",
+    "metric": 81
+  },
+  {
+    "country1": "ee",
+    "country2": "fo",
+    "metric": 72
+  },
+  {
+    "country1": "ee",
+    "country2": "fi",
+    "metric": 89
+  },
+  {
+    "country1": "ee",
+    "country2": "fr",
+    "metric": 80
+  },
+  {
+    "country1": "ee",
+    "country2": "de",
+    "metric": 83
+  },
+  {
+    "country1": "ee",
+    "country2": "gi",
+    "metric": 79
+  },
+  {
+    "country1": "ee",
+    "country2": "gr",
+    "metric": 77
+  },
+  {
+    "country1": "ee",
+    "country2": "gg",
+    "metric": 76
+  },
+  {
+    "country1": "ee",
+    "country2": "hu",
+    "metric": 79
+  },
+  {
+    "country1": "ee",
+    "country2": "is",
+    "metric": 82
+  },
+  {
+    "country1": "ee",
+    "country2": "ie",
+    "metric": 82
+  },
+  {
+    "country1": "ee",
+    "country2": "im",
+    "metric": 76
+  },
+  {
+    "country1": "ee",
+    "country2": "it",
+    "metric": 74
+  },
+  {
+    "country1": "ee",
+    "country2": "je",
+    "metric": 74
+  },
+  {
+    "country1": "ee",
+    "country2": "lv",
+    "metric": 83
+  },
+  {
+    "country1": "ee",
+    "country2": "li",
+    "metric": 74
+  },
+  {
+    "country1": "ee",
+    "country2": "lt",
+    "metric": 83
+  },
+  {
+    "country1": "ee",
+    "country2": "lu",
+    "metric": 83
+  },
+  {
+    "country1": "ee",
+    "country2": "mt",
+    "metric": 81
+  },
+  {
+    "country1": "ee",
+    "country2": "md",
+    "metric": 77
+  },
+  {
+    "country1": "ee",
+    "country2": "mc",
+    "metric": 70
+  },
+  {
+    "country1": "ee",
+    "country2": "me",
+    "metric": 78
+  },
+  {
+    "country1": "ee",
+    "country2": "nl",
+    "metric": 85
+  },
+  {
+    "country1": "ee",
+    "country2": "mk",
+    "metric": 76
+  },
+  {
+    "country1": "ee",
+    "country2": "no",
+    "metric": 78
+  },
+  {
+    "country1": "ee",
+    "country2": "pl",
+    "metric": 75
+  },
+  {
+    "country1": "ee",
+    "country2": "pt",
+    "metric": 78
+  },
+  {
+    "country1": "ee",
+    "country2": "ro",
+    "metric": 81
+  },
+  {
+    "country1": "ee",
+    "country2": "ru",
+    "metric": 55
+  },
+  {
+    "country1": "ee",
+    "country2": "sm",
+    "metric": 67
+  },
+  {
+    "country1": "ee",
+    "country2": "rs",
+    "metric": 76
+  },
+  {
+    "country1": "ee",
+    "country2": "sk",
+    "metric": 78
+  },
+  {
+    "country1": "ee",
+    "country2": "si",
+    "metric": 74
+  },
+  {
+    "country1": "ee",
+    "country2": "es",
+    "metric": 77
+  },
+  {
+    "country1": "ee",
+    "country2": "se",
+    "metric": 84
+  },
+  {
+    "country1": "ee",
+    "country2": "ch",
+    "metric": 80
+  },
+  {
+    "country1": "ee",
+    "country2": "tr",
+    "metric": 75
+  },
+  {
+    "country1": "ee",
+    "country2": "ua",
+    "metric": 71
+  },
+  {
+    "country1": "ee",
+    "country2": "gb",
+    "metric": 80
+  },
+  {
+    "country1": "ee",
+    "country2": "ax",
+    "metric": 74
+  },
+  {
+    "country1": "fo",
+    "country2": "fi",
+    "metric": 70
+  },
+  {
+    "country1": "fo",
+    "country2": "fr",
+    "metric": 77
+  },
+  {
+    "country1": "fo",
+    "country2": "de",
+    "metric": 75
+  },
+  {
+    "country1": "fo",
+    "country2": "gi",
+    "metric": 73
+  },
+  {
+    "country1": "fo",
+    "country2": "gr",
+    "metric": 73
+  },
+  {
+    "country1": "fo",
+    "country2": "gg",
+    "metric": 72
+  },
+  {
+    "country1": "fo",
+    "country2": "hu",
+    "metric": 73
+  },
+  {
+    "country1": "fo",
+    "country2": "is",
+    "metric": 77
+  },
+  {
+    "country1": "fo",
+    "country2": "ie",
+    "metric": 72
+  },
+  {
+    "country1": "fo",
+    "country2": "im",
+    "metric": 75
+  },
+  {
+    "country1": "fo",
+    "country2": "it",
+    "metric": 67
+  },
+  {
+    "country1": "fo",
+    "country2": "je",
+    "metric": 70
+  },
+  {
+    "country1": "fo",
+    "country2": "lv",
+    "metric": 67
+  },
+  {
+    "country1": "fo",
+    "country2": "li",
+    "metric": 72
+  },
+  {
+    "country1": "fo",
+    "country2": "lt",
+    "metric": 69
+  },
+  {
+    "country1": "fo",
+    "country2": "lu",
+    "metric": 75
+  },
+  {
+    "country1": "fo",
+    "country2": "mt",
+    "metric": 75
+  },
+  {
+    "country1": "fo",
+    "country2": "md",
+    "metric": 67
+  },
+  {
+    "country1": "fo",
+    "country2": "mc",
+    "metric": 68
+  },
+  {
+    "country1": "fo",
+    "country2": "me",
+    "metric": 68
+  },
+  {
+    "country1": "fo",
+    "country2": "nl",
+    "metric": 76
+  },
+  {
+    "country1": "fo",
+    "country2": "mk",
+    "metric": 70
+  },
+  {
+    "country1": "fo",
+    "country2": "no",
+    "metric": 76
+  },
+  {
+    "country1": "fo",
+    "country2": "pl",
+    "metric": 69
+  },
+  {
+    "country1": "fo",
+    "country2": "pt",
+    "metric": 70
+  },
+  {
+    "country1": "fo",
+    "country2": "ro",
+    "metric": 74
+  },
+  {
+    "country1": "fo",
+    "country2": "ru",
+    "metric": 47
+  },
+  {
+    "country1": "fo",
+    "country2": "sm",
+    "metric": 60
+  },
+  {
+    "country1": "fo",
+    "country2": "rs",
+    "metric": 66
+  },
+  {
+    "country1": "fo",
+    "country2": "sk",
+    "metric": 71
+  },
+  {
+    "country1": "fo",
+    "country2": "si",
+    "metric": 73
+  },
+  {
+    "country1": "fo",
+    "country2": "es",
+    "metric": 70
+  },
+  {
+    "country1": "fo",
+    "country2": "se",
+    "metric": 79
+  },
+  {
+    "country1": "fo",
+    "country2": "ch",
+    "metric": 75
+  },
+  {
+    "country1": "fo",
+    "country2": "tr",
+    "metric": 67
+  },
+  {
+    "country1": "fo",
+    "country2": "ua",
+    "metric": 66
+  },
+  {
+    "country1": "fo",
+    "country2": "gb",
+    "metric": 75
+  },
+  {
+    "country1": "fo",
+    "country2": "ax",
+    "metric": 75
+  },
+  {
+    "country1": "fi",
+    "country2": "fr",
+    "metric": 79
+  },
+  {
+    "country1": "fi",
+    "country2": "de",
+    "metric": 86
+  },
+  {
+    "country1": "fi",
+    "country2": "gi",
+    "metric": 75
+  },
+  {
+    "country1": "fi",
+    "country2": "gr",
+    "metric": 78
+  },
+  {
+    "country1": "fi",
+    "country2": "gg",
+    "metric": 74
+  },
+  {
+    "country1": "fi",
+    "country2": "hu",
+    "metric": 79
+  },
+  {
+    "country1": "fi",
+    "country2": "is",
+    "metric": 83
+  },
+  {
+    "country1": "fi",
+    "country2": "ie",
+    "metric": 81
+  },
+  {
+    "country1": "fi",
+    "country2": "im",
+    "metric": 74
+  },
+  {
+    "country1": "fi",
+    "country2": "it",
+    "metric": 74
+  },
+  {
+    "country1": "fi",
+    "country2": "je",
+    "metric": 69
+  },
+  {
+    "country1": "fi",
+    "country2": "lv",
+    "metric": 86
+  },
+  {
+    "country1": "fi",
+    "country2": "li",
+    "metric": 72
+  },
+  {
+    "country1": "fi",
+    "country2": "lt",
+    "metric": 85
+  },
+  {
+    "country1": "fi",
+    "country2": "lu",
+    "metric": 87
+  },
+  {
+    "country1": "fi",
+    "country2": "mt",
+    "metric": 80
+  },
+  {
+    "country1": "fi",
+    "country2": "md",
+    "metric": 78
+  },
+  {
+    "country1": "fi",
+    "country2": "mc",
+    "metric": 68
+  },
+  {
+    "country1": "fi",
+    "country2": "me",
+    "metric": 81
+  },
+  {
+    "country1": "fi",
+    "country2": "nl",
+    "metric": 88
+  },
+  {
+    "country1": "fi",
+    "country2": "mk",
+    "metric": 80
+  },
+  {
+    "country1": "fi",
+    "country2": "no",
+    "metric": 77
+  },
+  {
+    "country1": "fi",
+    "country2": "pl",
+    "metric": 76
+  },
+  {
+    "country1": "fi",
+    "country2": "pt",
+    "metric": 79
+  },
+  {
+    "country1": "fi",
+    "country2": "ro",
+    "metric": 83
+  },
+  {
+    "country1": "fi",
+    "country2": "ru",
+    "metric": 54
+  },
+  {
+    "country1": "fi",
+    "country2": "sm",
+    "metric": 68
+  },
+  {
+    "country1": "fi",
+    "country2": "rs",
+    "metric": 78
+  },
+  {
+    "country1": "fi",
+    "country2": "sk",
+    "metric": 78
+  },
+  {
+    "country1": "fi",
+    "country2": "si",
+    "metric": 74
+  },
+  {
+    "country1": "fi",
+    "country2": "es",
+    "metric": 77
+  },
+  {
+    "country1": "fi",
+    "country2": "se",
+    "metric": 84
+  },
+  {
+    "country1": "fi",
+    "country2": "ch",
+    "metric": 80
+  },
+  {
+    "country1": "fi",
+    "country2": "tr",
+    "metric": 78
+  },
+  {
+    "country1": "fi",
+    "country2": "ua",
+    "metric": 74
+  },
+  {
+    "country1": "fi",
+    "country2": "gb",
+    "metric": 78
+  },
+  {
+    "country1": "fi",
+    "country2": "ax",
+    "metric": 75
+  },
+  {
+    "country1": "fr",
+    "country2": "de",
+    "metric": 89
+  },
+  {
+    "country1": "fr",
+    "country2": "gi",
+    "metric": 83
+  },
+  {
+    "country1": "fr",
+    "country2": "gr",
+    "metric": 89
+  },
+  {
+    "country1": "fr",
+    "country2": "gg",
+    "metric": 83
+  },
+  {
+    "country1": "fr",
+    "country2": "hu",
+    "metric": 89
+  },
+  {
+    "country1": "fr",
+    "country2": "is",
+    "metric": 81
+  },
+  {
+    "country1": "fr",
+    "country2": "ie",
+    "metric": 84
+  },
+  {
+    "country1": "fr",
+    "country2": "im",
+    "metric": 85
+  },
+  {
+    "country1": "fr",
+    "country2": "it",
+    "metric": 85
+  },
+  {
+    "country1": "fr",
+    "country2": "je",
+    "metric": 77
+  },
+  {
+    "country1": "fr",
+    "country2": "lv",
+    "metric": 73
+  },
+  {
+    "country1": "fr",
+    "country2": "li",
+    "metric": 87
+  },
+  {
+    "country1": "fr",
+    "country2": "lt",
+    "metric": 84
+  },
+  {
+    "country1": "fr",
+    "country2": "lu",
+    "metric": 89
+  },
+  {
+    "country1": "fr",
+    "country2": "mt",
+    "metric": 89
+  },
+  {
+    "country1": "fr",
+    "country2": "md",
+    "metric": 72
+  },
+  {
+    "country1": "fr",
+    "country2": "mc",
+    "metric": 75
+  },
+  {
+    "country1": "fr",
+    "country2": "me",
+    "metric": 78
+  },
+  {
+    "country1": "fr",
+    "country2": "nl",
+    "metric": 85
+  },
+  {
+    "country1": "fr",
+    "country2": "mk",
+    "metric": 74
+  },
+  {
+    "country1": "fr",
+    "country2": "no",
+    "metric": 89
+  },
+  {
+    "country1": "fr",
+    "country2": "pl",
+    "metric": 84
+  },
+  {
+    "country1": "fr",
+    "country2": "pt",
+    "metric": 86
+  },
+  {
+    "country1": "fr",
+    "country2": "ro",
+    "metric": 90
+  },
+  {
+    "country1": "fr",
+    "country2": "ru",
+    "metric": 48
+  },
+  {
+    "country1": "fr",
+    "country2": "sm",
+    "metric": 76
+  },
+  {
+    "country1": "fr",
+    "country2": "rs",
+    "metric": 83
+  },
+  {
+    "country1": "fr",
+    "country2": "sk",
+    "metric": 84
+  },
+  {
+    "country1": "fr",
+    "country2": "si",
+    "metric": 88
+  },
+  {
+    "country1": "fr",
+    "country2": "es",
+    "metric": 87
+  },
+  {
+    "country1": "fr",
+    "country2": "se",
+    "metric": 89
+  },
+  {
+    "country1": "fr",
+    "country2": "ch",
+    "metric": 92
+  },
+  {
+    "country1": "fr",
+    "country2": "tr",
+    "metric": 81
+  },
+  {
+    "country1": "fr",
+    "country2": "ua",
+    "metric": 72
+  },
+  {
+    "country1": "fr",
+    "country2": "gb",
+    "metric": 89
+  },
+  {
+    "country1": "fr",
+    "country2": "ax",
+    "metric": 79
+  },
+  {
+    "country1": "de",
+    "country2": "gi",
+    "metric": 80
+  },
+  {
+    "country1": "de",
+    "country2": "gr",
+    "metric": 87
+  },
+  {
+    "country1": "de",
+    "country2": "gg",
+    "metric": 79
+  },
+  {
+    "country1": "de",
+    "country2": "hu",
+    "metric": 87
+  },
+  {
+    "country1": "de",
+    "country2": "is",
+    "metric": 84
+  },
+  {
+    "country1": "de",
+    "country2": "ie",
+    "metric": 83
+  },
+  {
+    "country1": "de",
+    "country2": "im",
+    "metric": 80
+  },
+  {
+    "country1": "de",
+    "country2": "it",
+    "metric": 84
+  },
+  {
+    "country1": "de",
+    "country2": "je",
+    "metric": 74
+  },
+  {
+    "country1": "de",
+    "country2": "lv",
+    "metric": 80
+  },
+  {
+    "country1": "de",
+    "country2": "li",
+    "metric": 82
+  },
+  {
+    "country1": "de",
+    "country2": "lt",
+    "metric": 84
+  },
+  {
+    "country1": "de",
+    "country2": "lu",
+    "metric": 92
+  },
+  {
+    "country1": "de",
+    "country2": "mt",
+    "metric": 86
+  },
+  {
+    "country1": "de",
+    "country2": "md",
+    "metric": 77
+  },
+  {
+    "country1": "de",
+    "country2": "mc",
+    "metric": 72
+  },
+  {
+    "country1": "de",
+    "country2": "me",
+    "metric": 79
+  },
+  {
+    "country1": "de",
+    "country2": "nl",
+    "metric": 93
+  },
+  {
+    "country1": "de",
+    "country2": "mk",
+    "metric": 79
+  },
+  {
+    "country1": "de",
+    "country2": "no",
+    "metric": 84
+  },
+  {
+    "country1": "de",
+    "country2": "pl",
+    "metric": 81
+  },
+  {
+    "country1": "de",
+    "country2": "pt",
+    "metric": 82
+  },
+  {
+    "country1": "de",
+    "country2": "ro",
+    "metric": 90
+  },
+  {
+    "country1": "de",
+    "country2": "ru",
+    "metric": 53
+  },
+  {
+    "country1": "de",
+    "country2": "sm",
+    "metric": 75
+  },
+  {
+    "country1": "de",
+    "country2": "rs",
+    "metric": 82
+  },
+  {
+    "country1": "de",
+    "country2": "sk",
+    "metric": 85
+  },
+  {
+    "country1": "de",
+    "country2": "si",
+    "metric": 84
+  },
+  {
+    "country1": "de",
+    "country2": "es",
+    "metric": 87
+  },
+  {
+    "country1": "de",
+    "country2": "se",
+    "metric": 92
+  },
+  {
+    "country1": "de",
+    "country2": "ch",
+    "metric": 86
+  },
+  {
+    "country1": "de",
+    "country2": "tr",
+    "metric": 83
+  },
+  {
+    "country1": "de",
+    "country2": "ua",
+    "metric": 76
+  },
+  {
+    "country1": "de",
+    "country2": "gb",
+    "metric": 84
+  },
+  {
+    "country1": "de",
+    "country2": "ax",
+    "metric": 78
+  },
+  {
+    "country1": "gi",
+    "country2": "gr",
+    "metric": 81
+  },
+  {
+    "country1": "gi",
+    "country2": "gg",
+    "metric": 82
+  },
+  {
+    "country1": "gi",
+    "country2": "hu",
+    "metric": 81
+  },
+  {
+    "country1": "gi",
+    "country2": "is",
+    "metric": 74
+  },
+  {
+    "country1": "gi",
+    "country2": "ie",
+    "metric": 86
+  },
+  {
+    "country1": "gi",
+    "country2": "im",
+    "metric": 84
+  },
+  {
+    "country1": "gi",
+    "country2": "it",
+    "metric": 80
+  },
+  {
+    "country1": "gi",
+    "country2": "je",
+    "metric": 82
+  },
+  {
+    "country1": "gi",
+    "country2": "lv",
+    "metric": 68
+  },
+  {
+    "country1": "gi",
+    "country2": "li",
+    "metric": 80
+  },
+  {
+    "country1": "gi",
+    "country2": "lt",
+    "metric": 76
+  },
+  {
+    "country1": "gi",
+    "country2": "lu",
+    "metric": 82
+  },
+  {
+    "country1": "gi",
+    "country2": "mt",
+    "metric": 83
+  },
+  {
+    "country1": "gi",
+    "country2": "md",
+    "metric": 69
+  },
+  {
+    "country1": "gi",
+    "country2": "mc",
+    "metric": 73
+  },
+  {
+    "country1": "gi",
+    "country2": "me",
+    "metric": 73
+  },
+  {
+    "country1": "gi",
+    "country2": "nl",
+    "metric": 79
+  },
+  {
+    "country1": "gi",
+    "country2": "mk",
+    "metric": 71
+  },
+  {
+    "country1": "gi",
+    "country2": "no",
+    "metric": 81
+  },
+  {
+    "country1": "gi",
+    "country2": "pl",
+    "metric": 77
+  },
+  {
+    "country1": "gi",
+    "country2": "pt",
+    "metric": 80
+  },
+  {
+    "country1": "gi",
+    "country2": "ro",
+    "metric": 83
+  },
+  {
+    "country1": "gi",
+    "country2": "ru",
+    "metric": 47
+  },
+  {
+    "country1": "gi",
+    "country2": "sm",
+    "metric": 70
+  },
+  {
+    "country1": "gi",
+    "country2": "rs",
+    "metric": 75
+  },
+  {
+    "country1": "gi",
+    "country2": "sk",
+    "metric": 78
+  },
+  {
+    "country1": "gi",
+    "country2": "si",
+    "metric": 75
+  },
+  {
+    "country1": "gi",
+    "country2": "es",
+    "metric": 81
+  },
+  {
+    "country1": "gi",
+    "country2": "se",
+    "metric": 83
+  },
+  {
+    "country1": "gi",
+    "country2": "ch",
+    "metric": 84
+  },
+  {
+    "country1": "gi",
+    "country2": "tr",
+    "metric": 75
+  },
+  {
+    "country1": "gi",
+    "country2": "ua",
+    "metric": 69
+  },
+  {
+    "country1": "gi",
+    "country2": "gb",
+    "metric": 87
+  },
+  {
+    "country1": "gi",
+    "country2": "ax",
+    "metric": 74
+  },
+  {
+    "country1": "gr",
+    "country2": "gg",
+    "metric": 78
+  },
+  {
+    "country1": "gr",
+    "country2": "hu",
+    "metric": 89
+  },
+  {
+    "country1": "gr",
+    "country2": "is",
+    "metric": 80
+  },
+  {
+    "country1": "gr",
+    "country2": "ie",
+    "metric": 83
+  },
+  {
+    "country1": "gr",
+    "country2": "im",
+    "metric": 80
+  },
+  {
+    "country1": "gr",
+    "country2": "it",
+    "metric": 84
+  },
+  {
+    "country1": "gr",
+    "country2": "je",
+    "metric": 73
+  },
+  {
+    "country1": "gr",
+    "country2": "lv",
+    "metric": 71
+  },
+  {
+    "country1": "gr",
+    "country2": "li",
+    "metric": 83
+  },
+  {
+    "country1": "gr",
+    "country2": "lt",
+    "metric": 82
+  },
+  {
+    "country1": "gr",
+    "country2": "lu",
+    "metric": 85
+  },
+  {
+    "country1": "gr",
+    "country2": "mt",
+    "metric": 85
+  },
+  {
+    "country1": "gr",
+    "country2": "md",
+    "metric": 74
+  },
+  {
+    "country1": "gr",
+    "country2": "mc",
+    "metric": 71
+  },
+  {
+    "country1": "gr",
+    "country2": "me",
+    "metric": 80
+  },
+  {
+    "country1": "gr",
+    "country2": "nl",
+    "metric": 84
+  },
+  {
+    "country1": "gr",
+    "country2": "mk",
+    "metric": 76
+  },
+  {
+    "country1": "gr",
+    "country2": "no",
+    "metric": 83
+  },
+  {
+    "country1": "gr",
+    "country2": "pl",
+    "metric": 82
+  },
+  {
+    "country1": "gr",
+    "country2": "pt",
+    "metric": 83
+  },
+  {
+    "country1": "gr",
+    "country2": "ro",
+    "metric": 87
+  },
+  {
+    "country1": "gr",
+    "country2": "ru",
+    "metric": 49
+  },
+  {
+    "country1": "gr",
+    "country2": "sm",
+    "metric": 75
+  },
+  {
+    "country1": "gr",
+    "country2": "rs",
+    "metric": 81
+  },
+  {
+    "country1": "gr",
+    "country2": "sk",
+    "metric": 85
+  },
+  {
+    "country1": "gr",
+    "country2": "si",
+    "metric": 84
+  },
+  {
+    "country1": "gr",
+    "country2": "es",
+    "metric": 87
+  },
+  {
+    "country1": "gr",
+    "country2": "se",
+    "metric": 85
+  },
+  {
+    "country1": "gr",
+    "country2": "ch",
+    "metric": 87
+  },
+  {
+    "country1": "gr",
+    "country2": "tr",
+    "metric": 82
+  },
+  {
+    "country1": "gr",
+    "country2": "ua",
+    "metric": 74
+  },
+  {
+    "country1": "gr",
+    "country2": "gb",
+    "metric": 85
+  },
+  {
+    "country1": "gr",
+    "country2": "ax",
+    "metric": 73
+  },
+  {
+    "country1": "gg",
+    "country2": "hu",
+    "metric": 79
+  },
+  {
+    "country1": "gg",
+    "country2": "is",
+    "metric": 75
+  },
+  {
+    "country1": "gg",
+    "country2": "ie",
+    "metric": 82
+  },
+  {
+    "country1": "gg",
+    "country2": "im",
+    "metric": 86
+  },
+  {
+    "country1": "gg",
+    "country2": "it",
+    "metric": 79
+  },
+  {
+    "country1": "gg",
+    "country2": "je",
+    "metric": 83
+  },
+  {
+    "country1": "gg",
+    "country2": "lv",
+    "metric": 66
+  },
+  {
+    "country1": "gg",
+    "country2": "li",
+    "metric": 80
+  },
+  {
+    "country1": "gg",
+    "country2": "lt",
+    "metric": 74
+  },
+  {
+    "country1": "gg",
+    "country2": "lu",
+    "metric": 82
+  },
+  {
+    "country1": "gg",
+    "country2": "mt",
+    "metric": 85
+  },
+  {
+    "country1": "gg",
+    "country2": "md",
+    "metric": 64
+  },
+  {
+    "country1": "gg",
+    "country2": "mc",
+    "metric": 69
+  },
+  {
+    "country1": "gg",
+    "country2": "me",
+    "metric": 68
+  },
+  {
+    "country1": "gg",
+    "country2": "nl",
+    "metric": 77
+  },
+  {
+    "country1": "gg",
+    "country2": "mk",
+    "metric": 66
+  },
+  {
+    "country1": "gg",
+    "country2": "no",
+    "metric": 84
+  },
+  {
+    "country1": "gg",
+    "country2": "pl",
+    "metric": 73
+  },
+  {
+    "country1": "gg",
+    "country2": "pt",
+    "metric": 79
+  },
+  {
+    "country1": "gg",
+    "country2": "ro",
+    "metric": 81
+  },
+  {
+    "country1": "gg",
+    "country2": "ru",
+    "metric": 43
+  },
+  {
+    "country1": "gg",
+    "country2": "sm",
+    "metric": 74
+  },
+  {
+    "country1": "gg",
+    "country2": "rs",
+    "metric": 74
+  },
+  {
+    "country1": "gg",
+    "country2": "sk",
+    "metric": 77
+  },
+  {
+    "country1": "gg",
+    "country2": "si",
+    "metric": 79
+  },
+  {
+    "country1": "gg",
+    "country2": "es",
+    "metric": 79
+  },
+  {
+    "country1": "gg",
+    "country2": "se",
+    "metric": 82
+  },
+  {
+    "country1": "gg",
+    "country2": "ch",
+    "metric": 84
+  },
+  {
+    "country1": "gg",
+    "country2": "tr",
+    "metric": 70
+  },
+  {
+    "country1": "gg",
+    "country2": "ua",
+    "metric": 63
+  },
+  {
+    "country1": "gg",
+    "country2": "gb",
+    "metric": 84
+  },
+  {
+    "country1": "gg",
+    "country2": "ax",
+    "metric": 76
+  },
+  {
+    "country1": "hu",
+    "country2": "is",
+    "metric": 81
+  },
+  {
+    "country1": "hu",
+    "country2": "ie",
+    "metric": 83
+  },
+  {
+    "country1": "hu",
+    "country2": "im",
+    "metric": 78
+  },
+  {
+    "country1": "hu",
+    "country2": "it",
+    "metric": 84
+  },
+  {
+    "country1": "hu",
+    "country2": "je",
+    "metric": 73
+  },
+  {
+    "country1": "hu",
+    "country2": "lv",
+    "metric": 73
+  },
+  {
+    "country1": "hu",
+    "country2": "li",
+    "metric": 83
+  },
+  {
+    "country1": "hu",
+    "country2": "lt",
+    "metric": 87
+  },
+  {
+    "country1": "hu",
+    "country2": "lu",
+    "metric": 87
+  },
+  {
+    "country1": "hu",
+    "country2": "mt",
+    "metric": 85
+  },
+  {
+    "country1": "hu",
+    "country2": "md",
+    "metric": 76
+  },
+  {
+    "country1": "hu",
+    "country2": "mc",
+    "metric": 70
+  },
+  {
+    "country1": "hu",
+    "country2": "me",
+    "metric": 79
+  },
+  {
+    "country1": "hu",
+    "country2": "nl",
+    "metric": 84
+  },
+  {
+    "country1": "hu",
+    "country2": "mk",
+    "metric": 78
+  },
+  {
+    "country1": "hu",
+    "country2": "no",
+    "metric": 84
+  },
+  {
+    "country1": "hu",
+    "country2": "pl",
+    "metric": 88
+  },
+  {
+    "country1": "hu",
+    "country2": "pt",
+    "metric": 82
+  },
+  {
+    "country1": "hu",
+    "country2": "ro",
+    "metric": 89
+  },
+  {
+    "country1": "hu",
+    "country2": "ru",
+    "metric": 51
+  },
+  {
+    "country1": "hu",
+    "country2": "sm",
+    "metric": 74
+  },
+  {
+    "country1": "hu",
+    "country2": "rs",
+    "metric": 83
+  },
+  {
+    "country1": "hu",
+    "country2": "sk",
+    "metric": 91
+  },
+  {
+    "country1": "hu",
+    "country2": "si",
+    "metric": 87
+  },
+  {
+    "country1": "hu",
+    "country2": "es",
+    "metric": 87
+  },
+  {
+    "country1": "hu",
+    "country2": "se",
+    "metric": 87
+  },
+  {
+    "country1": "hu",
+    "country2": "ch",
+    "metric": 86
+  },
+  {
+    "country1": "hu",
+    "country2": "tr",
+    "metric": 84
+  },
+  {
+    "country1": "hu",
+    "country2": "ua",
+    "metric": 77
+  },
+  {
+    "country1": "hu",
+    "country2": "gb",
+    "metric": 83
+  },
+  {
+    "country1": "hu",
+    "country2": "ax",
+    "metric": 77
+  },
+  {
+    "country1": "is",
+    "country2": "ie",
+    "metric": 76
+  },
+  {
+    "country1": "is",
+    "country2": "im",
+    "metric": 77
+  },
+  {
+    "country1": "is",
+    "country2": "it",
+    "metric": 75
+  },
+  {
+    "country1": "is",
+    "country2": "je",
+    "metric": 71
+  },
+  {
+    "country1": "is",
+    "country2": "lv",
+    "metric": 77
+  },
+  {
+    "country1": "is",
+    "country2": "li",
+    "metric": 77
+  },
+  {
+    "country1": "is",
+    "country2": "lt",
+    "metric": 82
+  },
+  {
+    "country1": "is",
+    "country2": "lu",
+    "metric": 84
+  },
+  {
+    "country1": "is",
+    "country2": "mt",
+    "metric": 82
+  },
+  {
+    "country1": "is",
+    "country2": "md",
+    "metric": 74
+  },
+  {
+    "country1": "is",
+    "country2": "mc",
+    "metric": 67
+  },
+  {
+    "country1": "is",
+    "country2": "me",
+    "metric": 77
+  },
+  {
+    "country1": "is",
+    "country2": "nl",
+    "metric": 86
+  },
+  {
+    "country1": "is",
+    "country2": "mk",
+    "metric": 79
+  },
+  {
+    "country1": "is",
+    "country2": "no",
+    "metric": 79
+  },
+  {
+    "country1": "is",
+    "country2": "pl",
+    "metric": 74
+  },
+  {
+    "country1": "is",
+    "country2": "pt",
+    "metric": 75
+  },
+  {
+    "country1": "is",
+    "country2": "ro",
+    "metric": 83
+  },
+  {
+    "country1": "is",
+    "country2": "ru",
+    "metric": 53
+  },
+  {
+    "country1": "is",
+    "country2": "sm",
+    "metric": 67
+  },
+  {
+    "country1": "is",
+    "country2": "rs",
+    "metric": 76
+  },
+  {
+    "country1": "is",
+    "country2": "sk",
+    "metric": 80
+  },
+  {
+    "country1": "is",
+    "country2": "si",
+    "metric": 78
+  },
+  {
+    "country1": "is",
+    "country2": "es",
+    "metric": 78
+  },
+  {
+    "country1": "is",
+    "country2": "se",
+    "metric": 85
+  },
+  {
+    "country1": "is",
+    "country2": "ch",
+    "metric": 80
+  },
+  {
+    "country1": "is",
+    "country2": "tr",
+    "metric": 76
+  },
+  {
+    "country1": "is",
+    "country2": "ua",
+    "metric": 73
+  },
+  {
+    "country1": "is",
+    "country2": "gb",
+    "metric": 78
+  },
+  {
+    "country1": "is",
+    "country2": "ax",
+    "metric": 75
+  },
+  {
+    "country1": "ie",
+    "country2": "im",
+    "metric": 81
+  },
+  {
+    "country1": "ie",
+    "country2": "it",
+    "metric": 80
+  },
+  {
+    "country1": "ie",
+    "country2": "je",
+    "metric": 77
+  },
+  {
+    "country1": "ie",
+    "country2": "lv",
+    "metric": 71
+  },
+  {
+    "country1": "ie",
+    "country2": "li",
+    "metric": 79
+  },
+  {
+    "country1": "ie",
+    "country2": "lt",
+    "metric": 78
+  },
+  {
+    "country1": "ie",
+    "country2": "lu",
+    "metric": 85
+  },
+  {
+    "country1": "ie",
+    "country2": "mt",
+    "metric": 88
+  },
+  {
+    "country1": "ie",
+    "country2": "md",
+    "metric": 70
+  },
+  {
+    "country1": "ie",
+    "country2": "mc",
+    "metric": 72
+  },
+  {
+    "country1": "ie",
+    "country2": "me",
+    "metric": 74
+  },
+  {
+    "country1": "ie",
+    "country2": "nl",
+    "metric": 82
+  },
+  {
+    "country1": "ie",
+    "country2": "mk",
+    "metric": 73
+  },
+  {
+    "country1": "ie",
+    "country2": "no",
+    "metric": 83
+  },
+  {
+    "country1": "ie",
+    "country2": "pl",
+    "metric": 79
+  },
+  {
+    "country1": "ie",
+    "country2": "pt",
+    "metric": 87
+  },
+  {
+    "country1": "ie",
+    "country2": "ro",
+    "metric": 84
+  },
+  {
+    "country1": "ie",
+    "country2": "ru",
+    "metric": 45
+  },
+  {
+    "country1": "ie",
+    "country2": "sm",
+    "metric": 73
+  },
+  {
+    "country1": "ie",
+    "country2": "rs",
+    "metric": 82
+  },
+  {
+    "country1": "ie",
+    "country2": "sk",
+    "metric": 80
+  },
+  {
+    "country1": "ie",
+    "country2": "si",
+    "metric": 80
+  },
+  {
+    "country1": "ie",
+    "country2": "es",
+    "metric": 83
+  },
+  {
+    "country1": "ie",
+    "country2": "se",
+    "metric": 84
+  },
+  {
+    "country1": "ie",
+    "country2": "ch",
+    "metric": 87
+  },
+  {
+    "country1": "ie",
+    "country2": "tr",
+    "metric": 74
+  },
+  {
+    "country1": "ie",
+    "country2": "ua",
+    "metric": 69
+  },
+  {
+    "country1": "ie",
+    "country2": "gb",
+    "metric": 88
+  },
+  {
+    "country1": "ie",
+    "country2": "ax",
+    "metric": 76
+  },
+  {
+    "country1": "im",
+    "country2": "it",
+    "metric": 82
+  },
+  {
+    "country1": "im",
+    "country2": "je",
+    "metric": 84
+  },
+  {
+    "country1": "im",
+    "country2": "lv",
+    "metric": 66
+  },
+  {
+    "country1": "im",
+    "country2": "li",
+    "metric": 81
+  },
+  {
+    "country1": "im",
+    "country2": "lt",
+    "metric": 74
+  },
+  {
+    "country1": "im",
+    "country2": "lu",
+    "metric": 82
+  },
+  {
+    "country1": "im",
+    "country2": "mt",
+    "metric": 83
+  },
+  {
+    "country1": "im",
+    "country2": "md",
+    "metric": 67
+  },
+  {
+    "country1": "im",
+    "country2": "mc",
+    "metric": 72
+  },
+  {
+    "country1": "im",
+    "country2": "me",
+    "metric": 72
+  },
+  {
+    "country1": "im",
+    "country2": "nl",
+    "metric": 77
+  },
+  {
+    "country1": "im",
+    "country2": "mk",
+    "metric": 70
+  },
+  {
+    "country1": "im",
+    "country2": "no",
+    "metric": 85
+  },
+  {
+    "country1": "im",
+    "country2": "pl",
+    "metric": 75
+  },
+  {
+    "country1": "im",
+    "country2": "pt",
+    "metric": 79
+  },
+  {
+    "country1": "im",
+    "country2": "ro",
+    "metric": 81
+  },
+  {
+    "country1": "im",
+    "country2": "ru",
+    "metric": 47
+  },
+  {
+    "country1": "im",
+    "country2": "sm",
+    "metric": 73
+  },
+  {
+    "country1": "im",
+    "country2": "rs",
+    "metric": 75
+  },
+  {
+    "country1": "im",
+    "country2": "sk",
+    "metric": 77
+  },
+  {
+    "country1": "im",
+    "country2": "si",
+    "metric": 78
+  },
+  {
+    "country1": "im",
+    "country2": "es",
+    "metric": 81
+  },
+  {
+    "country1": "im",
+    "country2": "se",
+    "metric": 83
+  },
+  {
+    "country1": "im",
+    "country2": "ch",
+    "metric": 86
+  },
+  {
+    "country1": "im",
+    "country2": "tr",
+    "metric": 72
+  },
+  {
+    "country1": "im",
+    "country2": "ua",
+    "metric": 66
+  },
+  {
+    "country1": "im",
+    "country2": "gb",
+    "metric": 89
+  },
+  {
+    "country1": "im",
+    "country2": "ax",
+    "metric": 79
+  },
+  {
+    "country1": "it",
+    "country2": "je",
+    "metric": 74
+  },
+  {
+    "country1": "it",
+    "country2": "lv",
+    "metric": 67
+  },
+  {
+    "country1": "it",
+    "country2": "li",
+    "metric": 82
+  },
+  {
+    "country1": "it",
+    "country2": "lt",
+    "metric": 78
+  },
+  {
+    "country1": "it",
+    "country2": "lu",
+    "metric": 82
+  },
+  {
+    "country1": "it",
+    "country2": "mt",
+    "metric": 83
+  },
+  {
+    "country1": "it",
+    "country2": "md",
+    "metric": 69
+  },
+  {
+    "country1": "it",
+    "country2": "mc",
+    "metric": 70
+  },
+  {
+    "country1": "it",
+    "country2": "me",
+    "metric": 75
+  },
+  {
+    "country1": "it",
+    "country2": "nl",
+    "metric": 80
+  },
+  {
+    "country1": "it",
+    "country2": "mk",
+    "metric": 70
+  },
+  {
+    "country1": "it",
+    "country2": "no",
+    "metric": 82
+  },
+  {
+    "country1": "it",
+    "country2": "pl",
+    "metric": 79
+  },
+  {
+    "country1": "it",
+    "country2": "pt",
+    "metric": 79
+  },
+  {
+    "country1": "it",
+    "country2": "ro",
+    "metric": 84
+  },
+  {
+    "country1": "it",
+    "country2": "ru",
+    "metric": 46
+  },
+  {
+    "country1": "it",
+    "country2": "sm",
+    "metric": 83
+  },
+  {
+    "country1": "it",
+    "country2": "rs",
+    "metric": 78
+  },
+  {
+    "country1": "it",
+    "country2": "sk",
+    "metric": 80
+  },
+  {
+    "country1": "it",
+    "country2": "si",
+    "metric": 81
+  },
+  {
+    "country1": "it",
+    "country2": "es",
+    "metric": 92
+  },
+  {
+    "country1": "it",
+    "country2": "se",
+    "metric": 82
+  },
+  {
+    "country1": "it",
+    "country2": "ch",
+    "metric": 84
+  },
+  {
+    "country1": "it",
+    "country2": "tr",
+    "metric": 76
+  },
+  {
+    "country1": "it",
+    "country2": "ua",
+    "metric": 70
+  },
+  {
+    "country1": "it",
+    "country2": "gb",
+    "metric": 84
+  },
+  {
+    "country1": "it",
+    "country2": "ax",
+    "metric": 74
+  },
+  {
+    "country1": "je",
+    "country2": "lv",
+    "metric": 65
+  },
+  {
+    "country1": "je",
+    "country2": "li",
+    "metric": 77
+  },
+  {
+    "country1": "je",
+    "country2": "lt",
+    "metric": 69
+  },
+  {
+    "country1": "je",
+    "country2": "lu",
+    "metric": 77
+  },
+  {
+    "country1": "je",
+    "country2": "mt",
+    "metric": 78
+  },
+  {
+    "country1": "je",
+    "country2": "md",
+    "metric": 62
+  },
+  {
+    "country1": "je",
+    "country2": "mc",
+    "metric": 67
+  },
+  {
+    "country1": "je",
+    "country2": "me",
+    "metric": 65
+  },
+  {
+    "country1": "je",
+    "country2": "nl",
+    "metric": 73
+  },
+  {
+    "country1": "je",
+    "country2": "mk",
+    "metric": 63
+  },
+  {
+    "country1": "je",
+    "country2": "no",
+    "metric": 77
+  },
+  {
+    "country1": "je",
+    "country2": "pl",
+    "metric": 70
+  },
+  {
+    "country1": "je",
+    "country2": "pt",
+    "metric": 73
+  },
+  {
+    "country1": "je",
+    "country2": "ro",
+    "metric": 76
+  },
+  {
+    "country1": "je",
+    "country2": "ru",
+    "metric": 45
+  },
+  {
+    "country1": "je",
+    "country2": "sm",
+    "metric": 68
+  },
+  {
+    "country1": "je",
+    "country2": "rs",
+    "metric": 70
+  },
+  {
+    "country1": "je",
+    "country2": "sk",
+    "metric": 75
+  },
+  {
+    "country1": "je",
+    "country2": "si",
+    "metric": 74
+  },
+  {
+    "country1": "je",
+    "country2": "es",
+    "metric": 73
+  },
+  {
+    "country1": "je",
+    "country2": "se",
+    "metric": 76
+  },
+  {
+    "country1": "je",
+    "country2": "ch",
+    "metric": 78
+  },
+  {
+    "country1": "je",
+    "country2": "tr",
+    "metric": 66
+  },
+  {
+    "country1": "je",
+    "country2": "ua",
+    "metric": 61
+  },
+  {
+    "country1": "je",
+    "country2": "gb",
+    "metric": 83
+  },
+  {
+    "country1": "je",
+    "country2": "ax",
+    "metric": 73
+  },
+  {
+    "country1": "lv",
+    "country2": "li",
+    "metric": 68
+  },
+  {
+    "country1": "lv",
+    "country2": "lt",
+    "metric": 80
+  },
+  {
+    "country1": "lv",
+    "country2": "lu",
+    "metric": 78
+  },
+  {
+    "country1": "lv",
+    "country2": "mt",
+    "metric": 72
+  },
+  {
+    "country1": "lv",
+    "country2": "md",
+    "metric": 76
+  },
+  {
+    "country1": "lv",
+    "country2": "mc",
+    "metric": 64
+  },
+  {
+    "country1": "lv",
+    "country2": "me",
+    "metric": 72
+  },
+  {
+    "country1": "lv",
+    "country2": "nl",
+    "metric": 82
+  },
+  {
+    "country1": "lv",
+    "country2": "mk",
+    "metric": 74
+  },
+  {
+    "country1": "lv",
+    "country2": "no",
+    "metric": 69
+  },
+  {
+    "country1": "lv",
+    "country2": "pl",
+    "metric": 70
+  },
+  {
+    "country1": "lv",
+    "country2": "pt",
+    "metric": 70
+  },
+  {
+    "country1": "lv",
+    "country2": "ro",
+    "metric": 77
+  },
+  {
+    "country1": "lv",
+    "country2": "ru",
+    "metric": 60
+  },
+  {
+    "country1": "lv",
+    "country2": "sm",
+    "metric": 61
+  },
+  {
+    "country1": "lv",
+    "country2": "rs",
+    "metric": 68
+  },
+  {
+    "country1": "lv",
+    "country2": "sk",
+    "metric": 73
+  },
+  {
+    "country1": "lv",
+    "country2": "si",
+    "metric": 69
+  },
+  {
+    "country1": "lv",
+    "country2": "es",
+    "metric": 70
+  },
+  {
+    "country1": "lv",
+    "country2": "se",
+    "metric": 76
+  },
+  {
+    "country1": "lv",
+    "country2": "ch",
+    "metric": 72
+  },
+  {
+    "country1": "lv",
+    "country2": "tr",
+    "metric": 73
+  },
+  {
+    "country1": "lv",
+    "country2": "ua",
+    "metric": 72
+  },
+  {
+    "country1": "lv",
+    "country2": "gb",
+    "metric": 69
+  },
+  {
+    "country1": "lv",
+    "country2": "ax",
+    "metric": 68
+  },
+  {
+    "country1": "li",
+    "country2": "lt",
+    "metric": 78
+  },
+  {
+    "country1": "li",
+    "country2": "lu",
+    "metric": 82
+  },
+  {
+    "country1": "li",
+    "country2": "mt",
+    "metric": 84
+  },
+  {
+    "country1": "li",
+    "country2": "md",
+    "metric": 69
+  },
+  {
+    "country1": "li",
+    "country2": "mc",
+    "metric": 74
+  },
+  {
+    "country1": "li",
+    "country2": "me",
+    "metric": 73
+  },
+  {
+    "country1": "li",
+    "country2": "nl",
+    "metric": 81
+  },
+  {
+    "country1": "li",
+    "country2": "mk",
+    "metric": 71
+  },
+  {
+    "country1": "li",
+    "country2": "no",
+    "metric": 84
+  },
+  {
+    "country1": "li",
+    "country2": "pl",
+    "metric": 78
+  },
+  {
+    "country1": "li",
+    "country2": "pt",
+    "metric": 79
+  },
+  {
+    "country1": "li",
+    "country2": "ro",
+    "metric": 82
+  },
+  {
+    "country1": "li",
+    "country2": "ru",
+    "metric": 46
+  },
+  {
+    "country1": "li",
+    "country2": "sm",
+    "metric": 73
+  },
+  {
+    "country1": "li",
+    "country2": "rs",
+    "metric": 76
+  },
+  {
+    "country1": "li",
+    "country2": "sk",
+    "metric": 80
+  },
+  {
+    "country1": "li",
+    "country2": "si",
+    "metric": 81
+  },
+  {
+    "country1": "li",
+    "country2": "es",
+    "metric": 84
+  },
+  {
+    "country1": "li",
+    "country2": "se",
+    "metric": 83
+  },
+  {
+    "country1": "li",
+    "country2": "ch",
+    "metric": 87
+  },
+  {
+    "country1": "li",
+    "country2": "tr",
+    "metric": 75
+  },
+  {
+    "country1": "li",
+    "country2": "ua",
+    "metric": 67
+  },
+  {
+    "country1": "li",
+    "country2": "gb",
+    "metric": 83
+  },
+  {
+    "country1": "li",
+    "country2": "ax",
+    "metric": 76
+  },
+  {
+    "country1": "lt",
+    "country2": "lu",
+    "metric": 85
+  },
+  {
+    "country1": "lt",
+    "country2": "mt",
+    "metric": 83
+  },
+  {
+    "country1": "lt",
+    "country2": "md",
+    "metric": 78
+  },
+  {
+    "country1": "lt",
+    "country2": "mc",
+    "metric": 67
+  },
+  {
+    "country1": "lt",
+    "country2": "me",
+    "metric": 81
+  },
+  {
+    "country1": "lt",
+    "country2": "nl",
+    "metric": 83
+  },
+  {
+    "country1": "lt",
+    "country2": "mk",
+    "metric": 77
+  },
+  {
+    "country1": "lt",
+    "country2": "no",
+    "metric": 79
+  },
+  {
+    "country1": "lt",
+    "country2": "pl",
+    "metric": 80
+  },
+  {
+    "country1": "lt",
+    "country2": "pt",
+    "metric": 80
+  },
+  {
+    "country1": "lt",
+    "country2": "ro",
+    "metric": 84
+  },
+  {
+    "country1": "lt",
+    "country2": "ru",
+    "metric": 54
+  },
+  {
+    "country1": "lt",
+    "country2": "sm",
+    "metric": 70
+  },
+  {
+    "country1": "lt",
+    "country2": "rs",
+    "metric": 83
+  },
+  {
+    "country1": "lt",
+    "country2": "sk",
+    "metric": 83
+  },
+  {
+    "country1": "lt",
+    "country2": "si",
+    "metric": 82
+  },
+  {
+    "country1": "lt",
+    "country2": "es",
+    "metric": 81
+  },
+  {
+    "country1": "lt",
+    "country2": "se",
+    "metric": 84
+  },
+  {
+    "country1": "lt",
+    "country2": "ch",
+    "metric": 84
+  },
+  {
+    "country1": "lt",
+    "country2": "tr",
+    "metric": 80
+  },
+  {
+    "country1": "lt",
+    "country2": "ua",
+    "metric": 76
+  },
+  {
+    "country1": "lt",
+    "country2": "gb",
+    "metric": 79
+  },
+  {
+    "country1": "lt",
+    "country2": "ax",
+    "metric": 74
+  },
+  {
+    "country1": "lu",
+    "country2": "mt",
+    "metric": 87
+  },
+  {
+    "country1": "lu",
+    "country2": "md",
+    "metric": 74
+  },
+  {
+    "country1": "lu",
+    "country2": "mc",
+    "metric": 73
+  },
+  {
+    "country1": "lu",
+    "country2": "me",
+    "metric": 78
+  },
+  {
+    "country1": "lu",
+    "country2": "nl",
+    "metric": 89
+  },
+  {
+    "country1": "lu",
+    "country2": "mk",
+    "metric": 78
+  },
+  {
+    "country1": "lu",
+    "country2": "no",
+    "metric": 85
+  },
+  {
+    "country1": "lu",
+    "country2": "pl",
+    "metric": 80
+  },
+  {
+    "country1": "lu",
+    "country2": "pt",
+    "metric": 84
+  },
+  {
+    "country1": "lu",
+    "country2": "ro",
+    "metric": 90
+  },
+  {
+    "country1": "lu",
+    "country2": "ru",
+    "metric": 50
+  },
+  {
+    "country1": "lu",
+    "country2": "sm",
+    "metric": 73
+  },
+  {
+    "country1": "lu",
+    "country2": "rs",
+    "metric": 83
+  },
+  {
+    "country1": "lu",
+    "country2": "sk",
+    "metric": 85
+  },
+  {
+    "country1": "lu",
+    "country2": "si",
+    "metric": 84
+  },
+  {
+    "country1": "lu",
+    "country2": "es",
+    "metric": 85
+  },
+  {
+    "country1": "lu",
+    "country2": "se",
+    "metric": 89
+  },
+  {
+    "country1": "lu",
+    "country2": "ch",
+    "metric": 88
+  },
+  {
+    "country1": "lu",
+    "country2": "tr",
+    "metric": 79
+  },
+  {
+    "country1": "lu",
+    "country2": "ua",
+    "metric": 73
+  },
+  {
+    "country1": "lu",
+    "country2": "gb",
+    "metric": 86
+  },
+  {
+    "country1": "lu",
+    "country2": "ax",
+    "metric": 78
+  },
+  {
+    "country1": "mt",
+    "country2": "md",
+    "metric": 71
+  },
+  {
+    "country1": "mt",
+    "country2": "mc",
+    "metric": 71
+  },
+  {
+    "country1": "mt",
+    "country2": "me",
+    "metric": 75
+  },
+  {
+    "country1": "mt",
+    "country2": "nl",
+    "metric": 84
+  },
+  {
+    "country1": "mt",
+    "country2": "mk",
+    "metric": 72
+  },
+  {
+    "country1": "mt",
+    "country2": "no",
+    "metric": 87
+  },
+  {
+    "country1": "mt",
+    "country2": "pl",
+    "metric": 80
+  },
+  {
+    "country1": "mt",
+    "country2": "pt",
+    "metric": 89
+  },
+  {
+    "country1": "mt",
+    "country2": "ro",
+    "metric": 88
+  },
+  {
+    "country1": "mt",
+    "country2": "ru",
+    "metric": 48
+  },
+  {
+    "country1": "mt",
+    "country2": "sm",
+    "metric": 74
+  },
+  {
+    "country1": "mt",
+    "country2": "rs",
+    "metric": 84
+  },
+  {
+    "country1": "mt",
+    "country2": "sk",
+    "metric": 82
+  },
+  {
+    "country1": "mt",
+    "country2": "si",
+    "metric": 84
+  },
+  {
+    "country1": "mt",
+    "country2": "es",
+    "metric": 86
+  },
+  {
+    "country1": "mt",
+    "country2": "se",
+    "metric": 87
+  },
+  {
+    "country1": "mt",
+    "country2": "ch",
+    "metric": 91
+  },
+  {
+    "country1": "mt",
+    "country2": "tr",
+    "metric": 78
+  },
+  {
+    "country1": "mt",
+    "country2": "ua",
+    "metric": 69
+  },
+  {
+    "country1": "mt",
+    "country2": "gb",
+    "metric": 89
+  },
+  {
+    "country1": "mt",
+    "country2": "ax",
+    "metric": 78
+  },
+  {
+    "country1": "md",
+    "country2": "mc",
+    "metric": 59
+  },
+  {
+    "country1": "md",
+    "country2": "me",
+    "metric": 79
+  },
+  {
+    "country1": "md",
+    "country2": "nl",
+    "metric": 77
+  },
+  {
+    "country1": "md",
+    "country2": "mk",
+    "metric": 83
+  },
+  {
+    "country1": "md",
+    "country2": "no",
+    "metric": 69
+  },
+  {
+    "country1": "md",
+    "country2": "pl",
+    "metric": 72
+  },
+  {
+    "country1": "md",
+    "country2": "pt",
+    "metric": 68
+  },
+  {
+    "country1": "md",
+    "country2": "ro",
+    "metric": 75
+  },
+  {
+    "country1": "md",
+    "country2": "ru",
+    "metric": 61
+  },
+  {
+    "country1": "md",
+    "country2": "sm",
+    "metric": 62
+  },
+  {
+    "country1": "md",
+    "country2": "rs",
+    "metric": 72
+  },
+  {
+    "country1": "md",
+    "country2": "sk",
+    "metric": 76
+  },
+  {
+    "country1": "md",
+    "country2": "si",
+    "metric": 68
+  },
+  {
+    "country1": "md",
+    "country2": "es",
+    "metric": 73
+  },
+  {
+    "country1": "md",
+    "country2": "se",
+    "metric": 75
+  },
+  {
+    "country1": "md",
+    "country2": "ch",
+    "metric": 70
+  },
+  {
+    "country1": "md",
+    "country2": "tr",
+    "metric": 77
+  },
+  {
+    "country1": "md",
+    "country2": "ua",
+    "metric": 82
+  },
+  {
+    "country1": "md",
+    "country2": "gb",
+    "metric": 71
+  },
+  {
+    "country1": "md",
+    "country2": "ax",
+    "metric": 66
+  },
+  {
+    "country1": "mc",
+    "country2": "me",
+    "metric": 67
+  },
+  {
+    "country1": "mc",
+    "country2": "nl",
+    "metric": 70
+  },
+  {
+    "country1": "mc",
+    "country2": "mk",
+    "metric": 65
+  },
+  {
+    "country1": "mc",
+    "country2": "no",
+    "metric": 74
+  },
+  {
+    "country1": "mc",
+    "country2": "pl",
+    "metric": 66
+  },
+  {
+    "country1": "mc",
+    "country2": "pt",
+    "metric": 72
+  },
+  {
+    "country1": "mc",
+    "country2": "ro",
+    "metric": 71
+  },
+  {
+    "country1": "mc",
+    "country2": "ru",
+    "metric": 40
+  },
+  {
+    "country1": "mc",
+    "country2": "sm",
+    "metric": 64
+  },
+  {
+    "country1": "mc",
+    "country2": "rs",
+    "metric": 66
+  },
+  {
+    "country1": "mc",
+    "country2": "sk",
+    "metric": 67
+  },
+  {
+    "country1": "mc",
+    "country2": "si",
+    "metric": 67
+  },
+  {
+    "country1": "mc",
+    "country2": "es",
+    "metric": 73
+  },
+  {
+    "country1": "mc",
+    "country2": "se",
+    "metric": 75
+  },
+  {
+    "country1": "mc",
+    "country2": "ch",
+    "metric": 74
+  },
+  {
+    "country1": "mc",
+    "country2": "tr",
+    "metric": 64
+  },
+  {
+    "country1": "mc",
+    "country2": "ua",
+    "metric": 58
+  },
+  {
+    "country1": "mc",
+    "country2": "gb",
+    "metric": 73
+  },
+  {
+    "country1": "mc",
+    "country2": "ax",
+    "metric": 67
+  },
+  {
+    "country1": "me",
+    "country2": "nl",
+    "metric": 77
+  },
+  {
+    "country1": "me",
+    "country2": "mk",
+    "metric": 80
+  },
+  {
+    "country1": "me",
+    "country2": "no",
+    "metric": 76
+  },
+  {
+    "country1": "me",
+    "country2": "pl",
+    "metric": 78
+  },
+  {
+    "country1": "me",
+    "country2": "pt",
+    "metric": 74
+  },
+  {
+    "country1": "me",
+    "country2": "ro",
+    "metric": 79
+  },
+  {
+    "country1": "me",
+    "country2": "ru",
+    "metric": 52
+  },
+  {
+    "country1": "me",
+    "country2": "sm",
+    "metric": 65
+  },
+  {
+    "country1": "me",
+    "country2": "rs",
+    "metric": 81
+  },
+  {
+    "country1": "me",
+    "country2": "sk",
+    "metric": 77
+  },
+  {
+    "country1": "me",
+    "country2": "si",
+    "metric": 74
+  },
+  {
+    "country1": "me",
+    "country2": "es",
+    "metric": 80
+  },
+  {
+    "country1": "me",
+    "country2": "se",
+    "metric": 80
+  },
+  {
+    "country1": "me",
+    "country2": "ch",
+    "metric": 77
+  },
+  {
+    "country1": "me",
+    "country2": "tr",
+    "metric": 80
+  },
+  {
+    "country1": "me",
+    "country2": "ua",
+    "metric": 79
+  },
+  {
+    "country1": "me",
+    "country2": "gb",
+    "metric": 75
+  },
+  {
+    "country1": "me",
+    "country2": "ax",
+    "metric": 72
+  },
+  {
+    "country1": "nl",
+    "country2": "mk",
+    "metric": 80
+  },
+  {
+    "country1": "nl",
+    "country2": "no",
+    "metric": 81
+  },
+  {
+    "country1": "nl",
+    "country2": "pl",
+    "metric": 78
+  },
+  {
+    "country1": "nl",
+    "country2": "pt",
+    "metric": 80
+  },
+  {
+    "country1": "nl",
+    "country2": "ro",
+    "metric": 86
+  },
+  {
+    "country1": "nl",
+    "country2": "ru",
+    "metric": 54
+  },
+  {
+    "country1": "nl",
+    "country2": "sm",
+    "metric": 71
+  },
+  {
+    "country1": "nl",
+    "country2": "rs",
+    "metric": 79
+  },
+  {
+    "country1": "nl",
+    "country2": "sk",
+    "metric": 82
+  },
+  {
+    "country1": "nl",
+    "country2": "si",
+    "metric": 80
+  },
+  {
+    "country1": "nl",
+    "country2": "es",
+    "metric": 83
+  },
+  {
+    "country1": "nl",
+    "country2": "se",
+    "metric": 90
+  },
+  {
+    "country1": "nl",
+    "country2": "ch",
+    "metric": 83
+  },
+  {
+    "country1": "nl",
+    "country2": "tr",
+    "metric": 80
+  },
+  {
+    "country1": "nl",
+    "country2": "ua",
+    "metric": 75
+  },
+  {
+    "country1": "nl",
+    "country2": "gb",
+    "metric": 81
+  },
+  {
+    "country1": "nl",
+    "country2": "ax",
+    "metric": 75
+  },
+  {
+    "country1": "mk",
+    "country2": "no",
+    "metric": 73
+  },
+  {
+    "country1": "mk",
+    "country2": "pl",
+    "metric": 73
+  },
+  {
+    "country1": "mk",
+    "country2": "pt",
+    "metric": 70
+  },
+  {
+    "country1": "mk",
+    "country2": "ro",
+    "metric": 79
+  },
+  {
+    "country1": "mk",
+    "country2": "ru",
+    "metric": 54
+  },
+  {
+    "country1": "mk",
+    "country2": "sm",
+    "metric": 63
+  },
+  {
+    "country1": "mk",
+    "country2": "rs",
+    "metric": 72
+  },
+  {
+    "country1": "mk",
+    "country2": "sk",
+    "metric": 78
+  },
+  {
+    "country1": "mk",
+    "country2": "si",
+    "metric": 70
+  },
+  {
+    "country1": "mk",
+    "country2": "es",
+    "metric": 73
+  },
+  {
+    "country1": "mk",
+    "country2": "se",
+    "metric": 79
+  },
+  {
+    "country1": "mk",
+    "country2": "ch",
+    "metric": 72
+  },
+  {
+    "country1": "mk",
+    "country2": "tr",
+    "metric": 78
+  },
+  {
+    "country1": "mk",
+    "country2": "ua",
+    "metric": 81
+  },
+  {
+    "country1": "mk",
+    "country2": "gb",
+    "metric": 72
+  },
+  {
+    "country1": "mk",
+    "country2": "ax",
+    "metric": 73
+  },
+  {
+    "country1": "no",
+    "country2": "pl",
+    "metric": 78
+  },
+  {
+    "country1": "no",
+    "country2": "pt",
+    "metric": 83
+  },
+  {
+    "country1": "no",
+    "country2": "ro",
+    "metric": 84
+  },
+  {
+    "country1": "no",
+    "country2": "ru",
+    "metric": 45
+  },
+  {
+    "country1": "no",
+    "country2": "sm",
+    "metric": 74
+  },
+  {
+    "country1": "no",
+    "country2": "rs",
+    "metric": 79
+  },
+  {
+    "country1": "no",
+    "country2": "sk",
+    "metric": 82
+  },
+  {
+    "country1": "no",
+    "country2": "si",
+    "metric": 83
+  },
+  {
+    "country1": "no",
+    "country2": "es",
+    "metric": 84
+  },
+  {
+    "country1": "no",
+    "country2": "se",
+    "metric": 89
+  },
+  {
+    "country1": "no",
+    "country2": "ch",
+    "metric": 88
+  },
+  {
+    "country1": "no",
+    "country2": "tr",
+    "metric": 74
+  },
+  {
+    "country1": "no",
+    "country2": "ua",
+    "metric": 68
+  },
+  {
+    "country1": "no",
+    "country2": "gb",
+    "metric": 86
+  },
+  {
+    "country1": "no",
+    "country2": "ax",
+    "metric": 82
+  },
+  {
+    "country1": "pl",
+    "country2": "pt",
+    "metric": 79
+  },
+  {
+    "country1": "pl",
+    "country2": "ro",
+    "metric": 85
+  },
+  {
+    "country1": "pl",
+    "country2": "ru",
+    "metric": 50
+  },
+  {
+    "country1": "pl",
+    "country2": "sm",
+    "metric": 69
+  },
+  {
+    "country1": "pl",
+    "country2": "rs",
+    "metric": 80
+  },
+  {
+    "country1": "pl",
+    "country2": "sk",
+    "metric": 83
+  },
+  {
+    "country1": "pl",
+    "country2": "si",
+    "metric": 83
+  },
+  {
+    "country1": "pl",
+    "country2": "es",
+    "metric": 83
+  },
+  {
+    "country1": "pl",
+    "country2": "se",
+    "metric": 81
+  },
+  {
+    "country1": "pl",
+    "country2": "ch",
+    "metric": 83
+  },
+  {
+    "country1": "pl",
+    "country2": "tr",
+    "metric": 79
+  },
+  {
+    "country1": "pl",
+    "country2": "ua",
+    "metric": 75
+  },
+  {
+    "country1": "pl",
+    "country2": "gb",
+    "metric": 78
+  },
+  {
+    "country1": "pl",
+    "country2": "ax",
+    "metric": 73
+  },
+  {
+    "country1": "pt",
+    "country2": "ro",
+    "metric": 88
+  },
+  {
+    "country1": "pt",
+    "country2": "ru",
+    "metric": 45
+  },
+  {
+    "country1": "pt",
+    "country2": "sm",
+    "metric": 73
+  },
+  {
+    "country1": "pt",
+    "country2": "rs",
+    "metric": 86
+  },
+  {
+    "country1": "pt",
+    "country2": "sk",
+    "metric": 80
+  },
+  {
+    "country1": "pt",
+    "country2": "si",
+    "metric": 81
+  },
+  {
+    "country1": "pt",
+    "country2": "es",
+    "metric": 82
+  },
+  {
+    "country1": "pt",
+    "country2": "se",
+    "metric": 82
+  },
+  {
+    "country1": "pt",
+    "country2": "ch",
+    "metric": 90
+  },
+  {
+    "country1": "pt",
+    "country2": "tr",
+    "metric": 77
+  },
+  {
+    "country1": "pt",
+    "country2": "ua",
+    "metric": 68
+  },
+  {
+    "country1": "pt",
+    "country2": "gb",
+    "metric": 83
+  },
+  {
+    "country1": "pt",
+    "country2": "ax",
+    "metric": 72
+  },
+  {
+    "country1": "ro",
+    "country2": "ru",
+    "metric": 50
+  },
+  {
+    "country1": "ro",
+    "country2": "sm",
+    "metric": 76
+  },
+  {
+    "country1": "ro",
+    "country2": "rs",
+    "metric": 85
+  },
+  {
+    "country1": "ro",
+    "country2": "sk",
+    "metric": 89
+  },
+  {
+    "country1": "ro",
+    "country2": "si",
+    "metric": 86
+  },
+  {
+    "country1": "ro",
+    "country2": "es",
+    "metric": 87
+  },
+  {
+    "country1": "ro",
+    "country2": "se",
+    "metric": 87
+  },
+  {
+    "country1": "ro",
+    "country2": "ch",
+    "metric": 89
+  },
+  {
+    "country1": "ro",
+    "country2": "tr",
+    "metric": 83
+  },
+  {
+    "country1": "ro",
+    "country2": "ua",
+    "metric": 76
+  },
+  {
+    "country1": "ro",
+    "country2": "gb",
+    "metric": 84
+  },
+  {
+    "country1": "ro",
+    "country2": "ax",
+    "metric": 77
+  },
+  {
+    "country1": "ru",
+    "country2": "sm",
+    "metric": 40
+  },
+  {
+    "country1": "ru",
+    "country2": "rs",
+    "metric": 48
+  },
+  {
+    "country1": "ru",
+    "country2": "sk",
+    "metric": 50
+  },
+  {
+    "country1": "ru",
+    "country2": "si",
+    "metric": 45
+  },
+  {
+    "country1": "ru",
+    "country2": "es",
+    "metric": 47
+  },
+  {
+    "country1": "ru",
+    "country2": "se",
+    "metric": 51
+  },
+  {
+    "country1": "ru",
+    "country2": "ch",
+    "metric": 46
+  },
+  {
+    "country1": "ru",
+    "country2": "tr",
+    "metric": 57
+  },
+  {
+    "country1": "ru",
+    "country2": "ua",
+    "metric": 57
+  },
+  {
+    "country1": "ru",
+    "country2": "gb",
+    "metric": 47
+  },
+  {
+    "country1": "ru",
+    "country2": "ax",
+    "metric": 46
+  },
+  {
+    "country1": "sm",
+    "country2": "rs",
+    "metric": 71
+  },
+  {
+    "country1": "sm",
+    "country2": "sk",
+    "metric": 73
+  },
+  {
+    "country1": "sm",
+    "country2": "si",
+    "metric": 73
+  },
+  {
+    "country1": "sm",
+    "country2": "es",
+    "metric": 78
+  },
+  {
+    "country1": "sm",
+    "country2": "se",
+    "metric": 73
+  },
+  {
+    "country1": "sm",
+    "country2": "ch",
+    "metric": 77
+  },
+  {
+    "country1": "sm",
+    "country2": "tr",
+    "metric": 67
+  },
+  {
+    "country1": "sm",
+    "country2": "ua",
+    "metric": 62
+  },
+  {
+    "country1": "sm",
+    "country2": "gb",
+    "metric": 73
+  },
+  {
+    "country1": "sm",
+    "country2": "ax",
+    "metric": 68
+  },
+  {
+    "country1": "rs",
+    "country2": "sk",
+    "metric": 80
+  },
+  {
+    "country1": "rs",
+    "country2": "si",
+    "metric": 83
+  },
+  {
+    "country1": "rs",
+    "country2": "es",
+    "metric": 82
+  },
+  {
+    "country1": "rs",
+    "country2": "se",
+    "metric": 82
+  },
+  {
+    "country1": "rs",
+    "country2": "ch",
+    "metric": 84
+  },
+  {
+    "country1": "rs",
+    "country2": "tr",
+    "metric": 80
+  },
+  {
+    "country1": "rs",
+    "country2": "ua",
+    "metric": 71
+  },
+  {
+    "country1": "rs",
+    "country2": "gb",
+    "metric": 79
+  },
+  {
+    "country1": "rs",
+    "country2": "ax",
+    "metric": 69
+  },
+  {
+    "country1": "sk",
+    "country2": "si",
+    "metric": 85
+  },
+  {
+    "country1": "sk",
+    "country2": "es",
+    "metric": 83
+  },
+  {
+    "country1": "sk",
+    "country2": "se",
+    "metric": 84
+  },
+  {
+    "country1": "sk",
+    "country2": "ch",
+    "metric": 84
+  },
+  {
+    "country1": "sk",
+    "country2": "tr",
+    "metric": 79
+  },
+  {
+    "country1": "sk",
+    "country2": "ua",
+    "metric": 77
+  },
+  {
+    "country1": "sk",
+    "country2": "gb",
+    "metric": 79
+  },
+  {
+    "country1": "sk",
+    "country2": "ax",
+    "metric": 76
+  },
+  {
+    "country1": "si",
+    "country2": "es",
+    "metric": 84
+  },
+  {
+    "country1": "si",
+    "country2": "se",
+    "metric": 84
+  },
+  {
+    "country1": "si",
+    "country2": "ch",
+    "metric": 87
+  },
+  {
+    "country1": "si",
+    "country2": "tr",
+    "metric": 75
+  },
+  {
+    "country1": "si",
+    "country2": "ua",
+    "metric": 69
+  },
+  {
+    "country1": "si",
+    "country2": "gb",
+    "metric": 80
+  },
+  {
+    "country1": "si",
+    "country2": "ax",
+    "metric": 75
+  },
+  {
+    "country1": "es",
+    "country2": "se",
+    "metric": 85
+  },
+  {
+    "country1": "es",
+    "country2": "ch",
+    "metric": 87
+  },
+  {
+    "country1": "es",
+    "country2": "tr",
+    "metric": 79
+  },
+  {
+    "country1": "es",
+    "country2": "ua",
+    "metric": 73
+  },
+  {
+    "country1": "es",
+    "country2": "gb",
+    "metric": 85
+  },
+  {
+    "country1": "es",
+    "country2": "ax",
+    "metric": 76
+  },
+  {
+    "country1": "se",
+    "country2": "ch",
+    "metric": 86
+  },
+  {
+    "country1": "se",
+    "country2": "tr",
+    "metric": 79
+  },
+  {
+    "country1": "se",
+    "country2": "ua",
+    "metric": 73
+  },
+  {
+    "country1": "se",
+    "country2": "gb",
+    "metric": 85
+  },
+  {
+    "country1": "se",
+    "country2": "ax",
+    "metric": 82
+  },
+  {
+    "country1": "ch",
+    "country2": "tr",
+    "metric": 77
+  },
+  {
+    "country1": "ch",
+    "country2": "ua",
+    "metric": 70
+  },
+  {
+    "country1": "ch",
+    "country2": "gb",
+    "metric": 88
+  },
+  {
+    "country1": "ch",
+    "country2": "ax",
+    "metric": 78
+  },
+  {
+    "country1": "tr",
+    "country2": "ua",
+    "metric": 79
+  },
+  {
+    "country1": "tr",
+    "country2": "gb",
+    "metric": 76
+  },
+  {
+    "country1": "tr",
+    "country2": "ax",
+    "metric": 69
+  },
+  {
+    "country1": "ua",
+    "country2": "gb",
+    "metric": 69
+  },
+  {
+    "country1": "ua",
+    "country2": "ax",
+    "metric": 66
+  },
+  {
+    "country1": "gb",
+    "country2": "ax",
+    "metric": 79
+  }
+]

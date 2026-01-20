@@ -1,0 +1,3723 @@
+{
+  "generated_at": "2025-11-15T16:37:49.291405+00:00",
+  "parameters": {
+    "outputs_dir": "outputs_combined",
+    "min_pair_count": 3
+  },
+  "label": "Education, Youth, Culture and Sport Council",
+  "category": "council",
+  "min_pair_threshold": 3,
+  "data": {
+    "countries": [
+      "Austria",
+      "Belgium",
+      "Bulgaria",
+      "Croatia",
+      "Cyprus",
+      "Czechia",
+      "Denmark",
+      "Estonia",
+      "Finland",
+      "France",
+      "Germany",
+      "Greece",
+      "Hungary",
+      "Ireland",
+      "Italy",
+      "Latvia",
+      "Lithuania",
+      "Luxembourg",
+      "Malta",
+      "Netherlands",
+      "Poland",
+      "Portugal",
+      "Romania",
+      "Slovakia",
+      "Slovenia",
+      "Spain",
+      "Sweden"
+    ],
+    "distance_matrix": [
+      [
+        0.0,
+        0.034,
+        0.080909,
+        0.097,
+        0.042,
+        0.043,
+        0.112857,
+        0.087273,
+        0.102,
+        0.061818,
+        0.093333,
+        0.042727,
+        0.068,
+        0.057,
+        0.0825,
+        0.049091,
+        0.080909,
+        0.047,
+        0.094444,
+        0.112,
+        0.04,
+        0.053,
+        0.035556,
+        0.038889,
+        0.071818,
+        0.07,
+        0.116
+      ],
+      [
+        0.034,
+        0.0,
+        0.068,
+        0.05,
+        0.053333,
+        0.048,
+        0.066667,
+        0.09,
+        0.104,
+        0.081429,
+        0.098333,
+        0.07,
+        0.05,
+        0.193333,
+        0.107143,
+        0.028,
+        0.08,
+        0.168571,
+        0.175,
+        0.058,
+        0.0425,
+        0.043333,
+        0.054,
+        0.06,
+        0.09,
+        0.068,
+        0.153333
+      ],
+      [
+        0.080909,
+        0.068,
+        0.0,
+        0.053,
+        0.046,
+        0.081,
+        0.104286,
+        0.102727,
+        0.11,
+        0.062727,
+        0.102727,
+        0.065455,
+        0.033333,
+        0.071,
+        0.048182,
+        0.077273,
+        0.096364,
+        0.096,
+        0.056667,
+        0.17,
+        0.057778,
+        0.039,
+        0.06,
+        0.075556,
+        0.049,
+        0.099167,
+        0.16
+      ],
+      [
+        0.097,
+        0.05,
+        0.053,
+        0.0,
+        0.080909,
+        0.117273,
+        0.12,
+        0.077,
+        0.108182,
+        0.096923,
+        0.087,
+        0.069091,
+        0.06,
+        0.062,
+        0.085,
+        0.077273,
+        0.070909,
+        0.105556,
+        0.052,
+        0.143636,
+        0.065556,
+        0.050909,
+        0.074444,
+        0.094444,
+        0.054545,
+        0.066364,
+        0.133636
+      ],
+      [
+        0.042,
+        0.053333,
+        0.046,
+        0.080909,
+        0.0,
+        0.053,
+        0.087143,
+        0.096,
+        0.102,
+        0.063846,
+        0.078,
+        0.04,
+        0.046667,
+        0.053,
+        0.064615,
+        0.048,
+        0.084545,
+        0.053,
+        0.073,
+        0.138,
+        0.0225,
+        0.048182,
+        0.04,
+        0.041111,
+        0.053636,
+        0.061818,
+        0.115455
+      ],
+      [
+        0.043,
+        0.048,
+        0.081,
+        0.117273,
+        0.053,
+        0.0,
+        0.087143,
+        0.111,
+        0.103636,
+        0.096923,
+        0.09,
+        0.052,
+        0.086,
+        0.052,
+        0.09,
+        0.078333,
+        0.1175,
+        0.045556,
+        0.091111,
+        0.123,
+        0.071111,
+        0.076,
+        0.063333,
+        0.032222,
+        0.066,
+        0.075,
+        0.121818
+      ],
+      [
+        0.112857,
+        0.066667,
+        0.104286,
+        0.12,
+        0.087143,
+        0.087143,
+        0.0,
+        0.151429,
+        0.144286,
+        0.12,
+        0.11125,
+        0.095714,
+        0.18,
+        0.185,
+        0.125,
+        0.102857,
+        0.141429,
+        0.15375,
+        0.165,
+        0.117143,
+        0.096667,
+        0.10125,
+        0.124286,
+        0.085,
+        0.12125,
+        0.115714,
+        0.167143
+      ],
+      [
+        0.087273,
+        0.09,
+        0.102727,
+        0.077,
+        0.096,
+        0.111,
+        0.151429,
+        0.0,
+        0.102,
+        0.145,
+        0.090909,
+        0.093636,
+        0.085,
+        0.075,
+        0.094545,
+        0.083636,
+        0.060909,
+        0.112,
+        0.071111,
+        0.124,
+        0.084444,
+        0.095,
+        0.072222,
+        0.107778,
+        0.103,
+        0.165833,
+        0.124
+      ],
+      [
+        0.102,
+        0.104,
+        0.11,
+        0.108182,
+        0.102,
+        0.103636,
+        0.144286,
+        0.102,
+        0.0,
+        0.14,
+        0.048182,
+        0.101,
+        0.113333,
+        0.101,
+        0.122727,
+        0.109091,
+        0.073636,
+        0.108889,
+        0.081111,
+        0.142,
+        0.12,
+        0.089,
+        0.12,
+        0.094444,
+        0.083,
+        0.129091,
+        0.089091
+      ],
+      [
+        0.061818,
+        0.081429,
+        0.062727,
+        0.096923,
+        0.063846,
+        0.096923,
+        0.12,
+        0.145,
+        0.14,
+        0.0,
+        0.111333,
+        0.040714,
+        0.176667,
+        0.161818,
+        0.060625,
+        0.115385,
+        0.125714,
+        0.114167,
+        0.148182,
+        0.142727,
+        0.092,
+        0.0375,
+        0.073333,
+        0.053333,
+        0.0775,
+        0.048571,
+        0.150833
+      ],
+      [
+        0.093333,
+        0.098333,
+        0.102727,
+        0.087,
+        0.078,
+        0.09,
+        0.11125,
+        0.090909,
+        0.048182,
+        0.111333,
+        0.0,
+        0.088182,
+        0.133333,
+        0.136364,
+        0.103846,
+        0.06,
+        0.05,
+        0.127273,
+        0.1,
+        0.12,
+        0.084,
+        0.080909,
+        0.101111,
+        0.078889,
+        0.0675,
+        0.103333,
+        0.088
+      ],
+      [
+        0.042727,
+        0.07,
+        0.065455,
+        0.069091,
+        0.04,
+        0.052,
+        0.095714,
+        0.093636,
+        0.101,
+        0.040714,
+        0.088182,
+        0.0,
+        0.05,
+        0.04,
+        0.047143,
+        0.062727,
+        0.090833,
+        0.044545,
+        0.076,
+        0.135,
+        0.024444,
+        0.032727,
+        0.054444,
+        0.04,
+        0.04,
+        0.058333,
+        0.116364
+      ],
+      [
+        0.068,
+        0.05,
+        0.033333,
+        0.06,
+        0.046667,
+        0.086,
+        0.18,
+        0.085,
+        0.113333,
+        0.176667,
+        0.133333,
+        0.05,
+        0.0,
+        0.042,
+        0.07,
+        0.056,
+        0.051667,
+        0.081667,
+        0.052,
+        0.15,
+        0.0225,
+        0.042,
+        0.048,
+        0.06,
+        0.068,
+        0.26875,
+        0.087143
+      ],
+      [
+        0.057,
+        0.193333,
+        0.071,
+        0.062,
+        0.053,
+        0.052,
+        0.185,
+        0.075,
+        0.101,
+        0.161818,
+        0.136364,
+        0.04,
+        0.042,
+        0.0,
+        0.138182,
+        0.039,
+        0.073,
+        0.07,
+        0.081,
+        0.129,
+        0.03625,
+        0.124545,
+        0.045556,
+        0.047778,
+        0.091818,
+        0.087,
+        0.117
+      ],
+      [
+        0.0825,
+        0.107143,
+        0.048182,
+        0.085,
+        0.064615,
+        0.09,
+        0.125,
+        0.094545,
+        0.122727,
+        0.060625,
+        0.103846,
+        0.047143,
+        0.07,
+        0.138182,
+        0.0,
+        0.104167,
+        0.12,
+        0.136667,
+        0.13,
+        0.172,
+        0.087,
+        0.0475,
+        0.06,
+        0.081111,
+        0.078462,
+        0.065833,
+        0.181667
+      ],
+      [
+        0.049091,
+        0.028,
+        0.077273,
+        0.077273,
+        0.048,
+        0.078333,
+        0.102857,
+        0.083636,
+        0.109091,
+        0.115385,
+        0.06,
+        0.062727,
+        0.056,
+        0.039,
+        0.104167,
+        0.0,
+        0.052308,
+        0.056,
+        0.062222,
+        0.128,
+        0.044,
+        0.067,
+        0.047778,
+        0.054444,
+        0.059,
+        0.079091,
+        0.103636
+      ],
+      [
+        0.080909,
+        0.08,
+        0.096364,
+        0.070909,
+        0.084545,
+        0.1175,
+        0.141429,
+        0.060909,
+        0.073636,
+        0.125714,
+        0.05,
+        0.090833,
+        0.051667,
+        0.073,
+        0.12,
+        0.052308,
+        0.0,
+        0.109091,
+        0.058889,
+        0.128,
+        0.071818,
+        0.077,
+        0.08,
+        0.092222,
+        0.085,
+        0.107273,
+        0.0975
+      ],
+      [
+        0.047,
+        0.168571,
+        0.096,
+        0.105556,
+        0.053,
+        0.045556,
+        0.15375,
+        0.112,
+        0.108889,
+        0.114167,
+        0.127273,
+        0.044545,
+        0.081667,
+        0.07,
+        0.136667,
+        0.056,
+        0.109091,
+        0.0,
+        0.103,
+        0.12,
+        0.042,
+        0.127,
+        0.06,
+        0.0275,
+        0.101,
+        0.078,
+        0.093
+      ],
+      [
+        0.094444,
+        0.175,
+        0.056667,
+        0.052,
+        0.073,
+        0.091111,
+        0.165,
+        0.071111,
+        0.081111,
+        0.148182,
+        0.1,
+        0.076,
+        0.052,
+        0.081,
+        0.13,
+        0.062222,
+        0.058889,
+        0.103,
+        0.0,
+        0.14,
+        0.0775,
+        0.110909,
+        0.087778,
+        0.0925,
+        0.096364,
+        0.087,
+        0.12
+      ],
+      [
+        0.112,
+        0.058,
+        0.17,
+        0.143636,
+        0.138,
+        0.123,
+        0.117143,
+        0.124,
+        0.142,
+        0.142727,
+        0.12,
+        0.135,
+        0.15,
+        0.129,
+        0.172,
+        0.128,
+        0.128,
+        0.12,
+        0.14,
+        0.0,
+        0.128889,
+        0.141,
+        0.13,
+        0.134444,
+        0.139,
+        0.164,
+        0.144
+      ],
+      [
+        0.04,
+        0.0425,
+        0.057778,
+        0.065556,
+        0.0225,
+        0.071111,
+        0.096667,
+        0.084444,
+        0.12,
+        0.092,
+        0.084,
+        0.024444,
+        0.0225,
+        0.03625,
+        0.087,
+        0.044,
+        0.071818,
+        0.042,
+        0.0775,
+        0.128889,
+        0.0,
+        0.04,
+        0.0225,
+        0.021429,
+        0.04625,
+        0.056667,
+        0.103333
+      ],
+      [
+        0.053,
+        0.043333,
+        0.039,
+        0.050909,
+        0.048182,
+        0.076,
+        0.10125,
+        0.095,
+        0.089,
+        0.0375,
+        0.080909,
+        0.032727,
+        0.042,
+        0.124545,
+        0.0475,
+        0.067,
+        0.077,
+        0.127,
+        0.110909,
+        0.141,
+        0.04,
+        0.0,
+        0.052222,
+        0.066667,
+        0.043333,
+        0.046364,
+        0.135
+      ],
+      [
+        0.035556,
+        0.054,
+        0.06,
+        0.074444,
+        0.04,
+        0.063333,
+        0.124286,
+        0.072222,
+        0.12,
+        0.073333,
+        0.101111,
+        0.054444,
+        0.048,
+        0.045556,
+        0.06,
+        0.047778,
+        0.08,
+        0.06,
+        0.087778,
+        0.13,
+        0.0225,
+        0.052222,
+        0.0,
+        0.05375,
+        0.061111,
+        0.08,
+        0.136667
+      ],
+      [
+        0.038889,
+        0.06,
+        0.075556,
+        0.094444,
+        0.041111,
+        0.032222,
+        0.085,
+        0.107778,
+        0.094444,
+        0.053333,
+        0.078889,
+        0.04,
+        0.06,
+        0.047778,
+        0.081111,
+        0.054444,
+        0.092222,
+        0.0275,
+        0.0925,
+        0.134444,
+        0.021429,
+        0.066667,
+        0.05375,
+        0.0,
+        0.062222,
+        0.063333,
+        0.101111
+      ],
+      [
+        0.071818,
+        0.09,
+        0.049,
+        0.054545,
+        0.053636,
+        0.066,
+        0.12125,
+        0.103,
+        0.083,
+        0.0775,
+        0.0675,
+        0.04,
+        0.068,
+        0.091818,
+        0.078462,
+        0.059,
+        0.085,
+        0.101,
+        0.096364,
+        0.139,
+        0.04625,
+        0.043333,
+        0.061111,
+        0.062222,
+        0.0,
+        0.044545,
+        0.137
+      ],
+      [
+        0.07,
+        0.068,
+        0.099167,
+        0.066364,
+        0.061818,
+        0.075,
+        0.115714,
+        0.165833,
+        0.129091,
+        0.048571,
+        0.103333,
+        0.058333,
+        0.26875,
+        0.087,
+        0.065833,
+        0.079091,
+        0.107273,
+        0.078,
+        0.087,
+        0.164,
+        0.056667,
+        0.046364,
+        0.08,
+        0.063333,
+        0.044545,
+        0.0,
+        0.142
+      ],
+      [
+        0.116,
+        0.153333,
+        0.16,
+        0.133636,
+        0.115455,
+        0.121818,
+        0.167143,
+        0.124,
+        0.089091,
+        0.150833,
+        0.088,
+        0.116364,
+        0.087143,
+        0.117,
+        0.181667,
+        0.103636,
+        0.0975,
+        0.093,
+        0.12,
+        0.144,
+        0.103333,
+        0.135,
+        0.136667,
+        0.101111,
+        0.137,
+        0.142,
+        0.0
+      ]
+    ],
+    "pair_count_matrix": [
+      [
+        0,
+        5,
+        11,
+        10,
+        10,
+        10,
+        7,
+        11,
+        10,
+        11,
+        12,
+        11,
+        5,
+        10,
+        12,
+        11,
+        11,
+        10,
+        9,
+        10,
+        9,
+        10,
+        9,
+        9,
+        11,
+        11,
+        10
+      ],
+      [
+        5,
+        0,
+        5,
+        5,
+        6,
+        5,
+        6,
+        5,
+        5,
+        7,
+        6,
+        6,
+        2,
+        6,
+        7,
+        5,
+        6,
+        7,
+        6,
+        5,
+        4,
+        6,
+        5,
+        4,
+        6,
+        5,
+        6
+      ],
+      [
+        11,
+        5,
+        0,
+        10,
+        10,
+        10,
+        7,
+        11,
+        10,
+        11,
+        11,
+        11,
+        6,
+        10,
+        11,
+        11,
+        11,
+        10,
+        9,
+        10,
+        9,
+        10,
+        9,
+        9,
+        10,
+        12,
+        10
+      ],
+      [
+        10,
+        5,
+        10,
+        0,
+        11,
+        11,
+        7,
+        10,
+        11,
+        13,
+        10,
+        11,
+        6,
+        10,
+        12,
+        11,
+        11,
+        9,
+        10,
+        11,
+        9,
+        11,
+        9,
+        9,
+        11,
+        11,
+        11
+      ],
+      [
+        10,
+        6,
+        10,
+        11,
+        0,
+        10,
+        7,
+        10,
+        10,
+        13,
+        10,
+        13,
+        6,
+        10,
+        13,
+        10,
+        11,
+        10,
+        10,
+        10,
+        8,
+        11,
+        9,
+        9,
+        11,
+        11,
+        11
+      ],
+      [
+        10,
+        5,
+        10,
+        11,
+        10,
+        0,
+        7,
+        10,
+        11,
+        13,
+        11,
+        10,
+        5,
+        10,
+        11,
+        12,
+        12,
+        9,
+        9,
+        10,
+        9,
+        10,
+        9,
+        9,
+        10,
+        10,
+        11
+      ],
+      [
+        7,
+        6,
+        7,
+        7,
+        7,
+        7,
+        0,
+        7,
+        7,
+        8,
+        8,
+        7,
+        3,
+        8,
+        8,
+        7,
+        7,
+        8,
+        8,
+        7,
+        6,
+        8,
+        7,
+        6,
+        8,
+        7,
+        7
+      ],
+      [
+        11,
+        5,
+        11,
+        10,
+        10,
+        10,
+        7,
+        0,
+        10,
+        12,
+        11,
+        11,
+        6,
+        10,
+        11,
+        11,
+        11,
+        10,
+        9,
+        10,
+        9,
+        10,
+        9,
+        9,
+        10,
+        12,
+        10
+      ],
+      [
+        10,
+        5,
+        10,
+        11,
+        10,
+        11,
+        7,
+        10,
+        0,
+        12,
+        11,
+        10,
+        6,
+        10,
+        11,
+        11,
+        11,
+        9,
+        9,
+        10,
+        9,
+        10,
+        9,
+        9,
+        10,
+        11,
+        11
+      ],
+      [
+        11,
+        7,
+        11,
+        13,
+        13,
+        13,
+        8,
+        12,
+        12,
+        0,
+        15,
+        14,
+        9,
+        11,
+        16,
+        13,
+        14,
+        12,
+        11,
+        11,
+        10,
+        12,
+        9,
+        9,
+        12,
+        14,
+        12
+      ],
+      [
+        12,
+        6,
+        11,
+        10,
+        10,
+        11,
+        8,
+        11,
+        11,
+        15,
+        0,
+        11,
+        6,
+        11,
+        13,
+        12,
+        13,
+        11,
+        10,
+        10,
+        10,
+        11,
+        9,
+        9,
+        12,
+        12,
+        10
+      ],
+      [
+        11,
+        6,
+        11,
+        11,
+        13,
+        10,
+        7,
+        11,
+        10,
+        14,
+        11,
+        0,
+        6,
+        10,
+        14,
+        11,
+        12,
+        11,
+        10,
+        10,
+        9,
+        11,
+        9,
+        9,
+        11,
+        12,
+        11
+      ],
+      [
+        5,
+        2,
+        6,
+        6,
+        6,
+        5,
+        3,
+        6,
+        6,
+        9,
+        6,
+        6,
+        0,
+        5,
+        6,
+        5,
+        6,
+        6,
+        5,
+        6,
+        4,
+        5,
+        5,
+        5,
+        5,
+        8,
+        7
+      ],
+      [
+        10,
+        6,
+        10,
+        10,
+        10,
+        10,
+        8,
+        10,
+        10,
+        11,
+        11,
+        10,
+        5,
+        0,
+        11,
+        10,
+        10,
+        10,
+        10,
+        10,
+        8,
+        11,
+        9,
+        9,
+        11,
+        10,
+        10
+      ],
+      [
+        12,
+        7,
+        11,
+        12,
+        13,
+        11,
+        8,
+        11,
+        11,
+        16,
+        13,
+        14,
+        6,
+        11,
+        0,
+        12,
+        13,
+        12,
+        11,
+        10,
+        10,
+        12,
+        9,
+        9,
+        13,
+        12,
+        12
+      ],
+      [
+        11,
+        5,
+        11,
+        11,
+        10,
+        12,
+        7,
+        11,
+        11,
+        13,
+        12,
+        11,
+        5,
+        10,
+        12,
+        0,
+        13,
+        10,
+        9,
+        10,
+        10,
+        10,
+        9,
+        9,
+        10,
+        11,
+        11
+      ],
+      [
+        11,
+        6,
+        11,
+        11,
+        11,
+        12,
+        7,
+        11,
+        11,
+        14,
+        13,
+        12,
+        6,
+        10,
+        13,
+        13,
+        0,
+        11,
+        9,
+        10,
+        11,
+        10,
+        9,
+        9,
+        10,
+        11,
+        12
+      ],
+      [
+        10,
+        7,
+        10,
+        9,
+        10,
+        9,
+        8,
+        10,
+        9,
+        12,
+        11,
+        11,
+        6,
+        10,
+        12,
+        10,
+        11,
+        0,
+        10,
+        10,
+        10,
+        10,
+        9,
+        8,
+        10,
+        10,
+        10
+      ],
+      [
+        9,
+        6,
+        9,
+        10,
+        10,
+        9,
+        8,
+        9,
+        9,
+        11,
+        10,
+        10,
+        5,
+        10,
+        11,
+        9,
+        9,
+        10,
+        0,
+        9,
+        8,
+        11,
+        9,
+        8,
+        11,
+        10,
+        9
+      ],
+      [
+        10,
+        5,
+        10,
+        11,
+        10,
+        10,
+        7,
+        10,
+        10,
+        11,
+        10,
+        10,
+        6,
+        10,
+        10,
+        10,
+        10,
+        10,
+        9,
+        0,
+        9,
+        10,
+        9,
+        9,
+        10,
+        10,
+        10
+      ],
+      [
+        9,
+        4,
+        9,
+        9,
+        8,
+        9,
+        6,
+        9,
+        9,
+        10,
+        10,
+        9,
+        4,
+        8,
+        10,
+        10,
+        11,
+        10,
+        8,
+        9,
+        0,
+        8,
+        8,
+        7,
+        8,
+        9,
+        9
+      ],
+      [
+        10,
+        6,
+        10,
+        11,
+        11,
+        10,
+        8,
+        10,
+        10,
+        12,
+        11,
+        11,
+        5,
+        11,
+        12,
+        10,
+        10,
+        10,
+        11,
+        10,
+        8,
+        0,
+        9,
+        9,
+        12,
+        11,
+        10
+      ],
+      [
+        9,
+        5,
+        9,
+        9,
+        9,
+        9,
+        7,
+        9,
+        9,
+        9,
+        9,
+        9,
+        5,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        8,
+        9,
+        0,
+        8,
+        9,
+        9,
+        9
+      ],
+      [
+        9,
+        4,
+        9,
+        9,
+        9,
+        9,
+        6,
+        9,
+        9,
+        9,
+        9,
+        9,
+        5,
+        9,
+        9,
+        9,
+        9,
+        8,
+        8,
+        9,
+        7,
+        9,
+        8,
+        0,
+        9,
+        9,
+        9
+      ],
+      [
+        11,
+        6,
+        10,
+        11,
+        11,
+        10,
+        8,
+        10,
+        10,
+        12,
+        12,
+        11,
+        5,
+        11,
+        13,
+        10,
+        10,
+        10,
+        11,
+        10,
+        8,
+        12,
+        9,
+        9,
+        0,
+        11,
+        10
+      ],
+      [
+        11,
+        5,
+        12,
+        11,
+        11,
+        10,
+        7,
+        12,
+        11,
+        14,
+        12,
+        12,
+        8,
+        10,
+        12,
+        11,
+        11,
+        10,
+        10,
+        10,
+        9,
+        11,
+        9,
+        9,
+        11,
+        0,
+        10
+      ],
+      [
+        10,
+        6,
+        10,
+        11,
+        11,
+        11,
+        7,
+        10,
+        11,
+        12,
+        10,
+        11,
+        7,
+        10,
+        12,
+        11,
+        12,
+        10,
+        9,
+        10,
+        9,
+        10,
+        9,
+        9,
+        10,
+        10,
+        0
+      ]
+    ],
+    "pair_records": [
+      {
+        "country_a": "Austria",
+        "country_b": "Belgium",
+        "distance": 0.034,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Bulgaria",
+        "distance": 0.080909,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Croatia",
+        "distance": 0.097,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Cyprus",
+        "distance": 0.042,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Czechia",
+        "distance": 0.043,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Denmark",
+        "distance": 0.112857,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Estonia",
+        "distance": 0.087273,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Finland",
+        "distance": 0.102,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "France",
+        "distance": 0.061818,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Germany",
+        "distance": 0.093333,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Greece",
+        "distance": 0.042727,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Hungary",
+        "distance": 0.068,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Ireland",
+        "distance": 0.057,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Italy",
+        "distance": 0.0825,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Latvia",
+        "distance": 0.049091,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Lithuania",
+        "distance": 0.080909,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Luxembourg",
+        "distance": 0.047,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Malta",
+        "distance": 0.094444,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Netherlands",
+        "distance": 0.112,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Poland",
+        "distance": 0.04,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Portugal",
+        "distance": 0.053,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Romania",
+        "distance": 0.035556,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Slovakia",
+        "distance": 0.038889,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Slovenia",
+        "distance": 0.071818,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Spain",
+        "distance": 0.07,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Austria",
+        "country_b": "Sweden",
+        "distance": 0.116,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Bulgaria",
+        "distance": 0.068,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Croatia",
+        "distance": 0.05,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Cyprus",
+        "distance": 0.053333,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Czechia",
+        "distance": 0.048,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Denmark",
+        "distance": 0.066667,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Estonia",
+        "distance": 0.09,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Finland",
+        "distance": 0.104,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "France",
+        "distance": 0.081429,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Germany",
+        "distance": 0.098333,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Greece",
+        "distance": 0.07,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Hungary",
+        "distance": 0.05,
+        "pair_count": 2
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Ireland",
+        "distance": 0.193333,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Italy",
+        "distance": 0.107143,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Latvia",
+        "distance": 0.028,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Lithuania",
+        "distance": 0.08,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Luxembourg",
+        "distance": 0.168571,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Malta",
+        "distance": 0.175,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Netherlands",
+        "distance": 0.058,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Poland",
+        "distance": 0.0425,
+        "pair_count": 4
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Portugal",
+        "distance": 0.043333,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Romania",
+        "distance": 0.054,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Slovakia",
+        "distance": 0.06,
+        "pair_count": 4
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Slovenia",
+        "distance": 0.09,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Spain",
+        "distance": 0.068,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Belgium",
+        "country_b": "Sweden",
+        "distance": 0.153333,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Croatia",
+        "distance": 0.053,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Cyprus",
+        "distance": 0.046,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Czechia",
+        "distance": 0.081,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Denmark",
+        "distance": 0.104286,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Estonia",
+        "distance": 0.102727,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Finland",
+        "distance": 0.11,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "France",
+        "distance": 0.062727,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Germany",
+        "distance": 0.102727,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Greece",
+        "distance": 0.065455,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Hungary",
+        "distance": 0.033333,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Ireland",
+        "distance": 0.071,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Italy",
+        "distance": 0.048182,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Latvia",
+        "distance": 0.077273,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Lithuania",
+        "distance": 0.096364,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Luxembourg",
+        "distance": 0.096,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Malta",
+        "distance": 0.056667,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Netherlands",
+        "distance": 0.17,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Poland",
+        "distance": 0.057778,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Portugal",
+        "distance": 0.039,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Romania",
+        "distance": 0.06,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Slovakia",
+        "distance": 0.075556,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Slovenia",
+        "distance": 0.049,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Spain",
+        "distance": 0.099167,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Bulgaria",
+        "country_b": "Sweden",
+        "distance": 0.16,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Cyprus",
+        "distance": 0.080909,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Czechia",
+        "distance": 0.117273,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Denmark",
+        "distance": 0.12,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Estonia",
+        "distance": 0.077,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Finland",
+        "distance": 0.108182,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "France",
+        "distance": 0.096923,
+        "pair_count": 13
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Germany",
+        "distance": 0.087,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Greece",
+        "distance": 0.069091,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Hungary",
+        "distance": 0.06,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Ireland",
+        "distance": 0.062,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Italy",
+        "distance": 0.085,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Latvia",
+        "distance": 0.077273,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Lithuania",
+        "distance": 0.070909,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Luxembourg",
+        "distance": 0.105556,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Malta",
+        "distance": 0.052,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Netherlands",
+        "distance": 0.143636,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Poland",
+        "distance": 0.065556,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Portugal",
+        "distance": 0.050909,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Romania",
+        "distance": 0.074444,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Slovakia",
+        "distance": 0.094444,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Slovenia",
+        "distance": 0.054545,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Spain",
+        "distance": 0.066364,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Croatia",
+        "country_b": "Sweden",
+        "distance": 0.133636,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Czechia",
+        "distance": 0.053,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Denmark",
+        "distance": 0.087143,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Estonia",
+        "distance": 0.096,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Finland",
+        "distance": 0.102,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "France",
+        "distance": 0.063846,
+        "pair_count": 13
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Germany",
+        "distance": 0.078,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Greece",
+        "distance": 0.04,
+        "pair_count": 13
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Hungary",
+        "distance": 0.046667,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Ireland",
+        "distance": 0.053,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Italy",
+        "distance": 0.064615,
+        "pair_count": 13
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Latvia",
+        "distance": 0.048,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Lithuania",
+        "distance": 0.084545,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Luxembourg",
+        "distance": 0.053,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Malta",
+        "distance": 0.073,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Netherlands",
+        "distance": 0.138,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Poland",
+        "distance": 0.0225,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Portugal",
+        "distance": 0.048182,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Romania",
+        "distance": 0.04,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Slovakia",
+        "distance": 0.041111,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Slovenia",
+        "distance": 0.053636,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Spain",
+        "distance": 0.061818,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Cyprus",
+        "country_b": "Sweden",
+        "distance": 0.115455,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Denmark",
+        "distance": 0.087143,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Estonia",
+        "distance": 0.111,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Finland",
+        "distance": 0.103636,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "France",
+        "distance": 0.096923,
+        "pair_count": 13
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Germany",
+        "distance": 0.09,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Greece",
+        "distance": 0.052,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Hungary",
+        "distance": 0.086,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Ireland",
+        "distance": 0.052,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Italy",
+        "distance": 0.09,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Latvia",
+        "distance": 0.078333,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Lithuania",
+        "distance": 0.1175,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Luxembourg",
+        "distance": 0.045556,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Malta",
+        "distance": 0.091111,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Netherlands",
+        "distance": 0.123,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Poland",
+        "distance": 0.071111,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Portugal",
+        "distance": 0.076,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Romania",
+        "distance": 0.063333,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Slovakia",
+        "distance": 0.032222,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Slovenia",
+        "distance": 0.066,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Spain",
+        "distance": 0.075,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Czechia",
+        "country_b": "Sweden",
+        "distance": 0.121818,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Estonia",
+        "distance": 0.151429,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Finland",
+        "distance": 0.144286,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "France",
+        "distance": 0.12,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Germany",
+        "distance": 0.11125,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Greece",
+        "distance": 0.095714,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Hungary",
+        "distance": 0.18,
+        "pair_count": 3
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Ireland",
+        "distance": 0.185,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Italy",
+        "distance": 0.125,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Latvia",
+        "distance": 0.102857,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Lithuania",
+        "distance": 0.141429,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Luxembourg",
+        "distance": 0.15375,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Malta",
+        "distance": 0.165,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Netherlands",
+        "distance": 0.117143,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Poland",
+        "distance": 0.096667,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Portugal",
+        "distance": 0.10125,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Romania",
+        "distance": 0.124286,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Slovakia",
+        "distance": 0.085,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Slovenia",
+        "distance": 0.12125,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Spain",
+        "distance": 0.115714,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Denmark",
+        "country_b": "Sweden",
+        "distance": 0.167143,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Finland",
+        "distance": 0.102,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "France",
+        "distance": 0.145,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Germany",
+        "distance": 0.090909,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Greece",
+        "distance": 0.093636,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Hungary",
+        "distance": 0.085,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Ireland",
+        "distance": 0.075,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Italy",
+        "distance": 0.094545,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Latvia",
+        "distance": 0.083636,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Lithuania",
+        "distance": 0.060909,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Luxembourg",
+        "distance": 0.112,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Malta",
+        "distance": 0.071111,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Netherlands",
+        "distance": 0.124,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Poland",
+        "distance": 0.084444,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Portugal",
+        "distance": 0.095,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Romania",
+        "distance": 0.072222,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Slovakia",
+        "distance": 0.107778,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Slovenia",
+        "distance": 0.103,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Spain",
+        "distance": 0.165833,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Estonia",
+        "country_b": "Sweden",
+        "distance": 0.124,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "France",
+        "distance": 0.14,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Germany",
+        "distance": 0.048182,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Greece",
+        "distance": 0.101,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Hungary",
+        "distance": 0.113333,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Ireland",
+        "distance": 0.101,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Italy",
+        "distance": 0.122727,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Latvia",
+        "distance": 0.109091,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Lithuania",
+        "distance": 0.073636,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Luxembourg",
+        "distance": 0.108889,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Malta",
+        "distance": 0.081111,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Netherlands",
+        "distance": 0.142,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Poland",
+        "distance": 0.12,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Portugal",
+        "distance": 0.089,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Romania",
+        "distance": 0.12,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Slovakia",
+        "distance": 0.094444,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Slovenia",
+        "distance": 0.083,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Spain",
+        "distance": 0.129091,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Finland",
+        "country_b": "Sweden",
+        "distance": 0.089091,
+        "pair_count": 11
+      },
+      {
+        "country_a": "France",
+        "country_b": "Germany",
+        "distance": 0.111333,
+        "pair_count": 15
+      },
+      {
+        "country_a": "France",
+        "country_b": "Greece",
+        "distance": 0.040714,
+        "pair_count": 14
+      },
+      {
+        "country_a": "France",
+        "country_b": "Hungary",
+        "distance": 0.176667,
+        "pair_count": 9
+      },
+      {
+        "country_a": "France",
+        "country_b": "Ireland",
+        "distance": 0.161818,
+        "pair_count": 11
+      },
+      {
+        "country_a": "France",
+        "country_b": "Italy",
+        "distance": 0.060625,
+        "pair_count": 16
+      },
+      {
+        "country_a": "France",
+        "country_b": "Latvia",
+        "distance": 0.115385,
+        "pair_count": 13
+      },
+      {
+        "country_a": "France",
+        "country_b": "Lithuania",
+        "distance": 0.125714,
+        "pair_count": 14
+      },
+      {
+        "country_a": "France",
+        "country_b": "Luxembourg",
+        "distance": 0.114167,
+        "pair_count": 12
+      },
+      {
+        "country_a": "France",
+        "country_b": "Malta",
+        "distance": 0.148182,
+        "pair_count": 11
+      },
+      {
+        "country_a": "France",
+        "country_b": "Netherlands",
+        "distance": 0.142727,
+        "pair_count": 11
+      },
+      {
+        "country_a": "France",
+        "country_b": "Poland",
+        "distance": 0.092,
+        "pair_count": 10
+      },
+      {
+        "country_a": "France",
+        "country_b": "Portugal",
+        "distance": 0.0375,
+        "pair_count": 12
+      },
+      {
+        "country_a": "France",
+        "country_b": "Romania",
+        "distance": 0.073333,
+        "pair_count": 9
+      },
+      {
+        "country_a": "France",
+        "country_b": "Slovakia",
+        "distance": 0.053333,
+        "pair_count": 9
+      },
+      {
+        "country_a": "France",
+        "country_b": "Slovenia",
+        "distance": 0.0775,
+        "pair_count": 12
+      },
+      {
+        "country_a": "France",
+        "country_b": "Spain",
+        "distance": 0.048571,
+        "pair_count": 14
+      },
+      {
+        "country_a": "France",
+        "country_b": "Sweden",
+        "distance": 0.150833,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Greece",
+        "distance": 0.088182,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Hungary",
+        "distance": 0.133333,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Ireland",
+        "distance": 0.136364,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Italy",
+        "distance": 0.103846,
+        "pair_count": 13
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Latvia",
+        "distance": 0.06,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Lithuania",
+        "distance": 0.05,
+        "pair_count": 13
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Luxembourg",
+        "distance": 0.127273,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Malta",
+        "distance": 0.1,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Netherlands",
+        "distance": 0.12,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Poland",
+        "distance": 0.084,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Portugal",
+        "distance": 0.080909,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Romania",
+        "distance": 0.101111,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Slovakia",
+        "distance": 0.078889,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Slovenia",
+        "distance": 0.0675,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Spain",
+        "distance": 0.103333,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Germany",
+        "country_b": "Sweden",
+        "distance": 0.088,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Hungary",
+        "distance": 0.05,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Ireland",
+        "distance": 0.04,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Italy",
+        "distance": 0.047143,
+        "pair_count": 14
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Latvia",
+        "distance": 0.062727,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Lithuania",
+        "distance": 0.090833,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Luxembourg",
+        "distance": 0.044545,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Malta",
+        "distance": 0.076,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Netherlands",
+        "distance": 0.135,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Poland",
+        "distance": 0.024444,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Portugal",
+        "distance": 0.032727,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Romania",
+        "distance": 0.054444,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Slovakia",
+        "distance": 0.04,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Slovenia",
+        "distance": 0.04,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Spain",
+        "distance": 0.058333,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Greece",
+        "country_b": "Sweden",
+        "distance": 0.116364,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Ireland",
+        "distance": 0.042,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Italy",
+        "distance": 0.07,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Latvia",
+        "distance": 0.056,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Lithuania",
+        "distance": 0.051667,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Luxembourg",
+        "distance": 0.081667,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Malta",
+        "distance": 0.052,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Netherlands",
+        "distance": 0.15,
+        "pair_count": 6
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Poland",
+        "distance": 0.0225,
+        "pair_count": 4
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Portugal",
+        "distance": 0.042,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Romania",
+        "distance": 0.048,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Slovakia",
+        "distance": 0.06,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Slovenia",
+        "distance": 0.068,
+        "pair_count": 5
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Spain",
+        "distance": 0.26875,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Hungary",
+        "country_b": "Sweden",
+        "distance": 0.087143,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Italy",
+        "distance": 0.138182,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Latvia",
+        "distance": 0.039,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Lithuania",
+        "distance": 0.073,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Luxembourg",
+        "distance": 0.07,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Malta",
+        "distance": 0.081,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Netherlands",
+        "distance": 0.129,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Poland",
+        "distance": 0.03625,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Portugal",
+        "distance": 0.124545,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Romania",
+        "distance": 0.045556,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Slovakia",
+        "distance": 0.047778,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Slovenia",
+        "distance": 0.091818,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Spain",
+        "distance": 0.087,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Ireland",
+        "country_b": "Sweden",
+        "distance": 0.117,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Italy",
+        "country_b": "Latvia",
+        "distance": 0.104167,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Italy",
+        "country_b": "Lithuania",
+        "distance": 0.12,
+        "pair_count": 13
+      },
+      {
+        "country_a": "Italy",
+        "country_b": "Luxembourg",
+        "distance": 0.136667,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Italy",
+        "country_b": "Malta",
+        "distance": 0.13,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Italy",
+        "country_b": "Netherlands",
+        "distance": 0.172,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Italy",
+        "country_b": "Poland",
+        "distance": 0.087,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Italy",
+        "country_b": "Portugal",
+        "distance": 0.0475,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Italy",
+        "country_b": "Romania",
+        "distance": 0.06,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Italy",
+        "country_b": "Slovakia",
+        "distance": 0.081111,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Italy",
+        "country_b": "Slovenia",
+        "distance": 0.078462,
+        "pair_count": 13
+      },
+      {
+        "country_a": "Italy",
+        "country_b": "Spain",
+        "distance": 0.065833,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Italy",
+        "country_b": "Sweden",
+        "distance": 0.181667,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Latvia",
+        "country_b": "Lithuania",
+        "distance": 0.052308,
+        "pair_count": 13
+      },
+      {
+        "country_a": "Latvia",
+        "country_b": "Luxembourg",
+        "distance": 0.056,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Latvia",
+        "country_b": "Malta",
+        "distance": 0.062222,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Latvia",
+        "country_b": "Netherlands",
+        "distance": 0.128,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Latvia",
+        "country_b": "Poland",
+        "distance": 0.044,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Latvia",
+        "country_b": "Portugal",
+        "distance": 0.067,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Latvia",
+        "country_b": "Romania",
+        "distance": 0.047778,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Latvia",
+        "country_b": "Slovakia",
+        "distance": 0.054444,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Latvia",
+        "country_b": "Slovenia",
+        "distance": 0.059,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Latvia",
+        "country_b": "Spain",
+        "distance": 0.079091,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Latvia",
+        "country_b": "Sweden",
+        "distance": 0.103636,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Lithuania",
+        "country_b": "Luxembourg",
+        "distance": 0.109091,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Lithuania",
+        "country_b": "Malta",
+        "distance": 0.058889,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Lithuania",
+        "country_b": "Netherlands",
+        "distance": 0.128,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Lithuania",
+        "country_b": "Poland",
+        "distance": 0.071818,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Lithuania",
+        "country_b": "Portugal",
+        "distance": 0.077,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Lithuania",
+        "country_b": "Romania",
+        "distance": 0.08,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Lithuania",
+        "country_b": "Slovakia",
+        "distance": 0.092222,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Lithuania",
+        "country_b": "Slovenia",
+        "distance": 0.085,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Lithuania",
+        "country_b": "Spain",
+        "distance": 0.107273,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Lithuania",
+        "country_b": "Sweden",
+        "distance": 0.0975,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Luxembourg",
+        "country_b": "Malta",
+        "distance": 0.103,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Luxembourg",
+        "country_b": "Netherlands",
+        "distance": 0.12,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Luxembourg",
+        "country_b": "Poland",
+        "distance": 0.042,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Luxembourg",
+        "country_b": "Portugal",
+        "distance": 0.127,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Luxembourg",
+        "country_b": "Romania",
+        "distance": 0.06,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Luxembourg",
+        "country_b": "Slovakia",
+        "distance": 0.0275,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Luxembourg",
+        "country_b": "Slovenia",
+        "distance": 0.101,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Luxembourg",
+        "country_b": "Spain",
+        "distance": 0.078,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Luxembourg",
+        "country_b": "Sweden",
+        "distance": 0.093,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Malta",
+        "country_b": "Netherlands",
+        "distance": 0.14,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Malta",
+        "country_b": "Poland",
+        "distance": 0.0775,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Malta",
+        "country_b": "Portugal",
+        "distance": 0.110909,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Malta",
+        "country_b": "Romania",
+        "distance": 0.087778,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Malta",
+        "country_b": "Slovakia",
+        "distance": 0.0925,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Malta",
+        "country_b": "Slovenia",
+        "distance": 0.096364,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Malta",
+        "country_b": "Spain",
+        "distance": 0.087,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Malta",
+        "country_b": "Sweden",
+        "distance": 0.12,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Netherlands",
+        "country_b": "Poland",
+        "distance": 0.128889,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Netherlands",
+        "country_b": "Portugal",
+        "distance": 0.141,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Netherlands",
+        "country_b": "Romania",
+        "distance": 0.13,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Netherlands",
+        "country_b": "Slovakia",
+        "distance": 0.134444,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Netherlands",
+        "country_b": "Slovenia",
+        "distance": 0.139,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Netherlands",
+        "country_b": "Spain",
+        "distance": 0.164,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Netherlands",
+        "country_b": "Sweden",
+        "distance": 0.144,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Poland",
+        "country_b": "Portugal",
+        "distance": 0.04,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Poland",
+        "country_b": "Romania",
+        "distance": 0.0225,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Poland",
+        "country_b": "Slovakia",
+        "distance": 0.021429,
+        "pair_count": 7
+      },
+      {
+        "country_a": "Poland",
+        "country_b": "Slovenia",
+        "distance": 0.04625,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Poland",
+        "country_b": "Spain",
+        "distance": 0.056667,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Poland",
+        "country_b": "Sweden",
+        "distance": 0.103333,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Portugal",
+        "country_b": "Romania",
+        "distance": 0.052222,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Portugal",
+        "country_b": "Slovakia",
+        "distance": 0.066667,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Portugal",
+        "country_b": "Slovenia",
+        "distance": 0.043333,
+        "pair_count": 12
+      },
+      {
+        "country_a": "Portugal",
+        "country_b": "Spain",
+        "distance": 0.046364,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Portugal",
+        "country_b": "Sweden",
+        "distance": 0.135,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Romania",
+        "country_b": "Slovakia",
+        "distance": 0.05375,
+        "pair_count": 8
+      },
+      {
+        "country_a": "Romania",
+        "country_b": "Slovenia",
+        "distance": 0.061111,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Romania",
+        "country_b": "Spain",
+        "distance": 0.08,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Romania",
+        "country_b": "Sweden",
+        "distance": 0.136667,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Slovakia",
+        "country_b": "Slovenia",
+        "distance": 0.062222,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Slovakia",
+        "country_b": "Spain",
+        "distance": 0.063333,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Slovakia",
+        "country_b": "Sweden",
+        "distance": 0.101111,
+        "pair_count": 9
+      },
+      {
+        "country_a": "Slovenia",
+        "country_b": "Spain",
+        "distance": 0.044545,
+        "pair_count": 11
+      },
+      {
+        "country_a": "Slovenia",
+        "country_b": "Sweden",
+        "distance": 0.137,
+        "pair_count": 10
+      },
+      {
+        "country_a": "Spain",
+        "country_b": "Sweden",
+        "distance": 0.142,
+        "pair_count": 10
+      }
+    ],
+    "average_distance": 0.087372,
+    "average_pair_count": 9.4444,
+    "label": "Education, Youth, Culture and Sport Council",
+    "min_pair_threshold": 3
+  }
+}
