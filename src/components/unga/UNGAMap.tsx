@@ -222,7 +222,11 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
       const bounds = container.getBoundingClientRect();
       const mouseEvent = event as MouseEvent;
       const key = resolveCountryKey(countryId);
-      if (!key) return;
+      if (!key) {
+        setTooltip(null);
+        setSelectedCountry(null);
+        return;
+      }
 
       const alignment = alignmentMap[key];
       if (!alignment) {
@@ -233,6 +237,11 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
 
       const displayName = getCountryDisplayName(key, formatCountryName(countryId));
       const countryTopics = topicsMap?.[key];
+      if (selectedCountry && selectedCountry !== key) {
+        setTooltip(null);
+        setSelectedCountry(null);
+      }
+
       setTooltip({
         type: 'alignment',
         name: displayName,
