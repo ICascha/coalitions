@@ -540,6 +540,26 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
                             dangerouslySetInnerHTML={{ __html: svgMarkup }}
                         />
                         
+                        {/* Interaction Hint - Initial View Only */}
+                        {!isAnalyzing && rawScrollProgress < 0.1 && (
+                            <div className="absolute top-6 right-6 md:top-10 md:right-10 z-10 animate-in fade-in slide-in-from-top-4 duration-1000 fill-mode-forwards pointer-events-none">
+                                <div className="bg-white/95 backdrop-blur-sm pl-4 pr-5 py-3 rounded-full shadow-lg border border-slate-100 flex items-center gap-3 transform transition-transform hover:scale-105">
+                                    <div className="relative flex h-3 w-3">
+                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                                      <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <span className="font-serif text-slate-800 text-sm font-medium leading-none">Verken de kaart</span>
+                                        <span className="text-[10px] text-slate-500 mt-1 uppercase tracking-wider font-medium">Klik op een land</span>
+                                    </div>
+                                    <div className="w-px h-8 bg-slate-100 mx-1"></div>
+                                    <svg className="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                                    </svg>
+                                </div>
+                            </div>
+                        )}
+
                         {/* Map Legend - Only show when interactive/zoomed out somewhat - and NOT in analysis mode */}
                         {!isAnalyzing && (
                             <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur p-4 rounded-lg shadow-sm border border-slate-100 text-xs text-slate-600 max-w-[200px]">
