@@ -610,6 +610,7 @@ const UNGAMap = ({ onAnalysisModeChange }: { onAnalysisModeChange?: (isAnalyzing
                           
                           return (
                              <div
+                                key={tooltip.countryCode}
                                 className="absolute rounded-lg bg-white/95 backdrop-blur-sm px-4 py-3 text-sm text-slate-800 shadow-lg border border-slate-200/60 pointer-events-none z-50 w-[280px]"
                                 style={{ 
                                     left, 
